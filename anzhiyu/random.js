@@ -1,1 +1,1 @@
-var posts=["2023/09/24/windows/ARP断网攻击及防御/"];function toRandomPost(){pjax.loadUrl('/'+posts[Math.floor(Math.random() * posts.length)]);};
+var posts=["2023/06/22/linux/Linux入侵排查/","2023/06/16/linux/firewalld防火墙/","2023/06/16/linux/iptables防火墙/","2023/06/02/security/PHP函数/","2023/06/01/security/PHP基础/","2023/08/02/windows/ARP断网攻击及防御/","2023/08/02/windows/DHCP地址池耗尽攻击/","2023/06/02/security/PHP数组/","2023/08/02/windows/rdp、ftp协议的密码爆破/","2023/06/15/linux/shell脚本编写/"];function toRandomPost(){pjax.loadUrl('/'+posts[Math.floor(Math.random() * posts.length)]);};
