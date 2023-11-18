@@ -1,0 +1,598 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>秋刀鱼-</title>
+  
+  <subtitle>生活明朗，万物可爱</subtitle>
+  <link href="https://hxysaury.github.io/atom.xml" rel="self"/>
+  
+  <link href="https://hxysaury.github.io/"/>
+  <updated>2023-11-18T10:23:26.189Z</updated>
+  <id>https://hxysaury.github.io/</id>
+  
+  <author>
+    <name>秋刀鱼-</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>ATT&amp;CK实战系列——红队实战（一）</title>
+    <link href="https://hxysaury.github.io/2023/11/17/target-test/att-ck-shi-zhan-xi-lie-hong-dui-shi-zhan-yi/"/>
+    <id>https://hxysaury.github.io/2023/11/17/target-test/att-ck-shi-zhan-xi-lie-hong-dui-shi-zhan-yi/</id>
+    <published>2023-11-17T02:29:20.000Z</published>
+    <updated>2023-11-18T10:23:26.189Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;meta name=&quot;referrer&quot; content=&quot;no-referrer&quot; /&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;靶场地址：&lt;a</summary>
+        
+      
+    
+    
+    
+    <category term="靶机" scheme="https://hxysaury.github.io/categories/%E9%9D%B6%E6%9C%BA/"/>
+    
+    
+    <category term="Hongri" scheme="https://hxysaury.github.io/tags/Hongri/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>【Vulnhub靶机】DirtyCow</title>
+    <link href="https://hxysaury.github.io/2023/10/29/target-test/zang-niu-lampiao/"/>
+    <id>https://hxysaury.github.io/2023/10/29/target-test/zang-niu-lampiao/</id>
+    <published>2023-10-29T03:20:10.000Z</published>
+    <updated>2023-11-03T08:35:58.650Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;meta name=&quot;referrer&quot; content=&quot;no-referrer&quot; /&gt;
+
+&lt;h1 id=&quot;Dirty-Cow&quot;&gt;&lt;a href=&quot;#Dirty-Cow&quot; class=&quot;headerlink&quot; title=&quot;Dirty Cow&quot;&gt;&lt;/a&gt;Dirty</summary>
+        
+      
+    
+    
+    
+    <category term="靶机" scheme="https://hxysaury.github.io/categories/%E9%9D%B6%E6%9C%BA/"/>
+    
+    
+    <category term="Vulnhub" scheme="https://hxysaury.github.io/tags/Vulnhub/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>【Vulnhub靶机】mhz_cxf:c1f</title>
+    <link href="https://hxysaury.github.io/2023/10/20/target-test/mhz-c1f/"/>
+    <id>https://hxysaury.github.io/2023/10/20/target-test/mhz-c1f/</id>
+    <published>2023-10-20T03:20:10.000Z</published>
+    <updated>2023-11-18T10:20:49.668Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;meta name=&quot;referrer&quot; content=&quot;no-referrer&quot; /&gt;
+
+
+
+&lt;blockquote&gt;
+&lt;p&gt;靶机文档：：&lt;a href=&quot;https://www.vulnhub.com/entry/mhz_cxf-c1f,471/&quot;&gt;mhz_cxf:</summary>
+        
+      
+    
+    
+    
+    <category term="靶机" scheme="https://hxysaury.github.io/categories/%E9%9D%B6%E6%9C%BA/"/>
+    
+    
+    <category term="Vulnhub" scheme="https://hxysaury.github.io/tags/Vulnhub/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>APP和小程序</title>
+    <link href="https://hxysaury.github.io/2023/10/16/security/apk-yu-xiao-cheng-xu/"/>
+    <id>https://hxysaury.github.io/2023/10/16/security/apk-yu-xiao-cheng-xu/</id>
+    <published>2023-10-16T02:17:50.000Z</published>
+    <updated>2023-10-16T14:49:27.200Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;meta name=&quot;referrer&quot; content=&quot;no-referrer&quot; /&gt;
+
+&lt;h1 id=&quot;APK&quot;&gt;&lt;a href=&quot;#APK&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="Web渗透" scheme="https://hxysaury.github.io/categories/Web%E6%B8%97%E9%80%8F/"/>
+    
+    
+    <category term="app小程序" scheme="https://hxysaury.github.io/tags/app%E5%B0%8F%E7%A8%8B%E5%BA%8F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>CS内网横向移动实验</title>
+    <link href="https://hxysaury.github.io/2023/10/15/intranet/nei-wang-heng-xiang-yi-dong-shi-lian/"/>
+    <id>https://hxysaury.github.io/2023/10/15/intranet/nei-wang-heng-xiang-yi-dong-shi-lian/</id>
+    <published>2023-10-15T11:17:50.000Z</published>
+    <updated>2023-10-27T07:23:00.345Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;meta name=&quot;referrer&quot; content=&quot;no-referrer&quot; /&gt;
+
+&lt;p&gt;实验拓扑结构如下：&lt;/p&gt;
+&lt;h1 id=&quot;搭建网络拓扑-☁&quot;&gt;&lt;a href=&quot;#搭建网络拓扑-☁&quot; class=&quot;headerlink&quot; title=&quot;搭建网络拓扑</summary>
+        
+      
+    
+    
+    
+    <category term="内网渗透" scheme="https://hxysaury.github.io/categories/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/"/>
+    
+    
+    <category term="内网渗透" scheme="https://hxysaury.github.io/tags/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>CS鱼饵制作</title>
+    <link href="https://hxysaury.github.io/2023/10/10/tools/cs-yu-er-zhi-zuo/"/>
+    <id>https://hxysaury.github.io/2023/10/10/tools/cs-yu-er-zhi-zuo/</id>
+    <published>2023-10-10T14:30:20.000Z</published>
+    <updated>2023-10-17T12:07:54.177Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;meta name=&quot;referrer&quot; content=&quot;no-referrer&quot; /&gt;
+
+&lt;h3 id=&quot;木马生成&quot;&gt;&lt;a href=&quot;#木马生成&quot; class=&quot;headerlink&quot; title=&quot;木马生成&quot;&gt;&lt;/a&gt;木马生成&lt;/h3&gt;&lt;p&gt;&lt;img</summary>
+        
+      
+    
+    
+    
+    <category term="网安神器" scheme="https://hxysaury.github.io/categories/%E7%BD%91%E5%AE%89%E7%A5%9E%E5%99%A8/"/>
+    
+    
+    <category term="内网渗透" scheme="https://hxysaury.github.io/tags/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/"/>
+    
+    <category term="网安神器" scheme="https://hxysaury.github.io/tags/%E7%BD%91%E5%AE%89%E7%A5%9E%E5%99%A8/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Cobalt Strike</title>
+    <link href="https://hxysaury.github.io/2023/10/10/tools/cobalt-strike/"/>
+    <id>https://hxysaury.github.io/2023/10/10/tools/cobalt-strike/</id>
+    <published>2023-10-10T11:17:50.000Z</published>
+    <updated>2023-10-17T12:30:27.298Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;meta name=&quot;referrer&quot; content=&quot;no-referrer&quot; /&gt;
+
+&lt;p&gt;Cobalt</summary>
+        
+      
+    
+    
+    
+    <category term="网安神器" scheme="https://hxysaury.github.io/categories/%E7%BD%91%E5%AE%89%E7%A5%9E%E5%99%A8/"/>
+    
+    
+    <category term="内网渗透" scheme="https://hxysaury.github.io/tags/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/"/>
+    
+    <category term="网安神器" scheme="https://hxysaury.github.io/tags/%E7%BD%91%E5%AE%89%E7%A5%9E%E5%99%A8/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>【Vulnhub靶机】Raven:2</title>
+    <link href="https://hxysaury.github.io/2023/10/10/target-test/raven-2/"/>
+    <id>https://hxysaury.github.io/2023/10/10/target-test/raven-2/</id>
+    <published>2023-10-10T05:18:50.000Z</published>
+    <updated>2023-10-18T13:18:08.625Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;meta name=&quot;referrer&quot; content=&quot;no-referrer&quot; /&gt;
+
+
+
+&lt;blockquote&gt;
+&lt;p&gt;靶机文档：&lt;a href=&quot;https://www.vulnhub.com/entry/raven-2,269/&quot;&gt;Raven:</summary>
+        
+      
+    
+    
+    
+    <category term="靶机" scheme="https://hxysaury.github.io/categories/%E9%9D%B6%E6%9C%BA/"/>
+    
+    
+    <category term="Vulnhub" scheme="https://hxysaury.github.io/tags/Vulnhub/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>【漏洞复现】Webmin 远程命令执行 (CVE-2019-15107)</title>
+    <link href="https://hxysaury.github.io/2023/10/10/vulnerability-database/webmin-yuan-cheng-ming-ling-zhi-xing-cve-2019-15107/"/>
+    <id>https://hxysaury.github.io/2023/10/10/vulnerability-database/webmin-yuan-cheng-ming-ling-zhi-xing-cve-2019-15107/</id>
+    <published>2023-10-10T05:17:50.000Z</published>
+    <updated>2023-10-18T13:26:47.015Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;说明&lt;/th&gt;
+&lt;th&gt;内容&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;&lt;tr&gt;
+&lt;td&gt;漏洞编号&lt;/td&gt;
+&lt;td&gt;CVE-2019-15107&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;漏洞名称&lt;/td&gt;
+&lt;td&gt;W</summary>
+        
+      
+    
+    
+    
+    <category term="Web渗透" scheme="https://hxysaury.github.io/categories/Web%E6%B8%97%E9%80%8F/"/>
+    
+    
+    <category term="漏洞复现" scheme="https://hxysaury.github.io/tags/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>【漏洞复现】Redis未授权</title>
+    <link href="https://hxysaury.github.io/2023/09/20/vulnerability-database/redis-wei-shou-quan/"/>
+    <id>https://hxysaury.github.io/2023/09/20/vulnerability-database/redis-wei-shou-quan/</id>
+    <published>2023-09-20T02:17:52.000Z</published>
+    <updated>2023-10-20T13:51:55.619Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;meta name=&quot;referrer&quot; content=&quot;no-referrer&quot; /&gt;
+
+
+
+&lt;h2 id=&quot;1-1、漏洞描述&quot;&gt;&lt;a href=&quot;#1-1、漏洞描述&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="Web渗透" scheme="https://hxysaury.github.io/categories/Web%E6%B8%97%E9%80%8F/"/>
+    
+    
+    <category term="漏洞复现" scheme="https://hxysaury.github.io/tags/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Kali之BurpSuite_pro安装配置</title>
+    <link href="https://hxysaury.github.io/2023/09/12/others/kali-zhi-burpsuite-pro-an-zhuang-pei-zhi/"/>
+    <id>https://hxysaury.github.io/2023/09/12/others/kali-zhi-burpsuite-pro-an-zhuang-pei-zhi/</id>
+    <published>2023-09-12T02:18:50.000Z</published>
+    <updated>2023-10-26T12:59:10.543Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;meta name=&quot;referrer&quot; content=&quot;no-referrer&quot; /&gt;
+
+
+
+&lt;p&gt;BurpSuite2021专业版本地址：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;pre&gt;&lt;code&gt;</summary>
+        
+      
+    
+    
+    
+    <category term="Web渗透" scheme="https://hxysaury.github.io/categories/Web%E6%B8%97%E9%80%8F/"/>
+    
+    
+    <category term="others" scheme="https://hxysaury.github.io/tags/others/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>拿到phpMyAdmin如何获取权限</title>
+    <link href="https://hxysaury.github.io/2023/09/11/security/na-dao-phpadmin-huo-qu-quan-xian/"/>
+    <id>https://hxysaury.github.io/2023/09/11/security/na-dao-phpadmin-huo-qu-quan-xian/</id>
+    <published>2023-09-11T08:17:50.000Z</published>
+    <updated>2023-10-23T13:16:31.548Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;meta name=&quot;referrer&quot; content=&quot;no-referrer&quot; /&gt;
+
+&lt;p&gt;通过弱口令拿到进到phpMyAdmin页面如何才能获取权限&lt;/p&gt;
+&lt;h3 id=&quot;1、outfile写一句话&quot;&gt;&lt;a href=&quot;#1、outfile写一句话&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="Web渗透" scheme="https://hxysaury.github.io/categories/Web%E6%B8%97%E9%80%8F/"/>
+    
+    
+    <category term="others" scheme="https://hxysaury.github.io/tags/others/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>【漏洞复现】Python-PIL-远程命令执行漏洞（via Ghostscript）</title>
+    <link href="https://hxysaury.github.io/2023/09/01/vulnerability-database/python-pil-yuan-cheng-ming-ling-zhi-xing-lou-dong-via-ghostscript/"/>
+    <id>https://hxysaury.github.io/2023/09/01/vulnerability-database/python-pil-yuan-cheng-ming-ling-zhi-xing-lou-dong-via-ghostscript/</id>
+    <published>2023-09-01T05:17:50.000Z</published>
+    <updated>2023-10-18T13:26:09.828Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;&quot;&gt;&lt;a href=&quot;#&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="Web渗透" scheme="https://hxysaury.github.io/categories/Web%E6%B8%97%E9%80%8F/"/>
+    
+    
+    <category term="漏洞复现" scheme="https://hxysaury.github.io/tags/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>【漏洞复现】Python-unpickle-造成任意命令执行漏洞</title>
+    <link href="https://hxysaury.github.io/2023/09/01/vulnerability-database/python-unpickle-zao-cheng-ren-yi-ming-ling-zhi-xing-lou-dong/"/>
+    <id>https://hxysaury.github.io/2023/09/01/vulnerability-database/python-unpickle-zao-cheng-ren-yi-ming-ling-zhi-xing-lou-dong/</id>
+    <published>2023-09-01T05:17:50.000Z</published>
+    <updated>2023-10-18T13:26:15.186Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;&quot;&gt;&lt;a href=&quot;#&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="Web渗透" scheme="https://hxysaury.github.io/categories/Web%E6%B8%97%E9%80%8F/"/>
+    
+    
+    <category term="漏洞复现" scheme="https://hxysaury.github.io/tags/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Python终端输出彩色样式的内容</title>
+    <link href="https://hxysaury.github.io/2023/09/01/python/python-zhong-duan-shu-chu-cai-se-yang-shi-de-nei-rong/"/>
+    <id>https://hxysaury.github.io/2023/09/01/python/python-zhong-duan-shu-chu-cai-se-yang-shi-de-nei-rong/</id>
+    <published>2023-09-01T02:18:50.000Z</published>
+    <updated>2023-10-26T13:03:05.089Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;meta name=&quot;referrer&quot; content=&quot;no-referrer&quot; /&gt;
+
+
+&lt;h1 id=&quot;1、ANSI转义字符序列&quot;&gt;&lt;a href=&quot;#1、ANSI转义字符序列&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="Python" scheme="https://hxysaury.github.io/categories/Python/"/>
+    
+    
+    <category term="Python" scheme="https://hxysaury.github.io/tags/Python/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>argparse-命令行参数解析库</title>
+    <link href="https://hxysaury.github.io/2023/09/01/python/argparse-ming-ling-xing-can-shu-jie-xi-ku/"/>
+    <id>https://hxysaury.github.io/2023/09/01/python/argparse-ming-ling-xing-can-shu-jie-xi-ku/</id>
+    <published>2023-09-01T02:18:50.000Z</published>
+    <updated>2023-10-26T12:57:27.719Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;meta name=&quot;referrer&quot; content=&quot;no-referrer&quot; /&gt;
+
+
+&lt;p&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    <category term="Python" scheme="https://hxysaury.github.io/categories/Python/"/>
+    
+    
+    <category term="Python" scheme="https://hxysaury.github.io/tags/Python/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>【漏洞复现】Metinfo6.0.0任意文件读取漏洞复现</title>
+    <link href="https://hxysaury.github.io/2023/08/30/vulnerability-database/metinfo6.0.0-ren-yi-wen-jian-du-qu-lou-dong-fu-xian/"/>
+    <id>https://hxysaury.github.io/2023/08/30/vulnerability-database/metinfo6.0.0-ren-yi-wen-jian-du-qu-lou-dong-fu-xian/</id>
+    <published>2023-08-30T05:17:50.000Z</published>
+    <updated>2023-10-18T13:25:34.134Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h3 id=&quot;1-1、漏洞描述&quot;&gt;&lt;a href=&quot;#1-1、漏洞描述&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="Web渗透" scheme="https://hxysaury.github.io/categories/Web%E6%B8%97%E9%80%8F/"/>
+    
+    
+    <category term="漏洞复现" scheme="https://hxysaury.github.io/tags/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>【Vulnhub靶机】XXELab:1</title>
+    <link href="https://hxysaury.github.io/2023/08/29/target-test/xxe-lab-1/"/>
+    <id>https://hxysaury.github.io/2023/08/29/target-test/xxe-lab-1/</id>
+    <published>2023-08-29T02:38:50.000Z</published>
+    <updated>2023-10-18T13:18:27.944Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;靶机文档：&lt;a href=&quot;https://www.vulnhub.com/entry/xxe-lab-1,254/&quot;&gt;XXE Lab: 1&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;下载地址：&lt;a</summary>
+        
+      
+    
+    
+    
+    <category term="靶机" scheme="https://hxysaury.github.io/categories/%E9%9D%B6%E6%9C%BA/"/>
+    
+    
+    <category term="Vulnhub" scheme="https://hxysaury.github.io/tags/Vulnhub/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>【漏洞复现】泛微 E-Office_9.0141103 _SQL注入漏洞</title>
+    <link href="https://hxysaury.github.io/2023/08/25/vulnerability-database/fan-wei-e-office-9.0141103-sql-zhu-ru-lou-dong-cnvd-2022-43246/"/>
+    <id>https://hxysaury.github.io/2023/08/25/vulnerability-database/fan-wei-e-office-9.0141103-sql-zhu-ru-lou-dong-cnvd-2022-43246/</id>
+    <published>2023-08-25T05:17:50.000Z</published>
+    <updated>2023-10-18T13:26:51.861Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;说明&lt;/th&gt;
+&lt;th&gt;内容&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;&lt;tr&gt;
+&lt;td&gt;漏洞编号&lt;/td&gt;
+&lt;td&gt;CNVD-2022-43246&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;漏洞名称&lt;/td&gt;
+&lt;td&gt;</summary>
+        
+      
+    
+    
+    
+    <category term="Web渗透" scheme="https://hxysaury.github.io/categories/Web%E6%B8%97%E9%80%8F/"/>
+    
+    
+    <category term="漏洞复现" scheme="https://hxysaury.github.io/tags/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>python-requests模拟文件上传</title>
+    <link href="https://hxysaury.github.io/2023/08/12/python/wen-jian-shang-chuan-jiao-ben/"/>
+    <id>https://hxysaury.github.io/2023/08/12/python/wen-jian-shang-chuan-jiao-ben/</id>
+    <published>2023-08-12T08:17:50.000Z</published>
+    <updated>2023-09-24T09:17:02.113Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;DVWA靶场的文件上传关卡，初级&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;先上传文件，使用&lt;code&gt;BurpSuite&lt;/code&gt;抓取数据包&lt;/p&gt;
+&lt;p&gt;&lt;img</summary>
+        
+      
+    
+    
+    
+    <category term="Python" scheme="https://hxysaury.github.io/categories/Python/"/>
+    
+    
+    <category term="Python" scheme="https://hxysaury.github.io/tags/Python/"/>
+    
+  </entry>
+  
+</feed>
