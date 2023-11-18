@@ -381,20 +381,20 @@
                 </a>
                 
                 
-                <a href="/categories/%E9%9D%B6%E6%9C%BA/" title="靶机: 24">
+                <a href="/categories/Linux/" title="Linux: 14">
                     <span class="chip center-align waves-effect waves-light
                              chip-default "
-                            style="background-color: #D5F5E3;">靶机
-                        <span class="tag-length">24</span>
+                            style="background-color: #D5F5E3;">Linux
+                        <span class="tag-length">14</span>
                     </span>
                 </a>
                 
                 
-                <a href="/categories/Linux/" title="Linux: 14">
+                <a href="/categories/%E9%9D%B6%E6%9C%BA/" title="靶机: 24">
                     <span class="chip center-align waves-effect waves-light
                              chip-default "
-                            style="background-color: #E8F8F5;">Linux
-                        <span class="tag-length">14</span>
+                            style="background-color: #E8F8F5;">靶机
+                        <span class="tag-length">24</span>
                     </span>
                 </a>
                 
@@ -408,20 +408,20 @@
                 </a>
                 
                 
-                <a href="/categories/%E5%85%B6%E4%BB%96/" title="其他: 1">
+                <a href="/categories/%E7%BD%91%E5%AE%89%E7%A5%9E%E5%99%A8/" title="网安神器: 5">
                     <span class="chip center-align waves-effect waves-light
                              chip-default "
-                            style="background-color: #F8F9F9;">其他
-                        <span class="tag-length">1</span>
+                            style="background-color: #F8F9F9;">网安神器
+                        <span class="tag-length">5</span>
                     </span>
                 </a>
                 
                 
-                <a href="/categories/%E7%BD%91%E5%AE%89%E7%A5%9E%E5%99%A8/" title="网安神器: 5">
+                <a href="/categories/%E5%85%B6%E4%BB%96/" title="其他: 1">
                     <span class="chip center-align waves-effect waves-light
                              chip-default "
-                            style="background-color: #82E0AA;">网安神器
-                        <span class="tag-length">5</span>
+                            style="background-color: #82E0AA;">其他
+                        <span class="tag-length">1</span>
                     </span>
                 </a>
                 
@@ -499,20 +499,21 @@
             
             <div class="article tag-post col s12 m6 l4" data-aos="zoom-in">
                 <div class="card">
-                    <a href="/2023/07/12/security/6-ren-yi-wen-jian-bao-han/">
+                    <a href="/2023/07/12/security/8-fu-wu-duan-qing-qiu-wei-zao/">
                         <div class="card-image tag-image">
                             
                             
-                            <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="任意文件包含">
+                            <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="SSRF服务的请求伪造">
                             
-                            <span class="card-title">任意文件包含</span>
+                            <span class="card-title">SSRF服务的请求伪造</span>
                         </div>
                     </a>
                     <div class="card-content article-content">
                         <div class="summary block-with-text">
                             
-                                1、文件包含概述程序开发人员通常会把可重复使用函数或语句写到单个文件中，形成“封装”。在使用某个功能的时候，直接调用此文件，无需再次编写，提高代码重用性，减少代码量。这种调用文件的过程通常称为包含。
-程序开发人员都希望代码更加灵活，所以会把
+                                1、SSRF概述服务器会根据用户提交的URL 发送一个HTTP 请求。使用用户指定的URL，Web 应用可以获取图片或者文件资源等。典型的例子是百度识图功能
+
+如果没有对用户提交URL 和远端服务器所返回的信息做合适的验证或过滤，就有可能存
                             
                         </div>
                         <div class="publish-info">
@@ -546,21 +547,20 @@
             
             <div class="article tag-post col s12 m6 l4" data-aos="zoom-in">
                 <div class="card">
-                    <a href="/2023/07/12/security/8-fu-wu-duan-qing-qiu-wei-zao/">
+                    <a href="/2023/07/12/security/6-ren-yi-wen-jian-bao-han/">
                         <div class="card-image tag-image">
                             
                             
-                            <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="SSRF服务的请求伪造">
+                            <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="任意文件包含">
                             
-                            <span class="card-title">SSRF服务的请求伪造</span>
+                            <span class="card-title">任意文件包含</span>
                         </div>
                     </a>
                     <div class="card-content article-content">
                         <div class="summary block-with-text">
                             
-                                1、SSRF概述服务器会根据用户提交的URL 发送一个HTTP 请求。使用用户指定的URL，Web 应用可以获取图片或者文件资源等。典型的例子是百度识图功能
-
-如果没有对用户提交URL 和远端服务器所返回的信息做合适的验证或过滤，就有可能存
+                                1、文件包含概述程序开发人员通常会把可重复使用函数或语句写到单个文件中，形成“封装”。在使用某个功能的时候，直接调用此文件，无需再次编写，提高代码重用性，减少代码量。这种调用文件的过程通常称为包含。
+程序开发人员都希望代码更加灵活，所以会把
                             
                         </div>
                         <div class="publish-info">
@@ -888,19 +888,20 @@ RCE
             
             <div class="article tag-post col s12 m6 l4" data-aos="zoom-in">
                 <div class="card">
-                    <a href="/2023/07/11/security/2-xss-kua-zhan-jiao-ben-gong-ji/">
+                    <a href="/2023/07/11/security/4-ren-yi-wen-jian-shang-chuan/">
                         <div class="card-image tag-image">
                             
                             
-                            <img src="/medias/featureimages/13.jpg" class="responsive-img" alt="XSS跨站脚本攻击">
+                            <img src="/medias/featureimages/1.jpg" class="responsive-img" alt="任意文件上传">
                             
-                            <span class="card-title">XSS跨站脚本攻击</span>
+                            <span class="card-title">任意文件上传</span>
                         </div>
                     </a>
                     <div class="card-content article-content">
                         <div class="summary block-with-text">
                             
-                                1、跨站 脚本攻击1.1、漏洞描述跨站点脚本（Cross Site Scripting， XSS）是指客户端代码注入攻击，攻击者可以在合法网站或Web 应用程序中执行恶意脚本。当web 应用程序在其生成的输出中使用未经验证或未编码的用户输入
+                                1、任意文件上传概述文件上传是web应用必备功能之一，如：头像上传，附件分享登，如果服务器配置不当或者 没有进行足够的过滤，Web用户就可以上传任意文件，包括恶意脚本文件，exe 程序等等，这就造成了任意文件上传漏洞
+1.1、漏洞成因服务器
                             
                         </div>
                         <div class="publish-info">
@@ -1054,27 +1055,16 @@ RCE
             
         </div>
         <div class="col s12 m4 l4 social-link social-statis">
-    <a href="https://github.com/blinkfox" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+    <a href="https://github.com/hxysaury" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
         <i class="fab fa-github"></i>
     </a>
+
 
 
 
     <a href="mailto:1181062873@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
         <i class="fas fa-envelope-open"></i>
     </a>
-
-
-
-
-
-
-
-    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=1181062873" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 1181062873" data-position="top" data-delay="50">
-        <i class="fab fa-qq"></i>
-    </a>
-
-
 
 
 
