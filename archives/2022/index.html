@@ -888,30 +888,31 @@ cat /usr/share/wordlists/rockyou.txt | grep k01 > passwords.txt
             <article class="cd-timeline-content" data-aos="fade-up">
                 <div class="article col s12 m6">
                     <div class="card">
-                        <a href="/2022/11/27/target-test/dc-5/">
+                        <a href="/2022/11/27/target-test/dc-4/">
                             <div class="card-image">
                                 
                                 
-                                <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="【Vulnhub靶机】DC-5(suid提权)">
+                                <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="【Vulnhub靶机】DC-4(sudo teehee提权)">
                                 
-                                <span class="card-title">【Vulnhub靶机】DC-5(suid提权)</span>
+                                <span class="card-title">【Vulnhub靶机】DC-4(sudo teehee提权)</span>
                             </div>
                         </a>
                         <div class="card-content article-content">
                             <div class="summary block-with-text">
                                 
-                                    DC-5文档
-信息收集靶机MAC地址：00:0C:29:CB:E4:31
-
-主机扫描
-netdiscover -r 192.168.80.0/24
+                                    信息收集先查看靶机的MAC地址
 
 
-端口扫描
-nmap -sV -p- 192.168.80.139
+arp-scan -l 
 
 
-漏洞发现浏览器访问
+找到目标靶机的IP地址，对其进行扫描
+
+
+发现开放了80端口和ssh，浏览器访问靶机的80端口，看看有没有可以利用的东西
+
+目录爆破发现也没有什么东西
+dirsearch -
                                 
                             </div>
                             <div class="publish-info">
@@ -958,31 +959,30 @@ nmap -sV -p- 192.168.80.139
             <article class="cd-timeline-content" data-aos="fade-up">
                 <div class="article col s12 m6">
                     <div class="card">
-                        <a href="/2022/11/27/target-test/dc-4/">
+                        <a href="/2022/11/27/target-test/dc-5/">
                             <div class="card-image">
                                 
                                 
-                                <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="【Vulnhub靶机】DC-4(sudo teehee提权)">
+                                <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="【Vulnhub靶机】DC-5(suid提权)">
                                 
-                                <span class="card-title">【Vulnhub靶机】DC-4(sudo teehee提权)</span>
+                                <span class="card-title">【Vulnhub靶机】DC-5(suid提权)</span>
                             </div>
                         </a>
                         <div class="card-content article-content">
                             <div class="summary block-with-text">
                                 
-                                    信息收集先查看靶机的MAC地址
+                                    DC-5文档
+信息收集靶机MAC地址：00:0C:29:CB:E4:31
+
+主机扫描
+netdiscover -r 192.168.80.0/24
 
 
-arp-scan -l 
+端口扫描
+nmap -sV -p- 192.168.80.139
 
 
-找到目标靶机的IP地址，对其进行扫描
-
-
-发现开放了80端口和ssh，浏览器访问靶机的80端口，看看有没有可以利用的东西
-
-目录爆破发现也没有什么东西
-dirsearch -
+漏洞发现浏览器访问
                                 
                             </div>
                             <div class="publish-info">

@@ -359,13 +359,13 @@
             <article class="cd-timeline-content" data-aos="fade-up">
                 <div class="article col s12 m6">
                     <div class="card">
-                        <a href="/2023/07/13/ba-chang/pikachu/">
+                        <a href="/2023/07/13/ba-chang/upload-labs-wen-jian-shang-chuan-lou-dong-ba-chang-lian-xi-wei-wan/">
                             <div class="card-image">
                                 
                                 
-                                <img src="/medias/featureimages/10.jpg" class="responsive-img" alt="Pikachu靶场">
+                                <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="upload-labs文件上传漏洞靶场练习 【未完！】">
                                 
-                                <span class="card-title">Pikachu靶场</span>
+                                <span class="card-title">upload-labs文件上传漏洞靶场练习 【未完！】</span>
                             </div>
                         </a>
                         <div class="card-content article-content">
@@ -373,11 +373,15 @@
                                 
                                     
 
-暴力破解
-基于表单的暴力破解使用bp抓包
+
+任意文件上传靶场upload-labs下载地址
+
+Pass-01- 前端JS校验绕过尝试上传一句话木马
+&lt;?php @eval($_REQUEST[6868])?>
 
 
-我们要破解username和password，就应当选取Cluster bomb的攻击方式，在payloads中上传我们的字典，首先在payload set 1中上传username的字典，
+代码审计：
+function checkFile() &a
                                 
                             </div>
                             <div class="publish-info">
@@ -424,20 +428,21 @@
             <article class="cd-timeline-content" data-aos="fade-up">
                 <div class="article col s12 m6">
                     <div class="card">
-                        <a href="/2023/07/13/security/13-xml-xxe-li-yong-jian-ce-rao-guo/">
+                        <a href="/2023/07/13/security/11-zu-jian-an-quan/">
                             <div class="card-image">
                                 
                                 
-                                <img src="/medias/featureimages/25.jpg" class="responsive-img" alt="XML&amp;XXE利用检测绕过">
+                                <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="组件安全">
                                 
-                                <span class="card-title">XML&amp;XXE利用检测绕过</span>
+                                <span class="card-title">组件安全</span>
                             </div>
                         </a>
                         <div class="card-content article-content">
                             <div class="summary block-with-text">
                                 
-                                    1、概述1.1、XML概念XML被设计为传输和存储数据，XML文档结构包括XML声明、DTD文档类型定义(可选)、文档元素，其焦点是数据的内容，其把数据从HTML分离，是独立于软件和硬件的信息传输工具。
-XXE漏洞全称XMLExternal
+                                    1、组件安全概述A9:2017-Using Components with Known Vulnerabilities
+A06:2021 – Vulnerable and Outdated Components
+组件（例如：库、框架和其他软
                                 
                             </div>
                             <div class="publish-info">
@@ -484,21 +489,20 @@ XXE漏洞全称XMLExternal
             <article class="cd-timeline-content" data-aos="fade-up">
                 <div class="article col s12 m6">
                     <div class="card">
-                        <a href="/2023/07/13/security/11-zu-jian-an-quan/">
+                        <a href="/2023/07/13/security/13-xml-xxe-li-yong-jian-ce-rao-guo/">
                             <div class="card-image">
                                 
                                 
-                                <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="组件安全">
+                                <img src="/medias/featureimages/25.jpg" class="responsive-img" alt="XML&amp;XXE利用检测绕过">
                                 
-                                <span class="card-title">组件安全</span>
+                                <span class="card-title">XML&amp;XXE利用检测绕过</span>
                             </div>
                         </a>
                         <div class="card-content article-content">
                             <div class="summary block-with-text">
                                 
-                                    1、组件安全概述A9:2017-Using Components with Known Vulnerabilities
-A06:2021 – Vulnerable and Outdated Components
-组件（例如：库、框架和其他软
+                                    1、概述1.1、XML概念XML被设计为传输和存储数据，XML文档结构包括XML声明、DTD文档类型定义(可选)、文档元素，其焦点是数据的内容，其把数据从HTML分离，是独立于软件和硬件的信息传输工具。
+XXE漏洞全称XMLExternal
                                 
                             </div>
                             <div class="publish-info">
@@ -605,6 +609,68 @@ A06:2021 – Vulnerable and Outdated Components
             <article class="cd-timeline-content" data-aos="fade-up">
                 <div class="article col s12 m6">
                     <div class="card">
+                        <a href="/2023/07/12/python/wu-qi-ku-exp-bian-xie/">
+                            <div class="card-image">
+                                
+                                
+                                <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="定制武器库EXP">
+                                
+                                <span class="card-title">定制武器库EXP</span>
+                            </div>
+                        </a>
+                        <div class="card-content article-content">
+                            <div class="summary block-with-text">
+                                
+                                    python是黑客最喜欢的编程语言之一，但同时go语言正在兴起。
+在渗透测试的过程中，为了提高效率，通常需要编写一些小工具，把一系列机械性的手法自动化实现，如SQL注入中的盲注。
+区分两个概念：
+1、针对某一个（类）漏洞的验证代码，称之为P
+                                
+                            </div>
+                            <div class="publish-info">
+                                <span class="publish-date">
+                                    <i class="far fa-clock fa-fw icon-date"></i>2023-07-12
+                                </span>
+                                <span class="publish-author">
+                                    
+                                    <i class="fas fa-bookmark fa-fw icon-category"></i>
+                                    
+                                    <a href="/categories/Python/" class="post-category">
+                                    Python
+                                    </a>
+                                    
+                                    
+                                </span>
+                            </div>
+                        </div>
+
+                        
+                        <div class="card-action article-tags">
+                            
+                            <a href="/tags/Python/"><span class="chip bg-color">Python</span></a>
+                            
+                        </div>
+                        
+                    </div>
+                </div>
+            </article>
+        </div>
+        
+        <div class="cd-timeline-block">
+
+            
+            
+
+            
+            
+
+            
+            <div class="cd-timeline-img day" data-aos="zoom-in-up">
+                <span>12</span>
+            </div>
+            <article class="cd-timeline-content" data-aos="fade-up">
+                <div class="article col s12 m6">
+                    <div class="card">
                         <a href="/2023/07/12/security/php-shu-zu/">
                             <div class="card-image">
                                 
@@ -669,85 +735,19 @@ A06:2021 – Vulnerable and Outdated Components
             <article class="cd-timeline-content" data-aos="fade-up">
                 <div class="article col s12 m6">
                     <div class="card">
-                        <a href="/2023/07/12/python/wu-qi-ku-exp-bian-xie/">
+                        <a href="/2023/07/12/security/10-ye-wu-an-quan/">
                             <div class="card-image">
                                 
                                 
-                                <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="定制武器库EXP">
+                                <img src="/medias/featureimages/27.jpg" class="responsive-img" alt="业务安全">
                                 
-                                <span class="card-title">定制武器库EXP</span>
+                                <span class="card-title">业务安全</span>
                             </div>
                         </a>
                         <div class="card-content article-content">
                             <div class="summary block-with-text">
                                 
-                                    python是黑客最喜欢的编程语言之一，但同时go语言正在兴起。
-在渗透测试的过程中，为了提高效率，通常需要编写一些小工具，把一系列机械性的手法自动化实现，如SQL注入中的盲注。
-区分两个概念：
-1、针对某一个（类）漏洞的验证代码，称之为P
-                                
-                            </div>
-                            <div class="publish-info">
-                                <span class="publish-date">
-                                    <i class="far fa-clock fa-fw icon-date"></i>2023-07-12
-                                </span>
-                                <span class="publish-author">
-                                    
-                                    <i class="fas fa-bookmark fa-fw icon-category"></i>
-                                    
-                                    <a href="/categories/Python/" class="post-category">
-                                    Python
-                                    </a>
-                                    
-                                    
-                                </span>
-                            </div>
-                        </div>
-
-                        
-                        <div class="card-action article-tags">
-                            
-                            <a href="/tags/Python/"><span class="chip bg-color">Python</span></a>
-                            
-                        </div>
-                        
-                    </div>
-                </div>
-            </article>
-        </div>
-        
-        <div class="cd-timeline-block">
-
-            
-            
-
-            
-            
-
-            
-            <div class="cd-timeline-img day" data-aos="zoom-in-up">
-                <span>12</span>
-            </div>
-            <article class="cd-timeline-content" data-aos="fade-up">
-                <div class="article col s12 m6">
-                    <div class="card">
-                        <a href="/2023/07/12/security/12-jwt-an-quan/">
-                            <div class="card-image">
-                                
-                                
-                                <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="JWT安全">
-                                
-                                <span class="card-title">JWT安全</span>
-                            </div>
-                        </a>
-                        <div class="card-content article-content">
-                            <div class="summary block-with-text">
-                                
-                                    
-属于越权漏洞
-
-理论知识cookie(放在浏览器)​       cookie 是一个非常具体的东西，指的就是浏览器里面能永久存储的一种数据，仅仅是浏 览器实现的一种数据存储功能。
- cookie 由服务器生成，发送给浏览器，浏览器把 c
+                                    1、业务安全概述1.1业务安全现状1.1.1、业务逻辑漏洞近年来，随着信息化技术的迅速发展和全球一体化进程的不断加快，计算机和⽹络已经成为与所有⼈都息息相关的⼯具和媒介，个⼈的⼯作、⽣活和娱乐，企业的管理，乃⾄国家的发展和改⾰都⽆处其外。信
                                 
                             </div>
                             <div class="publish-info">
@@ -794,19 +794,23 @@ A06:2021 – Vulnerable and Outdated Components
             <article class="cd-timeline-content" data-aos="fade-up">
                 <div class="article col s12 m6">
                     <div class="card">
-                        <a href="/2023/07/12/security/10-ye-wu-an-quan/">
+                        <a href="/2023/07/12/security/12-jwt-an-quan/">
                             <div class="card-image">
                                 
                                 
-                                <img src="/medias/featureimages/27.jpg" class="responsive-img" alt="业务安全">
+                                <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="JWT安全">
                                 
-                                <span class="card-title">业务安全</span>
+                                <span class="card-title">JWT安全</span>
                             </div>
                         </a>
                         <div class="card-content article-content">
                             <div class="summary block-with-text">
                                 
-                                    1、业务安全概述1.1业务安全现状1.1.1、业务逻辑漏洞近年来，随着信息化技术的迅速发展和全球一体化进程的不断加快，计算机和⽹络已经成为与所有⼈都息息相关的⼯具和媒介，个⼈的⼯作、⽣活和娱乐，企业的管理，乃⾄国家的发展和改⾰都⽆处其外。信
+                                    
+属于越权漏洞
+
+理论知识cookie(放在浏览器)​       cookie 是一个非常具体的东西，指的就是浏览器里面能永久存储的一种数据，仅仅是浏 览器实现的一种数据存储功能。
+ cookie 由服务器生成，发送给浏览器，浏览器把 c
                                 
                             </div>
                             <div class="publish-info">

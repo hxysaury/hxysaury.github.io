@@ -256,28 +256,10 @@
                 
                 
                 
-                <a href="/categories/Web%E6%B8%97%E9%80%8F/" title="Web渗透: 65">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            style="background-color: #F9EBEA;">Web渗透
-                        <span class="tag-length">65</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/categories/%E5%85%B6%E4%BB%96/" title="其他: 1">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            style="background-color: #F5EEF8;">其他
-                        <span class="tag-length">1</span>
-                    </span>
-                </a>
-                
-                
                 <a href="/categories/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/" title="内网渗透: 8">
                     <span class="chip center-align waves-effect waves-light
                              chip-default "
-                            style="background-color: #D5F5E3;">内网渗透
+                            style="background-color: #F9EBEA;">内网渗透
                         <span class="tag-length">8</span>
                     </span>
                 </a>
@@ -286,8 +268,17 @@
                 <a href="/categories/%E9%9D%B6%E6%9C%BA/" title="靶机: 24">
                     <span class="chip center-align waves-effect waves-light
                              chip-active "
-                            style="background-color: #E8F8F5;">靶机
+                            style="background-color: #F5EEF8;">靶机
                         <span class="tag-length">24</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/categories/Web%E6%B8%97%E9%80%8F/" title="Web渗透: 65">
+                    <span class="chip center-align waves-effect waves-light
+                             chip-default "
+                            style="background-color: #D5F5E3;">Web渗透
+                        <span class="tag-length">65</span>
                     </span>
                 </a>
                 
@@ -295,17 +286,17 @@
                 <a href="/categories/Linux/" title="Linux: 14">
                     <span class="chip center-align waves-effect waves-light
                              chip-default "
-                            style="background-color: #FEF9E7;">Linux
+                            style="background-color: #E8F8F5;">Linux
                         <span class="tag-length">14</span>
                     </span>
                 </a>
                 
                 
-                <a href="/categories/windows/" title="windows: 19">
+                <a href="/categories/%E5%85%B6%E4%BB%96/" title="其他: 1">
                     <span class="chip center-align waves-effect waves-light
                              chip-default "
-                            style="background-color: #F8F9F9;">windows
-                        <span class="tag-length">19</span>
+                            style="background-color: #FEF9E7;">其他
+                        <span class="tag-length">1</span>
                     </span>
                 </a>
                 
@@ -313,7 +304,7 @@
                 <a href="/categories/Python/" title="Python: 24">
                     <span class="chip center-align waves-effect waves-light
                              chip-default "
-                            style="background-color: #82E0AA;">Python
+                            style="background-color: #F8F9F9;">Python
                         <span class="tag-length">24</span>
                     </span>
                 </a>
@@ -322,8 +313,17 @@
                 <a href="/categories/%E7%BD%91%E5%AE%89%E7%A5%9E%E5%99%A8/" title="网安神器: 5">
                     <span class="chip center-align waves-effect waves-light
                              chip-default "
-                            style="background-color: #D7BDE2;">网安神器
+                            style="background-color: #82E0AA;">网安神器
                         <span class="tag-length">5</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/categories/windows/" title="windows: 19">
+                    <span class="chip center-align waves-effect waves-light
+                             chip-default "
+                            style="background-color: #D7BDE2;">windows
+                        <span class="tag-length">19</span>
                     </span>
                 </a>
                 
@@ -802,31 +802,30 @@ cat /usr/share/wordlists/rockyou.txt | grep k01 > passwords.txt
             
             <div class="article tag-post col s12 m6 l4" data-aos="zoom-in">
                 <div class="card">
-                    <a href="/2022/11/27/target-test/dc-4/">
+                    <a href="/2022/11/27/target-test/dc-5/">
                         <div class="card-image tag-image">
                             
                             
-                            <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="【Vulnhub靶机】DC-4(sudo teehee提权)">
+                            <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="【Vulnhub靶机】DC-5(suid提权)">
                             
-                            <span class="card-title">【Vulnhub靶机】DC-4(sudo teehee提权)</span>
+                            <span class="card-title">【Vulnhub靶机】DC-5(suid提权)</span>
                         </div>
                     </a>
                     <div class="card-content article-content">
                         <div class="summary block-with-text">
                             
-                                信息收集先查看靶机的MAC地址
+                                DC-5文档
+信息收集靶机MAC地址：00:0C:29:CB:E4:31
+
+主机扫描
+netdiscover -r 192.168.80.0/24
 
 
-arp-scan -l 
+端口扫描
+nmap -sV -p- 192.168.80.139
 
 
-找到目标靶机的IP地址，对其进行扫描
-
-
-发现开放了80端口和ssh，浏览器访问靶机的80端口，看看有没有可以利用的东西
-
-目录爆破发现也没有什么东西
-dirsearch -
+漏洞发现浏览器访问
                             
                         </div>
                         <div class="publish-info">
@@ -860,30 +859,31 @@ dirsearch -
             
             <div class="article tag-post col s12 m6 l4" data-aos="zoom-in">
                 <div class="card">
-                    <a href="/2022/11/27/target-test/dc-5/">
+                    <a href="/2022/11/27/target-test/dc-4/">
                         <div class="card-image tag-image">
                             
                             
-                            <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="【Vulnhub靶机】DC-5(suid提权)">
+                            <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="【Vulnhub靶机】DC-4(sudo teehee提权)">
                             
-                            <span class="card-title">【Vulnhub靶机】DC-5(suid提权)</span>
+                            <span class="card-title">【Vulnhub靶机】DC-4(sudo teehee提权)</span>
                         </div>
                     </a>
                     <div class="card-content article-content">
                         <div class="summary block-with-text">
                             
-                                DC-5文档
-信息收集靶机MAC地址：00:0C:29:CB:E4:31
-
-主机扫描
-netdiscover -r 192.168.80.0/24
+                                信息收集先查看靶机的MAC地址
 
 
-端口扫描
-nmap -sV -p- 192.168.80.139
+arp-scan -l 
 
 
-漏洞发现浏览器访问
+找到目标靶机的IP地址，对其进行扫描
+
+
+发现开放了80端口和ssh，浏览器访问靶机的80端口，看看有没有可以利用的东西
+
+目录爆破发现也没有什么东西
+dirsearch -
                             
                         </div>
                         <div class="publish-info">
