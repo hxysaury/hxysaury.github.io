@@ -42,7 +42,7 @@
             <div class="brand-logo">
                 <a href="/" class="waves-effect waves-light">
                     
-                    <img src="/medias/avatar.png" class="logo-img" alt="LOGO">
+                    <img src="/medias/avatar.jpg" class="logo-img" alt="LOGO">
                     
                     <span class="logo-span">秋刀鱼-</span>
                 </a>
@@ -119,7 +119,7 @@
 
     <div class="mobile-head bg-color">
         
-        <img src="/medias/avatar.png" class="logo-img circle responsive-img">
+        <img src="/medias/avatar.jpg" class="logo-img circle responsive-img">
         
         <div class="logo-name">秋刀鱼-</div>
         <div class="logo-desc">
@@ -489,6 +489,32 @@ dc-1   00:0C:29:C1:D6:77
         
             
             <div class="carousel-item amber white-text carousel-post bg-cover"
+                 style="background-image: url('/medias/featureimages/10.jpg');">
+                <div class="container">
+                    <div class="row">
+                        <div class="col s10 offset-s1">
+                            <div class="title center-align">【Vulnhub靶机】DC-2(sudo git提权 )</div>
+                            <div class="description center-align">
+                                
+                                    DC-2介绍
+
+
+请注意，您需要将渗透测试设备上的 hosts 文件设置为： 192.168.0.145 dc-2 显然，将 192.168.0.145 替换为 DC-2 的实际 IP 地址。 它将使生活变得更加简单（如果没有它，某些 CM
+                                
+                            </div>
+                            <div class="cover-btns">
+                                <a href="/2022/10/19/target-test/dc-2/" class="waves-effect waves-light btn"
+                                   target="_blank">
+                                    <i class="icon fa fa-eye fa-fw"></i>阅读更多
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+            
+            <div class="carousel-item amber white-text carousel-post bg-cover"
                  style="background-image: url('/medias/featureimages/26.jpg');">
                 <div class="container">
                     <div class="row">
@@ -512,32 +538,6 @@ arp-scan -l
                             </div>
                             <div class="cover-btns">
                                 <a href="/2022/11/24/target-test/dc-3/" class="waves-effect waves-light btn"
-                                   target="_blank">
-                                    <i class="icon fa fa-eye fa-fw"></i>阅读更多
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        
-            
-            <div class="carousel-item amber white-text carousel-post bg-cover"
-                 style="background-image: url('/medias/featureimages/10.jpg');">
-                <div class="container">
-                    <div class="row">
-                        <div class="col s10 offset-s1">
-                            <div class="title center-align">【Vulnhub靶机】DC-2(sudo git提权 )</div>
-                            <div class="description center-align">
-                                
-                                    DC-2介绍
-
-
-请注意，您需要将渗透测试设备上的 hosts 文件设置为： 192.168.0.145 dc-2 显然，将 192.168.0.145 替换为 DC-2 的实际 IP 地址。 它将使生活变得更加简单（如果没有它，某些 CM
-                                
-                            </div>
-                            <div class="cover-btns">
-                                <a href="/2022/10/19/target-test/dc-2/" class="waves-effect waves-light btn"
                                    target="_blank">
                                     <i class="icon fa fa-eye fa-fw"></i>阅读更多
                                 </a>
@@ -584,6 +584,41 @@ dirsearch -
         
             
             <div class="carousel-item amber white-text carousel-post bg-cover"
+                 style="background-image: url('/medias/featureimages/7.jpg');">
+                <div class="container">
+                    <div class="row">
+                        <div class="col s10 offset-s1">
+                            <div class="title center-align">【Vulnhub靶机】DC-6(nmap提权)</div>
+                            <div class="description center-align">
+                                
+                                    
+先去看看DC-6的官网描述，看看有没有给出提示信息
+
+
+
+
+
+
+
+把这个线索信息先复制下来
+cat /usr/share/wordlists/rockyou.txt | grep k01 > passwords.txt
+
+开始前先要吧 k
+                                
+                            </div>
+                            <div class="cover-btns">
+                                <a href="/2022/11/29/target-test/dc-6/" class="waves-effect waves-light btn"
+                                   target="_blank">
+                                    <i class="icon fa fa-eye fa-fw"></i>阅读更多
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+            
+            <div class="carousel-item amber white-text carousel-post bg-cover"
                  style="background-image: url('/medias/featureimages/4.jpg');">
                 <div class="container">
                     <div class="row">
@@ -607,44 +642,6 @@ nmap -sV -p- 192.168.80.139
                             </div>
                             <div class="cover-btns">
                                 <a href="/2022/11/27/target-test/dc-5/" class="waves-effect waves-light btn"
-                                   target="_blank">
-                                    <i class="icon fa fa-eye fa-fw"></i>阅读更多
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        
-            
-            <div class="carousel-item amber white-text carousel-post bg-cover"
-                 style="background-image: url('/medias/featureimages/6.jpg');">
-                <div class="container">
-                    <div class="row">
-                        <div class="col s10 offset-s1">
-                            <div class="title center-align">【Vulnhub靶机】DC-8(suid提权)</div>
-                            <div class="description center-align">
-                                
-                                    
-DC-8官网地址
-
-
-信息收集靶机MAC： 00:0C:29:3A:46:A1
-主机发现
-nmap -sP  192.168.80.0/24
-
-
-端口扫描
-nmap -A -p- 192.168.80.142
-
-
-访问80端口
-
-点击页面
-                                
-                            </div>
-                            <div class="cover-btns">
-                                <a href="/2022/11/02/target-test/dc-8/" class="waves-effect waves-light btn"
                                    target="_blank">
                                     <i class="icon fa fa-eye fa-fw"></i>阅读更多
                                 </a>
@@ -682,41 +679,6 @@ nmap -A -T4 -p- 192.168.80.139
                             </div>
                             <div class="cover-btns">
                                 <a href="/2022/12/01/target-test/dc-7/" class="waves-effect waves-light btn"
-                                   target="_blank">
-                                    <i class="icon fa fa-eye fa-fw"></i>阅读更多
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        
-            
-            <div class="carousel-item amber white-text carousel-post bg-cover"
-                 style="background-image: url('/medias/featureimages/7.jpg');">
-                <div class="container">
-                    <div class="row">
-                        <div class="col s10 offset-s1">
-                            <div class="title center-align">【Vulnhub靶机】DC-6(nmap提权)</div>
-                            <div class="description center-align">
-                                
-                                    
-先去看看DC-6的官网描述，看看有没有给出提示信息
-
-
-
-
-
-
-
-把这个线索信息先复制下来
-cat /usr/share/wordlists/rockyou.txt | grep k01 > passwords.txt
-
-开始前先要吧 k
-                                
-                            </div>
-                            <div class="cover-btns">
-                                <a href="/2022/11/29/target-test/dc-6/" class="waves-effect waves-light btn"
                                    target="_blank">
                                     <i class="icon fa fa-eye fa-fw"></i>阅读更多
                                 </a>
@@ -767,6 +729,44 @@ dirsearch -u 1
         
             
             <div class="carousel-item amber white-text carousel-post bg-cover"
+                 style="background-image: url('/medias/featureimages/6.jpg');">
+                <div class="container">
+                    <div class="row">
+                        <div class="col s10 offset-s1">
+                            <div class="title center-align">【Vulnhub靶机】DC-8(suid提权)</div>
+                            <div class="description center-align">
+                                
+                                    
+DC-8官网地址
+
+
+信息收集靶机MAC： 00:0C:29:3A:46:A1
+主机发现
+nmap -sP  192.168.80.0/24
+
+
+端口扫描
+nmap -A -p- 192.168.80.142
+
+
+访问80端口
+
+点击页面
+                                
+                            </div>
+                            <div class="cover-btns">
+                                <a href="/2022/11/02/target-test/dc-8/" class="waves-effect waves-light btn"
+                                   target="_blank">
+                                    <i class="icon fa fa-eye fa-fw"></i>阅读更多
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+            
+            <div class="carousel-item amber white-text carousel-post bg-cover"
                  style="background-image: url('/medias/featureimages/10.jpg');">
                 <div class="container">
                     <div class="row">
@@ -791,6 +791,38 @@ dirsearch -u 1
                             </div>
                             <div class="cover-btns">
                                 <a href="/2023/01/10/target-test/deathnote/" class="waves-effect waves-light btn"
+                                   target="_blank">
+                                    <i class="icon fa fa-eye fa-fw"></i>阅读更多
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+            
+            <div class="carousel-item amber white-text carousel-post bg-cover"
+                 style="background-image: url('/medias/featureimages/27.jpg');">
+                <div class="container">
+                    <div class="row">
+                        <div class="col s10 offset-s1">
+                            <div class="title center-align">【Vulnhub靶机】HarryPotter-Nagini-哈利波特系列-2</div>
+                            <div class="description center-align">
+                                
+                                    
+靶机文档：HarryPotter: Nagini
+下载地址：Download (Mirror)
+
+
+信息收集主机发现
+访问80端口
+
+端口扫描
+gobuster目录扫描gobuster dir -u http://192.168.80.1
+                                
+                            </div>
+                            <div class="cover-btns">
+                                <a href="/2023/02/09/target-test/harrypotter-2-nagini/" class="waves-effect waves-light btn"
                                    target="_blank">
                                     <i class="icon fa fa-eye fa-fw"></i>阅读更多
                                 </a>
@@ -827,38 +859,6 @@ nmap -A -p- 192.168.80.143
                             </div>
                             <div class="cover-btns">
                                 <a href="/2023/01/07/target-test/hackademic.rtb1/" class="waves-effect waves-light btn"
-                                   target="_blank">
-                                    <i class="icon fa fa-eye fa-fw"></i>阅读更多
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        
-            
-            <div class="carousel-item amber white-text carousel-post bg-cover"
-                 style="background-image: url('/medias/featureimages/27.jpg');">
-                <div class="container">
-                    <div class="row">
-                        <div class="col s10 offset-s1">
-                            <div class="title center-align">【Vulnhub靶机】HarryPotter-Nagini-哈利波特系列-2</div>
-                            <div class="description center-align">
-                                
-                                    
-靶机文档：HarryPotter: Nagini
-下载地址：Download (Mirror)
-
-
-信息收集主机发现
-访问80端口
-
-端口扫描
-gobuster目录扫描gobuster dir -u http://192.168.80.1
-                                
-                            </div>
-                            <div class="cover-btns">
-                                <a href="/2023/02/09/target-test/harrypotter-2-nagini/" class="waves-effect waves-light btn"
                                    target="_blank">
                                     <i class="icon fa fa-eye fa-fw"></i>阅读更多
                                 </a>
