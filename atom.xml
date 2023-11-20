@@ -371,11 +371,11 @@
   </entry>
   
   <entry>
-    <title>【漏洞复现】Python-PIL-远程命令执行漏洞（via Ghostscript）</title>
-    <link href="https://hxysaury.github.io/2023/09/01/vulnerability-database/python-pil-yuan-cheng-ming-ling-zhi-xing-lou-dong-via-ghostscript/"/>
-    <id>https://hxysaury.github.io/2023/09/01/vulnerability-database/python-pil-yuan-cheng-ming-ling-zhi-xing-lou-dong-via-ghostscript/</id>
+    <title>【漏洞复现】Python-unpickle-造成任意命令执行漏洞</title>
+    <link href="https://hxysaury.github.io/2023/09/01/vulnerability-database/python-unpickle-zao-cheng-ren-yi-ming-ling-zhi-xing-lou-dong/"/>
+    <id>https://hxysaury.github.io/2023/09/01/vulnerability-database/python-unpickle-zao-cheng-ren-yi-ming-ling-zhi-xing-lou-dong/</id>
     <published>2023-09-01T05:17:50.000Z</published>
-    <updated>2023-10-18T13:26:09.828Z</updated>
+    <updated>2023-10-18T13:26:15.186Z</updated>
     
     
       
@@ -396,11 +396,11 @@
   </entry>
   
   <entry>
-    <title>【漏洞复现】Python-unpickle-造成任意命令执行漏洞</title>
-    <link href="https://hxysaury.github.io/2023/09/01/vulnerability-database/python-unpickle-zao-cheng-ren-yi-ming-ling-zhi-xing-lou-dong/"/>
-    <id>https://hxysaury.github.io/2023/09/01/vulnerability-database/python-unpickle-zao-cheng-ren-yi-ming-ling-zhi-xing-lou-dong/</id>
+    <title>【漏洞复现】Python-PIL-远程命令执行漏洞（via Ghostscript）</title>
+    <link href="https://hxysaury.github.io/2023/09/01/vulnerability-database/python-pil-yuan-cheng-ming-ling-zhi-xing-lou-dong-via-ghostscript/"/>
+    <id>https://hxysaury.github.io/2023/09/01/vulnerability-database/python-pil-yuan-cheng-ming-ling-zhi-xing-lou-dong-via-ghostscript/</id>
     <published>2023-09-01T05:17:50.000Z</published>
-    <updated>2023-10-18T13:26:15.186Z</updated>
+    <updated>2023-10-18T13:26:09.828Z</updated>
     
     
       
