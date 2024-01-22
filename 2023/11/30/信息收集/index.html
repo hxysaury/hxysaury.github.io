@@ -1,0 +1,714 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"><title>信息收集篇 | 秋刀鱼</title><meta name="keywords" content="信息收集"><meta name="author" content="Vocal"><meta name="copyright" content="Vocal"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#f7f9fe"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-touch-fullscreen" content="yes"><meta name="apple-mobile-web-app-title" content="信息收集篇"><meta name="application-name" content="信息收集篇"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="#f7f9fe"><meta property="og:type" content="article"><meta property="og:title" content="信息收集篇"><meta property="og:url" content="https://hxysaury.github.io/2023/11/30/%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/index.html"><meta property="og:site_name" content="秋刀鱼"><meta property="og:description" content="0x01：Web架构:seedling:区分linux还是windows 通过URL地址来区分Web服务器系统：windows大小写不敏感，linux大小写敏感TTL值判定操作系统：ping命令  widows128 linux64,unix255   :seedling:网页源代码  :seedl"><meta property="og:locale" content="zh-CN"><meta property="og:image" content="https://pic.imgdb.cn/item/653e4162c458853aefe5cf77.jpg?_r_=9d421ba6-f65b-26a8-3b2f-70c8bd2e821f"><meta property="article:author" content="Vocal"><meta property="article:tag"><meta name="twitter:card" content="summary"><meta name="twitter:image" content="https://pic.imgdb.cn/item/653e4162c458853aefe5cf77.jpg?_r_=9d421ba6-f65b-26a8-3b2f-70c8bd2e821f"><meta name="description" content="0x01：Web架构:seedling:区分linux还是windows 通过URL地址来区分Web服务器系统：windows大小写不敏感，linux大小写敏感TTL值判定操作系统：ping命令  widows128 linux64,unix255   :seedling:网页源代码  :seedl"><link rel="shortcut icon" href="/favicon.ico"><link rel="canonical" href="https://hxysaury.github.io/2023/11/30/%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/"><link rel="preconnect" href="//cdn.cbd.int"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta name="google-site-verification" content="xxx"/><meta name="baidu-site-verification" content="code-xxx"/><meta name="msvalidate.01" content="xxx"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.cbd.int/node-snackbar@0.1.16/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.cbd.int/@fancyapps/ui@5.0.28/dist/fancybox/fancybox.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  linkPageTop: undefined,
+  peoplecanvas: undefined,
+  postHeadAiDescription: undefined,
+  diytitle: {"enable":true,"leaveTitle":"w(ﾟДﾟ)w 不要走！再看看嘛！","backTitle":"♪(^∇^*)欢迎肥来！"},
+  LA51: undefined,
+  greetingBox: {"enable":true,"default":"晚上好👋","list":[{"greeting":"晚安😴","startTime":0,"endTime":5},{"greeting":"早上好鸭👋, 祝你一天好心情！","startTime":6,"endTime":9},{"greeting":"上午好👋, 状态很好，鼓励一下～","startTime":10,"endTime":10},{"greeting":"11点多啦, 在坚持一下就吃饭啦～","startTime":11,"endTime":11},{"greeting":"午安👋, 宝贝","startTime":12,"endTime":14},{"greeting":"🌈充实的一天辛苦啦！","startTime":14,"endTime":18},{"greeting":"19点喽, 奖励一顿丰盛的大餐吧🍔。","startTime":19,"endTime":19},{"greeting":"晚上好👋, 在属于自己的时间好好放松😌~","startTime":20,"endTime":24}]},
+  twikooEnvId: '',
+  commentBarrageConfig:undefined,
+  root: '/',
+  preloader: undefined,
+  friends_vue_info: undefined,
+  navMusic: false,
+  mainTone: undefined,
+  authorStatus: undefined,
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":330},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    simplehomepage: true,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"copy":true,"copyrightEbable":false,"limitCount":50,"languages":{"author":"作者: Vocal","link":"链接: ","source":"来源: 秋刀鱼","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。","copySuccess":"复制成功，复制和转载请标注本文地址"}},
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#425AEF","bgDark":"#1f1f1f","position":"top-center"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.cbd.int/flickr-justified-gallery@2.1.2/dist/fjGallery.min.js',
+      css: 'https://cdn.cbd.int/flickr-justified-gallery@2.1.2/dist/fjGallery.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  shortcutKey: undefined,
+  autoDarkmode: true
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  configTitle: '秋刀鱼',
+  title: '信息收集篇',
+  postAI: '',
+  pageFillDescription: '0x01：Web架构, 0x02：资产泄露, 0x03：Web系统, 0x04：CDN绕过, 0x05：APP小程序, 0x06：Google hacking, 0x07：使用工具, 0x08：参考资料架构区分还是通过地址来区分服务器系统大小写不敏感大小写敏感值判定操作系统命令网页源代码请求头响应头网站底部顶部左上角右上角网站报错信息域名网站部署模式主域名与子域名的方式目录端口一个域名多个端口指纹识别识别云溪指纹识别平台浏览器插件棱洞指纹探测工具资产泄露源码泄露泄露原因从源码本身的特性入口从管理员不好的习惯入口从管理员不好的配置入口从管理员不好的意识入口从管理员资源信息搜集入口有有有这些语言的程序员在开心地使用包管理工具加速开发效率时们还在复制粘贴的黑暗中在之前包管理的历史不堪回首源码泄露是一个开源的分布式版本控制系统在执行初始化目录的时候会在当前目录下自动创建一个目录用来记录代码的变更记录等发布代码的时候如果没有把这个目录删除就直接发布到了服务器上攻击者就可以通过它来恢复源代码漏洞利用工具项目地址用法示例源码泄露是一个开放源代码的版本控制系统在使用管理本地代码过程中会自动生成一个名为的隐藏文件夹其中包含重要的源代码信息网站管理员在发布代码时没有使用导出功能而是直接复制代码文件夹到服务器上这就使隐藏文件夹被暴露于外网环境可以利用文件获取到服务器源码漏洞利用工具项目地址源码泄漏网站备份压缩文件泄露是的应用的安全目录如果想在页面中直接访问其中的文件必须通过文件对要访问的文件进行相应映射才能访问主要包含一下文件或目录应用程序配置文件描述了和其他的应用组件配置及命名规则数据库配置文件一般用来存放类文件用来存放打包好的库用来放源代码和等文件泄露是下用来保存如何展示文件文件夹的数据文件每个文件夹下对应一个如果将上传部署到服务器可能造成文件目录结构泄漏特别是备份文件源代码文件漏洞利用工具项目地址用法示例文件泄露泄露泄露源码泄露语法搜索关键字搜索社工资源搜索仓库标题搜索含有关键字仓库描述搜索含有关键字文件搜素含有关键字数量大于的搜索关键字数量大于小于的搜索关键字数量大于的搜索关键字数量大于小于的搜索关键字指定仓库大于的搜索关键字发布时间大于的搜索关键字创建时间大于的搜索关键字用户名搜素明确仓库的搜索关键字在语言的代码中搜索关键字组合搜索用户名的标题含有的关键字配合谷歌搜索更多泄露参考敏感目录文件扫描系统指纹识别识别云溪指纹识别平台浏览器插件棱洞指纹探测工具目录爆破一定要取得客户的同意会对业务造成影响御剑后台扫描子域名挖掘子域名挖掘机强大的子域名收集工具无状态子域名爆破服务超级服务识别若解析结果有多个很有可能存在相反若解析结果只有一个可能不存在不能肯定如果的结果只有一个那么就没有要是不止一个则可以判断为有端口扫描端口扫描应用协议防火墙识别端口渗透总结参考防火墙识别应用防护防火墙识别看图识看图识负责均衡检测负载均衡是建立在网络结构之上的它提供了一种廉价有效透明的方法扩展网络设备和服务器的带宽增加吞吐量加强网络数据处理能力提高网络的灵活性和可用性负载均衡其意思就是分摊到多个操作单元上进行执行例如服务器服务器企业关键应用服务器和其它关键任务服务器等从而共同完成工作任务负载均衡从其应用的地理结构上分为本地负载均衡和全局负载均衡也叫地域负载均衡本地负载均衡是指对本地的服务器群做负载均衡全局负载均衡全局负载均衡是指对分别放置在不同的地理位置有不同网络结构的服务器群间作负载均衡即针对同一个域名对应多个地址智能轮询针对于的服务负载均衡经常使用应用层负载均衡自带的大型网站为了解决海量访问问题往往采用负载均衡技术将用户的访问分配到不同的服务器上网站的负载均衡可以从和两个环节进行实施在进行渗透测试的时候需要先了解网站服务器结构以确定后期的渗透策略提供工具来获取网站的负载均衡信息该工具可以根据域名解析服务的和响应差异来识别均衡方式由于用户所使用的线路不同获取的输出结果不同大家可以把运行结果和其他人的做比较以发现目标网站的更多服务器旁注同服务器下面的不同应用查询技术段同网段下面的不同服务器下的应用查询技术绕过对于安全测试有那些影响会隐藏服务器真实的地址无法对目标网站的操作系统进行渗透但站点又可以理解为是目标站点的镜像站点大多数都是静态加速拥有相同的网站架构且服务器可与站点服务器进行交互因此注入等漏洞的挖掘并不受太大影响子域名查询因为有些主站是做了服务而子站是没有做服务与主域名在同一台服务器上与主域名一个网段子域名爆破查询子域名地址案例一案例二邮件服务查询因为邮箱大部分都是内部人在访问而且访问的量也不是很大一般是没有做国外地址请求多地因为很多的企业没有在国外部署要是用国外的地址请求就容易找到他的真实地址遗留文件扫描全网如信息当中会遗留出地址三款工具扫全网真实查找域名直接丢里面找接口查询黑暗引擎搜索特定文件黑暗引擎指定搜唯一的文件查看源代码得到地址运行得到值放到黑暗引擎中搜索就能得到真实计算网页图片的哈希值查看源代码得到地址运行得到值放到黑暗引擎中搜索就能得到真实黑暗引擎历史记录因为有些网站前期没有上服务所以可以通过查询之前的历史解析记录拿到真实地址域名历史微步在线查找老域名查找关联域名网站漏洞命令执行注入前提是对方有漏洞让对方服务器去发送请求就可以得到真实参考小程序外在抓包茶杯工具相关证书安装指南外在封包如果抓包进行不了的话那么就进行封包处理这样也能进行资源的获取也会抓到其他协议的数据包逍遥模拟器不支持封包监听工具提取码内在提取把文件当前目录名称找到关键地址等关键网站如果一些反编译不了那么就需要去壳操作把的资源提取出来后用到黑暗引擎用来查找相关的资源比如猎豹进行提取的话那么就会报错因为有加壳反编译不了内在搜索反编译载入用安卓修改大师来进行反编译用进行对源代码反编译找到相对应的关键网站反编译出来的源码来对应的功能今日观看次数等修改后在进行打包这样就可以进行修改修改达到修改资源的目的资源提取安装包资源文件进行反编译获取源代码进行代码审计找到相对应代码段提取相对应的资源提取后进行是否有壳测试提取相对应的值和值进行搜索找到相对应的资源框架使用用到这个就可以去壳就可以进行进一步测试绕过检测证书等进行抓包用到这个模块就可以忽略证书如果单单用到或者进行抓包有些会检测证书检测证书的话有些数据包就没办法抓小程序微信电脑版登录启动抓包分析两个方面信息收集和服务器有些小程序其实就是放到小程序里面小程序管理后台只能抓包没有程序源码限制搜索范围为某一网站例如可以搜索网站上包含关键词的页面限制关键字出现在网址的某个部分例如可以搜索网址中包含的页面限制关键字出现在页面标题中例如定位网站目录索引页面限制搜索特定文件类型例如可以搜索网站上的文件查看对某个页面的快照例如查看对的快照使用工具云溪指纹识别平台浏览器插件棱洞指纹探测工具指纹探测工具目录扫描目录扫描目录扫描御剑后台扫描后台扫描端口扫描端口扫描识别子域名挖掘机强大的子域名收集工具无状态子域名爆破国外水泽自动化信息收集工具棱角社区工具大全参考资料源码泄露端口渗透总结参考看图识看图识绕过寻找网站真实的方法汇总绕过查看网站真实的一些办法渗透测试信息收集小程序信息收集证书安装安装证书安装证书',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-01-22 21:14:22',
+  postMainColor: '',
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#18171d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#f7f9fe')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+          const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+          const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+          const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+          if (t === undefined) {
+            if (isLightMode) activateLightMode()
+            else if (isDarkMode) activateDarkMode()
+            else if (isNotSpecified || hasNoSupport) {
+              const now = new Date()
+              const hour = now.getHours()
+              const isNight = hour <= 8 || hour >= 20
+              isNight ? activateDarkMode() : activateLightMode()
+            }
+            window.matchMedia('(prefers-color-scheme: dark)').addListener(e => {
+              if (saveToLocal.get('theme') === undefined) {
+                e.matches ? activateDarkMode() : activateLightMode()
+              }
+            })
+          } else if (t === 'light') activateLightMode()
+          else activateDarkMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><meta name="generator" content="Hexo 7.1.0"></head><body data-type="anzhiyu"><div id="web_bg"></div><div id="an_music_bg"></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><div id="nav-group"><span id="blog_name"><a id="site-name" href="/" accesskey="h"><div class="title">秋刀鱼</div><i class="anzhiyufont anzhiyu-icon-house-chimney"></i></a><div id="he-plugin-simple"></div><script>var WIDGET = {
+  "CONFIG": {
+    "modules": "0124",
+    "background": "2",
+    "tmpColor": "FFFFFF",
+    "tmpSize": "16",
+    "cityColor": "FFFFFF",
+    "citySize": "16",
+    "aqiColor": "E8D87B",
+    "aqiSize": "16",
+    "weatherIconSize": "24",
+    "alertIconSize": "18",
+    "padding": "10px 10px 10px 10px",
+    "shadow": "0",
+    "language": "auto",
+    "borderRadius": "20",
+    "fixed": "true",
+    "vertical": "top",
+    "horizontal": "left",
+    "left": "20",
+    "top": "7.1",
+    "key": "df245676fb434a0691ead1c63341cd94"
+  }
+}
+</script><link rel="stylesheet" href="https://widget.qweather.net/simple/static/css/he-simple.css?v=1.4.0"/><script src="https://widget.qweather.net/simple/static/js/he-simple.js?v=1.4.0"></script></span><div class="mask-name-container"><div id="name-container"><a id="page-name" href="javascript:anzhiyu.scrollToDest(0, 500)">PAGE_NAME</a></div></div><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/categories/"><span> 分类</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/tags/"><span> 标签</span></a></div></div></div><div id="nav-right"><div class="nav-button" id="randomPost_button"><a class="site-page" onclick="toRandomPost()" title="随机前往一个文章" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-dice"></i></a></div><div id="console"><div class="console-card-group-reward"><ul class="reward-all console-card"><li class="reward-item"><a href="https://npm.elemecdn.com/anzhiyu-blog@1.1.6/img/post/common/qrcode-weichat.png" target="_blank"><img class="post-qr-code-img" alt="微信" src="https://npm.elemecdn.com/anzhiyu-blog@1.1.6/img/post/common/qrcode-weichat.png"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="https://npm.elemecdn.com/anzhiyu-blog@1.1.6/img/post/common/qrcode-alipay.png" target="_blank"><img class="post-qr-code-img" alt="支付宝" src="https://npm.elemecdn.com/anzhiyu-blog@1.1.6/img/post/common/qrcode-alipay.png"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div><div class="console-card-group"><div class="console-card-group-left"></div><div class="console-card-group-right"><div class="console-card tags"><div class="card-content"><div class="author-content-item-tips">兴趣点</div><span class="author-content-item-title">寻找你感兴趣的领域</span></div></div><div class="console-card history"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-box-archiv"></i><span>文章</span></div><div class="card-archives"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-archive"></i><span>归档</span></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/11/"><span class="card-archive-list-date">十一月 2023</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">8</span><span>篇</span></div></a></li></ul></div><hr/></div></div></div><div class="button-group"><div class="console-btn-item"><a class="darkmode_switchbutton" title="显示模式切换" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-moon"></i></a></div><div class="console-btn-item" id="consoleHideAside" onclick="anzhiyu.hideAsideBtn()" title="边栏显示控制"><a class="asideSwitch"><i class="anzhiyufont anzhiyu-icon-arrows-left-right"></i></a></div></div><div class="console-mask" onclick="anzhiyu.hideConsole()" href="javascript:void(0);"></div></div><div class="nav-button" id="nav-totop"><a class="totopbtn" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-arrow-up"></i><span id="percent" onclick="anzhiyu.scrollToDest(0,500)">0</span></a></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);" title="切换"><i class="anzhiyufont anzhiyu-icon-bars"></i></a></div></div></div></nav><div id="post-info"><div id="post-firstinfo"><div class="meta-firstline"><a class="post-meta-original">原创</a><span class="post-meta-categories"><span class="post-meta-separator"></span><i class="anzhiyufont anzhiyu-icon-inbox post-meta-icon"></i><a class="post-meta-categories" href="/categories/Web%E5%AE%89%E5%85%A8/" itemprop="url">Web安全</a></span><span class="article-meta tags"><a class="article-meta__tags" href="/tags/%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/" tabindex="-1" itemprop="url"> <span> <i class="anzhiyufont anzhiyu-icon-hashtag"></i>信息收集</span></a></span></div></div><h1 class="post-title" itemprop="name headline">信息收集篇</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="anzhiyufont anzhiyu-icon-calendar-days post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" itemprop="dateCreated datePublished" datetime="2023-11-29T16:00:00.000Z" title="发表于 2023-11-30 00:00:00">2023-11-30</time><span class="post-meta-separator"></span><i class="anzhiyufont anzhiyu-icon-history post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" itemprop="dateCreated datePublished" datetime="2024-01-22T13:14:22.605Z" title="更新于 2024-01-22 21:14:22">2024-01-22</time></span></div><div class="meta-secondline"><span class="post-meta-separator"></span><span class="post-meta-pv-cv" id="" data-flag-title="信息收集篇"><i class="anzhiyufont anzhiyu-icon-fw-eye post-meta-icon"></i><span class="post-meta-label" title="阅读量">阅读量:</span><span id="busuanzi_value_page_pv"><i class="anzhiyufont anzhiyu-icon-spinner anzhiyu-spin"></i></span></span><span class="post-meta-separator">       </span><span class="post-meta-position" title="作者IP属地为北京"><i class="anzhiyufont anzhiyu-icon-location-dot"></i>北京</span></div></div></div><section class="main-hero-waves-area waves-area"><svg class="waves-svg" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto"><defs><path id="gentle-wave" d="M -160 44 c 30 0 58 -18 88 -18 s 58 18 88 18 s 58 -18 88 -18 s 58 18 88 18 v 44 h -352 Z"></path></defs><g class="parallax"><use href="#gentle-wave" x="48" y="0"></use><use href="#gentle-wave" x="48" y="3"></use><use href="#gentle-wave" x="48" y="5"></use><use href="#gentle-wave" x="48" y="7"></use></g></svg></section><div id="post-top-cover"><img class="nolazyload" id="post-top-bg" src="https://pic.imgdb.cn/item/653e4162c458853aefe5cf77.jpg?_r_=9d421ba6-f65b-26a8-3b2f-70c8bd2e821f"></div></header><main id="blog-container"><div class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container" itemscope itemtype="https://hxysaury.github.io/2023/11/30/%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/"><header><a class="post-meta-categories" href="/categories/Web%E5%AE%89%E5%85%A8/" itemprop="url">Web安全</a><a href="/tags/%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/" tabindex="-1" itemprop="url">信息收集</a><h1 id="CrawlerTitle" itemprop="name headline">信息收集篇</h1><span itemprop="author" itemscope itemtype="http://schema.org/Person">Vocal</span><time itemprop="dateCreated datePublished" datetime="2023-11-29T16:00:00.000Z" title="发表于 2023-11-30 00:00:00">2023-11-30</time><time itemprop="dateCreated datePublished" datetime="2024-01-22T13:14:22.605Z" title="更新于 2024-01-22 21:14:22">2024-01-22</time></header><h1 id="0x01：Web架构"><a href="#0x01：Web架构" class="headerlink" title="0x01：Web架构"></a>0x01：Web架构</h1><p>:seedling:<strong>区分linux还是windows</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">通过URL地址来区分Web服务器系统：windows大小写不敏感，linux大小写敏感</span><br><span class="line"></span><br><span class="line">TTL值判定操作系统：ping命令  widows128 linux64,unix255</span><br></pre></td></tr></table></figure>
+
+<hr>
+<p>:seedling:<strong>网页源代码</strong></p>
+<hr>
+<p>:seedling:<strong>请求头&#x2F;响应头</strong></p>
+<hr>
+<p>:seedling:<strong>网站底部，顶部，左上角右上角</strong></p>
+<hr>
+<p>:seedling:<strong>网站报错信息</strong></p>
+<hr>
+<p>:seedling:<strong>域名&#x2F;install</strong></p>
+<hr>
+<p>:seedling:<strong>网站部署模式</strong></p>
+<ul>
+<li>主域名与子域名的方式 ( a.com   1.a.com)</li>
+<li>目录    ( a.com&#x2F;admin&#x2F;)</li>
+<li>端口：一个 域名多个端口    (a.com:8080)</li>
+</ul>
+<hr>
+<p>:seedling:<strong>指纹识别、CMS识别</strong></p>
+<ul>
+<li>云溪指纹识别平台：<a target="_blank" rel="noopener" href="https://www.yunsee.cn/">https://www.yunsee.cn/</a></li>
+<li>浏览器插件Wappalyzer</li>
+<li><a target="_blank" rel="noopener" href="https://github.com/EdgeSecurityTeam/EHole">EHole(棱洞)指纹探测工具</a></li>
+<li><a target="_blank" rel="noopener" href="https://whatcms.org/">https://whatcms.org/</a></li>
+<li><strong><a target="_blank" rel="noopener" href="https://builtwith.com/">https://builtwith.com/</a></strong></li>
+</ul>
+<hr>
+<h1 id="0x02：资产泄露"><a href="#0x02：资产泄露" class="headerlink" title="0x02：资产泄露"></a>0x02：资产泄露</h1><p><strong>:seedling:源码泄露</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">- 泄露原因：</span><br><span class="line">	1、从源码本身的特性入口</span><br><span class="line">	2、从管理员不好的习惯入口</span><br><span class="line">	3、从管理员不好的配置入口</span><br><span class="line">	4、从管理员不好的意识入口</span><br><span class="line">	5、从管理员资源信息搜集入口</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>composer.json</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Java有Maven</span><br><span class="line">Node.js有npm</span><br><span class="line">ROR有gem</span><br><span class="line">这些语言的程序员在开心地使用包管理工具加速开发效率时，PHPer们还在复制粘贴的黑暗</span><br><span class="line">中。PHP在Composer:之前，包管理的历史不堪回首。</span><br></pre></td></tr></table></figure>
+
+<p><img src="/../imgs/image-20231222193917435.png" alt="image-20231222193917435"></p>
+<ul>
+<li>git源码泄露</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Git是一个开源的分布式版本控制系统，在执行`git init`初始化目录的时候，会在当前目录下自动创建一个`.git`目录，用来记录代码的变更记录等。发布代码的时候，如果没有把`.git`这个目录删除，就直接发布到了服务器上，攻击者就可以通过它来恢复源代码。</span><br><span class="line"></span><br><span class="line">漏洞利用工具：GitHack</span><br><span class="line"></span><br><span class="line">github项目地址：https://github.com/lijiejie/GitHack</span><br><span class="line"></span><br><span class="line">用法示例：GitHack.py http://xxxxxxx.com/.git/</span><br></pre></td></tr></table></figure>
+
+
+
+<ul>
+<li>svn源码泄露</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">SVN是一个开放源代码的版本控制系统。在使用SVN管理本地代码过程中，会自动生成一个名为.svn的隐藏文件夹，其中包含重要的源代码信息。网站管理员在发布代码时，没有使用‘导出’功能，而是直接复制代码文件夹到WEB服务器上，这就使.svn隐藏文件夹被暴露于外网环境，可以利用.svn/entries文件，获取到服务器源码。</span><br><span class="line"></span><br><span class="line">漏洞利用工具：SvnHack</span><br><span class="line"></span><br><span class="line">github项目地址：https://github.com/callmefeifei/SvnHack</span><br></pre></td></tr></table></figure>
+
+
+
+<ul>
+<li>hg源码泄漏</li>
+<li>网站备份压缩文件</li>
+<li>WEB-INF&#x2F;web.xml泄露</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">WEB-INF 是Java的WEB应用的安全目录，如果想在页面中直接访问其中的文件，必须通过web.xml文件对要访问的文件进行相应映射才能访问。</span><br><span class="line"></span><br><span class="line">WEB-INF 主要包含一下文件或目录：</span><br><span class="line">	- WEB-INF/web.xml : Web应用程序配置文件, 描述了servlet和其他的应用组件配置及命名规则.</span><br><span class="line">	- WEB-INF/database.properties : 数据库配置文件</span><br><span class="line">	- WEB-INF/classes/ : 一般用来存放Java类文件(.class)</span><br><span class="line">	- WEB-INF/lib/ : 用来存放打包好的库(.jar)</span><br><span class="line">	- WEB-INF/src/ : 用来放源代码(.asp和.php等)</span><br></pre></td></tr></table></figure>
+
+
+
+<ul>
+<li>DS_Store文件泄露</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">.DS_Store是Mac下Finder用来保存如何展示 文件/文件夹 的数据文件，每个文件夹下对应一个。如果将.DS_Store上传部署到服务器，可能造成文件目录结构泄漏，特别是备份文件、源代码文件。</span><br><span class="line"></span><br><span class="line">漏洞利用工具：</span><br><span class="line"></span><br><span class="line">github项目地址：https://github.com/lijiejie/ds_store_exp</span><br><span class="line"></span><br><span class="line">用法示例：ds_store_exp.py http://xxxxxx.com/themes/galaxyw/.DS_Store</span><br></pre></td></tr></table></figure>
+
+
+
+<ul>
+<li>SWP 文件泄露</li>
+<li>CVS泄露</li>
+<li>Bzr泄露</li>
+<li>Github源码泄露 (语法搜索&amp;关键字搜索&amp;社工)</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">GITHUB资源搜索：</span><br><span class="line">in:name test 				#仓库标题搜索含有关键字</span><br><span class="line">in:descripton test			#仓库描述搜索含有关键字</span><br><span class="line">in:readme test				#Readme文件搜素含有关键字</span><br><span class="line">stars:&gt;3000 test			#stars数量大于3000的搜索关键字</span><br><span class="line">stars:1000..3000 test		#stars数量大于1000小于3000的搜索关键字</span><br><span class="line">forks:&gt;1000 test			#forks数量大于1000的搜索关键字</span><br><span class="line">forks:1000..3000 test		#forks数量大于1000小于3000的搜索关键字</span><br><span class="line">size:&gt;=5000 test			#指定仓库大于5000k(5M)的搜索关键字</span><br><span class="line">pushed:&gt;2019-02-12 test		#发布时间大于2019-02-12的搜索关键字</span><br><span class="line">created:&gt;2019-02-12 test	#创建时间大于2019-02-12的搜索关键字</span><br><span class="line">user:test					#用户名搜素</span><br><span class="line">license:apache-2.0 test		#明确仓库的LICENSE搜索关键字</span><br><span class="line">language:java test			#在java语言的代码中搜索关键字</span><br><span class="line">user:test in:name test		#组合搜索，用户名test的标题含有test的</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">关键字配合谷歌搜索：</span><br><span class="line">site:Github.com smtp</span><br><span class="line">site:Github.com smtp @qq.com</span><br><span class="line">site:Github.com smtp @126.com</span><br><span class="line">site:Github.com smtp @163.com</span><br><span class="line">site:Github.com smtp @sina.com.cn</span><br><span class="line">site:Github.com smtp password</span><br><span class="line">site:Github.com String password smtp</span><br></pre></td></tr></table></figure>
+
+
+
+<p>更多泄露参考：</p>
+<ul>
+<li><p><a target="_blank" rel="noopener" href="https://www.secpulse.com/archives/124398.html">https://www.secpulse.com/archives/124398.html</a></p>
+<p><strong>敏感目录文件扫描</strong>：<a target="_blank" rel="noopener" href="https://github.com/7kbstorm/7kbscan-WebPathBrute">7kbscan-WebPathBrute</a></p>
+</li>
+</ul>
+<hr>
+<h1 id="0x03：Web系统"><a href="#0x03：Web系统" class="headerlink" title="0x03：Web系统"></a>0x03：Web系统</h1><p>:seedling:<strong>指纹识别、CMS识别</strong></p>
+<ul>
+<li>云溪指纹识别平台：<a target="_blank" rel="noopener" href="https://www.yunsee.cn/">https://www.yunsee.cn/</a></li>
+<li>浏览器插件Wappalyzer</li>
+<li><a target="_blank" rel="noopener" href="https://github.com/EdgeSecurityTeam/EHole">EHole(棱洞)指纹探测工具</a></li>
+<li><a target="_blank" rel="noopener" href="https://whatcms.org/">https://whatcms.org/</a></li>
+<li><strong><a target="_blank" rel="noopener" href="https://builtwith.com/">https://builtwith.com/</a></strong></li>
+</ul>
+<hr>
+<p>:seedling:<strong>目录爆破</strong></p>
+<ul>
+<li>一定要取得客户的同意，会对业务造成影响</li>
+<li><a target="_blank" rel="noopener" href="https://github.com/maurosoria/dirsearch">dirsearch</a></li>
+<li>gobuster</li>
+<li>drib</li>
+<li>御剑后台扫描</li>
+<li><a target="_blank" rel="noopener" href="https://github.com/7kbstorm/7kbscan-WebPathBrute">7kbscan</a></li>
+</ul>
+<hr>
+<p>:seedling:<strong>子域名挖掘</strong></p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://crt.sh/">https://crt.sh/</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.dnsgrep.cn/">https://www.dnsgrep.cn/</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/euphrat1ca/LayerDomainFinder">子域名挖掘机</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/shmilylty/OneForAll">OneForAll-强大的子域名收集工具</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/knownsec/ksubdomain">无状态子域名爆破-ksubdomain</a></li>
+</ul>
+<hr>
+<p>:seedling:<strong>CDN服务</strong></p>
+<ul>
+<li><p><a target="_blank" rel="noopener" href="https://ping.chinaz.com/">超级Ping</a>：CDN服务识别</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://tools.ipip.net/newping.php">https://tools.ipip.net/newping.php</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="http://www.17ce.com/">http://www.17ce.com/</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="http://ping.aizhan.com/">http://ping.aizhan.com/</a> </p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="http://tools.ipip.net/ping.php">http://tools.ipip.net/ping.php</a></p>
+</li>
+<li><p><strong>nslookup</strong>： 若解析结果有多个，很有可能存在CDN，相反，若解析结果只有一个，可能不存在CDN(不能肯定)</p>
+<p>如果ping的结果只有一个那么就没有CDN、要是不止一个则可以判断为有CDN</p>
+<hr>
+</li>
+</ul>
+<p>:seedling:<strong>端口扫描</strong></p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/robertdavidgraham/masscan">Masscan</a></li>
+<li><a target="_blank" rel="noopener" href="https://nmap.org/">Nmap</a>：端口扫描，应用协议，防火墙识别</li>
+<li><a target="_blank" rel="noopener" href="https://www.se7ensec.cn/2018/11/28/%E7%AB%AF%E5%8F%A3%E6%B8%97%E9%80%8F%E6%80%BB%E7%BB%93/">端口渗透总结参考：</a></li>
+</ul>
+<hr>
+<p>:seedling:<strong>WAF防火墙识别</strong></p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/EnableSecurity/wafw00f">Wafw00f</a>：Web应用防护防火墙识别</li>
+<li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/charon1937/p/13799467.html">看图识WAF1</a></li>
+<li><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/3uUZKryCufQ_HcuMc8ZgQQ">看图识WAF2</a></li>
+</ul>
+<hr>
+<p>:seedling:<strong>负责均衡检测</strong></p>
+<blockquote>
+<ul>
+<li><p>负载均衡是建立在网络结构之上的，它提供了一种廉价有效透明的方法扩展网络设备和服务器的带宽，增加吞吐量，加强网络数据处理能力、提高网络的灵活性和可用性；</p>
+</li>
+<li><p>负载均衡（Load Balance）其意思就是分摊到多个操作单元上进行执行，例如Web服务器、FTP服务器、企业关键应用服务器和其它关键任务服务器等，从而共同完成工作任务。</p>
+</li>
+<li><p>负载均衡从其应用的地理结构上分为本地负载均衡（Local Load Balance）和全局负载均衡（Global Load Balance，也叫地域负载均衡）：</p>
+<ul>
+<li><strong>本地负载均衡</strong>：是指对本地的服务器群做负载均衡；</li>
+<li><strong>全局负载均衡</strong>：全局负载均衡是指对分别放置在不同的地理位置、有不同网络结构的服务器群间作负载均衡。</li>
+</ul>
+<p><strong>即针对DNS：同一个域名对应多个IP地址（智能DNS，DNS轮询）；</strong><br><strong>针对于web的服务负载均衡经常使用Nginx、Apache应用层负载均衡；</strong></p>
+</li>
+</ul>
+</blockquote>
+<ul>
+<li><p>kali自带的lbd</p>
+</li>
+<li><p>大型网站为了解决海量访问问题，往往采用负载均衡技术，将用户的访问分配到不同的服务器上。网站的负载均衡可以从DNS和HTTP两个环节进行实施。在进行Web渗透测试的时候，需要先了解网站服务器结构，以确定后期的渗透策略。Kali Linux提供工具lbd来获取网站的负载均衡信息。该工具可以根据DNS域名解析、HTTP服务的header和响应差异，来识别均衡方式。</p>
+</li>
+<li><p>PS：由于用户所使用的线路不同，获取的输出结果不同。大家可以把运行结果和其他人的做比较，以发现目标网站的更多服务器。</p>
+</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">lbd www.xxxxx.com</span><br></pre></td></tr></table></figure>
+
+<hr>
+<p><strong>&#x3D;&#x3D;旁注&#x3D;&#x3D;：同服务器下面的不同WEB应用查询技术</strong></p>
+<p><strong>&#x3D;&#x3D;C段&#x3D;&#x3D;：同网段下面的不同服务器IP下的WEB应用查询技术</strong></p>
+<hr>
+<h1 id="0x04：CDN绕过"><a href="#0x04：CDN绕过" class="headerlink" title="0x04：CDN绕过"></a>0x04：CDN绕过</h1><p>:seedling:<strong>CDN对于安全测试有那些影响?</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cdn会隐藏服务器真实的ip地址，无法对目标网站的操作系统进行渗透，但cdn站点又可以理解为是目标站点的镜像站点（大多数都是静态cdn加速），拥有相同的网站架构，且cdn服务器可与站点服务器进行交互，因此sql注入，xss等漏洞的挖掘并不受太大影响。</span><br></pre></td></tr></table></figure>
+
+<hr>
+<p>:seedling:<strong>子域名查询</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">因为有些主站是做了CDN服务而子站是没有做CDN服务</span><br><span class="line"></span><br><span class="line">1、与主域名在同一台服务器上</span><br><span class="line"></span><br><span class="line">2、与主域名一个网段</span><br><span class="line"></span><br><span class="line">子域名爆破，查询子域名ip地址</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><a target="_blank" rel="noopener" href="https://www.17ce.com/">https://www.17ce.com/</a></li>
+<li><a target="_blank" rel="noopener" href="https://ping.chinaz.com/www.youku.com">https://ping.chinaz.com/www.youku.com</a></li>
+</ul>
+<p>案例一：</p>
+<p><img src="/../imgs/image-20231222201731114.png" alt="image-20231222201731114"></p>
+<p><img src="/../imgs/image-20231222201753514.png" alt="image-20231222201753514"></p>
+<p>案例二：</p>
+<p><img src="/../imgs/image-20231222201812602.png" alt="image-20231222201812602"></p>
+<p><img src="/../imgs/image-20231222201836802.png" alt="image-20231222201836802"></p>
+<hr>
+<p>:seedling:<strong>邮件服务查询</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">因为邮箱大部分都是内部人在访问、而且访问的量也不是很大，一般是没有做CDN。</span><br></pre></td></tr></table></figure>
+
+<p><img src="/../imgs/image-20231222201933690.png" alt="image-20231222201933690"></p>
+<p><img src="/../imgs/image-20231222202009240.png" alt="image-20231222202009240"></p>
+<p><img src="/../imgs/image-20231222202022674.png" alt="image-20231222202022674"></p>
+<hr>
+<p>:seedling:<strong>国外地址请求，多地ping</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">因为很多的企业没有在国外部署CDN，要是用国外的地址请求、就容易找到他的真实地址。</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><a target="_blank" rel="noopener" href="https://tools.ipip.net/cdn.php">https://tools.ipip.net/cdn.php</a></li>
+</ul>
+<hr>
+<p>:seedling:<strong>遗留文件、扫描全网</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">如PHPinfo信息当中会遗留出ip地址</span><br><span class="line"></span><br><span class="line">三款工具 扫全网：fuckcdn w8fuckcdn	zmap</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p><a target="_blank" rel="noopener" href="https://github.com/boy-hack/w8fuckcdn">https://github.com/boy-hack/w8fuckcdn</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://github.com/Tai7sy/fuckcdn">https://github.com/Tai7sy/fuckcdn</a></p>
+</li>
+</ul>
+<hr>
+<p>:seedling:<strong>真实IP查找</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">域名直接丢里面找</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><a target="_blank" rel="noopener" href="https://get-site-ip.com/">接口查询</a></li>
+<li><a target="_blank" rel="noopener" href="http://crimeflare.org:82/cfs.html">http://crimeflare.org:82/cfs.html</a></li>
+</ul>
+<hr>
+<p>:seedling:<strong>黑暗引擎搜索特定文件</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">黑暗引擎指定搜唯一的hash文件</span><br><span class="line">查看源代码得到ico地址，运行得到hash值</span><br><span class="line">放到黑暗引擎中搜索，就能得到真实ip</span><br></pre></td></tr></table></figure>
+
+<p>python3计算网页<code>ico</code>图片的哈希值：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> mmh3</span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> base64</span><br><span class="line"></span><br><span class="line">response = requests.get(<span class="string">&#x27;https://www.xxxxx.com/favicon.ico&#x27;</span>)</span><br><span class="line">favicon = base64.b64encode(response.content)</span><br><span class="line"><span class="built_in">hash</span> = mmh3.<span class="built_in">hash</span>(favicon)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;http.favicon.hash:&#x27;</span>+<span class="built_in">str</span>(<span class="built_in">hash</span>))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">查看源代码得到ico地址</span><br><span class="line"></span><br><span class="line">运行得到<span class="built_in">hash</span>值</span><br><span class="line"></span><br><span class="line">放到黑暗引擎中搜索，就能得到真实ip</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">黑暗引擎					</span><br><span class="line">fofa、Shodan、zoomeye、censys 、360quake</span><br></pre></td></tr></table></figure>
+
+<hr>
+<p>:seedling:<strong>dns历史记录</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">因为有些网站前期没有上CDN服务，所以可以通过查询之前的DNS历史解析记录拿到真实ip地址</span><br><span class="line"></span><br><span class="line">https://viewdns.info/</span><br><span class="line"></span><br><span class="line">域名历史（https://x.threatbook.cn/）</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><a target="_blank" rel="noopener" href="https://x.threatbook.cn/">https://x.threatbook.cn/</a> 微步在线</li>
+<li><a target="_blank" rel="noopener" href="https://tools.ipip.net/cdn.php">https://tools.ipip.net/cdn.php</a></li>
+<li><a target="_blank" rel="noopener" href="https://dnsdb.io/zh-cn/">https://dnsdb.io/zh-cn/</a></li>
+</ul>
+<hr>
+<p><strong>:seedling:查找老域名</strong></p>
+<hr>
+<p>:seedling:<strong>查找关联域名</strong></p>
+<ul>
+<li>.com</li>
+<li>.cn</li>
+<li>.org</li>
+</ul>
+<hr>
+<p>:seedling:网站漏洞</p>
+<ul>
+<li>Ssrf</li>
+<li>命令执行</li>
+<li>SQL注入</li>
+</ul>
+<p>前提是对方有SSRF漏洞，让对方服务器去发送请求，就可以得到真实IP</p>
+<p><img src="/../imgs/image-20231222201645626.png" alt="image-20231222201645626"></p>
+<p>:seedling:<strong>参考</strong></p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/33440472">https://zhuanlan.zhihu.com/p/33440472</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/blacksunny/p/5771827.html">https://www.cnblogs.com/blacksunny/p/5771827.html</a></li>
+</ul>
+<h1 id="0x05：APP小程序"><a href="#0x05：APP小程序" class="headerlink" title="0x05：APP小程序"></a>0x05：APP小程序</h1><p>:seedling:<strong>外在抓包</strong></p>
+<ul>
+<li>Fiddler</li>
+<li>茶杯</li>
+<li>Burp</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">工具相关证书安装指南</span><br><span class="line">Charles</span><br><span class="line">https://blog.csdn.net/weixin_45459427/article/details/108393878</span><br><span class="line">Fidder</span><br><span class="line">https://blog.csdn.net/weixin_45043349/article/details/120088449</span><br><span class="line">BurpSuite</span><br><span class="line">https://blog.csdn.net/qq_36658099/article/details/81487491</span><br></pre></td></tr></table></figure>
+
+
+
+<hr>
+<p>:seedling:<strong>外在封包</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">如果抓包进行不了的话，那么就进行封包处理。这样也能进行资源的获取。也会抓到其他协议的数据包。逍遥模拟器不支持。</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1o9Awa5tzNXomAMsBSLZIog">封包监听工具–提取码：5s3d </a></li>
+</ul>
+<hr>
+<p>:seedling:<strong>内在提取</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">把apk文件当前目录 python310 app.py android -i apk名称 </span><br><span class="line"></span><br><span class="line">找到关键地址guifei2020.net 等关键网站</span><br><span class="line">如果一些APP反编译不了，那么就需要去壳操作。把apk的资源提取出来后，用到黑暗引擎用来查找相关的资源。</span><br><span class="line">比如猎豹.apk进行提取的话，那么就会报错（因为有加壳，反编译不了）</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/kelvinBen/AppInfoScanner">ApplnfoScanner</a></li>
+</ul>
+<hr>
+<p>:seedling:<strong>内在搜索</strong></p>
+<ul>
+<li>反编译载入IDEA</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">用安卓修改大师来进行反编译，用idea进行对源代码反编译，找到相对应的关键网站</span><br></pre></td></tr></table></figure>
+
+<p><img src="/../imgs/202204161650107990328839.png" alt="1645080197674-91b83e04-3483-4714-a702-414d7b20e205.png"></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">反编译出来的源码来对应APP的功能：今日观看次数等。修改后在进行打包，这样就可以进行修改apk修改，达到修改资源的目的。</span><br></pre></td></tr></table></figure>
+
+<p><img src="/../imgs/202204161650107998856689.png" alt="1645080220845-fb864258-f841-449b-bbea-0701abdd1b7e.png"></p>
+<hr>
+<p>:seedling:<strong>资源提取</strong></p>
+<ul>
+<li>安装包</li>
+<li>资源文件</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">进行apk反编译获取源代码进行代码审计，找到相对应代码段，提取相对应的资源。</span><br></pre></td></tr></table></figure>
+
+<p><img src="/../imgs/202204161650108011608212.png" alt="1645080249454-22cc1fc1-8d3e-48b8-a4f7-546af1d63175.png"></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">提取apk后，进行是否有壳测试：</span><br></pre></td></tr></table></figure>
+
+<p><img src="/../imgs/202204161650108047274714.png" alt="1645080272463-b9790ee2-f0e4-42fa-a44e-a36c9987db27.png"></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">提取相对应的md5值和hash值，进行fofa搜索，找到相对应的资源。</span><br></pre></td></tr></table></figure>
+
+<hr>
+<p>:seedling:<strong>框架使用</strong></p>
+<ul>
+<li>Xposed</li>
+<li>JustTrustMe</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Xposed：</span><br><span class="line">用到这个就可以去壳，就可以进行进一步测试。绕过检测证书等进行抓包。</span><br><span class="line">用到这个模块就可以忽略证书，如果单单用到fiddler或者burpsuite进行抓包，有些会检测证书，检测证书的话有些数据包就没办法抓。</span><br></pre></td></tr></table></figure>
+
+<hr>
+<p>:seedling:<strong>小程序-微信-电脑版登录启动抓包分析</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">两个方面信息收集：web 和服务器</span><br><span class="line">有些小程序其实就是APP 放到小程序里面</span><br><span class="line">小程序管理后台：mituomimtm.cn/login</span><br><span class="line">只能抓包，没有程序源码</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="0x06：Google-hacking"><a href="#0x06：Google-hacking" class="headerlink" title="0x06：Google hacking"></a>0x06：Google hacking</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"> site：限制搜索范围为某一网站，例如：site:baidu.com &quot;admin&quot; 可以搜索baidu.com网站上包含关键词“admin”的页面。</span><br><span class="line">    </span><br><span class="line">inurl：限制关键字出现在网址的某个部分，例如：inurl:php?id= 可以搜索网址中包含php?id=的页面。</span><br><span class="line">    </span><br><span class="line">intitle：限制关键字出现在页面标题中，例如：intitle:index of / 定位网站目录索引页面。</span><br><span class="line">    </span><br><span class="line">filetype：限制搜索特定文件类型，例如：filetype:pdf site:example.com 可以搜索example.com网站上的pdf文件。</span><br><span class="line">    </span><br><span class="line">cache：查看Google对某个页面的快照，例如：cache:example.com 查看Google对example.com的快照。</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><a target="_blank" rel="noopener" href="https://ght.se7ensec.cn/#">https://ght.se7ensec.cn/#</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/K0rz3n/GoogleHacking-Page">https://github.com/K0rz3n/GoogleHacking-Page</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.exploit-db.com/google-hacking-database">https://www.exploit-db.com/google-hacking-database</a></li>
+</ul>
+<hr>
+<h1 id="0x07：使用工具"><a href="#0x07：使用工具" class="headerlink" title="0x07：使用工具"></a>0x07：使用工具</h1><ul>
+<li><p>云溪指纹识别平台：<a target="_blank" rel="noopener" href="https://www.yunsee.cn/">https://www.yunsee.cn/</a></p>
+</li>
+<li><p>浏览器插件Wappalyzer</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://github.com/EdgeSecurityTeam/EHole">EHole(棱洞)指纹探测工具</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://github.com/EASY233/Finger">Finger指纹探测工具</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://github.com/maurosoria/dirsearch">dirsearch目录扫描</a></p>
+</li>
+<li><p>gobuster目录扫描</p>
+</li>
+<li><p>drib目录扫描</p>
+</li>
+<li><p>御剑后台扫描</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://github.com/7kbstorm/7kbscan-WebPathBrute">7kbscan后台扫描</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://github.com/robertdavidgraham/masscan">Masscan端口扫描</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://nmap.org/">Nmap端口扫描</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://github.com/EnableSecurity/wafw00f">Wafw00f识别</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://github.com/euphrat1ca/LayerDomainFinder">子域名挖掘机</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://github.com/shmilylty/OneForAll">OneForAll-强大的子域名收集工具</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://github.com/knownsec/ksubdomain">无状态子域名爆破-ksubdomain</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://tools.ipip.net/cdn.php">国外Ping</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://github.com/0x727/ShuiZe_0x727">水泽-自动化信息收集工具</a></p>
+</li>
+<li></li>
+<li><p><a target="_blank" rel="noopener" href="https://forum.ywhack.com/center.php">棱角社区工具大全</a></p>
+</li>
+</ul>
+<h1 id="0x08：参考资料"><a href="#0x08：参考资料" class="headerlink" title="0x08：参考资料"></a>0x08：参考资料</h1><ul>
+<li><p><a target="_blank" rel="noopener" href="https://www.secpulse.com/archives/124398.html">源码泄露</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.se7ensec.cn/2018/11/28/%E7%AB%AF%E5%8F%A3%E6%B8%97%E9%80%8F%E6%80%BB%E7%BB%93/">端口渗透总结参考：</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/charon1937/p/13799467.html">看图识WAF1</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/3uUZKryCufQ_HcuMc8ZgQQ">看图识WAF2</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/33440472">绕过CDN寻找网站真实IP的方法汇总</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/blacksunny/p/5771827.html">绕过CDN查看网站真实IP的一些办法</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_43938645/article/details/129444910">渗透测试–信息收集</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_44268918/article/details/130252340">APP-小程序信息收集</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_45459427/article/details/108393878">Charles证书安装</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_45043349/article/details/120088449">Fiddler安装证书</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_36658099/article/details/81487491">BurpSuite安装证书</a></p>
+</li>
+</ul>
+</article><div class="post-copyright"><div class="copyright-cc-box"><i class="anzhiyufont anzhiyu-icon-copyright"></i></div><div class="post-copyright__author_box"><a class="post-copyright__author_img" href="/" title="头像"><img class="post-copyright__author_img_back" src="https://pic.imgdb.cn/item/65ae347f871b83018af6c612.jpg" title="头像" alt="头像"><img class="post-copyright__author_img_front" src="https://pic.imgdb.cn/item/65ae347f871b83018af6c612.jpg" title="头像" alt="头像"></a><div class="post-copyright__author_name">Vocal</div><div class="post-copyright__author_desc">厚积薄发,志在必得</div></div><div class="post-copyright__post__info"><a class="post-copyright__original" title="该文章为原创文章，注意版权协议" href="https://hxysaury.github.io/2023/11/30/%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/">原创</a><a class="post-copyright-title"><span onclick="rm.copyPageUrl('https://hxysaury.github.io/2023/11/30/%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/')">信息收集篇</span></a></div><div class="post-tools" id="post-tools"><div class="post-tools-left"><div class="rewardLeftButton"></div><div class="shareRight"><div class="share-link mobile"><div class="share-qrcode"><div class="share-button" title="使用手机访问这篇文章"><i class="anzhiyufont anzhiyu-icon-qrcode"></i></div><div class="share-main"><div class="share-main-all"><div id="qrcode" title="https://hxysaury.github.io/2023/11/30/%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/"></div><div class="reward-dec">使用手机访问这篇文章</div></div></div></div></div><div class="share-link weibo"><a class="share-button" target="_blank" href="https://service.weibo.com/share/share.php?title=信息收集篇&amp;url=https://hxysaury.github.io/2023/11/30/%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/&amp;pic=https://pic.imgdb.cn/item/653e4162c458853aefe5cf77.jpg?_r_=9d421ba6-f65b-26a8-3b2f-70c8bd2e821f" rel="external nofollow noreferrer noopener"><i class="anzhiyufont anzhiyu-icon-weibo"></i></a></div><script>function copyCurrentPageUrl() {
+  var currentPageUrl = window.location.href;
+  var input = document.createElement("input");
+  input.setAttribute("value", currentPageUrl);
+  document.body.appendChild(input);
+  input.select();
+  input.setSelectionRange(0, 99999);
+  document.execCommand("copy");
+  document.body.removeChild(input);
+}</script><div class="share-link copyurl"><div class="share-button" id="post-share-url" title="复制链接" onclick="copyCurrentPageUrl()"><i class="anzhiyufont anzhiyu-icon-link"></i></div></div></div></div></div><div class="post-copyright__notice"><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://hxysaury.github.io" target="_blank">秋刀鱼</a>！</span></div></div><div class="post-tools-right"><div class="tag_share"><div class="post-meta__box"><div class="post-meta__box__tag-list"><a class="post-meta__box__tags" href="/tags/%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/"><span class="tags-punctuation"> <i class="anzhiyufont anzhiyu-icon-tag"></i></span>信息收集<span class="tagsPageCount">1</span></a></div></div></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-full"><a href="/2023/11/29/nc/"><img class="prev-cover" src="https://file.crazywong.com/gh/jerryc127/CDN@latest/cover/default_bg.png?_r_=720acfb9-904c-8cb5-2957-4a9171a532d2" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">nc瑞士军刀</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-content"><div class="author-info-avatar"><img class="avatar-img" src="https://pic.imgdb.cn/item/65ae347f871b83018af6c612.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__description"></div><div class="author-info__bottom-group"><a class="author-info__bottom-group-left" href="/"><h1 class="author-info__name">Vocal</h1><div class="author-info__desc">厚积薄发,志在必得</div></a><div class="card-info-social-icons is-center"><a class="social-icon faa-parent animated-hover" href="https://github.com/hxysaury" target="_blank" title="Github"><i class="anzhiyufont anzhiyu-icon-github"></i></a><a class="social-icon faa-parent animated-hover" href="https://bilibili.com/" target="_blank" title="BiliBili"><i class="anzhiyufont anzhiyu-icon-bilibili"></i></a></div></div></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-bars"></i><span>文章目录</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#0x01%EF%BC%9AWeb%E6%9E%B6%E6%9E%84"><span class="toc-number">1.</span> <span class="toc-text">0x01：Web架构</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#0x02%EF%BC%9A%E8%B5%84%E4%BA%A7%E6%B3%84%E9%9C%B2"><span class="toc-number">2.</span> <span class="toc-text">0x02：资产泄露</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#0x03%EF%BC%9AWeb%E7%B3%BB%E7%BB%9F"><span class="toc-number">3.</span> <span class="toc-text">0x03：Web系统</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#0x04%EF%BC%9ACDN%E7%BB%95%E8%BF%87"><span class="toc-number">4.</span> <span class="toc-text">0x04：CDN绕过</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#0x05%EF%BC%9AAPP%E5%B0%8F%E7%A8%8B%E5%BA%8F"><span class="toc-number">5.</span> <span class="toc-text">0x05：APP小程序</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#0x06%EF%BC%9AGoogle-hacking"><span class="toc-number">6.</span> <span class="toc-text">0x06：Google hacking</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#0x07%EF%BC%9A%E4%BD%BF%E7%94%A8%E5%B7%A5%E5%85%B7"><span class="toc-number">7.</span> <span class="toc-text">0x07：使用工具</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#0x08%EF%BC%9A%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="toc-number">8.</span> <span class="toc-text">0x08：参考资料</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-history"></i><span>最近发布</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2023/11/30/%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/" title="信息收集篇"><img src="https://pic.imgdb.cn/item/653e4162c458853aefe5cf77.jpg?_r_=9d421ba6-f65b-26a8-3b2f-70c8bd2e821f" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="信息收集篇"/></a><div class="content"><a class="title" href="/2023/11/30/%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/" title="信息收集篇">信息收集篇</a><time datetime="2023-11-29T16:00:00.000Z" title="发表于 2023-11-30 00:00:00">2023-11-30</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/11/29/nc/" title="nc瑞士军刀"><img src="https://file.crazywong.com/gh/jerryc127/CDN@latest/cover/default_bg.png?_r_=720acfb9-904c-8cb5-2957-4a9171a532d2" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="nc瑞士军刀"/></a><div class="content"><a class="title" href="/2023/11/29/nc/" title="nc瑞士军刀">nc瑞士军刀</a><time datetime="2023-11-28T16:00:00.000Z" title="发表于 2023-11-29 00:00:00">2023-11-29</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/11/29/sqlmap/" title="sqlmap"><img src="https://pic.imgdb.cn/item/653e4227c458853aefe845aa.jpg?_r_=8222b445-694f-6137-1a43-a926442f627c" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="sqlmap"/></a><div class="content"><a class="title" href="/2023/11/29/sqlmap/" title="sqlmap">sqlmap</a><time datetime="2023-11-28T16:00:00.000Z" title="发表于 2023-11-29 00:00:00">2023-11-29</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/11/28/WAF%E6%94%BB%E9%98%B2/" title="WAF攻防"><img src="https://pic.imgdb.cn/item/6510148ec458853aef7f2ac2.jpg?_r_=6d5e70d5-2453-9bac-edb3-50ed385b73fa" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="WAF攻防"/></a><div class="content"><a class="title" href="/2023/11/28/WAF%E6%94%BB%E9%98%B2/" title="WAF攻防">WAF攻防</a><time datetime="2023-11-27T16:00:00.000Z" title="发表于 2023-11-28 00:00:00">2023-11-28</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/11/24/Windows%E6%8F%90%E6%9D%83%E5%A7%BF%E5%8A%BF/" title="Windows提权姿势"><img src="https://file.crazywong.com/gh/jerryc127/CDN@latest/cover/default_bg.png?_r_=2e4bd77c-fa1b-4ffd-6f33-9d32fc1acb7b" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Windows提权姿势"/></a><div class="content"><a class="title" href="/2023/11/24/Windows%E6%8F%90%E6%9D%83%E5%A7%BF%E5%8A%BF/" title="Windows提权姿势">Windows提权姿势</a><time datetime="2023-11-23T16:00:00.000Z" title="发表于 2023-11-24 00:00:00">2023-11-24</time></div></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"></div></footer></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="sidebar-site-data site-data is-center"><a href="/archives/" title="archive"><div class="headline">文章</div><div class="length-num">8</div></a><a href="/tags/" title="tag"><div class="headline">标签</div><div class="length-num">4</div></a><a href="/categories/" title="category"><div class="headline">分类</div><div class="length-num">1</div></a></div><span class="sidebar-menu-item-title">功能</span><div class="sidebar-menu-item"><a class="darkmode_switchbutton menu-child" href="javascript:void(0);" title="显示模式"><i class="anzhiyufont anzhiyu-icon-circle-half-stroke"></i><span>显示模式</span></a></div><div class="back-menu-list-groups"><div class="back-menu-list-group"><div class="back-menu-list-title">网页</div><div class="back-menu-list"><a class="back-menu-item" target="_blank" rel="noopener" href="https://blog.anheyu.com/" title="博客"><img class="back-menu-item-icon" src="/img/favicon.ico" alt="博客"/><span class="back-menu-item-text">博客</span></a></div></div><div class="back-menu-list-group"><div class="back-menu-list-title">项目</div><div class="back-menu-list"><a class="back-menu-item" target="_blank" rel="noopener" href="https://image.anheyu.com/" title="安知鱼图床"><img class="back-menu-item-icon" src="https://image.anheyu.com/favicon.ico" alt="安知鱼图床"/><span class="back-menu-item-text">安知鱼图床</span></a></div></div></div><div class="menus_items"><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/categories/"><span> 分类</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/tags/"><span> 标签</span></a></div></div><span class="sidebar-menu-item-title">标签</span><div class="card-tags"><div class="item-headline"></div><div class="card-tag-cloud"><a href="/tags/PentestTools/" style="font-size: 0.88rem;">PentestTools<sup>2</sup></a><a href="/tags/WAF%E7%BB%95%E8%BF%87/" style="font-size: 0.88rem;">WAF绕过<sup>1</sup></a><a href="/tags/%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/" style="font-size: 0.88rem;">信息收集<sup>1</sup></a><a href="/tags/%E6%9D%83%E9%99%90%E6%8F%90%E5%8D%87/" style="font-size: 0.88rem;">权限提升<sup>4</sup></a></div></div><hr/></div></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="anzhiyufont anzhiyu-icon-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="anzhiyufont anzhiyu-icon-circle-half-stroke"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="anzhiyufont anzhiyu-icon-arrows-left-right"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="anzhiyufont anzhiyu-icon-gear"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="anzhiyufont anzhiyu-icon-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="anzhiyufont anzhiyu-icon-arrow-up"></i></button></div></div><div id="rightMenu"><div class="rightMenu-group rightMenu-small"><div class="rightMenu-item" id="menu-backward"><i class="anzhiyufont anzhiyu-icon-arrow-left"></i></div><div class="rightMenu-item" id="menu-forward"><i class="anzhiyufont anzhiyu-icon-arrow-right"></i></div><div class="rightMenu-item" id="menu-refresh"><i class="anzhiyufont anzhiyu-icon-arrow-rotate-right" style="font-size: 1rem;"></i></div><div class="rightMenu-item" id="menu-top"><i class="anzhiyufont anzhiyu-icon-arrow-up"></i></div></div><div class="rightMenu-group rightMenu-line rightMenuPlugin"><div class="rightMenu-item" id="menu-copytext"><i class="anzhiyufont anzhiyu-icon-copy"></i><span>复制选中文本</span></div><div class="rightMenu-item" id="menu-pastetext"><i class="anzhiyufont anzhiyu-icon-paste"></i><span>粘贴文本</span></div><a class="rightMenu-item" id="menu-commenttext"><i class="anzhiyufont anzhiyu-icon-comment-medical"></i><span>引用到评论</span></a><div class="rightMenu-item" id="menu-newwindow"><i class="anzhiyufont anzhiyu-icon-window-restore"></i><span>新窗口打开</span></div><div class="rightMenu-item" id="menu-copylink"><i class="anzhiyufont anzhiyu-icon-link"></i><span>复制链接地址</span></div><div class="rightMenu-item" id="menu-copyimg"><i class="anzhiyufont anzhiyu-icon-images"></i><span>复制此图片</span></div><div class="rightMenu-item" id="menu-downloadimg"><i class="anzhiyufont anzhiyu-icon-download"></i><span>下载此图片</span></div><div class="rightMenu-item" id="menu-newwindowimg"><i class="anzhiyufont anzhiyu-icon-window-restore"></i><span>新窗口打开图片</span></div><div class="rightMenu-item" id="menu-search"><i class="anzhiyufont anzhiyu-icon-magnifying-glass"></i><span>站内搜索</span></div><div class="rightMenu-item" id="menu-searchBaidu"><i class="anzhiyufont anzhiyu-icon-magnifying-glass"></i><span>百度搜索</span></div><div class="rightMenu-item" id="menu-music-toggle"><i class="anzhiyufont anzhiyu-icon-play"></i><span>播放音乐</span></div><div class="rightMenu-item" id="menu-music-back"><i class="anzhiyufont anzhiyu-icon-backward"></i><span>切换到上一首</span></div><div class="rightMenu-item" id="menu-music-forward"><i class="anzhiyufont anzhiyu-icon-forward"></i><span>切换到下一首</span></div><div class="rightMenu-item" id="menu-music-playlist" onclick="window.open(&quot;https://y.qq.com/n/ryqq/playlist/8802438608&quot;, &quot;_blank&quot;);" style="display: none;"><i class="anzhiyufont anzhiyu-icon-radio"></i><span>查看所有歌曲</span></div><div class="rightMenu-item" id="menu-music-copyMusicName"><i class="anzhiyufont anzhiyu-icon-copy"></i><span>复制歌名</span></div></div><div class="rightMenu-group rightMenu-line rightMenuOther"><a class="rightMenu-item menu-link" id="menu-randomPost"><i class="anzhiyufont anzhiyu-icon-shuffle"></i><span>随便逛逛</span></a><a class="rightMenu-item menu-link" href="/categories/"><i class="anzhiyufont anzhiyu-icon-cube"></i><span>博客分类</span></a><a class="rightMenu-item menu-link" href="/tags/"><i class="anzhiyufont anzhiyu-icon-tags"></i><span>文章标签</span></a></div><div class="rightMenu-group rightMenu-line rightMenuOther"><a class="rightMenu-item" id="menu-copy" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-copy"></i><span>复制地址</span></a><a class="rightMenu-item" id="menu-commentBarrage" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-message"></i><span class="menu-commentBarrage-text">关闭热评</span></a><a class="rightMenu-item" id="menu-darkmode" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-circle-half-stroke"></i><span class="menu-darkmode-text">深色模式</span></a><a class="rightMenu-item" id="menu-translate" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-language"></i><span>轉為繁體</span></a></div></div><div id="rightmenu-mask"></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.cbd.int/@fancyapps/ui@5.0.28/dist/fancybox/fancybox.umd.js"></script><script src="https://cdn.cbd.int/instant.page@5.2.0/instantpage.js" type="module"></script><script src="https://cdn.cbd.int/node-snackbar@0.1.16/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.cbd.int/pangu@4.0.7/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><canvas id="universe"></canvas><script async src="https://npm.elemecdn.com/anzhiyu-theme-static@1.0.0/dark/dark.js"></script><script>// 消除控制台打印
+var HoldLog = console.log;
+console.log = function () {};
+let now1 = new Date();
+queueMicrotask(() => {
+  const Log = function () {
+    HoldLog.apply(console, arguments);
+  }; //在恢复前输出日志
+  const grt = new Date("04/01/2021 00:00:00"); //此处修改你的建站时间或者网站上线时间
+  now1.setTime(now1.getTime() + 250);
+  const days = (now1 - grt) / 1000 / 60 / 60 / 24;
+  const dnum = Math.floor(days);
+  const ascll = [
+    `欢迎使用安知鱼!`,
+    `生活明朗, 万物可爱`,
+    `
+        
+       █████╗ ███╗   ██╗███████╗██╗  ██╗██╗██╗   ██╗██╗   ██╗
+      ██╔══██╗████╗  ██║╚══███╔╝██║  ██║██║╚██╗ ██╔╝██║   ██║
+      ███████║██╔██╗ ██║  ███╔╝ ███████║██║ ╚████╔╝ ██║   ██║
+      ██╔══██║██║╚██╗██║ ███╔╝  ██╔══██║██║  ╚██╔╝  ██║   ██║
+      ██║  ██║██║ ╚████║███████╗██║  ██║██║   ██║   ╚██████╔╝
+      ╚═╝  ╚═╝╚═╝  ╚═══╝╚══════╝╚═╝  ╚═╝╚═╝   ╚═╝    ╚═════╝
+        
+        `,
+    "已上线",
+    dnum,
+    "天",
+    "©2020 By 安知鱼 V1.6.12",
+  ];
+  const ascll2 = [`NCC2-036`, `调用前置摄像头拍照成功，识别为【小笨蛋】.`, `Photo captured: `, `🤪`];
+
+  setTimeout(
+    Log.bind(
+      console,
+      `\n%c${ascll[0]} %c ${ascll[1]} %c ${ascll[2]} %c${ascll[3]}%c ${ascll[4]}%c ${ascll[5]}\n\n%c ${ascll[6]}\n`,
+      "color:#425AEF",
+      "",
+      "color:#425AEF",
+      "color:#425AEF",
+      "",
+      "color:#425AEF",
+      ""
+    )
+  );
+  setTimeout(
+    Log.bind(
+      console,
+      `%c ${ascll2[0]} %c ${ascll2[1]} %c \n${ascll2[2]} %c\n${ascll2[3]}\n`,
+      "color:white; background-color:#4fd953",
+      "",
+      "",
+      'background:url("https://npm.elemecdn.com/anzhiyu-blog@1.1.6/img/post/common/tinggge.gif") no-repeat;font-size:450%'
+    )
+  );
+
+  setTimeout(Log.bind(console, "%c WELCOME %c 你好，小笨蛋.", "color:white; background-color:#4f90d9", ""));
+
+  setTimeout(
+    console.warn.bind(
+      console,
+      "%c ⚡ Powered by 安知鱼 %c 你正在访问 Vocal 的博客.",
+      "color:white; background-color:#f0ad4e",
+      ""
+    )
+  );
+
+  setTimeout(Log.bind(console, "%c W23-12 %c 你已打开控制台.", "color:white; background-color:#4f90d9", ""));
+
+  setTimeout(
+    console.warn.bind(console, "%c S013-782 %c 你现在正处于监控中.", "color:white; background-color:#d9534f", "")
+  );
+});</script><script async src="/anzhiyu/random.js"></script><div class="js-pjax"><input type="hidden" name="page-type" id="page-type" value="post"></div><script>var visitorMail = "";
+</script><script async data-pjax src="https://cdn.cbd.int/anzhiyu-theme-static@1.0.0/waterfall/waterfall.js"></script><script src="https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-M/qrcodejs/1.0.0/qrcode.min.js"></script><link rel="stylesheet" href="https://cdn.cbd.int/anzhiyu-theme-static@1.1.9/icon/ali_iconfont_css.css"><link rel="stylesheet" href="https://cdn.cbd.int/anzhiyu-theme-static@1.0.0/aplayer/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.cbd.int/anzhiyu-blog-static@1.0.1/js/APlayer.min.js"></script><script src="https://cdn.cbd.int/hexo-anzhiyu-music@1.0.1/assets/js/Meting2.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script charset="UTF-8" src="https://cdn.cbd.int/anzhiyu-theme-static@1.1.5/accesskey/accesskey.js"></script></div><div id="popup-window"><div class="popup-window-title">通知</div><div class="popup-window-divider"></div><div class="popup-window-content"><div class="popup-tip">你好呀</div><div class="popup-link"><i class="anzhiyufont anzhiyu-icon-arrow-circle-right"></i></div></div></div></body></html>
