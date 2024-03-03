@@ -4,19 +4,6 @@
   
     
     <entry>
-      <title></title>
-      <link href="/2024/03/03/lbd%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/"/>
-      <url>/2024/03/03/lbd%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/</url>
-      
-        <content type="html"><![CDATA[<h3 id="lbd-检测负载均衡"><a href="#lbd-检测负载均衡" class="headerlink" title="lbd 检测负载均衡"></a>lbd 检测负载均衡</h3><p>在Kali Linux中，LBD（Load Balancing Detector）是一种用于检测负载均衡器的工具。它可以帮助发现潜在的负载均衡设备，并识别后端服务器的地址。LBD可以用于渗透测试和网络安全评估，特别是在测试负载均衡器的配置和安全性方面。</p><blockquote><ul><li><p>负载均衡是建立在网络结构之上的，它提供了一种廉价有效透明的方法扩展网络设备和服务器的带宽，增加吞吐量，加强网络数据处理能力、提高网络的灵活性和可用性；</p></li><li><p>负载均衡（Load Balance）其意思就是分摊到多个操作单元上进行执行，例如Web服务器、FTP服务器、企业关键应用服务器和其它关键任务服务器等，从而共同完成工作任务。</p></li><li><p>负载均衡从其应用的地理结构上分为本地负载均衡（Local Load Balance）和全局负载均衡（Global Load Balance，也叫地域负载均衡）：</p><ul><li><strong>本地负载均衡</strong>：是指对本地的服务器群做负载均衡；</li><li><strong>全局负载均衡</strong>：全局负载均衡是指对分别放置在不同的地理位置、有不同网络结构的服务器群间作负载均衡。</li></ul><p><strong>即针对DNS：同一个域名对应多个IP地址（智能DNS，DNS轮询）；</strong><br><strong>针对于web的服务负载均衡经常使用Nginx、Apache应用层负载均衡；</strong></p></li></ul></blockquote><p>lbd工具：</p><blockquote><ul><li>大型网站为了解决海量访问问题，往往采用负载均衡技术，将用户的访问分配到不同的服务器上。网站的负载均衡可以从DNS和HTTP两个环节进行实施。在进行Web渗透测试的时候，需要先了解网站服务器结构，以确定后期的渗透策略。Kali Linux提供工具lbd来获取网站的负载均衡信息。该工具可以根据DNS域名解析、HTTP服务的header和响应差异，来识别均衡方式。</li><li>PS：由于用户所使用的线路不同，获取的输出结果不同。大家可以把运行结果和其他人的做比较，以发现目标网站的更多服务器。</li></ul></blockquote><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">命令：lbd www.baidu.com</span><br><span class="line">命令：lbd mail.163.com</span><br></pre></td></tr></table></figure>]]></content>
-      
-      
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>README</title>
       <link href="/2024/02/26/README/"/>
       <url>/2024/02/26/README/</url>
@@ -141,6 +128,31 @@
       <url>/2024/02/23/kali-wordlists/</url>
       
         <content type="html"><![CDATA[<p>暴力破解能成功最重要的条件还是要有一个强大的密码字典！Kali默认自带了一些字典，在 <code>/usr/share/wordlists </code>目录下</p><p><img src="/../imgs/image-20231121161952957.png" alt="image-20231121161952957"></p><p><img src="/../imgs/image-20231121162031839.png" alt="image-20231121162031839"></p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">big.txt #大的字典</span><br><span class="line">small.txt #小的字典</span><br><span class="line">catala.txt #项目配置字典</span><br><span class="line">common.txt #公共字典</span><br><span class="line">euskera.txt #数据目录字典</span><br><span class="line">extensions_common.txt #常用文件扩展名字典</span><br><span class="line">indexes.txt #首页字典</span><br><span class="line">mutations_common.txt #备份扩展名</span><br><span class="line">spanish.txt #方法名或库目录</span><br><span class="line">others #扩展目录，默认用户名等</span><br><span class="line">stress #压力测试</span><br><span class="line">vulns #漏洞测试</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> 安全工具 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 安全工具 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>ldb负载均衡</title>
+      <link href="/2024/02/23/lbd%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/"/>
+      <url>/2024/02/23/lbd%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/</url>
+      
+        <content type="html"><![CDATA[<h3 id="lbd-检测负载均衡"><a href="#lbd-检测负载均衡" class="headerlink" title="lbd 检测负载均衡"></a>lbd 检测负载均衡</h3><p>在Kali Linux中，LBD（Load Balancing Detector）是一种用于检测负载均衡器的工具。它可以帮助发现潜在的负载均衡设备，并识别后端服务器的地址。LBD可以用于渗透测试和网络安全评估，特别是在测试负载均衡器的配置和安全性方面。</p><blockquote><ul><li><p>负载均衡是建立在网络结构之上的，它提供了一种廉价有效透明的方法扩展网络设备和服务器的带宽，增加吞吐量，加强网络数据处理能力、提高网络的灵活性和可用性；</p></li><li><p>负载均衡（Load Balance）其意思就是分摊到多个操作单元上进行执行，例如Web服务器、FTP服务器、企业关键应用服务器和其它关键任务服务器等，从而共同完成工作任务。</p></li><li><p>负载均衡从其应用的地理结构上分为本地负载均衡（Local Load Balance）和全局负载均衡（Global Load Balance，也叫地域负载均衡）：</p><ul><li><strong>本地负载均衡</strong>：是指对本地的服务器群做负载均衡；</li><li><strong>全局负载均衡</strong>：全局负载均衡是指对分别放置在不同的地理位置、有不同网络结构的服务器群间作负载均衡。</li></ul><p><strong>即针对DNS：同一个域名对应多个IP地址（智能DNS，DNS轮询）；</strong><br><strong>针对于web的服务负载均衡经常使用Nginx、Apache应用层负载均衡；</strong></p></li></ul></blockquote><p>lbd工具：</p><blockquote><ul><li>大型网站为了解决海量访问问题，往往采用负载均衡技术，将用户的访问分配到不同的服务器上。网站的负载均衡可以从DNS和HTTP两个环节进行实施。在进行Web渗透测试的时候，需要先了解网站服务器结构，以确定后期的渗透策略。Kali Linux提供工具lbd来获取网站的负载均衡信息。该工具可以根据DNS域名解析、HTTP服务的header和响应差异，来识别均衡方式。</li><li>PS：由于用户所使用的线路不同，获取的输出结果不同。大家可以把运行结果和其他人的做比较，以发现目标网站的更多服务器。</li></ul></blockquote><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">命令：lbd www.baidu.com</span><br><span class="line">命令：lbd mail.163.com</span><br></pre></td></tr></table></figure>]]></content>
       
       
       <categories>
@@ -546,14 +558,14 @@
       
       <categories>
           
-          <category> 内网安全 </category>
+          <category> 安全工具 </category>
           
       </categories>
       
       
         <tags>
             
-            <tag> PentestTools </tag>
+            <tag> 安全工具 </tag>
             
         </tags>
       
