@@ -1,0 +1,461 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"><title>Nmap | 秋刀鱼</title><meta name="keywords" content="安全工具"><meta name="author" content="Vocal"><meta name="copyright" content="Vocal"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#f7f9fe"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-touch-fullscreen" content="yes"><meta name="apple-mobile-web-app-title" content="Nmap"><meta name="application-name" content="Nmap"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="#f7f9fe"><meta property="og:type" content="article"><meta property="og:title" content="Nmap"><meta property="og:url" content="https://hxysaury.github.io/2024/02/24/Nmap/index.html"><meta property="og:site_name" content="秋刀鱼"><meta property="og:description" content="Nmapnmap是一款强大的网络扫描和安全审计工具，它可以帮助用户探测网络中存活的主机，扫描开放的端口，检测运行的服务和应用程序版本，甚至可以识别操作系统的类型等。nmap的基本功能包括： 探测一组主机是否在线；扫描指定的TCP或UDP端口，以确定它们的状态；侦测正在运行的应用程序版本；侦测操作系统"><meta property="og:locale" content="zh-CN"><meta property="og:image" content="https://pic.imgdb.cn/item/65e42a5a9f345e8d03737b13.png"><meta property="article:author" content="Vocal"><meta property="article:tag"><meta name="twitter:card" content="summary"><meta name="twitter:image" content="https://pic.imgdb.cn/item/65e42a5a9f345e8d03737b13.png"><meta name="description" content="Nmapnmap是一款强大的网络扫描和安全审计工具，它可以帮助用户探测网络中存活的主机，扫描开放的端口，检测运行的服务和应用程序版本，甚至可以识别操作系统的类型等。nmap的基本功能包括： 探测一组主机是否在线；扫描指定的TCP或UDP端口，以确定它们的状态；侦测正在运行的应用程序版本；侦测操作系统"><link rel="shortcut icon" href="/favicon.ico"><link rel="canonical" href="https://hxysaury.github.io/2024/02/24/Nmap/"><link rel="preconnect" href="//cdn.cbd.int"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta name="google-site-verification" content="xxx"/><meta name="baidu-site-verification" content="code-xxx"/><meta name="msvalidate.01" content="xxx"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.cbd.int/node-snackbar@0.1.16/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.cbd.int/@fancyapps/ui@5.0.28/dist/fancybox/fancybox.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  linkPageTop: undefined,
+  peoplecanvas: undefined,
+  postHeadAiDescription: undefined,
+  diytitle: {"enable":true,"leaveTitle":"w(ﾟДﾟ)w 不要走！再看看嘛！","backTitle":"♪(^∇^*)欢迎肥来！"},
+  LA51: undefined,
+  greetingBox: {"enable":true,"default":"晚上好👋","list":[{"greeting":"晚安😴","startTime":0,"endTime":5},{"greeting":"早上好鸭👋, 祝你一天好心情！","startTime":6,"endTime":9},{"greeting":"上午好👋, 状态很好，鼓励一下～","startTime":10,"endTime":10},{"greeting":"11点多啦, 在坚持一下就吃饭啦～","startTime":11,"endTime":11},{"greeting":"午安👋, 宝贝","startTime":12,"endTime":14},{"greeting":"🌈充实的一天辛苦啦！","startTime":14,"endTime":18},{"greeting":"19点喽, 奖励一顿丰盛的大餐吧🍔。","startTime":19,"endTime":19},{"greeting":"晚上好👋, 在属于自己的时间好好放松😌~","startTime":20,"endTime":24}]},
+  twikooEnvId: '',
+  commentBarrageConfig:undefined,
+  root: '/',
+  preloader: undefined,
+  friends_vue_info: undefined,
+  navMusic: false,
+  mainTone: undefined,
+  authorStatus: undefined,
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":330},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    simplehomepage: true,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"copy":true,"copyrightEbable":false,"limitCount":50,"languages":{"author":"作者: Vocal","link":"链接: ","source":"来源: 秋刀鱼","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。","copySuccess":"复制成功，复制和转载请标注本文地址"}},
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#425AEF","bgDark":"#1f1f1f","position":"top-center"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.cbd.int/flickr-justified-gallery@2.1.2/dist/fjGallery.min.js',
+      css: 'https://cdn.cbd.int/flickr-justified-gallery@2.1.2/dist/fjGallery.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  shortcutKey: undefined,
+  autoDarkmode: true
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  configTitle: '秋刀鱼',
+  title: 'Nmap',
+  postAI: '',
+  pageFillDescription: 'Nmap, 查看帮助, 安装下载, 端口扫描, ping扫描, 漏洞扫描, nmap脚本分类, 参考是一款强大的网络扫描和安全审计工具它可以帮助用户探测网络中存活的主机扫描开放的端口检测运行的服务和应用程序版本甚至可以识别操作系统的类型等的基本功能包括探测一组主机是否在线扫描指定的或端口以确定它们的状态侦测正在运行的应用程序版本侦测操作系统类型和版本以及其他相关信息并且可以根据这些信息生成网络拓扑图查看帮助主机发现随机选择目标从文件中加载地址简单的扫描目标扫描禁用端口扫描将所有主机视为在在线跳过主机发现需要权限回显时间戳和网络掩码请求探测协议列表协议从不执行解析始终解析默认有时指定自定义服务器使用的服务器跟踪到每个主机的跃点路径扫描技术使用的进行扫描使用进行扫描使用的进行扫描扫描扫描扫描中继主机反弹扫描端口规格和扫描顺序扫描指定端口从扫描中排除指定端口快速模式扫描比默认扫描更少的端口连续扫描端口不随机化扫描最常用的端口服务版本探测探测服务版本信息设置版本扫描强度尝试每个强度探测显示详细的版本扫描活动用于调试脚本扫描等效于以逗号分隔的目录脚本文件或脚本类别为脚本提供参数文件名从文件名中加载脚本参数显示发送和接受的所有数据更新脚本数据库显示有关脚本的帮助操作系统检测启用检测将检测限制为可能的目标推测操作系统检测结果时间和性能设置超时时间设置探测之间的时间间隔设置时间模板值越小报警几率越低设置探测报文的发送速率防火墙规避和欺骗报文分段欺骗源地址使用指定的本机端口使用代理想发送的数据包中追加自定义的负载将自定义的字符串附加到发送数据包中发送数据包时附加随机数据地址欺骗发送带有虚假校验和的数据包使用代理服务器进行盲扫描设置扫描器数量输出标准输出输出同时输出三种主要格式信息详细级别调试级别跟踪发送和接收的报文显示端口处于特殊状态的原因仅显示开放的端口杂项启动扫描启动检测版本检测脚本扫描和显示版本号帮助信息参数优缺点优点一般进行扫描时大多数使用这个参数概括比较广扫描比较详细几乎都能扫描到缺点动静太大一使用就会很快暴露自己时间较长参数参数是用来指定端口的探测端口是否开启可以使用进行全端口扫描这里使用方法安装下载官网地址端口扫描扫描扫段漏洞扫描拒绝服务短文件泄露弱口令暴力破解用户名字典路径密码字典路径检测中的验证中开启的方法验证远程代码执行验证验证中开启了方法验证匿名访问验证漏洞验证中的漏洞验证低安全的协议验证验证证书问题验证证书的有限期验证验证验证弱加密套件验证多种漏洞问题在网络中检测某主机是否存在窃听他人流量精准地确认端口上运行的服务脚本分类脚本主要分为以下几类在扫描时可根据需要设置类别这种方式进行比较笼统的扫描负责处理鉴权证书绕开鉴权的脚本在局域网内探查更多服务开启状况如等服务提供暴力破解方式针对常见的应用如等使用或选项扫描时候默认的脚本提供基本脚本扫描能力对网络进行更多的信息如枚举查询等用于进行拒绝服务攻击利用已知的漏洞入侵系统利用第三方的数据库或资源例如进行解析模糊测试的脚本发送异常的包到目标机探测出潜在漏洞入侵性的脚本此类脚本可能引发对方的的记录或屏蔽探测目标机是否感染了病毒开启了后门等信息此类与相反属于安全性脚本负责增强服务与版本扫描功能的脚本负责检查目标机是否有常见的漏洞提供的脚本命令行参数如下等价于使用默认类别的脚本进行扫描使用某个或某类脚本进行扫描支持通配符描述为脚本提供默认参数使用文件来为脚本提供参数显示脚本执行过程中发送与接收的数据更新脚本数据库显示脚本的帮助信息其中部分可以逗号分隔的文件或脚本类别参考',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-03-03 15:44:37',
+  postMainColor: '',
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#18171d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#f7f9fe')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+          const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+          const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+          const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+          if (t === undefined) {
+            if (isLightMode) activateLightMode()
+            else if (isDarkMode) activateDarkMode()
+            else if (isNotSpecified || hasNoSupport) {
+              const now = new Date()
+              const hour = now.getHours()
+              const isNight = hour <= 8 || hour >= 20
+              isNight ? activateDarkMode() : activateLightMode()
+            }
+            window.matchMedia('(prefers-color-scheme: dark)').addListener(e => {
+              if (saveToLocal.get('theme') === undefined) {
+                e.matches ? activateDarkMode() : activateLightMode()
+              }
+            })
+          } else if (t === 'light') activateLightMode()
+          else activateDarkMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><meta name="generator" content="Hexo 7.1.0"></head><body data-type="anzhiyu"><div id="web_bg"></div><div id="an_music_bg"></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><div id="nav-group"><span id="blog_name"><a id="site-name" href="/" accesskey="h"><div class="title">秋刀鱼</div><i class="anzhiyufont anzhiyu-icon-house-chimney"></i></a><div id="he-plugin-simple"></div><script>var WIDGET = {
+  "CONFIG": {
+    "modules": "0124",
+    "background": "2",
+    "tmpColor": "FFFFFF",
+    "tmpSize": "16",
+    "cityColor": "FFFFFF",
+    "citySize": "16",
+    "aqiColor": "E8D87B",
+    "aqiSize": "16",
+    "weatherIconSize": "24",
+    "alertIconSize": "18",
+    "padding": "10px 10px 10px 10px",
+    "shadow": "0",
+    "language": "auto",
+    "borderRadius": "20",
+    "fixed": "true",
+    "vertical": "top",
+    "horizontal": "left",
+    "left": "20",
+    "top": "7.1",
+    "key": "df245676fb434a0691ead1c63341cd94"
+  }
+}
+</script><link rel="stylesheet" href="https://widget.qweather.net/simple/static/css/he-simple.css?v=1.4.0"/><script src="https://widget.qweather.net/simple/static/js/he-simple.js?v=1.4.0"></script></span><div class="mask-name-container"><div id="name-container"><a id="page-name" href="javascript:anzhiyu.scrollToDest(0, 500)">PAGE_NAME</a></div></div><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/categories/"><span> 分类</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/tags/"><span> 标签</span></a></div></div></div><div id="nav-right"><div class="nav-button" id="randomPost_button"><a class="site-page" onclick="toRandomPost()" title="随机前往一个文章" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-dice"></i></a></div><div class="nav-button" id="search-button"><a class="site-page social-icon search" href="javascript:void(0);" title="搜索🔍" accesskey="s"><i class="anzhiyufont anzhiyu-icon-magnifying-glass"></i><span> 搜索</span></a></div><div id="console"><div class="console-card-group-reward"><ul class="reward-all console-card"><li class="reward-item"><a href="https://npm.elemecdn.com/anzhiyu-blog@1.1.6/img/post/common/qrcode-weichat.png" target="_blank"><img class="post-qr-code-img" alt="微信" src="https://npm.elemecdn.com/anzhiyu-blog@1.1.6/img/post/common/qrcode-weichat.png"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="https://npm.elemecdn.com/anzhiyu-blog@1.1.6/img/post/common/qrcode-alipay.png" target="_blank"><img class="post-qr-code-img" alt="支付宝" src="https://npm.elemecdn.com/anzhiyu-blog@1.1.6/img/post/common/qrcode-alipay.png"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div><div class="console-card-group"><div class="console-card-group-left"></div><div class="console-card-group-right"><div class="console-card tags"><div class="card-content"><div class="author-content-item-tips">兴趣点</div><span class="author-content-item-title">寻找你感兴趣的领域</span></div></div><div class="console-card history"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-box-archiv"></i><span>文章</span></div><div class="card-archives"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-archive"></i><span>归档</span></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/03/"><span class="card-archive-list-date">三月 2024</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">1</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/02/"><span class="card-archive-list-date">二月 2024</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">12</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/01/"><span class="card-archive-list-date">一月 2024</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">11</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/12/"><span class="card-archive-list-date">十二月 2023</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">1</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/11/"><span class="card-archive-list-date">十一月 2023</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">31</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/05/"><span class="card-archive-list-date">五月 2023</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">25</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/04/"><span class="card-archive-list-date">四月 2023</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">13</span><span>篇</span></div></a></li></ul></div><hr/></div></div></div><div class="button-group"><div class="console-btn-item"><a class="darkmode_switchbutton" title="显示模式切换" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-moon"></i></a></div><div class="console-btn-item" id="consoleHideAside" onclick="anzhiyu.hideAsideBtn()" title="边栏显示控制"><a class="asideSwitch"><i class="anzhiyufont anzhiyu-icon-arrows-left-right"></i></a></div></div><div class="console-mask" onclick="anzhiyu.hideConsole()" href="javascript:void(0);"></div></div><div class="nav-button" id="nav-totop"><a class="totopbtn" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-arrow-up"></i><span id="percent" onclick="anzhiyu.scrollToDest(0,500)">0</span></a></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);" title="切换"><i class="anzhiyufont anzhiyu-icon-bars"></i></a></div></div></div></nav><div id="post-info"><div id="post-firstinfo"><div class="meta-firstline"><a class="post-meta-original">原创</a><span class="post-meta-categories"><span class="post-meta-separator"></span><i class="anzhiyufont anzhiyu-icon-inbox post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%AE%89%E5%85%A8%E5%B7%A5%E5%85%B7/" itemprop="url">安全工具</a></span><span class="article-meta tags"><a class="article-meta__tags" href="/tags/%E5%AE%89%E5%85%A8%E5%B7%A5%E5%85%B7/" tabindex="-1" itemprop="url"> <span> <i class="anzhiyufont anzhiyu-icon-hashtag"></i>安全工具</span></a></span></div></div><h1 class="post-title" itemprop="name headline">Nmap</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="anzhiyufont anzhiyu-icon-calendar-days post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" itemprop="dateCreated datePublished" datetime="2024-02-23T16:00:00.000Z" title="发表于 2024-02-24 00:00:00">2024-02-24</time><span class="post-meta-separator"></span><i class="anzhiyufont anzhiyu-icon-history post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" itemprop="dateCreated datePublished" datetime="2024-03-03T07:44:37.610Z" title="更新于 2024-03-03 15:44:37">2024-03-03</time></span></div><div class="meta-secondline"><span class="post-meta-separator"></span><span class="post-meta-wordcount"><i class="anzhiyufont anzhiyu-icon-file-word post-meta-icon" title="文章字数"></i><span class="post-meta-label" title="文章字数">字数总计:</span><span class="word-count" title="文章字数">2.1k</span><span class="post-meta-separator"></span><i class="anzhiyufont anzhiyu-icon-clock post-meta-icon" title="阅读时长"></i><span class="post-meta-label" title="阅读时长">阅读时长:</span><span>8分钟</span></span><span class="post-meta-separator"></span><span class="post-meta-pv-cv" id="" data-flag-title="Nmap"><i class="anzhiyufont anzhiyu-icon-fw-eye post-meta-icon"></i><span class="post-meta-label" title="阅读量">阅读量:</span><span id="busuanzi_value_page_pv"><i class="anzhiyufont anzhiyu-icon-spinner anzhiyu-spin"></i></span></span><span class="post-meta-separator">       </span><span class="post-meta-position" title="作者IP属地为北京"><i class="anzhiyufont anzhiyu-icon-location-dot"></i>北京</span></div></div></div><section class="main-hero-waves-area waves-area"><svg class="waves-svg" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto"><defs><path id="gentle-wave" d="M -160 44 c 30 0 58 -18 88 -18 s 58 18 88 18 s 58 -18 88 -18 s 58 18 88 18 v 44 h -352 Z"></path></defs><g class="parallax"><use href="#gentle-wave" x="48" y="0"></use><use href="#gentle-wave" x="48" y="3"></use><use href="#gentle-wave" x="48" y="5"></use><use href="#gentle-wave" x="48" y="7"></use></g></svg></section><div id="post-top-cover"><img class="nolazyload" id="post-top-bg" src="https://pic.imgdb.cn/item/65e42a5a9f345e8d03737b13.png"></div></header><main id="blog-container"><div class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container" itemscope itemtype="https://hxysaury.github.io/2024/02/24/Nmap/"><header><a class="post-meta-categories" href="/categories/%E5%AE%89%E5%85%A8%E5%B7%A5%E5%85%B7/" itemprop="url">安全工具</a><a href="/tags/%E5%AE%89%E5%85%A8%E5%B7%A5%E5%85%B7/" tabindex="-1" itemprop="url">安全工具</a><h1 id="CrawlerTitle" itemprop="name headline">Nmap</h1><span itemprop="author" itemscope itemtype="http://schema.org/Person">Vocal</span><time itemprop="dateCreated datePublished" datetime="2024-02-23T16:00:00.000Z" title="发表于 2024-02-24 00:00:00">2024-02-24</time><time itemprop="dateCreated datePublished" datetime="2024-03-03T07:44:37.610Z" title="更新于 2024-03-03 15:44:37">2024-03-03</time></header><h3 id="Nmap"><a href="#Nmap" class="headerlink" title="Nmap"></a>Nmap</h3><p>nmap是一款强大的网络扫描和安全审计工具，它可以帮助用户探测网络中存活的主机，扫描开放的端口，检测运行的服务和应用程序版本，甚至可以识别操作系统的类型等。<br>nmap的基本功能包括：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">探测一组主机是否在线；</span><br><span class="line">扫描指定的TCP或UDP端口，以确定它们的状态；</span><br><span class="line">侦测正在运行的应用程序版本；</span><br><span class="line">侦测操作系统类型和版本以及其他相关信息；</span><br><span class="line">并且可以根据这些信息生成网络拓扑图。</span><br></pre></td></tr></table></figure>
+
+<h4 id="查看帮助"><a href="#查看帮助" class="headerlink" title="查看帮助"></a>查看帮助</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">nmap -h</span><br></pre></td></tr></table></figure>
+
+<p><strong>主机发现</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">-iR                                                          随机选择目标</span><br><span class="line">-iL                                                         从文件中加载IP地址</span><br><span class="line">-sL                                                         简单的扫描目标</span><br><span class="line">-sn                                                         Ping扫描-禁用端口扫描</span><br><span class="line">-Pn                                                         将所有主机视为在在线，跳过主机发现</span><br><span class="line">-PS[portlist]                                               （TCP SYN ping） 需要root权限</span><br><span class="line">-PA[portlist]                                               （TCP ACK ping）</span><br><span class="line">-PU[portlist]                                               （UDP  ping）</span><br><span class="line">-PY [portlist]                                              （SCTP ping）</span><br><span class="line">-PE/PP/PM                                                   ICMP回显，时间戳和网络掩码请求探测</span><br><span class="line">-PO[协议列表]                                                IP协议Ping</span><br><span class="line">-n/-R                                                       从不执行DNS解析/始终解析[默认：有时]</span><br><span class="line">--dns-servers                                               指定自定义DNS服务器</span><br><span class="line">--system-dns                                                使用OS的dns服务器</span><br><span class="line">--traceroute                                                跟踪到每个主机的跃点路径</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><strong>扫描技术</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">-sS                                                         使用TCP的SYN进行扫描</span><br><span class="line">-sT                                                         使用TCP进行扫描</span><br><span class="line">-sA                                                         使用TCP的ACK进行扫描</span><br><span class="line">-sU                                                         UDP扫描</span><br><span class="line">-sI                                                         Idle扫描</span><br><span class="line">-sF                                                          FIN扫描</span><br><span class="line">-b&lt;FTP中继主机&gt;                                    			FTP反弹扫描</span><br></pre></td></tr></table></figure>
+
+<p><strong>端口规格和扫描顺序</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">-p                                                          扫描指定端口</span><br><span class="line">--exclude-ports                                             从扫描中排除指定端口</span><br><span class="line">-f                                                          快速模式-扫描比默认扫描更少的端口</span><br><span class="line">-r                                                          连续扫描端口-不随机化</span><br><span class="line">--top-ports                                                 扫描&lt;number&gt;最常用的端口</span><br></pre></td></tr></table></figure>
+
+<p><strong>服务&#x2F;版本探测</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">-sV                                                         探测服务/版本信息</span><br><span class="line">--version-intensity                                         设置版本扫描强度（0-9）</span><br><span class="line">--version-all                                               尝试每个强度探测</span><br><span class="line">--version-trace                                             显示详细的版本扫描活动（用于调试）</span><br></pre></td></tr></table></figure>
+
+<p><strong>脚本扫描</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">-SC                                                         等效于 --script=defult</span><br><span class="line">--script = &lt;lua scripts&gt;,&lt;lua scripts&gt;                      以逗号分隔的目录，脚本文件或脚本类别</span><br><span class="line">--script-args = &lt;n1=v1, n2=v2&gt;                              为脚本提供参数</span><br><span class="line">--script-args-file=文件名                                    从文件名中加载脚本参数</span><br><span class="line">--script-trace                                              显示发送和接受的所有数据</span><br><span class="line">--script-updatedb                                           更新脚本数据库</span><br><span class="line">--script-help=&lt;lua scripts&gt;                                 显示有关脚本的帮助</span><br></pre></td></tr></table></figure>
+
+<p><strong>操作系统检测</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">-O                                                         启用os检测</span><br><span class="line">--osscan-limit                                              将os检测限制为可能的目标</span><br><span class="line">--osscan-guess                                              推测操作系统检测结果</span><br></pre></td></tr></table></figure>
+
+<p><strong>时间和性能</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">--host-timeout                                              设置超时时间</span><br><span class="line">--scan-delay                                                设置探测之间的时间间隔</span><br><span class="line">-T  &lt;0-5&gt;                                                   设置时间模板,值越小，IDS报警几率越低</span><br><span class="line">--min-rate &lt;int&gt;                                             设置探测报文的发送速率</span><br></pre></td></tr></table></figure>
+
+<p><strong>防火墙&#x2F;IDS规避和欺骗</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">-f                                                          报文分段</span><br><span class="line">-s                                                          欺骗源地址</span><br><span class="line">-g                                                          使用指定的本机端口</span><br><span class="line">--proxies &lt;url,port&gt;                                        使用HTTP/SOCK4代理</span><br><span class="line">-data&lt;hex string&gt;                                           想发送的数据包中追加自定义的负载</span><br><span class="line">--data-string                                               将自定义的ACSII字符串附加到发送数据包中</span><br><span class="line">--data-length                                               发送数据包时，附加随机数据</span><br><span class="line">--spoof-mac                                                 MAC地址欺骗</span><br><span class="line">--badsum                                                    发送带有虚假TCP/UNP/STCP校验和的数据包</span><br><span class="line">--blind-proxy                                               使用代理服务器进行盲扫描</span><br><span class="line">--scanner-count                                             设置扫描器数量</span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>输出</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">-oN                                                         标准输出</span><br><span class="line">-oX                                                         XMl输出</span><br><span class="line">-oS                                                         script jlddi3</span><br><span class="line">-oG                                                        grepable</span><br><span class="line">-oA                                                        同时输出三种主要格式</span><br><span class="line">-v                                                         信息详细级别</span><br><span class="line">-d                                                         调试级别</span><br><span class="line">--packet-trace                                             跟踪发送和接收的报文</span><br><span class="line">--reason                                                   显示端口处于特殊状态的原因</span><br><span class="line">--open                                                     仅显示开放的端口</span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>杂项</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">-6                                                          启动Ipv6扫描</span><br><span class="line">-A                                                          启动Os检测，版本检测，脚本扫描和traceroute</span><br><span class="line">-V                                                          显示版本号</span><br><span class="line">-h                                                          帮助信息</span><br></pre></td></tr></table></figure>
+
+<p><strong>-A参数优缺点</strong></p>
+<blockquote>
+<p>优点:一般进行扫描时大多数使用-A 这个参数概括比较广，扫描比较详细，几乎都能扫描到<br>缺点:动静太大，一使用就会很快暴露自己，时间较长</p>
+</blockquote>
+<p><strong>-p参数</strong></p>
+<blockquote>
+<p>-p 参数是用来指定端口的探测端口是否开启<br>可以使用-p- 进行<strong>全端口扫</strong>描这里<br>使用方法</p>
+<p>nmap -p80 192.168.182.0&#x2F;24<br>nmap -p- 192.168.182.0&#x2F;24</p>
+</blockquote>
+<h4 id="安装下载"><a href="#安装下载" class="headerlink" title="安装下载"></a>安装下载</h4><p>官网地址：<a target="_blank" rel="noopener" href="http://nmap.org/">http://nmap.org</a></p>
+<h4 id="端口扫描"><a href="#端口扫描" class="headerlink" title="端口扫描"></a>端口扫描</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">nmap --min-rate 10000 10.10.10.11</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="ping扫描"><a href="#ping扫描" class="headerlink" title="ping扫描"></a>ping扫描</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">nmap -sn www.baidu.com</span><br><span class="line">nmap -sn 10.10.10.0/24   <span class="comment">#扫C段</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="漏洞扫描"><a href="#漏洞扫描" class="headerlink" title="漏洞扫描"></a>漏洞扫描</h4><p><strong>http拒绝 服务</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">nmap --max-parallelism 800--script http-slowloris XXX.XXX.com</span><br></pre></td></tr></table></figure>
+
+<p><strong>IIS短文件泄露</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">nmap -p 8080 --script http-iis-short-name-brute 10.9.75.1</span><br></pre></td></tr></table></figure>
+
+<p><strong>ftp弱口令暴力破解</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">nmap --script ftp-brute --script-args brute.emptypass=true,ftp-brute.timeout=30,userdb=/root/用户名字典路径/usernames.txt,brute.useraspass=true,passdb=/root/密码字典路径/passwords.txt,brute.threads=3,brute.delay=6 10.9.75.3</span><br></pre></td></tr></table></figure>
+
+<p><strong>检测CVE-2011-2523中的ftp-vsftpd-backdoor</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">nmap -T2 --script ftp-vsftpd-backdoor 10.9.75.3</span><br></pre></td></tr></table></figure>
+
+<p><strong>验证http中开启的-methods 方法</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">nmap -T3 --script http-methods --script-args http.test-all=<span class="literal">true</span>,http.url-path=/www.haoshangjia.com</span><br></pre></td></tr></table></figure>
+
+<p> <strong>验证HTTP.sys 远程代码执行</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">nmap -sV --script http-vuln-cve2015-1635 10.9.75.3</span><br></pre></td></tr></table></figure>
+
+<p><strong>验证 SSL POODLE information leak</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">nmap -sV -p 443 --version-light --script ssl-poodle 10.9.75.3</span><br></pre></td></tr></table></figure>
+
+<p><strong>验证http 中开启了put 方法</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">nmap --script http-put --script-args http-put.url=/uploads/testput.txt,http-put.file=/root/put.txt 10.9.75.3</span><br></pre></td></tr></table></figure>
+
+<p> <strong>验证mysql 匿名访问</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">nmap --script mysql-empty-password 10.9.75.3</span><br></pre></td></tr></table></figure>
+
+<p><strong>验证cve2014-8877漏洞</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">nmap -Pn --script http-vuln-cve2014-8877 --script-args http-vuln-cve2014-8877.cmd=<span class="built_in">dir</span>,http-vuln-cve2014-8877.uri=/wordpress 10.9.75.3</span><br></pre></td></tr></table></figure>
+
+<p> <strong>验证Cisco ASA中的CVE-2014-2126,CVE-2014-2127,CVE-2014-21,CVE-2014-2129漏洞</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">nmap -p 443 --script http-vuln-cve2014-2126,http-vuln-cve2014-2127,http-vuln-cve2014-2128,http-vuln-cve2014-2129 10.9.75.3</span><br></pre></td></tr></table></figure>
+
+<p><strong>验证低安全的 SSHv1，sslv2协议</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">nmap --script sshv1,sslv2 www.haoshangjia.com</span><br></pre></td></tr></table></figure>
+
+<p> <strong>验证CVE-2014-0224 ssl-ccs-injection</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">nmap -Pn --script ssl-ccs-injection 10.9.75.3</span><br></pre></td></tr></table></figure>
+
+<p> <strong>验证ssl-cert证书问题</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">nmap -v -v --script ssl-cert 10.9.75.3</span><br></pre></td></tr></table></figure>
+
+<p><strong>验证SSL证书的有限期</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">nmap -Pn --script ssl-date www.XXXx.com</span><br></pre></td></tr></table></figure>
+
+<p><strong>验证CVE-2014-0160 OpenSSL Heartbleed bug</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">nmap -p 443 --script ssl-heartbleed,ssl-known-key 10.9.75.3</span><br></pre></td></tr></table></figure>
+
+<p> <strong>验证 Debian OpenSSL keys</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">nmap -p 443 --script ssl-known-key 10.9.75.3</span><br></pre></td></tr></table></figure>
+
+<p><strong>验证弱加密SSL套件</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">nmap --script ssl-enum-ciphers 10.9.75.3</span><br></pre></td></tr></table></figure>
+
+<p><strong>验证多种SSL漏洞问题</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">nmap 10.9.75.3 --vv --script sshv1,ssl-ccs-injection,ssl-cert,ssl-date,ssl-dh-params,ssl-enum-ciphers,ssl-google-cert-catalog,ssl-heartbleed,ssl-known-key,sslv2</span><br></pre></td></tr></table></figure>
+
+<p><strong>在网络中检测某主机是否存在窃听他人流量</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">nmap --script sniffer-detect 10.10.167.5</span><br></pre></td></tr></table></figure>
+
+<p><strong>精准地确认端口上运行的服务</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">nmap -sV --script unusual-port 10.10.167.5</span><br></pre></td></tr></table></figure>
+
+<h4 id="nmap脚本分类"><a href="#nmap脚本分类" class="headerlink" title="nmap脚本分类"></a>nmap脚本分类</h4><p>nmap脚本主要分为以下几类，在扫描时可根据需要设置–script&#x3D;类别这种方式进行比较笼统的扫描：</p>
+<ul>
+<li><strong>auth</strong>: 负责处理鉴权证书（绕开鉴权）的脚本 </li>
+<li><strong>broadcast</strong>: 在局域网内探查更多服务开启状况，如dhcp&#x2F;dns&#x2F;sqlserver等服务  </li>
+<li><strong>brute:</strong> 提供暴力破解方式，针对常见的应用如http&#x2F;snmp等  </li>
+<li><strong>default</strong>: 使用-sC或-A选项扫描时候默认的脚本，提供基本脚本扫描能力  </li>
+<li><strong>discovery</strong>: 对网络进行更多的信息，如SMB枚举、SNMP查询等  dos: 用于进行拒绝服务攻击  </li>
+<li><strong>exploit</strong>: 利用已知的漏洞入侵系统  </li>
+<li><strong>external</strong>: 利用第三方的数据库或资源，例如进行whois解析  </li>
+<li><strong>fuzzer</strong>: 模糊测试的脚本，发送异常的包到目标机，探测出潜在漏洞 </li>
+<li><strong>intrusive</strong>: 入侵性的脚本，此类脚本可能引发对方的IDS&#x2F;IPS的记录或屏蔽  </li>
+<li><strong>malware</strong>: 探测目标机是否感染了病毒、开启了后门等信息  </li>
+<li><strong>safe</strong>: 此类与intrusive相反，属于安全性脚本  </li>
+<li><strong>version</strong>: 负责增强服务与版本扫描（Version Detection）功能的脚本  </li>
+<li><strong>vuln</strong>: 负责检查目标机是否有常见的漏洞（Vulnerability）</li>
+</ul>
+<hr>
+<p><strong>Nmap提供的脚本命令行参数如下：</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">-sC: 等价于--script=default，使用默认类别的脚本进行扫描。    </span><br><span class="line">--script=&lt;Lua scripts&gt;: &lt;Lua scripts&gt;使用某个或某类脚本进行扫描，支持通配符描述   </span><br><span class="line">--script-args=&lt;n1=v1,[n2=v2,...]&gt;: 为脚本提供默认参数   </span><br><span class="line">--script-args-file=filename: 使用文件来为脚本提供参数   </span><br><span class="line">--script-trace: 显示脚本执行过程中发送与接收的数据   </span><br><span class="line">--script-updatedb: 更新脚本数据库   </span><br><span class="line">--script-help=&lt;Lua scripts&gt;: 显示脚本的帮助信息，其中&lt;Lua scripts&gt;部分可以逗号分隔的文件或脚本类别。</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h4><ul>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_29277155/article/details/50977143">https://blog.csdn.net/qq_29277155/article/details/50977143</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/Python_0011/article/details/128813523">https://blog.csdn.net/Python_0011/article/details/128813523</a></li>
+</ul>
+</article><div class="post-copyright"><div class="copyright-cc-box"><i class="anzhiyufont anzhiyu-icon-copyright"></i></div><div class="post-copyright__author_box"><a class="post-copyright__author_img" href="/" title="头像"><img class="post-copyright__author_img_back" src="https://pic.imgdb.cn/item/65ae347f871b83018af6c612.jpg" title="头像" alt="头像"><img class="post-copyright__author_img_front" src="https://pic.imgdb.cn/item/65ae347f871b83018af6c612.jpg" title="头像" alt="头像"></a><div class="post-copyright__author_name">Vocal</div><div class="post-copyright__author_desc">厚积薄发,志在必得</div></div><div class="post-copyright__post__info"><a class="post-copyright__original" title="该文章为原创文章，注意版权协议" href="https://hxysaury.github.io/2024/02/24/Nmap/">原创</a><a class="post-copyright-title"><span onclick="rm.copyPageUrl('https://hxysaury.github.io/2024/02/24/Nmap/')">Nmap</span></a></div><div class="post-tools" id="post-tools"><div class="post-tools-left"><div class="rewardLeftButton"></div><div class="shareRight"><div class="share-link mobile"><div class="share-qrcode"><div class="share-button" title="使用手机访问这篇文章"><i class="anzhiyufont anzhiyu-icon-qrcode"></i></div><div class="share-main"><div class="share-main-all"><div id="qrcode" title="https://hxysaury.github.io/2024/02/24/Nmap/"></div><div class="reward-dec">使用手机访问这篇文章</div></div></div></div></div><div class="share-link weibo"><a class="share-button" target="_blank" href="https://service.weibo.com/share/share.php?title=Nmap&amp;url=https://hxysaury.github.io/2024/02/24/Nmap/&amp;pic=https://pic.imgdb.cn/item/65e42a5a9f345e8d03737b13.png" rel="external nofollow noreferrer noopener"><i class="anzhiyufont anzhiyu-icon-weibo"></i></a></div><script>function copyCurrentPageUrl() {
+  var currentPageUrl = window.location.href;
+  var input = document.createElement("input");
+  input.setAttribute("value", currentPageUrl);
+  document.body.appendChild(input);
+  input.select();
+  input.setSelectionRange(0, 99999);
+  document.execCommand("copy");
+  document.body.removeChild(input);
+}</script><div class="share-link copyurl"><div class="share-button" id="post-share-url" title="复制链接" onclick="copyCurrentPageUrl()"><i class="anzhiyufont anzhiyu-icon-link"></i></div></div></div></div></div><div class="post-copyright__notice"><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://hxysaury.github.io" target="_blank">秋刀鱼</a>！</span></div></div><div class="post-tools-right"><div class="tag_share"><div class="post-meta__box"><div class="post-meta__box__tag-list"><a class="post-meta__box__tags" href="/tags/%E5%AE%89%E5%85%A8%E5%B7%A5%E5%85%B7/"><span class="tags-punctuation"> <i class="anzhiyufont anzhiyu-icon-tag"></i></span>安全工具<span class="tagsPageCount">7</span></a></div></div></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2024/02/24/sqlmap/"><img class="prev-cover" src="https://pic.imgdb.cn/item/65e42ab59f345e8d0374876a.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">sqlmap</div></div></a></div><div class="next-post pull-right"><a href="/2024/02/26/README/"><img class="next-cover" src="https://w.wallhaven.cc/full/3l/wallhaven-3lyexy.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">README</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="anzhiyufont anzhiyu-icon-thumbs-up fa-fw" style="font-size: 1.5rem; margin-right: 4px"></i><span>喜欢这篇文章的人也看了</span></div><div class="relatedPosts-list"><div><a href="/2024/02/23/hydra/" title="Hydra(九头蛇)"><img class="cover" src="https://pic.imgdb.cn/item/6519771ac458853aefba6a63.png" alt="cover"><div class="content is-center"><div class="date"><i class="anzhiyufont anzhiyu-icon-calendar-days fa-fw"></i> 2024-02-23</div><div class="title">Hydra(九头蛇)</div></div></a></div><div><a href="/2024/02/23/john&zip2john/" title="John&amp;zip2john"><img class="cover" src="https://pic.imgdb.cn/item/65ad0f96871b83018ac3aa5d.png" alt="cover"><div class="content is-center"><div class="date"><i class="anzhiyufont anzhiyu-icon-calendar-days fa-fw"></i> 2024-02-23</div><div class="title">John&amp;zip2john</div></div></a></div><div><a href="/2024/02/23/kali-wordlists/" title="John&amp;zip2john"><img class="cover" src="https://pic.imgdb.cn/item/65e4299c9f345e8d03713feb.png" alt="cover"><div class="content is-center"><div class="date"><i class="anzhiyufont anzhiyu-icon-calendar-days fa-fw"></i> 2024-02-23</div><div class="title">John&amp;zip2john</div></div></a></div><div><a href="/2024/02/23/msf%E7%94%9F%E6%88%90%E6%9C%A8%E9%A9%AC/" title="msf木马生成"><img class="cover" src="https://pic.imgdb.cn/item/65ae3544871b83018af92382.png" alt="cover"><div class="content is-center"><div class="date"><i class="anzhiyufont anzhiyu-icon-calendar-days fa-fw"></i> 2024-02-23</div><div class="title">msf木马生成</div></div></a></div><div><a href="/2024/02/23/nc/" title="nc瑞士军刀"><img class="cover" src="https://pic.imgdb.cn/item/65e42a099f345e8d037284b2.png" alt="cover"><div class="content is-center"><div class="date"><i class="anzhiyufont anzhiyu-icon-calendar-days fa-fw"></i> 2024-02-23</div><div class="title">nc瑞士军刀</div></div></a></div><div><a href="/2024/02/24/sqlmap/" title="sqlmap"><img class="cover" src="https://pic.imgdb.cn/item/65e42ab59f345e8d0374876a.png" alt="cover"><div class="content is-center"><div class="date"><i class="anzhiyufont anzhiyu-icon-calendar-days fa-fw"></i> 2024-02-24</div><div class="title">sqlmap</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-content"><div class="author-info-avatar"><img class="avatar-img" src="https://pic.imgdb.cn/item/65ae347f871b83018af6c612.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__description"></div><div class="author-info__bottom-group"><a class="author-info__bottom-group-left" href="/"><h1 class="author-info__name">Vocal</h1><div class="author-info__desc">厚积薄发,志在必得</div></a><div class="card-info-social-icons is-center"><a class="social-icon faa-parent animated-hover" href="https://github.com/hxysaury" target="_blank" title="Github"><i class="anzhiyufont anzhiyu-icon-github"></i></a><a class="social-icon faa-parent animated-hover" href="https://bilibili.com/" target="_blank" title="BiliBili"><i class="anzhiyufont anzhiyu-icon-bilibili"></i></a></div></div></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-bars"></i><span>文章目录</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Nmap"><span class="toc-number">1.</span> <span class="toc-text">Nmap</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E5%B8%AE%E5%8A%A9"><span class="toc-number">1.1.</span> <span class="toc-text">查看帮助</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%89%E8%A3%85%E4%B8%8B%E8%BD%BD"><span class="toc-number">1.2.</span> <span class="toc-text">安装下载</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AB%AF%E5%8F%A3%E6%89%AB%E6%8F%8F"><span class="toc-number">1.3.</span> <span class="toc-text">端口扫描</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#ping%E6%89%AB%E6%8F%8F"><span class="toc-number">1.4.</span> <span class="toc-text">ping扫描</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%BC%8F%E6%B4%9E%E6%89%AB%E6%8F%8F"><span class="toc-number">1.5.</span> <span class="toc-text">漏洞扫描</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#nmap%E8%84%9A%E6%9C%AC%E5%88%86%E7%B1%BB"><span class="toc-number">1.6.</span> <span class="toc-text">nmap脚本分类</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-number">1.7.</span> <span class="toc-text">参考</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-history"></i><span>最近发布</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2024/03/03/lbd%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/" title="无题"><img src="https://p7.qhimg.com/bdr/__85/t0127f0c82a2f151104.jpg?_r_=e96860bb-95fb-59f1-b32f-72f49f414c67" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="无题"/></a><div class="content"><a class="title" href="/2024/03/03/lbd%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/" title="无题">无题</a><time datetime="2024-03-03T07:33:05.416Z" title="发表于 2024-03-03 15:33:05">2024-03-03</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/02/26/README/" title="README"><img src="https://w.wallhaven.cc/full/3l/wallhaven-3lyexy.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="README"/></a><div class="content"><a class="title" href="/2024/02/26/README/" title="README">README</a><time datetime="2024-02-25T16:00:00.000Z" title="发表于 2024-02-26 00:00:00">2024-02-26</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/02/24/Nmap/" title="Nmap"><img src="https://pic.imgdb.cn/item/65e42a5a9f345e8d03737b13.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Nmap"/></a><div class="content"><a class="title" href="/2024/02/24/Nmap/" title="Nmap">Nmap</a><time datetime="2024-02-23T16:00:00.000Z" title="发表于 2024-02-24 00:00:00">2024-02-24</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/02/24/sqlmap/" title="sqlmap"><img src="https://pic.imgdb.cn/item/65e42ab59f345e8d0374876a.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="sqlmap"/></a><div class="content"><a class="title" href="/2024/02/24/sqlmap/" title="sqlmap">sqlmap</a><time datetime="2024-02-23T16:00:00.000Z" title="发表于 2024-02-24 00:00:00">2024-02-24</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/02/23/hydra/" title="Hydra(九头蛇)"><img src="https://pic.imgdb.cn/item/6519771ac458853aefba6a63.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Hydra(九头蛇)"/></a><div class="content"><a class="title" href="/2024/02/23/hydra/" title="Hydra(九头蛇)">Hydra(九头蛇)</a><time datetime="2024-02-22T16:00:00.000Z" title="发表于 2024-02-23 00:00:00">2024-02-23</time></div></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"></div></footer></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="sidebar-site-data site-data is-center"><a href="/archives/" title="archive"><div class="headline">文章</div><div class="length-num">94</div></a><a href="/tags/" title="tag"><div class="headline">标签</div><div class="length-num">16</div></a><a href="/categories/" title="category"><div class="headline">分类</div><div class="length-num">5</div></a></div><span class="sidebar-menu-item-title">功能</span><div class="sidebar-menu-item"><a class="darkmode_switchbutton menu-child" href="javascript:void(0);" title="显示模式"><i class="anzhiyufont anzhiyu-icon-circle-half-stroke"></i><span>显示模式</span></a></div><div class="back-menu-list-groups"><div class="back-menu-list-group"><div class="back-menu-list-title">网页</div><div class="back-menu-list"><a class="back-menu-item" target="_blank" rel="noopener" href="https://blog.anheyu.com/" title="博客"><img class="back-menu-item-icon" src="/img/favicon.ico" alt="博客"/><span class="back-menu-item-text">博客</span></a></div></div><div class="back-menu-list-group"><div class="back-menu-list-title">项目</div><div class="back-menu-list"><a class="back-menu-item" target="_blank" rel="noopener" href="https://image.anheyu.com/" title="安知鱼图床"><img class="back-menu-item-icon" src="https://image.anheyu.com/favicon.ico" alt="安知鱼图床"/><span class="back-menu-item-text">安知鱼图床</span></a></div></div></div><div class="menus_items"><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/categories/"><span> 分类</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/tags/"><span> 标签</span></a></div></div><span class="sidebar-menu-item-title">标签</span><div class="card-tags"><div class="item-headline"></div><div class="card-tag-cloud"><a href="/tags/APP%E5%B0%8F%E7%A8%8B%E5%BA%8F/" style="font-size: 0.88rem;">APP小程序<sup>1</sup></a><a href="/tags/C-S%E5%AE%A2%E6%88%B7%E7%AB%AF/" style="font-size: 0.88rem;">C/S客户端<sup>2</sup></a><a href="/tags/Crawl/" style="font-size: 0.88rem;">Crawl<sup>1</sup></a><a href="/tags/PentestTools/" style="font-size: 0.88rem;">PentestTools<sup>1</sup></a><a href="/tags/Python%E5%85%A5%E9%97%A8/" style="font-size: 0.88rem;">Python入门<sup>12</sup></a><a href="/tags/WAF%E7%BB%95%E8%BF%87/" style="font-size: 0.88rem;">WAF绕过<sup>1</sup></a><a href="/tags/django/" style="font-size: 0.88rem;">django<sup>25</sup></a><a href="/tags/%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/" style="font-size: 0.88rem;">信息收集<sup>1</sup></a><a href="/tags/%E5%86%85%E7%BD%91%E5%AE%89%E5%85%A8/" style="font-size: 0.88rem;">内网安全<sup>7</sup></a><a href="/tags/%E5%9F%BA%E7%A1%80%E6%BC%8F%E6%B4%9E/" style="font-size: 0.88rem;">基础漏洞<sup>15</sup></a><a href="/tags/%E5%AE%89%E5%85%A8/" style="font-size: 0.88rem;">安全<sup>1</sup></a><a href="/tags/%E5%AE%89%E5%85%A8%E5%B7%A5%E5%85%B7/" style="font-size: 0.88rem;">安全工具<sup>7</sup></a><a href="/tags/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/" style="font-size: 0.88rem;">应急响应<sup>1</sup></a><a href="/tags/%E6%8E%A5%E5%8F%A3%E6%B5%8B%E8%AF%95/" style="font-size: 0.88rem;">接口测试<sup>1</sup></a><a href="/tags/%E6%9D%83%E9%99%90%E6%8F%90%E5%8D%87/" style="font-size: 0.88rem;">权限提升<sup>4</sup></a><a href="/tags/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/" style="font-size: 0.88rem;">漏洞复现<sup>10</sup></a></div></div><hr/></div></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="anzhiyufont anzhiyu-icon-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="anzhiyufont anzhiyu-icon-circle-half-stroke"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="anzhiyufont anzhiyu-icon-arrows-left-right"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="anzhiyufont anzhiyu-icon-gear"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="anzhiyufont anzhiyu-icon-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="anzhiyufont anzhiyu-icon-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="anzhiyufont anzhiyu-icon-xmark"></i></button></nav><div class="is-center" id="loading-database"><i class="anzhiyufont anzhiyu-icon-spinner anzhiyu-pulse-icon"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div id="rightMenu"><div class="rightMenu-group rightMenu-small"><div class="rightMenu-item" id="menu-backward"><i class="anzhiyufont anzhiyu-icon-arrow-left"></i></div><div class="rightMenu-item" id="menu-forward"><i class="anzhiyufont anzhiyu-icon-arrow-right"></i></div><div class="rightMenu-item" id="menu-refresh"><i class="anzhiyufont anzhiyu-icon-arrow-rotate-right" style="font-size: 1rem;"></i></div><div class="rightMenu-item" id="menu-top"><i class="anzhiyufont anzhiyu-icon-arrow-up"></i></div></div><div class="rightMenu-group rightMenu-line rightMenuPlugin"><div class="rightMenu-item" id="menu-copytext"><i class="anzhiyufont anzhiyu-icon-copy"></i><span>复制选中文本</span></div><div class="rightMenu-item" id="menu-pastetext"><i class="anzhiyufont anzhiyu-icon-paste"></i><span>粘贴文本</span></div><a class="rightMenu-item" id="menu-commenttext"><i class="anzhiyufont anzhiyu-icon-comment-medical"></i><span>引用到评论</span></a><div class="rightMenu-item" id="menu-newwindow"><i class="anzhiyufont anzhiyu-icon-window-restore"></i><span>新窗口打开</span></div><div class="rightMenu-item" id="menu-copylink"><i class="anzhiyufont anzhiyu-icon-link"></i><span>复制链接地址</span></div><div class="rightMenu-item" id="menu-copyimg"><i class="anzhiyufont anzhiyu-icon-images"></i><span>复制此图片</span></div><div class="rightMenu-item" id="menu-downloadimg"><i class="anzhiyufont anzhiyu-icon-download"></i><span>下载此图片</span></div><div class="rightMenu-item" id="menu-newwindowimg"><i class="anzhiyufont anzhiyu-icon-window-restore"></i><span>新窗口打开图片</span></div><div class="rightMenu-item" id="menu-search"><i class="anzhiyufont anzhiyu-icon-magnifying-glass"></i><span>站内搜索</span></div><div class="rightMenu-item" id="menu-searchBaidu"><i class="anzhiyufont anzhiyu-icon-magnifying-glass"></i><span>百度搜索</span></div><div class="rightMenu-item" id="menu-music-toggle"><i class="anzhiyufont anzhiyu-icon-play"></i><span>播放音乐</span></div><div class="rightMenu-item" id="menu-music-back"><i class="anzhiyufont anzhiyu-icon-backward"></i><span>切换到上一首</span></div><div class="rightMenu-item" id="menu-music-forward"><i class="anzhiyufont anzhiyu-icon-forward"></i><span>切换到下一首</span></div><div class="rightMenu-item" id="menu-music-playlist" onclick="window.open(&quot;https://y.qq.com/n/ryqq/playlist/8802438608&quot;, &quot;_blank&quot;);" style="display: none;"><i class="anzhiyufont anzhiyu-icon-radio"></i><span>查看所有歌曲</span></div><div class="rightMenu-item" id="menu-music-copyMusicName"><i class="anzhiyufont anzhiyu-icon-copy"></i><span>复制歌名</span></div></div><div class="rightMenu-group rightMenu-line rightMenuOther"><a class="rightMenu-item menu-link" id="menu-randomPost"><i class="anzhiyufont anzhiyu-icon-shuffle"></i><span>随便逛逛</span></a><a class="rightMenu-item menu-link" href="/categories/"><i class="anzhiyufont anzhiyu-icon-cube"></i><span>博客分类</span></a><a class="rightMenu-item menu-link" href="/tags/"><i class="anzhiyufont anzhiyu-icon-tags"></i><span>文章标签</span></a></div><div class="rightMenu-group rightMenu-line rightMenuOther"><a class="rightMenu-item" id="menu-copy" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-copy"></i><span>复制地址</span></a><a class="rightMenu-item" id="menu-commentBarrage" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-message"></i><span class="menu-commentBarrage-text">关闭热评</span></a><a class="rightMenu-item" id="menu-darkmode" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-circle-half-stroke"></i><span class="menu-darkmode-text">深色模式</span></a><a class="rightMenu-item" id="menu-translate" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-language"></i><span>轉為繁體</span></a></div></div><div id="rightmenu-mask"></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.cbd.int/@fancyapps/ui@5.0.28/dist/fancybox/fancybox.umd.js"></script><script src="https://cdn.cbd.int/instant.page@5.2.0/instantpage.js" type="module"></script><script src="https://cdn.cbd.int/node-snackbar@0.1.16/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.cbd.int/pangu@4.0.7/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><canvas id="universe"></canvas><script async src="https://npm.elemecdn.com/anzhiyu-theme-static@1.0.0/dark/dark.js"></script><script>// 消除控制台打印
+var HoldLog = console.log;
+console.log = function () {};
+let now1 = new Date();
+queueMicrotask(() => {
+  const Log = function () {
+    HoldLog.apply(console, arguments);
+  }; //在恢复前输出日志
+  const grt = new Date("04/01/2021 00:00:00"); //此处修改你的建站时间或者网站上线时间
+  now1.setTime(now1.getTime() + 250);
+  const days = (now1 - grt) / 1000 / 60 / 60 / 24;
+  const dnum = Math.floor(days);
+  const ascll = [
+    `欢迎使用安知鱼!`,
+    `生活明朗, 万物可爱`,
+    `
+        
+       █████╗ ███╗   ██╗███████╗██╗  ██╗██╗██╗   ██╗██╗   ██╗
+      ██╔══██╗████╗  ██║╚══███╔╝██║  ██║██║╚██╗ ██╔╝██║   ██║
+      ███████║██╔██╗ ██║  ███╔╝ ███████║██║ ╚████╔╝ ██║   ██║
+      ██╔══██║██║╚██╗██║ ███╔╝  ██╔══██║██║  ╚██╔╝  ██║   ██║
+      ██║  ██║██║ ╚████║███████╗██║  ██║██║   ██║   ╚██████╔╝
+      ╚═╝  ╚═╝╚═╝  ╚═══╝╚══════╝╚═╝  ╚═╝╚═╝   ╚═╝    ╚═════╝
+        
+        `,
+    "已上线",
+    dnum,
+    "天",
+    "©2020 By 安知鱼 V1.6.12",
+  ];
+  const ascll2 = [`NCC2-036`, `调用前置摄像头拍照成功，识别为【小笨蛋】.`, `Photo captured: `, `🤪`];
+
+  setTimeout(
+    Log.bind(
+      console,
+      `\n%c${ascll[0]} %c ${ascll[1]} %c ${ascll[2]} %c${ascll[3]}%c ${ascll[4]}%c ${ascll[5]}\n\n%c ${ascll[6]}\n`,
+      "color:#425AEF",
+      "",
+      "color:#425AEF",
+      "color:#425AEF",
+      "",
+      "color:#425AEF",
+      ""
+    )
+  );
+  setTimeout(
+    Log.bind(
+      console,
+      `%c ${ascll2[0]} %c ${ascll2[1]} %c \n${ascll2[2]} %c\n${ascll2[3]}\n`,
+      "color:white; background-color:#4fd953",
+      "",
+      "",
+      'background:url("https://npm.elemecdn.com/anzhiyu-blog@1.1.6/img/post/common/tinggge.gif") no-repeat;font-size:450%'
+    )
+  );
+
+  setTimeout(Log.bind(console, "%c WELCOME %c 你好，小笨蛋.", "color:white; background-color:#4f90d9", ""));
+
+  setTimeout(
+    console.warn.bind(
+      console,
+      "%c ⚡ Powered by 安知鱼 %c 你正在访问 Vocal 的博客.",
+      "color:white; background-color:#f0ad4e",
+      ""
+    )
+  );
+
+  setTimeout(Log.bind(console, "%c W23-12 %c 你已打开控制台.", "color:white; background-color:#4f90d9", ""));
+
+  setTimeout(
+    console.warn.bind(console, "%c S013-782 %c 你现在正处于监控中.", "color:white; background-color:#d9534f", "")
+  );
+});</script><script async src="/anzhiyu/random.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><input type="hidden" name="page-type" id="page-type" value="post"></div><script>var visitorMail = "";
+</script><script async data-pjax src="https://cdn.cbd.int/anzhiyu-theme-static@1.0.0/waterfall/waterfall.js"></script><script src="https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-M/qrcodejs/1.0.0/qrcode.min.js"></script><link rel="stylesheet" href="https://cdn.cbd.int/anzhiyu-theme-static@1.1.9/icon/ali_iconfont_css.css"><link rel="stylesheet" href="https://cdn.cbd.int/anzhiyu-theme-static@1.0.0/aplayer/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.cbd.int/anzhiyu-blog-static@1.0.1/js/APlayer.min.js"></script><script src="https://cdn.cbd.int/hexo-anzhiyu-music@1.0.1/assets/js/Meting2.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script charset="UTF-8" src="https://cdn.cbd.int/anzhiyu-theme-static@1.1.5/accesskey/accesskey.js"></script></div><div id="popup-window"><div class="popup-window-title">通知</div><div class="popup-window-divider"></div><div class="popup-window-content"><div class="popup-tip">你好呀</div><div class="popup-link"><i class="anzhiyufont anzhiyu-icon-arrow-circle-right"></i></div></div></div></body></html>
