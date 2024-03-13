@@ -1,199 +1,144 @@
-<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"><title>CSRF跨站请求伪造 | 秋刀鱼</title><meta name="keywords" content="基础漏洞"><meta name="author" content="Vocal"><meta name="copyright" content="Vocal"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#f7f9fe"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-touch-fullscreen" content="yes"><meta name="apple-mobile-web-app-title" content="CSRF跨站请求伪造"><meta name="application-name" content="CSRF跨站请求伪造"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="#f7f9fe"><meta property="og:type" content="article"><meta property="og:title" content="CSRF跨站请求伪造"><meta property="og:url" content="https://hxysaury.github.io/2023/11/30/Web%E6%BC%8F%E6%B4%9E/CSRF%E8%B7%A8%E7%AB%99%E8%AF%B7%E6%B1%82%E4%BC%AA%E9%80%A0/index.html"><meta property="og:site_name" content="秋刀鱼"><meta property="og:description" content="CSRF-原理&amp;amp;场景&amp;amp;类别&amp;amp;验证 CSRF全称：Cross-site request forgery,即，跨站请求伪造，也被称为“One Click Attack或“Session Riding°，通常缩写为CSRF或者XSRF,是一种对网站的恶意利用。  举个生活中的例子："><meta property="og:locale" content="zh-CN"><meta property="og:image" content="https://w.wallhaven.cc/full/l8/wallhaven-l8rloq.jpg"><meta property="article:author" content="Vocal"><meta property="article:tag"><meta name="twitter:card" content="summary"><meta name="twitter:image" content="https://w.wallhaven.cc/full/l8/wallhaven-l8rloq.jpg"><meta name="description" content="CSRF-原理&amp;amp;场景&amp;amp;类别&amp;amp;验证 CSRF全称：Cross-site request forgery,即，跨站请求伪造，也被称为“One Click Attack或“Session Riding°，通常缩写为CSRF或者XSRF,是一种对网站的恶意利用。  举个生活中的例子："><link rel="shortcut icon" href="/favicon.ico"><link rel="canonical" href="https://hxysaury.github.io/2023/11/30/Web%E6%BC%8F%E6%B4%9E/CSRF%E8%B7%A8%E7%AB%99%E8%AF%B7%E6%B1%82%E4%BC%AA%E9%80%A0/"><link rel="preconnect" href="//cdn.cbd.int"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta name="google-site-verification" content="xxx"/><meta name="baidu-site-verification" content="code-xxx"/><meta name="msvalidate.01" content="xxx"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.cbd.int/node-snackbar@0.1.16/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.cbd.int/@fancyapps/ui@5.0.28/dist/fancybox/fancybox.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
-  linkPageTop: undefined,
-  peoplecanvas: undefined,
-  postHeadAiDescription: undefined,
-  diytitle: {"enable":true,"leaveTitle":"w(ﾟДﾟ)w 不要走！再看看嘛！","backTitle":"♪(^∇^*)欢迎肥来！"},
-  LA51: undefined,
-  greetingBox: {"enable":true,"default":"晚上好👋","list":[{"greeting":"晚安😴","startTime":0,"endTime":5},{"greeting":"早上好鸭👋, 祝你一天好心情！","startTime":6,"endTime":9},{"greeting":"上午好👋, 状态很好，鼓励一下～","startTime":10,"endTime":10},{"greeting":"11点多啦, 在坚持一下就吃饭啦～","startTime":11,"endTime":11},{"greeting":"午安👋, 宝贝","startTime":12,"endTime":14},{"greeting":"🌈充实的一天辛苦啦！","startTime":14,"endTime":18},{"greeting":"19点喽, 奖励一顿丰盛的大餐吧🍔。","startTime":19,"endTime":19},{"greeting":"晚上好👋, 在属于自己的时间好好放松😌~","startTime":20,"endTime":24}]},
-  twikooEnvId: '',
-  commentBarrageConfig:undefined,
-  root: '/',
-  preloader: undefined,
-  friends_vue_info: undefined,
-  navMusic: false,
-  mainTone: undefined,
-  authorStatus: undefined,
-  algolia: undefined,
-  localSearch: {"path":"/search.xml","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
-  translate: undefined,
-  noticeOutdate: undefined,
-  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":330},
-  copy: {
-    success: '复制成功',
-    error: '复制错误',
-    noSupport: '浏览器不支持'
-  },
-  relativeDate: {
-    homepage: false,
-    simplehomepage: true,
-    post: false
-  },
-  runtime: '天',
-  date_suffix: {
-    just: '刚刚',
-    min: '分钟前',
-    hour: '小时前',
-    day: '天前',
-    month: '个月前'
-  },
-  copyright: {"copy":true,"copyrightEbable":false,"limitCount":50,"languages":{"author":"作者: Vocal","link":"链接: ","source":"来源: 秋刀鱼","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。","copySuccess":"复制成功，复制和转载请标注本文地址"}},
-  lightbox: 'fancybox',
-  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#425AEF","bgDark":"#1f1f1f","position":"top-center"},
-  source: {
-    justifiedGallery: {
-      js: 'https://cdn.cbd.int/flickr-justified-gallery@2.1.2/dist/fjGallery.min.js',
-      css: 'https://cdn.cbd.int/flickr-justified-gallery@2.1.2/dist/fjGallery.css'
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><title>CSRF跨站请求伪造 | 秋刀鱼</title><noscript>开启JavaScript才能访问本站哦~</noscript><link rel="icon" href="https://bu.dusays.com/2023/11/08/654af68b25bb8.jpg"><!-- index.css--><link rel="stylesheet" href="/css/index.css?v=1.5.1"><!-- inject head--><link rel="stylesheet" href="https://cdn.cbd.int/solitude-source/icon/scoicon.min.css"><link rel="stylesheet" href="https://cdn.staticfile.org/node-snackbar/0.1.16/snackbar.min.css"><!-- aplayer--><!-- swiper--><!-- Open Graph--><meta name="description" content="CSRF-原理&amp;amp;场景&amp;amp;类别&amp;amp;验证 CSRF全称：Cross-site request forgery,即，跨站请求伪造，也被称为“One Click Attack或“Session Riding°，通常缩写为CSRF或者XSRF,是一种对网站的恶意利用。 举个生活中的例子："><!-- pwa--><script>(win => {
+        win.saveToLocal = {
+            set: function setWithExpiry(key, value, ttl) {
+                if (ttl === 0)
+                    return
+                const now = new Date()
+                const expiryDay = ttl * 86400000
+                const item = {
+                    value: value,
+                    expiry: now.getTime() + expiryDay,
+                }
+                localStorage.setItem(key, JSON.stringify(item))
+            },
+
+            get: function getWithExpiry(key) {
+                const itemStr = localStorage.getItem(key)
+
+                if (!itemStr) {
+                    return undefined
+                }
+                const item = JSON.parse(itemStr)
+                const now = new Date()
+
+                if (now.getTime() > item.expiry) {
+                    localStorage.removeItem(key)
+                    return undefined
+                }
+                return item.value
+            }
+        }
+
+        const DarkModeStatus = localStorage.getItem('theme')
+        if (DarkModeStatus !== null) {
+            if (DarkModeStatus === 'dark') {
+                document.documentElement.setAttribute('data-theme', 'dark')
+            } else {
+                document.documentElement.setAttribute('data-theme', 'light')
+            }
+        }
+
+        const asideStatus = saveToLocal.get('aside-status')
+        if (asideStatus !== undefined) {
+            if (asideStatus === 'hide') {
+                document.documentElement.classList.add('hide-aside')
+            } else {
+                document.documentElement.classList.remove('hide-aside')
+            }
+        }
     }
-  },
-  isPhotoFigcaption: false,
-  islazyload: false,
-  isAnchor: true,
-  shortcutKey: undefined,
-  autoDarkmode: false
-}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
-  configTitle: '秋刀鱼',
-  title: 'CSRF跨站请求伪造',
-  postAI: '',
-  pageFillDescription: 'CSRF-原理amp场景amp类别amp验证, CSRF-工具, CSRF-防御, CSRF与XSS相结合利用, , , CSRF-靶场练习原理场景类别验证全称即跨站请求伪造也被称为或通常缩写为或者是一种对网站的恶意利用举个生活中的例子就是某个人点了个奇怪的链接自己什么也没输但自己的号或淇他的号就被盗了即该攻击可以在受害者不知情的情况下以受害者名义伪造请求执行恶意操作具有很大的危害性概述原理场景类别验证攻击的两个条件目标用户已经登录了网站能够执行网站的功能目标用户访问了攻击者构造的安全问题黑盒如何判断看验证来源不同源策略看凭据有无看关键操作有无验证工具自带的插件提取码该工具默认代理的是端口只需要浏览器代理端口就可以用了防御无效防御使用秘密的仅接收请求多步交易多步交易有可能会被恶意攻击者预测重写用户的身份信息会暴露在中不建议通过引入另外一个漏洞来解决当前漏洞所有安全机制的前提有效防御验证字段当前的上一个就是该页面是从那个页面过来的转账页面到转账操作伪造添加验证二次验证在关键操作之前再输入密码或者验证码某些情况下禁止脚本访问信息属性浏览器自带安全机制与相结合利用与相结合骑士无防护代码审计同源策略参考参考来源检测伪造需要在代码数据包文件固定来源稍微有点小复杂尝试在网站寻找可上传地方上传数据包文件取得当前同域名访问地址靶场练习靶场练习靶场练习',
-  isPost: true,
-  isHome: false,
-  isHighlightShrink: false,
-  isToc: true,
-  postUpdate: '2024-03-13 10:46:21',
-  postMainColor: '',
-}</script><noscript><style type="text/css">
-  #nav {
-    opacity: 1
-  }
-  .justified-gallery img {
-    opacity: 1
-  }
+)(window)
 
-  #recent-posts time,
-  #post-meta time {
-    display: inline !important
-  }
-</style></noscript><script>(win=>{
-      win.saveToLocal = {
-        set: (key, value, ttl) => {
-          if (ttl === 0) return
-          const now = Date.now()
-          const expiry = now + ttl * 86400000
-          const item = {
-            value,
-            expiry
-          }
-          localStorage.setItem(key, JSON.stringify(item))
+console.log(
+    "%c Program: Hexo %c Theme: Hexo-Theme-Solitude %c Version: v1.5.1",
+    "border-radius:5px 0 0 5px;padding: 5px 10px;color:white;background:#ff3842;margin:10px 0",
+    "padding: 5px 10px;color:white;background:#3e9f50;",
+    "border-radius:0 5px 5px 0;padding: 5px 10px;background:#0084ff;"
+);</script><!-- global head--><script>const GLOBAL_CONFIG = {
+    root: '/',
+    algolia: undefined,
+    localsearch: undefined,
+    runtime: '2023-04-20 00:00:00',
+    lazyload: {
+        enable: false,
+        error: '/img/error_load.png'
+    },
+    hightlight: {
+        enable: false,
+        limit: 200,
+        expand: false,
+        copy: true,
+    },
+    randomlinks: false,
+    lang: {
+        theme: {
+            dark: '已切换至深色模式',
+            light: '已切换至浅色模式',
         },
-      
-        get: key => {
-          const itemStr = localStorage.getItem(key)
-      
-          if (!itemStr) {
-            return undefined
-          }
-          const item = JSON.parse(itemStr)
-          const now = Date.now()
-      
-          if (now > item.expiry) {
-            localStorage.removeItem(key)
-            return undefined
-          }
-          return item.value
+        copy: {
+            success: '复制成功',
+            error: '复制失败',
+        },
+        backtop: '返回顶部',
+        time: {
+            recent: '最近',
+            yesterday: '昨天',
+            berforeyesterday: '前天',
+            daybefore: '天前',
+            runtime: '天',
+        },
+        search: {
+            empty: '找不到你查询的内容：${query}',
+            hit: '找到 ${hits} 条结果，用时 ${time} 毫秒',
+            placeholder: '输入关键词快速查找',
+        },
+        chs: {
+            chs_to_cht: '繁體中文',
+            cht_to_chs: '简体中文',
         }
-      }
-    
-      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
-        const script = document.createElement('script')
-        script.src = url
-        script.async = true
-        script.onerror = reject
-        script.onload = script.onreadystatechange = function() {
-          const loadState = this.readyState
-          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
-          script.onload = script.onreadystatechange = null
-          resolve()
+    },
+    aside: {
+        sayhello: {
+            morning: '一日之计在于晨',
+            noon: '吃饱了才有力气干活',
+            afternoon: '集中精力，攻克难关',
+            night: '不要太劳累了，早睡更健康',
+            goodnight: '睡个好觉，保证精力充沛',
+        },
+        sayhello2: ["🤖️ 数码科技爱好者","🔍 分享与热心帮助","🏠 智能家居小能手","🔨 设计开发一条龙","🤝 专修交互与设计","🏃 脚踏实地行动派","🧱 团队小组发动机","💢 壮汉人狠话不多","🎮 电竞游戏爱好者"],
+    },
+    covercolor: {
+        enable: false
+    },
+    comment: {
+        enable: false,
+        type: '',
+        commentBarrage: false,
+        randomInfoStart: ["聪敏的","可爱的","美丽的"],
+        randomInfoEnd: ["白菜","小可爱","小仙女"],
+        twikoo: {
+            url: '',
+            accessToken: ''
+        },
+        waline: {
+            url: '',
         }
-
-        Object.keys(attr).forEach(key => {
-          script.setAttribute(key, attr[key])
-        })
-
-        document.head.appendChild(script)
-      })
-    
-      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
-        const link = document.createElement('link')
-        link.rel = 'stylesheet'
-        link.href = url
-        if (id) link.id = id
-        link.onerror = reject
-        link.onload = link.onreadystatechange = function() {
-          const loadState = this.readyState
-          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
-          link.onload = link.onreadystatechange = null
-          resolve()
-        }
-        document.head.appendChild(link)
-      })
-    
-      win.activateDarkMode = () => {
-        document.documentElement.setAttribute('data-theme', 'dark')
-        if (document.querySelector('meta[name="theme-color"]') !== null) {
-          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#18171d')
-        }
-      }
-      win.activateLightMode = () => {
-        document.documentElement.setAttribute('data-theme', 'light')
-        if (document.querySelector('meta[name="theme-color"]') !== null) {
-          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#f7f9fe')
-        }
-      }
-      const t = saveToLocal.get('theme')
-    
-        if (t === 'dark') activateDarkMode()
-        else if (t === 'light') activateLightMode()
-      
-      const asideStatus = saveToLocal.get('aside-status')
-      if (asideStatus !== undefined) {
-        if (asideStatus === 'hide') {
-          document.documentElement.classList.add('hide-aside')
-        } else {
-          document.documentElement.classList.remove('hide-aside')
-        }
-      }
-    
-      const detectApple = () => {
-        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
-          document.documentElement.classList.add('apple')
-        }
-      }
-      detectApple()
-    })(window)</script><meta name="generator" content="Hexo 7.1.0"></head><body data-type="anzhiyu"><div id="web_bg"></div><div id="an_music_bg"></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><div id="nav-group"><span id="blog_name"><a id="site-name" href="/" accesskey="h"><div class="title">秋刀鱼</div><i class="anzhiyufont anzhiyu-icon-house-chimney"></i></a><div id="he-plugin-simple"></div><script>var WIDGET = {
-  "CONFIG": {
-    "modules": "0124",
-    "background": "2",
-    "tmpColor": "FFFFFF",
-    "tmpSize": "16",
-    "cityColor": "FFFFFF",
-    "citySize": "16",
-    "aqiColor": "E8D87B",
-    "aqiSize": "16",
-    "weatherIconSize": "24",
-    "alertIconSize": "18",
-    "padding": "10px 10px 10px 10px",
-    "shadow": "0",
-    "language": "auto",
-    "borderRadius": "20",
-    "fixed": "true",
-    "vertical": "top",
-    "horizontal": "left",
-    "left": "20",
-    "top": "7.1",
-    "key": "df245676fb434a0691ead1c63341cd94"
-  }
-}
-</script><link rel="stylesheet" href="https://widget.qweather.net/simple/static/css/he-simple.css?v=1.4.0"/><script src="https://widget.qweather.net/simple/static/js/he-simple.js?v=1.4.0"></script></span><div class="mask-name-container"><div id="name-container"><a id="page-name" href="javascript:anzhiyu.scrollToDest(0, 500)">PAGE_NAME</a></div></div><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/archives/"><span> 隧道</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/categories/"><span> 分类</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/tags/"><span> 标签</span></a></div></div></div><div id="nav-right"><div class="nav-button" id="randomPost_button"><a class="site-page" onclick="toRandomPost()" title="随机前往一个文章" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-dice"></i></a></div><div class="nav-button" id="search-button"><a class="site-page social-icon search" href="javascript:void(0);" title="搜索🔍" accesskey="s"><i class="anzhiyufont anzhiyu-icon-magnifying-glass"></i><span> 搜索</span></a></div><div id="console"><div class="console-card-group-reward"><ul class="reward-all console-card"><li class="reward-item"><a href="https://npm.elemecdn.com/anzhiyu-blog@1.1.6/img/post/common/qrcode-weichat.png" target="_blank"><img class="post-qr-code-img" alt="微信" src="https://npm.elemecdn.com/anzhiyu-blog@1.1.6/img/post/common/qrcode-weichat.png"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="https://npm.elemecdn.com/anzhiyu-blog@1.1.6/img/post/common/qrcode-alipay.png" target="_blank"><img class="post-qr-code-img" alt="支付宝" src="https://npm.elemecdn.com/anzhiyu-blog@1.1.6/img/post/common/qrcode-alipay.png"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div><div class="console-card-group"><div class="console-card-group-left"><div class="console-card" id="card-newest-comments"><div class="card-content"><div class="author-content-item-tips">互动</div><span class="author-content-item-title"> 最新评论</span></div><div class="aside-list"><span>正在加载中...</span></div></div></div><div class="console-card-group-right"><div class="console-card tags"><div class="card-content"><div class="author-content-item-tips">兴趣点</div><span class="author-content-item-title">寻找你感兴趣的领域</span></div></div><div class="console-card history"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-box-archiv"></i><span>文章</span></div><div class="card-archives"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-archive"></i><span>归档</span></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/03/"><span class="card-archive-list-date">三月 2024</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">9</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/02/"><span class="card-archive-list-date">二月 2024</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">13</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/01/"><span class="card-archive-list-date">一月 2024</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">10</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/12/"><span class="card-archive-list-date">十二月 2023</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">1</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/11/"><span class="card-archive-list-date">十一月 2023</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">31</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/05/"><span class="card-archive-list-date">五月 2023</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">25</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/04/"><span class="card-archive-list-date">四月 2023</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">13</span><span>篇</span></div></a></li></ul></div><hr/></div></div></div><div class="button-group"><div class="console-btn-item"><a class="darkmode_switchbutton" title="显示模式切换" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-moon"></i></a></div><div class="console-btn-item" id="consoleHideAside" onclick="anzhiyu.hideAsideBtn()" title="边栏显示控制"><a class="asideSwitch"><i class="anzhiyufont anzhiyu-icon-arrows-left-right"></i></a></div></div><div class="console-mask" onclick="anzhiyu.hideConsole()" href="javascript:void(0);"></div></div><div class="nav-button" id="nav-totop"><a class="totopbtn" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-arrow-up"></i><span id="percent" onclick="anzhiyu.scrollToDest(0,500)">0</span></a></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);" title="切换"><i class="anzhiyufont anzhiyu-icon-bars"></i></a></div></div></div></nav><div id="post-info"><div id="post-firstinfo"><div class="meta-firstline"><a class="post-meta-original">原创</a><span class="post-meta-categories"><span class="post-meta-separator"></span><i class="anzhiyufont anzhiyu-icon-inbox post-meta-icon"></i><a class="post-meta-categories" href="/categories/Web%E5%AE%89%E5%85%A8/" itemprop="url">Web安全</a></span><span class="article-meta tags"><a class="article-meta__tags" href="/tags/%E5%9F%BA%E7%A1%80%E6%BC%8F%E6%B4%9E/" tabindex="-1" itemprop="url"> <span> <i class="anzhiyufont anzhiyu-icon-hashtag"></i>基础漏洞</span></a></span></div></div><h1 class="post-title" itemprop="name headline">CSRF跨站请求伪造</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="anzhiyufont anzhiyu-icon-calendar-days post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" itemprop="dateCreated datePublished" datetime="2023-11-29T16:00:00.000Z" title="发表于 2023-11-30 00:00:00">2023-11-30</time><span class="post-meta-separator"></span><i class="anzhiyufont anzhiyu-icon-history post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" itemprop="dateCreated datePublished" datetime="2024-03-13T02:46:21.086Z" title="更新于 2024-03-13 10:46:21">2024-03-13</time></span></div><div class="meta-secondline"><span class="post-meta-separator"></span><span class="post-meta-wordcount"><i class="anzhiyufont anzhiyu-icon-file-word post-meta-icon" title="文章字数"></i><span class="post-meta-label" title="文章字数">字数总计:</span><span class="word-count" title="文章字数">588</span><span class="post-meta-separator"></span><i class="anzhiyufont anzhiyu-icon-clock post-meta-icon" title="阅读时长"></i><span class="post-meta-label" title="阅读时长">阅读时长:</span><span>1分钟</span></span><span class="post-meta-separator"></span><span class="post-meta-pv-cv" id="" data-flag-title="CSRF跨站请求伪造"><i class="anzhiyufont anzhiyu-icon-fw-eye post-meta-icon"></i><span class="post-meta-label" title="阅读量">阅读量:</span><span id="busuanzi_value_page_pv"><i class="anzhiyufont anzhiyu-icon-spinner anzhiyu-spin"></i></span></span><span class="post-meta-separator">       </span><span class="post-meta-position" title="作者IP属地为北京"><i class="anzhiyufont anzhiyu-icon-location-dot"></i>北京</span></div></div></div><section class="main-hero-waves-area waves-area"><svg class="waves-svg" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto"><defs><path id="gentle-wave" d="M -160 44 c 30 0 58 -18 88 -18 s 58 18 88 18 s 58 -18 88 -18 s 58 18 88 18 v 44 h -352 Z"></path></defs><g class="parallax"><use href="#gentle-wave" x="48" y="0"></use><use href="#gentle-wave" x="48" y="3"></use><use href="#gentle-wave" x="48" y="5"></use><use href="#gentle-wave" x="48" y="7"></use></g></svg></section><div id="post-top-cover"><img class="nolazyload" id="post-top-bg" src="https://w.wallhaven.cc/full/l8/wallhaven-l8rloq.jpg"></div></header><main id="blog-container"><div class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container" itemscope itemtype="https://hxysaury.github.io/2023/11/30/Web%E6%BC%8F%E6%B4%9E/CSRF%E8%B7%A8%E7%AB%99%E8%AF%B7%E6%B1%82%E4%BC%AA%E9%80%A0/"><header><a class="post-meta-categories" href="/categories/Web%E5%AE%89%E5%85%A8/" itemprop="url">Web安全</a><a href="/tags/%E5%9F%BA%E7%A1%80%E6%BC%8F%E6%B4%9E/" tabindex="-1" itemprop="url">基础漏洞</a><h1 id="CrawlerTitle" itemprop="name headline">CSRF跨站请求伪造</h1><span itemprop="author" itemscope itemtype="http://schema.org/Person">Vocal</span><time itemprop="dateCreated datePublished" datetime="2023-11-29T16:00:00.000Z" title="发表于 2023-11-30 00:00:00">2023-11-30</time><time itemprop="dateCreated datePublished" datetime="2024-03-13T02:46:21.086Z" title="更新于 2024-03-13 10:46:21">2024-03-13</time></header><h4 id="CSRF-原理-场景-类别-验证"><a href="#CSRF-原理-场景-类别-验证" class="headerlink" title="CSRF-原理&amp;场景&amp;类别&amp;验证"></a>CSRF-原理&amp;场景&amp;类别&amp;验证</h4><blockquote>
+    },
+    lightbox: 'null',
+    rightside: {
+        enable: false
+    },
+    ai: {
+        enable: false,
+        key: '',
+        talk: '我是王卓Sco开发的摘要生成助理ScoGPT，ScoGPT在静态部署时进行摘要的撰写，并且在访客访问时通过ScoCorrection转译后的文本摘要实现工具。我在这里只负责已经生成的摘要显示，你无法与我直接沟通，但我可以回答一些预设的问题。',
+        randomPost: false,
+    },
+    music: {
+        enable: false,
+    },
+    translate: undefined,
+};</script><meta name="generator" content="Hexo 7.1.0"></head><body id="body"><!-- universe--><canvas id="universe"></canvas><!-- loading--><!-- console--><div id="console"><div class="close-btn" onclick="sco.hideConsole()"><i class="scoicon sco-close-fill"></i></div><div class="button-group"><div class="console-btn-item"><a class="darkmode_switchbutton" onclick="sco.switchDarkMode()" title="昼夜切换" href="javascript:void(0);"><i class="scoicon sco-moon-clear-fill"></i></a></div><div class="console-btn-item" id="consoleHideAside"><a class="asideSwitch" onclick="sco.switchHideAside()" title="边栏显示控制" href="javascript:void(0);"><i class="scoicon sco-side-bar-fill"></i></a></div></div><div class="console-mask" onclick="sco.hideConsole()"></div></div><!-- sidebar--><div id="sidebar" style="zoom: 1;"><div id="menu-mask" style="display: none;"></div><div id="sidebar-menus"><span class="sidebar-menu-item-title">功能</span><div class="sidebar-menu-item"><a class="darkmode_switchbutton menu-child" onclick="sco.switchDarkMode()" href="javascript:void(0);"><i class="scoicon sco-moon-clear-fill"></i><span>显示模式</span></a></div><span class="sidebar-menu-item-title">标签</span><div class="card-widget card-tags card-archives card-webinfo card-allinfo"><div class="card-tag-cloud"><a href="/tags/%E5%88%9D%E7%A2%B0Android/">初碰Android<sup>3</sup></a><a href="/tags/Blue-Team/">Blue-Team<sup>2</sup></a><a href="/tags/CMD/">CMD<sup>1</sup></a><a href="/tags/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/">应急响应<sup>1</sup></a><a href="/tags/django/">django<sup>25</sup></a><a href="/tags/Python%E5%85%A5%E9%97%A8/">Python入门<sup>12</sup></a><a href="/tags/Crawl/">Crawl<sup>1</sup></a><a href="/tags/%E6%8E%A5%E5%8F%A3%E6%B5%8B%E8%AF%95/">接口测试<sup>1</sup></a><a href="/tags/%E5%9F%BA%E7%A1%80%E6%BC%8F%E6%B4%9E/">基础漏洞<sup>15</sup></a><a href="/tags/WAF%E7%BB%95%E8%BF%87/">WAF绕过<sup>1</sup></a><a href="/tags/record/">record<sup>4</sup></a><a href="/tags/%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/">学习路线<sup>2</sup></a><a href="/tags/%E5%86%85%E7%BD%91%E5%AE%89%E5%85%A8/">内网安全<sup>7</sup></a><a href="/tags/%E5%AE%89%E5%85%A8%E5%B7%A5%E5%85%B7/">安全工具<sup>10</sup></a><a href="/tags/PC%E5%AE%A2%E6%88%B7%E7%AB%AF/">PC客户端<sup>2</sup></a><a href="/tags/%E6%9D%83%E9%99%90%E6%8F%90%E5%8D%87/">权限提升<sup>4</sup></a><a href="/tags/%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/">信息收集<sup>1</sup></a><a href="/tags/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/">漏洞复现<sup>10</sup></a></div></div></div></div><!-- keyboard--><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav class="show" id="nav"><div id="nav-group"><div id="blog_name"><a id="site-name" href="/" title="返回博客主页"><span class="title">Solitude</span></a></div><div id="page-name-mask"><div id="page-name"><a id="page-name-text" onclick="sco.toTop()">CSRF跨站请求伪造</a></div></div><div id="menus"></div><div id="nav-left"></div><div id="nav-right"><div class="nav-button" id="nav-totop" onclick="sco.toTop()"><a class="totopbtn"><i class="scoicon sco-arrow-up-line"></i><span id="percent">0</span></a></div><div id="toggle-menu"><a class="site-page"><i class="scoicon sco-menu-line"></i></a></div></div></div></nav><div class="coverdiv" id="coverdiv"><img class="nolazyload" id="post-cover" src="https://w.wallhaven.cc/full/l8/wallhaven-l8rloq.jpg" alt="CSRF跨站请求伪造"></div><div id="post-info"><div id="post-firstinfo"><div class="meta-firstline"><a class="post-meta-original" title="该文章为原创文章，注意版权协议">原创</a><span class="post-meta-categories"><a class="post-meta-categories" href="/categories/Web安全/">Web安全</a></span><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E5%9F%BA%E7%A1%80%E6%BC%8F%E6%B4%9E/"><span class="tags-name tags-punctuation">基础漏洞</span></a></div></div></div></div><h1 class="post-title">CSRF跨站请求伪造</h1><div id="post-meta"><div class="meta-secondline"></div></div></div><section class="main-hero-waves-area waves-area"><svg class="waves-svg" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto"><defs><path id="gentle-wave" d="M -160 44 c 30 0 58 -18 88 -18 s 58 18 88 18 s 58 -18 88 -18 s 58 18 88 18 v 44 h -352 Z"></path></defs><g class="parallax"><use href="#gentle-wave" x="48" y="0"></use><use href="#gentle-wave" x="48" y="3"></use><use href="#gentle-wave" x="48" y="5"></use><use href="#gentle-wave" x="48" y="7"></use></g></svg></section></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h4 id="CSRF-原理-场景-类别-验证"><a href="#CSRF-原理-场景-类别-验证" class="headerlink" title="CSRF-原理&amp;场景&amp;类别&amp;验证"></a>CSRF-原理&amp;场景&amp;类别&amp;验证</h4><blockquote>
 <p>CSRF全称：Cross-site request forgery,即，跨站请求伪造，也被称为“One Click Attack或“Session Riding°，通常缩写为CSRF或者XSRF,是一种对网站的恶意利用。</p>
 </blockquote>
 <p>举个生活中的例子：</p>
@@ -265,104 +210,57 @@
 <li><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/ZhaoSong_/article/details/132358623">Pikachu靶场CSRF练习</a></p>
 </li>
 </ul>
-</article><div class="post-copyright"><div class="copyright-cc-box"><i class="anzhiyufont anzhiyu-icon-copyright"></i></div><div class="post-copyright__author_box"><a class="post-copyright__author_img" href="/" title="头像"><img class="post-copyright__author_img_back" src="https://pic.imgdb.cn/item/65ae347f871b83018af6c612.jpg" title="头像" alt="头像"><img class="post-copyright__author_img_front" src="https://pic.imgdb.cn/item/65ae347f871b83018af6c612.jpg" title="头像" alt="头像"></a><div class="post-copyright__author_name">Vocal</div><div class="post-copyright__author_desc">厚积薄发,志在必得</div></div><div class="post-copyright__post__info"><a class="post-copyright__original" title="该文章为原创文章，注意版权协议" href="https://hxysaury.github.io/2023/11/30/Web%E6%BC%8F%E6%B4%9E/CSRF%E8%B7%A8%E7%AB%99%E8%AF%B7%E6%B1%82%E4%BC%AA%E9%80%A0/">原创</a><a class="post-copyright-title"><span onclick="rm.copyPageUrl('https://hxysaury.github.io/2023/11/30/Web%E6%BC%8F%E6%B4%9E/CSRF%E8%B7%A8%E7%AB%99%E8%AF%B7%E6%B1%82%E4%BC%AA%E9%80%A0/')">CSRF跨站请求伪造</span></a></div><div class="post-tools" id="post-tools"><div class="post-tools-left"><div class="rewardLeftButton"><div class="post-reward" onclick="anzhiyu.addRewardMask()"><div class="reward-button button--animated" title="赞赏作者"><i class="anzhiyufont anzhiyu-icon-hand-heart-fill"></i>打赏作者</div><div class="reward-main"><div class="reward-all"><span class="reward-title">感谢你赐予我前进的力量</span><ul class="reward-group"><li class="reward-item"><a href="https://npm.elemecdn.com/anzhiyu-blog@1.1.6/img/post/common/qrcode-weichat.png" target="_blank"><img class="post-qr-code-img" src="https://npm.elemecdn.com/anzhiyu-blog@1.1.6/img/post/common/qrcode-weichat.png" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="https://npm.elemecdn.com/anzhiyu-blog@1.1.6/img/post/common/qrcode-alipay.png" target="_blank"><img class="post-qr-code-img" src="https://npm.elemecdn.com/anzhiyu-blog@1.1.6/img/post/common/qrcode-alipay.png" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul><a class="reward-main-btn" href="/about/#about-reward" target="_blank"><div class="reward-text">赞赏者名单</div><div class="reward-dec">因为你们的支持让我意识到写文章的价值🙏</div></a></div></div></div><div id="quit-box" onclick="anzhiyu.removeRewardMask()" style="display: none"></div></div><div class="shareRight"><div class="share-link mobile"><div class="share-qrcode"><div class="share-button" title="使用手机访问这篇文章"><i class="anzhiyufont anzhiyu-icon-qrcode"></i></div><div class="share-main"><div class="share-main-all"><div id="qrcode" title="https://hxysaury.github.io/2023/11/30/Web%E6%BC%8F%E6%B4%9E/CSRF%E8%B7%A8%E7%AB%99%E8%AF%B7%E6%B1%82%E4%BC%AA%E9%80%A0/"></div><div class="reward-dec">使用手机访问这篇文章</div></div></div></div></div><div class="share-link weibo"><a class="share-button" target="_blank" href="https://service.weibo.com/share/share.php?title=CSRF跨站请求伪造&amp;url=https://hxysaury.github.io/2023/11/30/Web%E6%BC%8F%E6%B4%9E/CSRF%E8%B7%A8%E7%AB%99%E8%AF%B7%E6%B1%82%E4%BC%AA%E9%80%A0/&amp;pic=https://w.wallhaven.cc/full/l8/wallhaven-l8rloq.jpg" rel="external nofollow noreferrer noopener"><i class="anzhiyufont anzhiyu-icon-weibo"></i></a></div><script>function copyCurrentPageUrl() {
-  var currentPageUrl = window.location.href;
-  var input = document.createElement("input");
-  input.setAttribute("value", currentPageUrl);
-  document.body.appendChild(input);
-  input.select();
-  input.setSelectionRange(0, 99999);
-  document.execCommand("copy");
-  document.body.removeChild(input);
-}</script><div class="share-link copyurl"><div class="share-button" id="post-share-url" title="复制链接" onclick="copyCurrentPageUrl()"><i class="anzhiyufont anzhiyu-icon-link"></i></div></div></div></div></div><div class="post-copyright__notice"><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://hxysaury.github.io" target="_blank">秋刀鱼</a>！</span></div></div><div class="post-tools-right"><div class="tag_share"><div class="post-meta__box"><div class="post-meta__box__tag-list"><a class="post-meta__box__tags" href="/tags/%E5%9F%BA%E7%A1%80%E6%BC%8F%E6%B4%9E/"><span class="tags-punctuation"> <i class="anzhiyufont anzhiyu-icon-tag"></i></span>基础漏洞<span class="tagsPageCount">15</span></a></div></div></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2023/11/30/Web%E6%BC%8F%E6%B4%9E/JWT%E5%AE%89%E5%85%A8/"><img class="prev-cover" src="https://w.wallhaven.cc/full/l8/wallhaven-l8rrg2.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">JavaWeb-JWT安全</div></div></a></div><div class="next-post pull-right"><a href="/2023/11/30/Web%E6%BC%8F%E6%B4%9E/CRLF/"><img class="next-cover" src="https://w.wallhaven.cc/full/we/wallhaven-wew7p6.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">CRLF注入</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="anzhiyufont anzhiyu-icon-thumbs-up fa-fw" style="font-size: 1.5rem; margin-right: 4px"></i><span>喜欢这篇文章的人也看了</span></div><div class="relatedPosts-list"><div><a href="/2023/11/30/Web%E6%BC%8F%E6%B4%9E/CRLF/" title="CRLF注入"><img class="cover" src="https://w.wallhaven.cc/full/we/wallhaven-wew7p6.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="anzhiyufont anzhiyu-icon-calendar-days fa-fw"></i> 2023-11-30</div><div class="title">CRLF注入</div></div></a></div><div><a href="/2023/11/20/Web%E6%BC%8F%E6%B4%9E/RCE/" title="RCE-代码执行-命令执行"><img class="cover" src="https://w.wallhaven.cc/full/gp/wallhaven-gpvyv7.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="anzhiyufont anzhiyu-icon-calendar-days fa-fw"></i> 2023-11-20</div><div class="title">RCE-代码执行-命令执行</div></div></a></div><div><a href="/2023/11/30/Web%E6%BC%8F%E6%B4%9E/JWT%E5%AE%89%E5%85%A8/" title="JavaWeb-JWT安全"><img class="cover" src="https://w.wallhaven.cc/full/l8/wallhaven-l8rrg2.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="anzhiyufont anzhiyu-icon-calendar-days fa-fw"></i> 2023-11-30</div><div class="title">JavaWeb-JWT安全</div></div></a></div><div><a href="/2023/11/30/Web%E6%BC%8F%E6%B4%9E/SSRF%E6%9C%8D%E5%8A%A1%E7%AB%AF%E8%AF%B7%E6%B1%82%E4%BC%AA%E9%80%A0/" title="SSRF服务端请求伪造"><img class="cover" src="https://w.wallhaven.cc/full/vq/wallhaven-vq3838.png" alt="cover"><div class="content is-center"><div class="date"><i class="anzhiyufont anzhiyu-icon-calendar-days fa-fw"></i> 2023-11-30</div><div class="title">SSRF服务端请求伪造</div></div></a></div><div><a href="/2023/11/30/Web%E6%BC%8F%E6%B4%9E/URL%E9%87%8D%E5%AE%9A%E5%90%91%E8%B7%B3%E8%BD%AC/" title="URL重定向跳转"><img class="cover" src="https://w.wallhaven.cc/full/qz/wallhaven-qz5yx7.png" alt="cover"><div class="content is-center"><div class="date"><i class="anzhiyufont anzhiyu-icon-calendar-days fa-fw"></i> 2023-11-30</div><div class="title">URL重定向跳转</div></div></a></div><div><a href="/2023/11/30/Web%E6%BC%8F%E6%B4%9E/WEB%E6%8B%92%E7%BB%9D%E6%9C%8D%E5%8A%A1/" title="Web拒绝服务"><img class="cover" src="https://w.wallhaven.cc/full/9d/wallhaven-9dellx.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="anzhiyufont anzhiyu-icon-calendar-days fa-fw"></i> 2023-11-30</div><div class="title">Web拒绝服务</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-content"><div class="author-info-avatar"><img class="avatar-img" src="https://pic.imgdb.cn/item/65ae347f871b83018af6c612.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__description"></div><div class="author-info__bottom-group"><a class="author-info__bottom-group-left" href="/"><h1 class="author-info__name">Vocal</h1><div class="author-info__desc">厚积薄发,志在必得</div></a><div class="card-info-social-icons is-center"><a class="social-icon faa-parent animated-hover" href="https://github.com/hxysaury" target="_blank" title="Github"><i class="anzhiyufont anzhiyu-icon-github"></i></a><a class="social-icon faa-parent animated-hover" href="https://bilibili.com/" target="_blank" title="BiliBili"><i class="anzhiyufont anzhiyu-icon-bilibili"></i></a></div></div></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-bars"></i><span>文章目录</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#CSRF-%E5%8E%9F%E7%90%86-%E5%9C%BA%E6%99%AF-%E7%B1%BB%E5%88%AB-%E9%AA%8C%E8%AF%81"><span class="toc-number">1.</span> <span class="toc-text">CSRF-原理&amp;场景&amp;类别&amp;验证</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#CSRF-%E5%B7%A5%E5%85%B7"><span class="toc-number">2.</span> <span class="toc-text">CSRF-工具</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#CSRF-%E9%98%B2%E5%BE%A1"><span class="toc-number">3.</span> <span class="toc-text">CSRF-防御</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#CSRF%E4%B8%8EXSS%E7%9B%B8%E7%BB%93%E5%90%88%E5%88%A9%E7%94%A8"><span class="toc-number">4.</span> <span class="toc-text">CSRF与XSS相结合利用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%AA%91%E5%A3%AB74CMS-%E6%97%A0%E9%98%B2%E6%8A%A4"><span class="toc-number">5.</span> <span class="toc-text">骑士74CMS-无防护</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1-Z-BlogCMS-%E5%90%8C%E6%BA%90%E7%AD%96%E7%95%A5"><span class="toc-number">6.</span> <span class="toc-text">代码审计-Z_BlogCMS-同源策略</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#CSRF-%E9%9D%B6%E5%9C%BA%E7%BB%83%E4%B9%A0"><span class="toc-number">7.</span> <span class="toc-text">CSRF-靶场练习</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-history"></i><span>最近发布</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/03/04/study-road/JAVA%E5%AE%89%E5%85%A8&amp;%E4%BA%91%E5%AE%89%E5%85%A8&amp;%E5%86%85%E7%BD%91%E5%AE%89%E5%85%A8/" title="JAVA安全&amp;云安全&amp;内网安全">JAVA安全&amp;云安全&amp;内网安全</a><time datetime="2024-03-03T16:00:00.000Z" title="发表于 2024-03-04 00:00:00">2024-03-04</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/03/04/study-road/%E8%93%9D%E9%98%9F%EF%BC%88%E5%BA%94%E6%80%A5%E3%80%81%E5%8F%96%E8%AF%81%E7%AD%89%EF%BC%89/" title="蓝队（应急、取证等）">蓝队（应急、取证等）</a><time datetime="2024-03-03T16:00:00.000Z" title="发表于 2024-03-04 00:00:00">2024-03-04</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/03/03/Android/%E5%88%9D%E8%AF%86smali/" title="初识smali">初识smali</a><time datetime="2024-03-02T16:00:00.000Z" title="发表于 2024-03-03 00:00:00">2024-03-03</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/03/02/Android/APK%E7%BB%93%E6%9E%84/" title="APK结构&amp;双开&amp;汉化&amp;图标修改">APK结构&amp;双开&amp;汉化&amp;图标修改</a><time datetime="2024-03-01T16:00:00.000Z" title="发表于 2024-03-02 00:00:00">2024-03-02</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/03/02/CMD/%E6%9F%A5%E7%9C%8B%E7%94%B5%E8%84%91%E8%BF%9E%E6%8E%A5%E8%BF%87%E7%9A%84%E6%97%A0%E7%BA%BF/" title="查看电脑连接过的WIFI">查看电脑连接过的WIFI</a><time datetime="2024-03-01T16:00:00.000Z" title="发表于 2024-03-02 00:00:00">2024-03-02</time></div></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"></div></footer></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="sidebar-site-data site-data is-center"><a href="/archives/" title="archive"><div class="headline">文章</div><div class="length-num">102</div></a><a href="/tags/" title="tag"><div class="headline">标签</div><div class="length-num">18</div></a><a href="/categories/" title="category"><div class="headline">分类</div><div class="length-num">7</div></a></div><span class="sidebar-menu-item-title">功能</span><div class="sidebar-menu-item"><a class="darkmode_switchbutton menu-child" href="javascript:void(0);" title="显示模式"><i class="anzhiyufont anzhiyu-icon-circle-half-stroke"></i><span>显示模式</span></a></div><div class="back-menu-list-groups"><div class="back-menu-list-group"><div class="back-menu-list-title">网页</div><div class="back-menu-list"><a class="back-menu-item" target="_blank" rel="noopener" href="https://blog.anheyu.com/" title="博客"><img class="back-menu-item-icon" src="/img/favicon.ico" alt="博客"/><span class="back-menu-item-text">博客</span></a></div></div><div class="back-menu-list-group"><div class="back-menu-list-title">项目</div><div class="back-menu-list"><a class="back-menu-item" target="_blank" rel="noopener" href="https://image.anheyu.com/" title="安知鱼图床"><img class="back-menu-item-icon" src="https://image.anheyu.com/favicon.ico" alt="安知鱼图床"/><span class="back-menu-item-text">安知鱼图床</span></a></div></div></div><div class="menus_items"><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/archives/"><span> 隧道</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/categories/"><span> 分类</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/tags/"><span> 标签</span></a></div></div><span class="sidebar-menu-item-title">标签</span><div class="card-tags"><div class="item-headline"></div><div class="card-tag-cloud"><a href="/tags/Blue-Team/" style="font-size: 0.88rem;">Blue-Team<sup>2</sup></a><a href="/tags/CMD/" style="font-size: 0.88rem;">CMD<sup>1</sup></a><a href="/tags/Crawl/" style="font-size: 0.88rem;">Crawl<sup>1</sup></a><a href="/tags/PC%E5%AE%A2%E6%88%B7%E7%AB%AF/" style="font-size: 0.88rem;">PC客户端<sup>2</sup></a><a href="/tags/Python%E5%85%A5%E9%97%A8/" style="font-size: 0.88rem;">Python入门<sup>12</sup></a><a href="/tags/WAF%E7%BB%95%E8%BF%87/" style="font-size: 0.88rem;">WAF绕过<sup>1</sup></a><a href="/tags/django/" style="font-size: 0.88rem;">django<sup>25</sup></a><a href="/tags/record/" style="font-size: 0.88rem;">record<sup>4</sup></a><a href="/tags/%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/" style="font-size: 0.88rem;">信息收集<sup>1</sup></a><a href="/tags/%E5%86%85%E7%BD%91%E5%AE%89%E5%85%A8/" style="font-size: 0.88rem;">内网安全<sup>7</sup></a><a href="/tags/%E5%88%9D%E7%A2%B0Android/" style="font-size: 0.88rem;">初碰Android<sup>3</sup></a><a href="/tags/%E5%9F%BA%E7%A1%80%E6%BC%8F%E6%B4%9E/" style="font-size: 0.88rem;">基础漏洞<sup>15</sup></a><a href="/tags/%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/" style="font-size: 0.88rem;">学习路线<sup>2</sup></a><a href="/tags/%E5%AE%89%E5%85%A8%E5%B7%A5%E5%85%B7/" style="font-size: 0.88rem;">安全工具<sup>10</sup></a><a href="/tags/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/" style="font-size: 0.88rem;">应急响应<sup>1</sup></a><a href="/tags/%E6%8E%A5%E5%8F%A3%E6%B5%8B%E8%AF%95/" style="font-size: 0.88rem;">接口测试<sup>1</sup></a><a href="/tags/%E6%9D%83%E9%99%90%E6%8F%90%E5%8D%87/" style="font-size: 0.88rem;">权限提升<sup>4</sup></a><a href="/tags/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/" style="font-size: 0.88rem;">漏洞复现<sup>10</sup></a></div></div><hr/></div></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="anzhiyufont anzhiyu-icon-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="anzhiyufont anzhiyu-icon-circle-half-stroke"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="anzhiyufont anzhiyu-icon-arrows-left-right"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="anzhiyufont anzhiyu-icon-gear"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="anzhiyufont anzhiyu-icon-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="anzhiyufont anzhiyu-icon-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="anzhiyufont anzhiyu-icon-xmark"></i></button></nav><div class="is-center" id="loading-database"><i class="anzhiyufont anzhiyu-icon-spinner anzhiyu-pulse-icon"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div id="rightMenu"><div class="rightMenu-group rightMenu-small"><div class="rightMenu-item" id="menu-backward"><i class="anzhiyufont anzhiyu-icon-arrow-left"></i></div><div class="rightMenu-item" id="menu-forward"><i class="anzhiyufont anzhiyu-icon-arrow-right"></i></div><div class="rightMenu-item" id="menu-refresh"><i class="anzhiyufont anzhiyu-icon-arrow-rotate-right" style="font-size: 1rem;"></i></div><div class="rightMenu-item" id="menu-top"><i class="anzhiyufont anzhiyu-icon-arrow-up"></i></div></div><div class="rightMenu-group rightMenu-line rightMenuPlugin"><div class="rightMenu-item" id="menu-copytext"><i class="anzhiyufont anzhiyu-icon-copy"></i><span>复制选中文本</span></div><div class="rightMenu-item" id="menu-pastetext"><i class="anzhiyufont anzhiyu-icon-paste"></i><span>粘贴文本</span></div><a class="rightMenu-item" id="menu-commenttext"><i class="anzhiyufont anzhiyu-icon-comment-medical"></i><span>引用到评论</span></a><div class="rightMenu-item" id="menu-newwindow"><i class="anzhiyufont anzhiyu-icon-window-restore"></i><span>新窗口打开</span></div><div class="rightMenu-item" id="menu-copylink"><i class="anzhiyufont anzhiyu-icon-link"></i><span>复制链接地址</span></div><div class="rightMenu-item" id="menu-copyimg"><i class="anzhiyufont anzhiyu-icon-images"></i><span>复制此图片</span></div><div class="rightMenu-item" id="menu-downloadimg"><i class="anzhiyufont anzhiyu-icon-download"></i><span>下载此图片</span></div><div class="rightMenu-item" id="menu-newwindowimg"><i class="anzhiyufont anzhiyu-icon-window-restore"></i><span>新窗口打开图片</span></div><div class="rightMenu-item" id="menu-search"><i class="anzhiyufont anzhiyu-icon-magnifying-glass"></i><span>站内搜索</span></div><div class="rightMenu-item" id="menu-searchBaidu"><i class="anzhiyufont anzhiyu-icon-magnifying-glass"></i><span>百度搜索</span></div><div class="rightMenu-item" id="menu-music-toggle"><i class="anzhiyufont anzhiyu-icon-play"></i><span>播放音乐</span></div><div class="rightMenu-item" id="menu-music-back"><i class="anzhiyufont anzhiyu-icon-backward"></i><span>切换到上一首</span></div><div class="rightMenu-item" id="menu-music-forward"><i class="anzhiyufont anzhiyu-icon-forward"></i><span>切换到下一首</span></div><div class="rightMenu-item" id="menu-music-playlist" onclick="window.open(&quot;https://y.qq.com/n/ryqq/playlist/8802438608&quot;, &quot;_blank&quot;);" style="display: none;"><i class="anzhiyufont anzhiyu-icon-radio"></i><span>查看所有歌曲</span></div><div class="rightMenu-item" id="menu-music-copyMusicName"><i class="anzhiyufont anzhiyu-icon-copy"></i><span>复制歌名</span></div></div><div class="rightMenu-group rightMenu-line rightMenuOther"><a class="rightMenu-item menu-link" id="menu-randomPost"><i class="anzhiyufont anzhiyu-icon-shuffle"></i><span>随便逛逛</span></a><a class="rightMenu-item menu-link" href="/categories/"><i class="anzhiyufont anzhiyu-icon-cube"></i><span>博客分类</span></a><a class="rightMenu-item menu-link" href="/tags/"><i class="anzhiyufont anzhiyu-icon-tags"></i><span>文章标签</span></a></div><div class="rightMenu-group rightMenu-line rightMenuOther"><a class="rightMenu-item" id="menu-copy" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-copy"></i><span>复制地址</span></a><a class="rightMenu-item" id="menu-commentBarrage" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-message"></i><span class="menu-commentBarrage-text">关闭热评</span></a><a class="rightMenu-item" id="menu-darkmode" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-circle-half-stroke"></i><span class="menu-darkmode-text">深色模式</span></a><a class="rightMenu-item" id="menu-translate" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-language"></i><span>轉為繁體</span></a></div></div><div id="rightmenu-mask"></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.cbd.int/@fancyapps/ui@5.0.28/dist/fancybox/fancybox.umd.js"></script><script src="https://cdn.cbd.int/instant.page@5.2.0/instantpage.js" type="module"></script><script src="https://cdn.cbd.int/node-snackbar@0.1.16/dist/snackbar.min.js"></script><script>function panguFn () {
-  if (typeof pangu === 'object') pangu.autoSpacingPage()
-  else {
-    getScript('https://cdn.cbd.int/pangu@4.0.7/dist/browser/pangu.min.js')
-      .then(() => {
-        pangu.autoSpacingPage()
-      })
-  }
+</article><div class="post-copyright"><div class="post-copyright__author_group"><a class="post-copyright__author_img" href="/about/"><img class="post-copyright__author_img_front" src="https://bu.dusays.com/2023/11/08/654af68b25bb8.jpg"></a><div class="post-copyright__author_name">秋刀鱼</div><div class="post-copyright__author_desc">厚积薄发,志在必得</div></div><div class="post-tools" id="post-tools"><div class="post-tools-left"><div id="quit-box" onclick="RemoveRewardMask()"></div></div></div><div class="post-copyright__notice"><span class="post-copyright-info">本文是原创文章，采用<a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">CC BY-NC-SA 4.0</a>协议，完整转载请注明来自<a href="/">秋刀鱼</a></span></div></div><div class="post-tools-right"><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E5%9F%BA%E7%A1%80%E6%BC%8F%E6%B4%9E/"><span class="tags-punctuation"></span>基础漏洞<span class="tagsPageCount">15</span></a></div></div></div><nav class="needEndHide pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2023/11/30/Web%E6%BC%8F%E6%B4%9E/CRLF/"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">CRLF注入</div></div></a></div><div class="next-post pull-right"><a href="/2023/11/30/Web%E6%BC%8F%E6%B4%9E/JWT%E5%AE%89%E5%85%A8/"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">JavaWeb-JWT安全</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="scoicon sco-star-smile-fill"></i><span>喜欢这篇的人也看了</span><div class="relatedPosts-link"><a onclick="event.preventDefault(); toRandomPost();" href="javascript:void(0);" rel="external nofollow" data-pjax-state="">随便逛逛</a></div></div><div class="relatedPosts-list"><div><a href="/2023/11/30/Web%E6%BC%8F%E6%B4%9E/CRLF/" title="CRLF注入"><img class="cover" src="https://w.wallhaven.cc/full/we/wallhaven-wew7p6.jpg" alt="cover"><div class="content is-center"><div class="title">CRLF注入</div></div></a></div><div><a href="/2023/11/30/Web%E6%BC%8F%E6%B4%9E/JWT%E5%AE%89%E5%85%A8/" title="JavaWeb-JWT安全"><img class="cover" src="https://w.wallhaven.cc/full/l8/wallhaven-l8rrg2.jpg" alt="cover"><div class="content is-center"><div class="title">JavaWeb-JWT安全</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-content"><div class="card-info-avatar is-center"><div class="author-info__top-group"><div class="author-info__sayhi" id="author-info__sayhi" onclick="sco.changeSayHelloText()">sayhello.morning</div></div></div><div class="avatar-img-group"><img class="avatar-img" alt="头像" src="https://bu.dusays.com/2023/11/08/654af68b25bb8.jpg"><div class="avatar-sticker"><img class="avatar-sticker-img" src="https://bu.dusays.com/2023/12/30/659011053e246.png" alt="心情贴纸"></div></div><div class="author-info__description_group"><div class="author-info__description">分享自己对编程的<b>热爱</b>，对美好生活的<b>向往</b>，对知识海洋<b>探索历程</b>。</div><div class="author-info__description2">相信你可以在这里找到对你有用的知识和教程。</div></div><div class="author-info__bottom-group"><a class="author-info__bottom-group-left" href="/about/"><div class="author-info__name">Vocal</div><div class="author-info__desc">厚积薄发,志在必得</div></a><div class="card-info-social-icons is-center"></div></div></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="scoicon sco-menu-line"></i><span>文章目录</span></div><div class="toc-content" id="toc-content"><ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#CSRF-%E5%8E%9F%E7%90%86-%E5%9C%BA%E6%99%AF-%E7%B1%BB%E5%88%AB-%E9%AA%8C%E8%AF%81"><span class="toc-text">CSRF-原理&amp;场景&amp;类别&amp;验证</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#CSRF-%E5%B7%A5%E5%85%B7"><span class="toc-text">CSRF-工具</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#CSRF-%E9%98%B2%E5%BE%A1"><span class="toc-text">CSRF-防御</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#CSRF%E4%B8%8EXSS%E7%9B%B8%E7%BB%93%E5%90%88%E5%88%A9%E7%94%A8"><span class="toc-text">CSRF与XSS相结合利用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%AA%91%E5%A3%AB74CMS-%E6%97%A0%E9%98%B2%E6%8A%A4"><span class="toc-text">骑士74CMS-无防护</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1-Z-BlogCMS-%E5%90%8C%E6%BA%90%E7%AD%96%E7%95%A5"><span class="toc-text">代码审计-Z_BlogCMS-同源策略</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#CSRF-%E9%9D%B6%E5%9C%BA%E7%BB%83%E4%B9%A0"><span class="toc-text">CSRF-靶场练习</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="scoicon sco-map-line"></i><span>最近发布</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2024/03/04/study-road/JAVA%E5%AE%89%E5%85%A8&amp;%E4%BA%91%E5%AE%89%E5%85%A8&amp;%E5%86%85%E7%BD%91%E5%AE%89%E5%85%A8/" title="JAVA安全&amp;云安全&amp;内网安全"><img alt="JAVA安全&amp;云安全&amp;内网安全" src="https://pic.imgdb.cn/item/65ebfc499f345e8d03a57b7d.png"></a><div class="content"><a class="title" href="/2024/03/04/study-road/JAVA%E5%AE%89%E5%85%A8&amp;%E4%BA%91%E5%AE%89%E5%85%A8&amp;%E5%86%85%E7%BD%91%E5%AE%89%E5%85%A8/" title="JAVA安全&amp;云安全&amp;内网安全">JAVA安全&amp;云安全&amp;内网安全</a></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/03/04/study-road/%E8%93%9D%E9%98%9F%EF%BC%88%E5%BA%94%E6%80%A5%E3%80%81%E5%8F%96%E8%AF%81%E7%AD%89%EF%BC%89/" title="蓝队（应急、取证等）"><img alt="蓝队（应急、取证等）" src="https://pic.imgdb.cn/item/65ebfc499f345e8d03a57b7d.png"></a><div class="content"><a class="title" href="/2024/03/04/study-road/%E8%93%9D%E9%98%9F%EF%BC%88%E5%BA%94%E6%80%A5%E3%80%81%E5%8F%96%E8%AF%81%E7%AD%89%EF%BC%89/" title="蓝队（应急、取证等）">蓝队（应急、取证等）</a></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/03/03/Android/%E5%88%9D%E8%AF%86smali/" title="初识smali"><img alt="初识smali" src="https://pic.imgdb.cn/item/65eb11b69f345e8d039d0162.png"></a><div class="content"><a class="title" href="/2024/03/03/Android/%E5%88%9D%E8%AF%86smali/" title="初识smali">初识smali</a><a class="article-recent_post_categories" href="/2024/03/03/Android/%E5%88%9D%E8%AF%86smali/">Andriod逆向</a></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/03/02/Android/APK%E7%BB%93%E6%9E%84/" title="APK结构&amp;双开&amp;汉化&amp;图标修改"><img alt="APK结构&amp;双开&amp;汉化&amp;图标修改" src="https://pic.imgdb.cn/item/65eaf60e9f345e8d033954f1.png"></a><div class="content"><a class="title" href="/2024/03/02/Android/APK%E7%BB%93%E6%9E%84/" title="APK结构&amp;双开&amp;汉化&amp;图标修改">APK结构&amp;双开&amp;汉化&amp;图标修改</a><a class="article-recent_post_categories" href="/2024/03/02/Android/APK%E7%BB%93%E6%9E%84/">Andriod逆向</a></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/03/02/CMD/%E6%9F%A5%E7%9C%8B%E7%94%B5%E8%84%91%E8%BF%9E%E6%8E%A5%E8%BF%87%E7%9A%84%E6%97%A0%E7%BA%BF/" title="查看电脑连接过的WIFI"><img alt="查看电脑连接过的WIFI" src="false/../../imgs/image-20240309220356881.png"></a><div class="content"><a class="title" href="/2024/03/02/CMD/%E6%9F%A5%E7%9C%8B%E7%94%B5%E8%84%91%E8%BF%9E%E6%8E%A5%E8%BF%87%E7%9A%84%E6%97%A0%E7%BA%BF/" title="查看电脑连接过的WIFI">查看电脑连接过的WIFI</a></div></div></div></div></div></div></main><footer id="footer"><div id="sco-footer-bar"><div class="footer-logo"><span class="scoicon">Solitude</span></div><div class="footer-bar-description">来自秋刀鱼 - 厚积薄发,志在必得的文章</div><a class="footer-bar-link" href="/">了解更多</a></div><div id="footer_deal"><div class="footer_mini_logo" id="footer_mini_logo" title="返回顶部" onclick="sco.toTop()"><img src="https://bu.dusays.com/2023/11/08/654af68b25bb8.jpg" alt="返回顶部"></div></div><div id="sco-footer"></div><div id="footer-bar"><div class="footer-bar-links"><div class="footer-bar-left"><div class="copyright">© 2023 - 2024 By&nbsp;<a class="footer-bar-link" href="/">Vocal</a></div></div><div class="footer-bar-right"><a class="footer-bar-link" target="_blank" rel="noopener" href="https://github.com/wleelw/hexo-theme-solitude" title="主题">主题</a><a class="footer-bar-link cc"><i class="scoicon sco-copyright-line"></i><i class="scoicon sco-creative-commons-by-line"></i><i class="scoicon sco-creative-commons-nc-line"></i><i class="scoicon sco-creative-commons-nd-line"></i></a></div></div></div></footer></div><!-- inject body--><div><script src="/js/main.js?v=1.5.1"></script><script src="/js/utils.js?v=1.5.1"></script><script src="https://cdn.cbd.int/solitude-source/js/universe.min.js"></script><script>dark()
+</script><script src="https://cdn.staticfile.org/pjax/0.2.8/pjax.min.js"></script><script src="https://cdn.staticfile.org/node-snackbar/0.1.16/snackbar.min.js"></script><script src="https://cdn.staticfile.org/pace/1.2.4/pace.min.js"></script></div><div id="js-pjax"><script id="config-diff">var PAGE_CONFIG = {
+    is_post: true,
+    is_page: false,
+    is_home: false,
+    page: 'post',
+    toc: true,
+    comment: false,
 }
+</script></div><!-- newest comment--><!-- pjax--><script>let pjaxSelectors = [
+    'title',
+    '#body-wrap',
+    '#site-config',
+    'meta[name="description"]',
+    '#js-pjax',
+    'meta[property^="og:"]',
+]
 
-function panguInit () {
-  if (false){
-    GLOBAL_CONFIG_SITE.isPost && panguFn()
-  } else {
-    panguFn()
-  }
+const pjax = new Pjax({
+    elements: 'a:not([target="_blank"])',
+    selectors: pjaxSelectors,
+    cacheBust: false,
+    analytics: false,
+    scrollRestoration: false
+})
+
+document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+})
+
+document.addEventListener('pjax:complete', () => {
+    window.refreshFn()
+})
+
+document.addEventListener('pjax:error', (e) => {
+    if (e.request.status === 404) {
+        pjax.loadUrl('/404.html')
+    }
+})</script><!-- theme--><script>initTheme = () => {
+    let isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+    const cachedMode = saveToLocal.get('theme');
+    if (cachedMode === undefined) {
+        const nowMode =
+            isDarkMode ? 'dark' : 'light'
+        document.documentElement.setAttribute('data-theme', nowMode);
+    } else {
+        document.documentElement.setAttribute('data-theme', cachedMode);
+    }
 }
-
-document.addEventListener('DOMContentLoaded', panguInit)</script><canvas id="universe"></canvas><script async src="https://npm.elemecdn.com/anzhiyu-theme-static@1.0.0/dark/dark.js"></script><script>// 消除控制台打印
-var HoldLog = console.log;
-console.log = function () {};
-let now1 = new Date();
-queueMicrotask(() => {
-  const Log = function () {
-    HoldLog.apply(console, arguments);
-  }; //在恢复前输出日志
-  const grt = new Date("04/01/2021 00:00:00"); //此处修改你的建站时间或者网站上线时间
-  now1.setTime(now1.getTime() + 250);
-  const days = (now1 - grt) / 1000 / 60 / 60 / 24;
-  const dnum = Math.floor(days);
-  const ascll = [
-    `欢迎使用安知鱼!`,
-    `生活明朗, 万物可爱`,
-    `
-        
-       █████╗ ███╗   ██╗███████╗██╗  ██╗██╗██╗   ██╗██╗   ██╗
-      ██╔══██╗████╗  ██║╚══███╔╝██║  ██║██║╚██╗ ██╔╝██║   ██║
-      ███████║██╔██╗ ██║  ███╔╝ ███████║██║ ╚████╔╝ ██║   ██║
-      ██╔══██║██║╚██╗██║ ███╔╝  ██╔══██║██║  ╚██╔╝  ██║   ██║
-      ██║  ██║██║ ╚████║███████╗██║  ██║██║   ██║   ╚██████╔╝
-      ╚═╝  ╚═╝╚═╝  ╚═══╝╚══════╝╚═╝  ╚═╝╚═╝   ╚═╝    ╚═════╝
-        
-        `,
-    "已上线",
-    dnum,
-    "天",
-    "©2020 By 安知鱼 V1.6.12",
-  ];
-  const ascll2 = [`NCC2-036`, `调用前置摄像头拍照成功，识别为【小笨蛋】.`, `Photo captured: `, `🤪`];
-
-  setTimeout(
-    Log.bind(
-      console,
-      `\n%c${ascll[0]} %c ${ascll[1]} %c ${ascll[2]} %c${ascll[3]}%c ${ascll[4]}%c ${ascll[5]}\n\n%c ${ascll[6]}\n`,
-      "color:#425AEF",
-      "",
-      "color:#425AEF",
-      "color:#425AEF",
-      "",
-      "color:#425AEF",
-      ""
-    )
-  );
-  setTimeout(
-    Log.bind(
-      console,
-      `%c ${ascll2[0]} %c ${ascll2[1]} %c \n${ascll2[2]} %c\n${ascll2[3]}\n`,
-      "color:white; background-color:#4fd953",
-      "",
-      "",
-      'background:url("https://npm.elemecdn.com/anzhiyu-blog@1.1.6/img/post/common/tinggge.gif") no-repeat;font-size:450%'
-    )
-  );
-
-  setTimeout(Log.bind(console, "%c WELCOME %c 你好，小笨蛋.", "color:white; background-color:#4f90d9", ""));
-
-  setTimeout(
-    console.warn.bind(
-      console,
-      "%c ⚡ Powered by 安知鱼 %c 你正在访问 Vocal 的博客.",
-      "color:white; background-color:#f0ad4e",
-      ""
-    )
-  );
-
-  setTimeout(Log.bind(console, "%c W23-12 %c 你已打开控制台.", "color:white; background-color:#4f90d9", ""));
-
-  setTimeout(
-    console.warn.bind(console, "%c S013-782 %c 你现在正处于监控中.", "color:white; background-color:#d9534f", "")
-  );
-});</script><script async src="/anzhiyu/random.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><input type="hidden" name="page-type" id="page-type" value="post"></div><script>var visitorMail = "admin@qq.com";
-</script><script async data-pjax src="https://cdn.cbd.int/anzhiyu-theme-static@1.0.0/waterfall/waterfall.js"></script><script src="https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-M/qrcodejs/1.0.0/qrcode.min.js"></script><link rel="stylesheet" href="https://cdn.cbd.int/anzhiyu-theme-static@1.1.9/icon/ali_iconfont_css.css"><link rel="stylesheet" href="https://cdn.cbd.int/anzhiyu-theme-static@1.0.0/aplayer/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.cbd.int/anzhiyu-blog-static@1.0.1/js/APlayer.min.js"></script><script src="https://cdn.cbd.int/hexo-anzhiyu-music@1.0.1/assets/js/Meting2.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script charset="UTF-8" src="https://cdn.cbd.int/anzhiyu-theme-static@1.1.5/accesskey/accesskey.js"></script></div><div id="popup-window"><div class="popup-window-title">通知</div><div class="popup-window-divider"></div><div class="popup-window-content"><div class="popup-tip">你好呀</div><div class="popup-link"><i class="anzhiyufont anzhiyu-icon-arrow-circle-right"></i></div></div></div></body></html>
+initTheme()</script><!-- search--><!-- music--></body></html><script>const posts=["2024/03/04/study-road/JAVA安全&云安全&内网安全/","2024/03/04/study-road/蓝队（应急、取证等）/","2024/03/03/Android/初识smali/","2024/03/02/Android/APK结构/","2024/03/02/CMD/查看电脑连接过的无线/","2024/03/02/record/解决百度网盘下载慢问题/","2024/03/01/Android/环境搭建/","2024/03/01/Blue-Team/web1/","2024/03/01/Blue-Team/web2/","2024/02/26/record/README/","2024/02/24/安全工具/Nmap/","2024/02/24/安全工具/sqlmap/","2024/02/23/安全工具/hydra/","2024/02/23/安全工具/john&zip2john/","2024/02/23/安全工具/kali-wordlists/","2024/02/23/安全工具/lbd负载均衡/","2024/02/23/安全工具/msf生成木马/","2024/02/23/安全工具/nc/","2024/02/22/安全工具/nikto/","2024/02/20/record/tmux/","2024/02/18/内网安全/域控-防火墙-组策略不出网上线/","2024/02/14/record/涩涩情侣飞行棋密码破解/","2024/01/29/Blue-Team/日志自动提取分析项目_ELK_Logkit_LogonTracer_Anolog/","2024/01/11/渗透测试/CS架构客户端信息收集与流量分析/","2024/01/10/渗透测试/CS架构客户端环境搭建/","2024/01/08/内网安全/reGeorg流量转发/","2024/01/06/内网安全/frp穿透实验/","2024/01/03/内网安全/黄金票据与白银票据/","2024/01/02/内网安全/哈希传递/","2024/01/02/内网安全/域环境&域信息收集/","2024/01/01/内网安全/CS鱼饵制作/","2024/01/01/安全工具/Cobalt Strike/","2023/12/10/漏洞复现/Spring Boot Actuator未授权访问漏洞/","2023/11/30/Web漏洞/API攻防/","2023/11/30/Web漏洞/CRLF/","2023/11/30/Web漏洞/CSRF跨站请求伪造/","2023/11/30/Web漏洞/JWT安全/","2023/11/30/Web漏洞/URL重定向跳转/","2023/11/30/Web漏洞/SSRF服务端请求伪造/","2023/11/30/Web漏洞/WEB拒绝服务/","2023/11/30/Web漏洞/XSS跨站/","2023/11/30/Web漏洞/业务逻辑/","2023/11/30/Web漏洞/任意文件包含/","2023/11/30/Web漏洞/其他SQL注入/","2023/11/30/Web漏洞/子域名接管&COSP跨域资源&JSONP跨域回调/","2023/11/30/Web漏洞/弱口令/","2023/11/30/渗透测试/信息收集/","2023/11/30/漏洞复现/MySQL注入漏洞/","2023/11/28/Web漏洞/WAF攻防/","2023/11/24/渗透测试/Windows提权姿势/","2023/11/22/渗透测试/linux提权姿势/","2023/11/22/渗透测试/MYSQL提权/","2023/11/20/Web漏洞/RCE/","2023/11/20/Web漏洞/任意文件上传/","2023/11/20/渗透测试/phpMyAdmin利用/","2023/11/19/漏洞复现/phpstudy2016-2018命令执行漏洞复现/","2023/11/16/漏洞复现/Fastjson_1.2.47_rce/","2023/11/16/漏洞复现/fastjson_1.2.24_unserializer_rce/","2023/11/13/漏洞复现/Zookeeper未授权/","2023/11/11/漏洞复现/MongoDB未授权/","2023/11/11/漏洞复现/Redis未授权/","2023/11/09/漏洞复现/Elasticsearch 未授权访问/","2023/11/09/漏洞复现/IIS_7.o7.5解析漏洞/","2023/11/09/漏洞复现/Memcached 未授权访问/","2023/05/19/Python/Python-BBS项目开发/","2023/05/16/Django/Python-Django-图片验证码，发送邮箱，富文本编辑器/","2023/05/14/Python/Python-自定义分页器/","2023/05/14/Django/Python-DJango-Cookie与Session/","2023/05/14/Django/Python-froms组件/","2023/05/13/Django/Django自带的序列化组件/","2023/05/13/Django/Python-Django-批量插入 bulk_create/","2023/05/13/Django/Python-Djangochoices参数/","2023/05/12/Python/Python-auth模块/","2023/05/12/Django/Python-Django中间件/","2023/05/12/Django/Python-Django基于jQuery的Ajax实现/","2023/05/12/Django/Python-Django模型层/","2023/05/12/Django/Python-Django模版层/","2023/05/12/Django/Python-csrf跨站请求伪造/","2023/05/12/Django/Python-基于Django中间件引发的编程思想/","2023/05/12/Django/Python-Django视图层/","2023/05/11/Django/Python-Django路由层/","2023/05/10/Django/Python-Django请求周期流程图（重要）/","2023/05/09/Django/Python-Django ORM/","2023/05/06/Python/Python-pycharm链接数据库（MySQL）/","2023/05/06/Django/Python-Django基本操作/","2023/05/06/Django/Python-Django链接MySQL/","2023/05/06/Django/python-Django小白必会三板斧/","2023/05/06/Django/python-Django静态文件配置/","2023/05/05/Django/Python-Django引入/","2023/04/18/Python/Python爬虫/","2023/04/11/Python/Python-并发编程/","2023/04/11/Python/Python正则/","2023/04/10/Python/Python-网络编程/","2023/04/10/Python/Python文件操作/","2023/04/09/Python/Python-办公自动化/","2023/04/09/Python/Python面向对象/","2023/04/07/Python/Python函数/","2023/04/07/Python/Python模块与包/","2023/04/06/Python/Python数据类型/","2023/04/05/Python/Python流程控制/","2023/04/04/Python/Python初识/","2023/04/02/Python/Python-打包exe执行文件/"];function toRandomPost(){ pjax.loadUrl('/'+posts[Math.floor(Math.random()*posts.length)]); };</script>
